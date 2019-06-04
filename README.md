@@ -11,7 +11,7 @@ It's symfony website-skeleton project with some additional tools to validate cod
     * PHP_CodeSniffer to check PSR2 
     * PHPStan will check PHP recommendation
      
-  If tests fail, the commit is canceled and a warning message is displayed to developper.
+  If tests fail, the commit is canceled and a warning message is displayed todevelopper.
 
 * Travis CI, as Continuous Integration will be run when a branch with active pull request is updated on github. It will run :
 
