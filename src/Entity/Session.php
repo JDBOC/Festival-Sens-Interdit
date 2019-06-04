@@ -26,6 +26,12 @@ class Session
      */
     private $location;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Content", inversedBy="sessions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $content;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +57,18 @@ class Session
     public function setLocation(?string $location): self
     {
         $this->location = $location;
+
+        return $this;
+    }
+
+    public function getContent(): ?Content
+    {
+        return $this->content;
+    }
+
+    public function setContent(?Content $content): self
+    {
+        $this->content = $content;
 
         return $this;
     }

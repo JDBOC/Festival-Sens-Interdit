@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,6 +37,21 @@ class SiFile
      * @ORM\Column(type="integer")
      */
     private $type;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Content", mappedBy="logos")
+     */
+    private $logoContents;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Content", inversedBy="picture")
+     */
+    private $pictureContent;
+
+    public function __construct()
+    {
+        $this->logoContents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -85,6 +102,46 @@ class SiFile
     public function setType(int $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Content[]
+     */
+    public function getLogoContents(): Collection
+    {
+        return $this->logoContents;
+    }
+
+    public function addLogoContent(Content $logoContent): self
+    {
+        if (!$this->logoContents->contains($logoContent)) {
+            $this->logoContents[] = $logoContent;
+            $logoContent->addLogo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLogoContent(Content $logoContent): self
+    {
+        if ($this->logoContents->contains($logoContent)) {
+            $this->logoContents->removeElement($logoContent);
+            $logoContent->removeLogo($this);
+        }
+
+        return $this;
+    }
+
+    public function getPictureContent(): ?Content
+    {
+        return $this->pictureContent;
+    }
+
+    public function setPictureContent(?Content $pictureContent): self
+    {
+        $this->pictureContent = $pictureContent;
 
         return $this;
     }
