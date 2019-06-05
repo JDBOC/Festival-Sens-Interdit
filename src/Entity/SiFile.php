@@ -10,7 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\SiFileRepository")
  */
 class SiFile
-{   
+{
+
     const FILE_TYPE = [
         'picture' => 1,
         'logo' => 2

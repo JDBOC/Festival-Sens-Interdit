@@ -22,7 +22,7 @@ class ShowContentFixtures extends Fixture implements DependentFixtureInterface
             if (rand(0, 1)) { // in order to have some incomplete shows
                 $show->setContentFr($faker->paragraphs($nb = 3, $asText = true));
                 $show->setCountryFr($faker->country);
-                $show->setPicture($this->getReference('picture_'.rand(0,9)));
+                $show->setPicture($this->getReference('picture_'.rand(0, 9)));
             }
             for ($j=0; $j < rand(0, 2); $j++) {
                 $show->addLogo($this->getReference('logo_'.rand(0, 9)));
