@@ -22,9 +22,11 @@
 /phpcs.xml
 ###< squizlabs/php_codesniffer ###
 
-###> jetbrain/phpstorm ###
+###> jetbrain/phpstorm sublime ###
 /.idea/
-###< jetbrain/phpstorm ###
+*.sublime-project
+*.sublime-workspace
+###< jetbrain/phpstorm  sublime###
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
