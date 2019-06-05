@@ -44,7 +44,7 @@ class SiFile
     private $logoContents;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Content", inversedBy="picture")
+     * @ORM\OneToOne(targetEntity="App\Entity\Content", inversedBy="picture")
      */
     private $pictureContent;
 

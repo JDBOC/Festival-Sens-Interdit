@@ -11,6 +11,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Content
 {
+
+
+    const CONTENT_TYPE = [
+        'show' => 1,
+        'news' => 2
+    ];
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -24,7 +30,7 @@ class Content
     private $title_fr;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $contentType;
 
@@ -80,7 +86,7 @@ class Content
     private $logos;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SiFile", mappedBy="pictureContent")
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", mappedBy="pictureContent")
      */
     private $picture;
 
@@ -144,12 +150,12 @@ class Content
         return $this;
     }
 
-    public function getContentType(): ?string
+    public function getContentType(): ?int
     {
         return $this->contentType;
     }
 
-    public function setContentType(string $contentType): self
+    public function setContentType(int $contentType): self
     {
         $this->contentType = $contentType;
 
@@ -209,10 +215,11 @@ class Content
         return $this->edition;
     }
 
-    public function setEdition(?Edition $edition): self
+    public function setEdition(?Object $edition): self
     {
-        $this->edition = $edition;
-
+        if ($edition instanceof Edition) {
+            $this->edition = $edition;
+        }
         return $this;
     }
 
@@ -255,7 +262,7 @@ class Content
         return $this->logos;
     }
 
-    public function addLogo(SiFile $logo): self
+    public function addLogo(Object $logo): self
     {
         if (!$this->logos->contains($logo)) {
             $this->logos[] = $logo;
@@ -274,33 +281,18 @@ class Content
     }
 
     /**
-     * @return Collection|SiFile[]
+     * @return SiFile
      */
-    public function getPicture(): Collection
+    public function getPicture(): SiFile
     {
         return $this->picture;
     }
 
-    public function addPicture(SiFile $picture): self
+    public function setPicture(Object $picture): self
     {
-        if (!$this->picture->contains($picture)) {
-            $this->picture[] = $picture;
-            $picture->setPictureContent($this);
+        if ($picture instanceof SiFile) {
+            $this->picture = $picture;
         }
-
-        return $this;
-    }
-
-    public function removePicture(SiFile $picture): self
-    {
-        if ($this->picture->contains($picture)) {
-            $this->picture->removeElement($picture);
-            // set the owning side to null (unless already changed)
-            if ($picture->getPictureContent() === $this) {
-                $picture->setPictureContent(null);
-            }
-        }
-
         return $this;
     }
 }
