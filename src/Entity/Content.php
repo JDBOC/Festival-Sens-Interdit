@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -61,6 +63,33 @@ class Content
      * @ORM\Column(type="text", nullable=true)
      */
     private $mapadoLink;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Edition", inversedBy="contents")
+     */
+    private $edition;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Session", mappedBy="content", orphanRemoval=true)
+     */
+    private $sessions;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\SiFile", inversedBy="logoContents")
+     */
+    private $logos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SiFile", mappedBy="pictureContent")
+     */
+    private $picture;
+
+    public function __construct()
+    {
+        $this->sessions = new ArrayCollection();
+        $this->logos = new ArrayCollection();
+        $this->picture = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -171,6 +200,106 @@ class Content
     public function setMapadoLink(?string $mapadoLink): self
     {
         $this->mapadoLink = $mapadoLink;
+
+        return $this;
+    }
+
+    public function getEdition(): ?Edition
+    {
+        return $this->edition;
+    }
+
+    public function setEdition(?Edition $edition): self
+    {
+        $this->edition = $edition;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Session[]
+     */
+    public function getSessions(): Collection
+    {
+        return $this->sessions;
+    }
+
+    public function addSession(Session $session): self
+    {
+        if (!$this->sessions->contains($session)) {
+            $this->sessions[] = $session;
+            $session->setContent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSession(Session $session): self
+    {
+        if ($this->sessions->contains($session)) {
+            $this->sessions->removeElement($session);
+            // set the owning side to null (unless already changed)
+            if ($session->getContent() === $this) {
+                $session->setContent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SiFile[]
+     */
+    public function getLogos(): Collection
+    {
+        return $this->logos;
+    }
+
+    public function addLogo(SiFile $logo): self
+    {
+        if (!$this->logos->contains($logo)) {
+            $this->logos[] = $logo;
+        }
+
+        return $this;
+    }
+
+    public function removeLogo(SiFile $logo): self
+    {
+        if ($this->logos->contains($logo)) {
+            $this->logos->removeElement($logo);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SiFile[]
+     */
+    public function getPicture(): Collection
+    {
+        return $this->picture;
+    }
+
+    public function addPicture(SiFile $picture): self
+    {
+        if (!$this->picture->contains($picture)) {
+            $this->picture[] = $picture;
+            $picture->setPictureContent($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(SiFile $picture): self
+    {
+        if ($this->picture->contains($picture)) {
+            $this->picture->removeElement($picture);
+            // set the owning side to null (unless already changed)
+            if ($picture->getPictureContent() === $this) {
+                $picture->setPictureContent(null);
+            }
+        }
 
         return $this;
     }
