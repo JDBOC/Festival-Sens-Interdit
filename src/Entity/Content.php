@@ -93,8 +93,7 @@ class Content
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
-        $this->logos = new ArrayCollection();
-        $this->picture = new ArrayCollection();
+        $this->logos = new ArrayCollection();  
     }
 
     public function getId(): ?int

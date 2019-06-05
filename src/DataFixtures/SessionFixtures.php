@@ -4,10 +4,11 @@ namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Session;
 use Faker;
 
-class SessionFixtures extends Fixture
+class SessionFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -17,7 +18,7 @@ class SessionFixtures extends Fixture
                 $session = new Session();
                 $session->setSessionDate($faker->dateTimeThisYear($max = 'now', $timezone = 'Europe/Paris'));
                 $session->setLocation($faker->streetName);
-                $session->setContent($this->getReference('content_'.$i));
+                $session->setContent($this->getReference('show_'.$i));
                 $manager->persist($session);
             }
         }
