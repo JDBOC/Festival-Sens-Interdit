@@ -2,14 +2,13 @@
 
 {% block title %}{% endblock %}
 
-
 {% block body %}
 
 <!-- Kind of header after the navbar : Main show's photo included title and coutry -->
-<div class="container-fluid p-0">
+<div class="container-fluid p-0" id="topImg">
     <div class="card-img" id="topImg">
         <!-- Main show's photo -->
-        <img src="https://unsplash.it/1500/250/?random" class="card-img" id="topImg" alt="show photo"/>
+        <img class="card-img" id="topImg" src="https://unsplash.it/1500/250/?random" alt="show photo"/>
         <div class="card-img-overlay text-white">
             <!-- Show's TITLE -->
             <h3 class="card-title font-weight-bold">PEER GYNT</h3>
@@ -22,20 +21,20 @@
 <!-- A show's card included country, 1/2/3 logo(s), subtitle, description, pdf link, photo or/and video (? optional partner's logos ?) -->
 <div class="container-fluid">
     <div class="card col-md-10 border-0 mx-auto">
-        <div class="card-header p-0">
+        <div class="container p-0">
             <div class="d-flex p-0">
                 <!-- Show's COUNTRY -->
-                <div  class="mr-2">
-                    <p class="countryPill">KOSOVO</p>
+                <div class="mr-2">
+                    <p id="countryPill">KOSOVO</p>
                 </div>
                 <!-- Show's LOGOS (1, 2 or 3) -->
                 <div class="mr-2">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo1" height="40rem" width="40rem">
                 </div>
-                <div  class="mr-2">
+                <div class="mr-2">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo2" height="40rem" width="40rem">
                 </div>
-                <div  class="mr-2">
+                <div class="mr-2">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
                 </div>
             </div>

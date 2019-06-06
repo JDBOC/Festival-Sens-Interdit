@@ -1,0 +1,36 @@
+
+
+
+
+#topImg {
+    position: absolute;
+    border-radius: 0;
+}
+
+#topImg > * {
+    position: relative;
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#topImg > h3 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    
+}
+
+#countryPill {
+    color: white;
+    border: solid;
+    border-color: red;
+    background: red;
+    border-bottom-right-radius: 10px 10px;
+    font-size: 1.2rem;
+    width: 6em;
+    text-align: center;
+}
