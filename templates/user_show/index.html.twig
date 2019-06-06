@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+
+{% block body %}
+
+<!-- Style section to put in the good file -->
+<style>
+    #topImg {
+        border-radius: 0;
+    }
+
+    #topImg > img {
+        border-radius: 0;
+    }
+</style>
+
+<!-- End of the style section -->
+
+<!-- Kind of header after the navbar : Main show's photo included title and coutry -->
+<div class="container-fluid p-0">
+    <div class="card-img" id="topImg">
+        <!-- Main show's photo -->
+        <img src="https://unsplash.it/1500/250/?random" class="card-img" id="topImg" width="100%" height="270" alt="show photo"/>
+        <div class="card-img-overlay text-white">
+            <!-- Show's TITLE -->
+            <h3 class="card-title font-weight-bold">PEER GYNT</h3>
+            <!-- Show's COUNTRY -->
+            <h3 class="card-text font-weight-bold">FROM KOSOVO</h3>
+        </div>
+    </div>
+</div>
+
+<!-- A show's card included country, 1/2/3 logo(s), subtitle, description, pdf link, photo or/and video (? optional partner's logos ?) -->
+<div class="container-fluid">
+    <div class="card col-md-10 border-0 mx-auto">
+        <div class="card-body p-0">
+            <!-- Show's TITLE -->
+            <div class=" container p-0">
+                <h3 class="badge badge-pill badge-danger p-2 font-weight-light">KOSOVO</h3>
+            </div>
+            <!-- Show's LOGOS (1, 2 or 3) -->
+            <div>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo1" height="40rem" width="40rem">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo2" height="40rem" width="40rem">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
+            </div>
+            
+            <!-- Show's SUBTITLE -->
+            <div class="card-title pt-4">
+                <h4 class="card-subtitle mb-2 text-muted">Ceci est l'histoire d'un rêve brisé.</h4>
+            </div>
+            <!-- Show's DESCRIPTION -->
+            <div>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur convallis egestas lacus. Integer varius sem nec magna varius consequat. Integer fringilla tempus nunc, eget porttitor massa consequat eget. Nunc vel pharetra ex. Nam nec mattis elit. Sed vehicula maximus nisl in imperdiet. Vestibulum vulputate, tellus id vestibulum aliquet, justo lacus elementum erat, vitae finibus metus leo vel eros. Quisque pretium pretium posuere. Pellentesque et mi euismod, varius magna ut, lacinia massa. Donec consequat at leo sit amet porta. Nam maximus nibh ac vehicula faucibus. Sed sit amet ipsum sapien. Nunc leo mi, ullamcorper faucibus ultricies vel, sodales nec leo. In bibendum ligula tortor, et placerat sapien commodo et. Duis accumsan risus eget eros suscipit, vel lobortis enim dapibus. Nulla facilisi.</p>
+            </div>
+            <!-- Show's PDF LINK -->
+            <div class="card-footer">
+            <a href="#" class="card-link">lien pdf</a>
+            </div>
+        </div>
+        <!-- Show's PHOTO or/and VIDEO -->
+        <div class="card-img" id="topImg">
+            <img src="https://unsplash.it/250/250/?random" class="card-img" alt="show photo"/>
+        </div>
+    </div>
+</div>
+
+
+<!-- 1/2/3 card(s) related to this show (other shows, news...) -->
+<div>
+</div>
+
+{% endblock %}
