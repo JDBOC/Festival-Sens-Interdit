@@ -26,6 +26,12 @@ class Session
      */
     private $location;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Content", inversedBy="sessions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $content;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -36,7 +42,7 @@ class Session
         return $this->sessionDate;
     }
 
-    public function setDate(\DateTimeInterface $sessionDate): self
+    public function setSessionDate(\DateTimeInterface $sessionDate): self
     {
         $this->sessionDate = $sessionDate;
 
@@ -53,5 +59,18 @@ class Session
         $this->location = $location;
 
         return $this;
+    }
+
+    public function getContent(): ?Content
+    {
+        return $this->content;
+    }
+
+    public function setContent(?Object $content): self
+    {
+        if ($content instanceof Content) {
+            $this->content = $content;
+        }
+            return $this;
     }
 }

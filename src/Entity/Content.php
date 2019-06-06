@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -9,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Content
 {
+
+    const CONTENT_TYPE = [
+        'show' => 1,
+        'news' => 2
+    ];
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -22,15 +29,11 @@ class Content
     private $title_fr;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      */
     private $contentType;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $status;
-    
+   
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -57,10 +60,31 @@ class Content
      */
     private $country_en;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
+     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Edition", inversedBy="contents")
      */
-    private $mapadoLink;
+    private $edition;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Session", mappedBy="content", orphanRemoval=true)
+     */
+    private $sessions;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\SiFile", inversedBy="logoContents")
+     */
+    private $logos;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", mappedBy="pictureContent")
+     */
+    private $picture;
+
+    public function __construct()
+    {
+        $this->sessions = new ArrayCollection();
+        $this->logos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -115,26 +139,14 @@ class Content
         return $this;
     }
 
-    public function getContentType(): ?string
+    public function getContentType(): ?int
     {
         return $this->contentType;
     }
 
-    public function setContentType(string $contentType): self
+    public function setContentType(int $contentType): self
     {
         $this->contentType = $contentType;
-
-        return $this;
-    }
-
-    public function getStatus(): ?int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(int $status): self
-    {
-        $this->status = $status;
 
         return $this;
     }
@@ -163,15 +175,89 @@ class Content
         return $this;
     }
 
-    public function getMapadoLink(): ?string
+    public function getEdition(): ?Edition
     {
-        return $this->mapadoLink;
+        return $this->edition;
     }
 
-    public function setMapadoLink(?string $mapadoLink): self
+    public function setEdition(?Object $edition): self
     {
-        $this->mapadoLink = $mapadoLink;
+        if ($edition instanceof Edition) {
+            $this->edition = $edition;
+        }
+        return $this;
+    }
 
+    /**
+     * @return Collection|Session[]
+     */
+    public function getSessions(): Collection
+    {
+        return $this->sessions;
+    }
+
+    public function addSession(Session $session): self
+    {
+        if (!$this->sessions->contains($session)) {
+            $this->sessions[] = $session;
+            $session->setContent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSession(Session $session): self
+    {
+        if ($this->sessions->contains($session)) {
+            $this->sessions->removeElement($session);
+            // set the owning side to null (unless already changed)
+            if ($session->getContent() === $this) {
+                $session->setContent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SiFile[]
+     */
+    public function getLogos(): Collection
+    {
+        return $this->logos;
+    }
+
+    public function addLogo(Object $logo): self
+    {
+        if (!$this->logos->contains($logo)) {
+            $this->logos[] = $logo;
+        }
+
+        return $this;
+    }
+
+    public function removeLogo(SiFile $logo): self
+    {
+        if ($this->logos->contains($logo)) {
+            $this->logos->removeElement($logo);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return SiFile
+     */
+    public function getPicture(): SiFile
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(Object $picture): self
+    {
+        if ($picture instanceof SiFile) {
+            $this->picture = $picture;
+        }
         return $this;
     }
 }
