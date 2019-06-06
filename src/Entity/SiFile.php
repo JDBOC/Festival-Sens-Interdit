@@ -11,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class SiFile
 {
+
+    const FILE_TYPE = [
+        'picture' => 1,
+        'logo' => 2
+    ];
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -44,7 +49,7 @@ class SiFile
     private $logoContents;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Content", inversedBy="picture")
+     * @ORM\OneToOne(targetEntity="App\Entity\Content", inversedBy="picture")
      */
     private $pictureContent;
 
