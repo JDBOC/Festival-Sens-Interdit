@@ -15,7 +15,6 @@ class ShowContentFixtures extends Fixture implements DependentFixtureInterface
         $faker = Faker\Factory::create();
         for ($i=0; $i < 15; $i++) {
             $show = new Content();
-            $show->setStatus(1);
             $show->setTitleFr($faker->words($nb = 3, $asText = true));
             $show->setEdition($this->getReference('edition'));
             $show->setContentType(Content::CONTENT_TYPE['show']);
@@ -41,6 +40,7 @@ class ShowContentFixtures extends Fixture implements DependentFixtureInterface
     public function getDependencies()
     {
         return [
+
             SiFileFixtures::class,
             EditionFixtures::class
         ];

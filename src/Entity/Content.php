@@ -12,7 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Content
 {
 
-
     const CONTENT_TYPE = [
         'show' => 1,
         'news' => 2
@@ -34,11 +33,7 @@ class Content
      */
     private $contentType;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $status;
-    
+   
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -65,12 +60,7 @@ class Content
      */
     private $country_en;
 
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $mapadoLink;
-
-    /**
+     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Edition", inversedBy="contents")
      */
     private $edition;
@@ -161,18 +151,6 @@ class Content
         return $this;
     }
 
-    public function getStatus(): ?int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(int $status): self
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
     public function getCountryFr(): ?string
     {
         return $this->country_fr;
@@ -193,18 +171,6 @@ class Content
     public function setCountryEn(?string $country_en): self
     {
         $this->country_en = $country_en;
-
-        return $this;
-    }
-
-    public function getMapadoLink(): ?string
-    {
-        return $this->mapadoLink;
-    }
-
-    public function setMapadoLink(?string $mapadoLink): self
-    {
-        $this->mapadoLink = $mapadoLink;
 
         return $this;
     }
