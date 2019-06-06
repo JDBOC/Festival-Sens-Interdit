@@ -23,8 +23,8 @@ a {
 	position: absolute;
 	top: 0em; left: 1.1em;
 	border: solid;
-	border-color: red;
-	background: red;
+	border-color: #ed1c24;
+	background: #ed1c24;
 	border-bottom-right-radius: 10px 10px;
 	padding-left: 1em;
 	padding-right: 1em;
@@ -45,17 +45,19 @@ a {
 /*fin ludo*/
 
 /*ludo navBar*/
-.nav{
-	background-color: red
+.navBg{
+	background-color: #ed1c24;
 }
 
 .nav-item{
 	color: white;
+	font-size: 0.8em;
+	margin-top: 0em;
+	padding-bottom: 0em;
+	padding-top: 0em;
 }
 
 .navbar{
-	color: white;
-	font-size: 0.8em;
-	justify-content: right;
-	margin-top: 0em;
+	margin-bottom: 3em;
+	margin-top: 3em;
 }
