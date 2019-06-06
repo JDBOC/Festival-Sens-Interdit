@@ -1,7 +1,5 @@
 <?php
-
 declare(strict_types=1);
-
 namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Schema\Schema;
@@ -16,17 +14,18 @@ final class Version20190605101135 extends AbstractMigration
     {
         return '';
     }
-
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 
-            'Migration can only be executed safely on \'mysql\'.');
-
+        $this->abortIf(
+            $this->connection->getDatabasePlatform()->getName() !== 'mysql',
+            'Migration can only be executed safely on \'mysql\'.'
+        );
         $this->addSql('CREATE TABLE edition (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL,
          PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE session (id INT AUTO_INCREMENT NOT NULL, content_id INT NOT NULL,
-         session_date DATETIME NOT NULL, location VARCHAR(255) DEFAULT NULL, INDEX IDX_D044D5D484A0A3ED (content_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+         session_date DATETIME NOT NULL, location VARCHAR(255) DEFAULT NULL, INDEX IDX_D044D5D484A0A3ED (content_id), 
+         PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('CREATE TABLE content (id INT AUTO_INCREMENT NOT NULL, edition_id INT DEFAULT NULL,
          title_fr VARCHAR(255) NOT NULL, content_type VARCHAR(255) NOT NULL, status INT NOT NULL,
           title_en VARCHAR(255) DEFAULT NULL, content_fr LONGTEXT DEFAULT NULL, content_en LONGTEXT DEFAULT NULL,
@@ -51,13 +50,11 @@ final class Version20190605101135 extends AbstractMigration
         $this->addSql('ALTER TABLE si_file ADD CONSTRAINT FK_788FFA4CA870E3EA FOREIGN KEY (picture_content_id)
          REFERENCES content (id)');
     }
-
     public function down(Schema $schema) : void
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed
          safely on \'mysql\'.');
-
         $this->addSql('ALTER TABLE content DROP FOREIGN KEY FK_FEC530A974281A5E');
         $this->addSql('ALTER TABLE session DROP FOREIGN KEY FK_D044D5D484A0A3ED');
         $this->addSql('ALTER TABLE content_si_file DROP FOREIGN KEY FK_A78723FF84A0A3ED');
