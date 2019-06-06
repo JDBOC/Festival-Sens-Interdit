@@ -42,7 +42,7 @@ class Session
         return $this->sessionDate;
     }
 
-    public function setDate(\DateTimeInterface $sessionDate): self
+    public function setSessionDate(\DateTimeInterface $sessionDate): self
     {
         $this->sessionDate = $sessionDate;
 
@@ -66,10 +66,11 @@ class Session
         return $this->content;
     }
 
-    public function setContent(?Content $content): self
+    public function setContent(?Object $content): self
     {
-        $this->content = $content;
-
-        return $this;
+        if ($content instanceof Content) {
+            $this->content = $content;
+        }
+            return $this;
     }
 }
