@@ -14,6 +14,17 @@
     #topImg > img {
         border-radius: 0;
     }
+    
+    .countryPill {
+        color: white;
+        border: solid;
+        border-color: red;
+        background: red;
+        border-bottom-right-radius: 10px 10px;
+        font-size: 1.2rem;
+        width: 6em;
+        text-align: center;
+    }
 </style>
 
 <!-- End of the style section -->
@@ -34,19 +45,25 @@
 
 <!-- A show's card included country, 1/2/3 logo(s), subtitle, description, pdf link, photo or/and video (? optional partner's logos ?) -->
 <div class="container-fluid">
-    <div class="card col-md-10 border-0 mx-auto">
+    <div class="card col-md-6 border-0 mx-auto">
         <div class="card-body p-0">
-            <!-- Show's TITLE -->
-            <div class=" container p-0">
-                <h3 class="badge badge-pill badge-danger p-2 font-weight-light">KOSOVO</h3>
+            <div class="d-flex p-0">
+                <!-- Show's COUNTRY -->
+                <div  class="mr-2">
+                    <p class="countryPill">KOSOVO</p>
+                </div>
+                <!-- Show's LOGOS (1, 2 or 3) -->
+                <div class="mr-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo1" height="40rem" width="40rem">
+                </div>
+                <div  class="mr-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo2" height="40rem" width="40rem">
+                </div>
+                <div  class="mr-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
+                </div>
             </div>
-            <!-- Show's LOGOS (1, 2 or 3) -->
-            <div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo1" height="40rem" width="40rem">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo2" height="40rem" width="40rem">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
-            </div>
-            
+
             <!-- Show's SUBTITLE -->
             <div class="card-title pt-4">
                 <h4 class="card-subtitle mb-2 text-muted">Ceci est l'histoire d'un rêve brisé.</h4>
