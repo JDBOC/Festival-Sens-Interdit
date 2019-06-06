@@ -3,7 +3,7 @@
 {% block title %}Content index{% endblock %}
 
 {% block body %}
-    <h1>Content index</h1>
+    <h1>Liste des spectacles</h1>
 
     <table class="table">
         <thead>
@@ -12,8 +12,8 @@
                 <th>Titre</th>
                 <th>représentations</th>
                 <th>Logos</th>
-                <th>Complet?</th>
-                <th>traduit?</th>>
+                <th>Complet</th>
+                <th>Traduit</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -24,7 +24,8 @@
                 <td>{{ content.titleFr }}</td>
                 <td>{{ content.sessions|length }}</td>
                 <td>{{ content.logos|length }}</td>
-                <td></td>  
+                <td>{{ content.complete }}</td>
+                <td>{{ content.translated }}</td>   
                 <td></td>
                 <td>
                     {# <a href="{{ path('content_show', {'id': content.id}) }}">show</a>
