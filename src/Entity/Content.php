@@ -11,6 +11,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Content
 {
+    
+    const CONTENT_TYPE = [
+        'show' => 1,
+        'news' => 2,
+        'static_page' => 3
+    ];
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -22,10 +29,10 @@ class Content
      * @ORM\Column(type="string", length=255)
      */
     private $title_fr;
-
+    
     /**
-     * @ORM\Column(type="string", length=255)
-     */
+      * @ORM\Column(type="integer")
+      */
     private $contentType;
 
     /**
@@ -149,7 +156,7 @@ class Content
         return $this->contentType;
     }
 
-    public function setContentType(string $contentType): self
+    public function setContentType(int $contentType): self
     {
         $this->contentType = $contentType;
 
