@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>index festival</h1>
+	    <div class="container">
+	    	<div class="row">
+	    {% for i in 0..15 %}
+	    	<div class=" col-12 col-md-3">
+		    	<div class="card-spectacle">
+		    		<div>
+						<a href="#"><img src="https://via.placeholder.com/120" class="card-img-top img-border" alt="..."></a>
+						<p class="textDate">Jeu 17 Oct</p>
+						<p class="textLieu">MEXIQUE</p>
+					</div>
+				  	<div class="card-body pt-0">
+					  	<h3 class="mb-0 text-muted">TIJUANA</h3>
+					  	<p class="mb-0 fontHome"><b>Gabino Rodríguez / Cie Lagartijas </b></p>
+					  	<p class="mb-0 fontHome"><b>TNG Vaise</b></p>
+					    <p class="mb-0 fontHome">16 OCT / 21H</p>
+					    <p class="mb-0 fontHome">DURÉE / 2H</p>
+					    <p class="mb-0 fontHome">TARIF 1</p>
+				    </div>
+				</div>
+			</div>
+		{% endfor %}
+			</div>
+		</div>
+{% endblock %}

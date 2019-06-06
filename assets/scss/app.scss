@@ -7,3 +7,39 @@ body {
 a {
     color: $warm-color;
 }
+
+/*css ludo home page*/
+.img-border{
+	border-bottom-right-radius: 40px 40px;
+	border-bottom-left-radius: 40px 40px;
+}
+
+.fontHome{
+	font-size: 0.8em;
+}
+
+.textDate{
+	color: white;
+	position: absolute;
+	top: 0em; left: 1.1em;
+	border: solid;
+	border-color: red;
+	background: red;
+	border-bottom-right-radius: 10px 10px;
+	padding-left: 1em;
+	padding-right: 1em;
+	font-size: 0.8em;
+}
+
+.textLieu{
+	position: absolute;
+	top: 1.9em; left: 1.1em;
+	border: solid;
+	border-color: white;
+	background: white;
+	border-bottom-right-radius: 10px 10px;
+	padding-left: 1em;
+	padding-right: 1em;
+	font-size: 0.8em;
+}
+/*fin ludo*/
