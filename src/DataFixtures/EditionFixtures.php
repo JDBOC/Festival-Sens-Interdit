@@ -18,6 +18,6 @@ class EditionFixtures extends Fixture
         $edition = new Edition();
         $edition->setName('2017');
         $manager->persist($edition);
-        $manager->flush();
+            $manager->flush();
     }
 }
