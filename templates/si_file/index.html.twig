@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SiFile index{% endblock %}
+
+{% block body %}
+    <h1>SiFile index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>MimeType</th>
+                <th>Link</th>
+                <th>Type</th>
+                <th>MediaFileName</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for si_file in si_files %}
+            <tr>
+                <td>{{ si_file.id }}</td>
+                <td>{{ si_file.name }}</td>
+                <td>{{ si_file.mimeType }}</td>
+                <td>{{ si_file.link }}</td>
+                <td>{{ si_file.type }}</td>
+                <td>{{ si_file.mediaFileName }}</td>
+                <td>
+                    <a href="{{ path('si_file_show', {'id': si_file.id}) }}">show</a>
+                    <a href="{{ path('si_file_edit', {'id': si_file.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('si_file_new') }}">Create new</a>
+{% endblock %}
