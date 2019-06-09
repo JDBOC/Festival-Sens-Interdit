@@ -129,6 +129,9 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "fzaninotto/faker": {
+        "version": "v1.8.0"
+    },
     "gitonomy/gitlib": {
         "version": "v1.0.4"
     },
@@ -140,6 +143,12 @@
     },
     "justinrainbow/json-schema": {
         "version": "5.2.8"
+    },
+    "knplabs/knp-components": {
+        "version": "v1.3.10"
+    },
+    "knplabs/knp-paginator-bundle": {
+        "version": "v3.0.0"
     },
     "monolog/monolog": {
         "version": "1.24.0"

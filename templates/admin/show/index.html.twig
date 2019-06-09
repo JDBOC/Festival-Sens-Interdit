@@ -3,8 +3,24 @@
 {% block title %}Content index{% endblock %}
 
 {% block body %}
-    <h1>Liste des spectacles</h1>
-
+    <div class="jumbotron">
+        <h1>Liste des spectacles</h1>
+        <div>
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col">
+                    {{ form_row(form.isComplete) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.isTranslated) }}        
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary"> Rechercher</button>
+                </div>
+            </div>    
+            {{ form_end(form)}}
+        </div>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -39,6 +55,8 @@
         {% endfor %}
         </tbody>
     </table>
-
+    <div class="navigation">
+        {{ knp_pagination_render(contents) }}
+    </div>
     {# <a href="{{ path('content_new') }}">Create new</a> #}
 {% endblock %}
