@@ -52,6 +52,8 @@ class ShowController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
+            // a passer dans un service
             $show-> setContentType(Content::CONTENT_TYPE['show']);
             if (is_null($show->getTitleEn())
                 ||  is_null($show->getContentEn())
@@ -68,6 +70,8 @@ class ShowController extends AbstractController
             } else {
                 $show->setComplete(true);
             }
+            // fin de " a passer dans une service"
+            
             $entityManager->persist($show);
             $entityManager->flush();
 
