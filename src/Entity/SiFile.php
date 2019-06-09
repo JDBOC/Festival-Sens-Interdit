@@ -212,6 +212,13 @@ class SiFile
     public function setMediaFileName(?string $mediaFileName): SiFile
     {
         $this->mediaFileName = $mediaFileName;
+
+        // Only change the updated at if the file is really uploaded to avoid database updates.
+        // This is needed when the file should be set when loading the entity.
+        /*      if ($this->mediaFile instanceof UploadedFile) {
+                  $this->updatedAt = new \DateTime('now');
+              }*/
+
         return $this;
     }
 
