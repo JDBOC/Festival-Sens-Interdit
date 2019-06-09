@@ -21,6 +21,7 @@
             {{ form_end(form)}}
         </div>
     </div>
+    <a href="{{ path('show_new') }}"> Nouveau Spectacle</a>
     <table class="table">
         <thead>
             <tr>
@@ -36,7 +37,11 @@
         <tbody>
         {% for content in contents %}
             <tr>
-                <td>{{ content.edition.name}}</td>
+                <td>
+                {% if content.edition.name is defined%}
+                {{content.edition.name}}
+                {% endif %}
+                </td>
                 <td>{{ content.titleFr }}</td>
                 <td>{{ content.sessions|length }}</td>
                 <td>{{ content.logos|length }}</td>

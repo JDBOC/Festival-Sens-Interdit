@@ -1,4 +1,26 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-fr" role="tab" aria-controls="nav-home" aria-selected="true">FR</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-en" role="tab" aria-controls="nav-profile" aria-selected="false">EN</a>
+  </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-fr" role="tabpanel" aria-labelledby="nav-fr-tab">
+  	<div class="row">
+  	<div class="col-6"> {{ form_row(form.title_fr) }}</div>
+  	<div class="col-6"> {{ form_row(form.country_fr) }} </div>
+  	</div>
+  	{{ form_row(form.content_fr) }}
+  </div>
+  <div class="tab-pane fade" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
+  	<div class="row">
+  	<div class="col-6"> {{ form_row(form.title_en) }}</div>
+  	<div class="col-6"> {{ form_row(form.country_en) }} </div>
+  	</div>
+  	{{ form_row(form.content_en) }}
+  </div>
+</div>
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
