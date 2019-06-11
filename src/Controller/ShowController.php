@@ -55,7 +55,7 @@ class ShowController extends AbstractController
 
             // a passer dans un service
             $show-> setContentType(Content::CONTENT_TYPE['show']);
-            if (is_null($show->getTitleEn())
+            if (is_null($show->getTitleEN())
                 ||  is_null($show->getContentEn())
                 ||  is_null($show->getCountryEn()) ) {
                 $show->setTranslated(false);
