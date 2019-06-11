@@ -33,7 +33,6 @@ class Content
      */
     private $contentType;
 
-   
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
