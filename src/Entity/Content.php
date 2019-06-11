@@ -79,6 +79,16 @@ class Content
      */
     private $picture;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $complete;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $translated;
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
@@ -257,6 +267,30 @@ class Content
         if ($picture instanceof SiFile) {
             $this->picture = $picture;
         }
+        return $this;
+    }
+
+    public function getComplete(): ?bool
+    {
+        return $this->complete;
+    }
+
+    public function setComplete(bool $complete): self
+    {
+        $this->complete = $complete;
+
+        return $this;
+    }
+
+    public function getTranslated(): ?bool
+    {
+        return $this->translated;
+    }
+
+    public function setTranslated(bool $translated): self
+    {
+        $this->translated = $translated;
+
         return $this;
     }
 }
