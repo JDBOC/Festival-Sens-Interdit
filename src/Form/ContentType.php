@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Content;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,24 +14,18 @@ class ContentType extends AbstractType
     {
         $builder
             ->add('title_fr')
-            ->add('contentType')
-            ->add('status')
+            ->add('content_fr', CKEditorType::class)
+            ->add('content_type')
             ->add('title_en')
-            ->add('content_fr')
-            ->add('content_en')
-            ->add('country_fr')
-            ->add('country_en')
-            ->add('mapadoLink')
-            ->add('edition')
-            ->add('logos')
-            ->add('picture')
+            ->add('content_en', CKEditorType::class)
+
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Content::class,
+          'data_class' => Content::class,
         ]);
     }
 }
