@@ -1,9 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminBase.html.twig' %}
 
 {% block title %}Session index{% endblock %}
 
 {% block body %}
     <h1>Session index</h1>
+    <a href="{{ path('session_new') }}">Create new</a>
 
     <table class="table">
         <thead>
@@ -11,6 +12,7 @@
                 <th>Id</th>
                 <th>SessionDate</th>
                 <th>Location</th>
+                <th>Spectacle</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -18,8 +20,9 @@
         {% for session in sessions %}
             <tr>
                 <td>{{ session.id }}</td>
-                <td>{{ session.sessionDate ? session.sessionDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ session.sessionDate ? session.sessionDate|date('d-m-Y à H:i') : '' }}</td>
                 <td>{{ session.location }}</td>
+                <td>{{ session.content.titleFr}}</td>
                 <td>
                     <a href="{{ path('session_show', {'id': session.id}) }}">show</a>
                     <a href="{{ path('session_edit', {'id': session.id}) }}">edit</a>
@@ -33,5 +36,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('session_new') }}">Create new</a>
 {% endblock %}

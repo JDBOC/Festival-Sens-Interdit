@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/session")
+ * @Route("/admin/session")
  */
 class SessionController extends AbstractController
 {
@@ -20,7 +20,7 @@ class SessionController extends AbstractController
      */
     public function index(SessionRepository $sessionRepository): Response
     {
-        return $this->render('session/index.html.twig', [
+        return $this->render('admin/session/index.html.twig', [
             'sessions' => $sessionRepository->findAll(),
         ]);
     }
@@ -42,7 +42,7 @@ class SessionController extends AbstractController
             return $this->redirectToRoute('session_index');
         }
 
-        return $this->render('session/new.html.twig', [
+        return $this->render('admin/session/new.html.twig', [
             'session' => $session,
             'form' => $form->createView(),
         ]);
@@ -53,7 +53,7 @@ class SessionController extends AbstractController
      */
     public function show(Session $session): Response
     {
-        return $this->render('session/show.html.twig', [
+        return $this->render('admin/session/show.html.twig', [
             'session' => $session,
         ]);
     }
@@ -74,7 +74,7 @@ class SessionController extends AbstractController
             ]);
         }
 
-        return $this->render('session/edit.html.twig', [
+        return $this->render('admin/session/edit.html.twig', [
             'session' => $session,
             'form' => $form->createView(),
         ]);
