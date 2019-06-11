@@ -8,3 +8,63 @@ body {
 a {
     color: $warm-color;
 }
+
+/*css ludo home page*/
+.img-border{
+	border-bottom-right-radius: 40px 40px;
+	border-bottom-left-radius: 40px 40px;
+	border: solid;
+	border-width: thin;
+	border-color: black;
+}
+
+.fontHome{
+	font-size: 0.8em;
+}
+
+.textDate{
+	color: white;
+	position: absolute;
+	top: 0em; left: 1.1em;
+	border: solid;
+	border-color: grey;
+	border-width: thin;
+	background: #ed1c24;
+	border-bottom-right-radius: 10px 10px;
+	padding-left: 1em;
+	padding-right: 1em;
+	font-size: 0.8em;
+}
+
+.textLieu{
+	position: absolute;
+	top: 1.5em; left: 1.1em;
+	border: solid;
+	border-color: grey;
+	border-width: thin;
+	background: white;
+	border-bottom-right-radius: 10px 10px;
+	padding-left: 1em;
+	padding-right: 1em;
+	font-size: 0.8em;
+}
+/*fin ludo*/
+
+/*ludo navBar*/
+.navBg{
+	background-color: #ed1c24;
+}
+
+.nav-item{
+	color: white;
+	font-size: 0.8em;
+	margin-top: 0em;
+	padding-bottom: 0em;
+	padding-top: 0em;
+}
+
+.navbar{
+	margin-bottom: 3em;
+	margin-top: 3em;
+}
+/*fin navBar*/
