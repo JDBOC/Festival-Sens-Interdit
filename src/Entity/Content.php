@@ -32,11 +32,6 @@ class Content
     /**
       * @ORM\Column(type="integer")
       */
-    private $contentType;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
     private $content_type;
 
     /**
