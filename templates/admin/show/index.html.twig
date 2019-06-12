@@ -3,8 +3,25 @@
 {% block title %}Content index{% endblock %}
 
 {% block body %}
-    <h1>Content index</h1>
-
+    <div class="jumbotron py-3">
+        <h1>Liste des spectacles</h1>
+        <div>
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col">
+                    {{ form_row(form.isComplete) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.isTranslated) }}        
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary"> Rechercher</button>
+                </div>
+            </div>    
+            {{ form_end(form)}}
+        </div>
+    </div>
+    <a href="{{ path('show_new') }}"> Nouveau Spectacle</a>
     <table class="table">
         <thead>
             <tr>
@@ -12,20 +29,24 @@
                 <th>Titre</th>
                 <th>représentations</th>
                 <th>Logos</th>
-                <th>Complet?</th>
-                <th>traduit?</th>>
+                <th>Complet</th>
+                <th>Traduit</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for content in contents %}
             <tr>
-                <td>{{ content.edition.name}}</td>
+                <td>
+                {% if content.edition.name is defined%}
+                {{content.edition.name}}
+                {% endif %}
+                </td>
                 <td>{{ content.titleFr }}</td>
                 <td>{{ content.sessions|length }}</td>
                 <td>{{ content.logos|length }}</td>
-                <td></td>  
-                <td></td>
+                <td>{{ content.complete }}</td>
+                <td>{{ content.translated }}</td>   
                 <td>
                     {# <a href="{{ path('content_show', {'id': content.id}) }}">show</a>
                     <a href="{{ path('content_edit', {'id': content.id}) }}">edit</a> #}
@@ -38,6 +59,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    {# <a href="{{ path('content_new') }}">Create new</a> #}
+    <div class="navigation">
+        {{ knp_pagination_render(contents) }}
+    </div>
 {% endblock %}

@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Content;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\ShowSearch;
 
 /**
  * @method Content|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,29 +19,26 @@ class ContentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Content::class);
     }
-
-    // public function findAllShows()
-    // {
-    //     return $this->createQueryBuilder('c')
-    //         ->andWhere('c.exampleField = :val')
-    //         ->setParameter('val', $value)
-    //         ->orderBy('c.id', 'ASC')
-    //         ->setMaxResults(10)
-    //         ->getQuery()
-    //         ->getResult()
-    //     ;
-    // }
-    
-
-    /*
-    public function findOneBySomeField($value): ?Content
+    /**
+     * returns a query of all shows with potential filters
+     * @param ShowSearch $search parameters for filtering show
+     * @return \Doctrine\ORM\Query
+     */
+    public function findAllShowsQuery(ShowSearch $search)
     {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+        $query =  $this->createQueryBuilder('c')
+            ->andWhere('c.contentType = :val')
+            ->setParameter('val', Content::CONTENT_TYPE['show'])
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(10);
+        if ($search->getIsComplete()) {
+            $query = $query->andWhere('c.complete != :complete');
+            $query->setParameter('complete', $search->getIsComplete());
+        }
+        if ($search->getIsTranslated()) {
+            $query = $query->andWhere('c.translated != :translated');
+            $query->setParameter('translated', $search->getIsTranslated());
+        }
+            return $query->getQuery() ;
     }
-    */
 }
