@@ -14,10 +14,12 @@ class ContentType extends AbstractType
     {
         $builder
             ->add('title_fr')
+
             ->add('content_fr', CKEditorType::class)
             ->add('content_type')
             ->add('title_en')
             ->add('content_en', CKEditorType::class)
+
 
         ;
     }

@@ -30,6 +30,11 @@ class Content
     private $title_fr;
 
     /**
+      * @ORM\Column(type="integer")
+      */
+    private $contentType;
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $content_type;
