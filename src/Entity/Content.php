@@ -14,7 +14,8 @@ class Content
 
     const CONTENT_TYPE = [
         'show' => 1,
-        'news' => 2
+        'news' => 2,
+        'static_page' => 3
     ];
     /**
      * @ORM\Id()
@@ -29,9 +30,9 @@ class Content
     private $title_fr;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $contentType;
+      * @ORM\Column(type="integer")
+      */
+    private $content_type;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -105,9 +106,9 @@ class Content
         return $this->title_fr;
     }
 
-    public function setTitleFr(string $title_fr): self
+    public function setTitleFr(string $titleFr): self
     {
-        $this->title_fr = $title_fr;
+        $this->title_fr = $titleFr;
 
         return $this;
     }
@@ -117,9 +118,9 @@ class Content
         return $this->title_en;
     }
 
-    public function setTitleEn(?string $title_en): self
+    public function setTitleEn(?string $titleEn): self
     {
-        $this->title_en = $title_en;
+        $this->title_en = $titleEn;
 
         return $this;
     }
@@ -141,21 +142,21 @@ class Content
         return $this->content_en;
     }
 
-    public function setContentEn(?string $content_en): self
+    public function setContentEn(?string $contentEn): self
     {
-        $this->content_en = $content_en;
+        $this->content_en = $contentEn;
 
         return $this;
     }
 
     public function getContentType(): ?int
     {
-        return $this->contentType;
+        return $this->content_type;
     }
 
     public function setContentType(int $contentType): self
     {
-        $this->contentType = $contentType;
+        $this->content_type = $contentType;
 
         return $this;
     }
@@ -165,9 +166,9 @@ class Content
         return $this->country_fr;
     }
 
-    public function setCountryFr(?string $country_fr): self
+    public function setCountryFr(?string $countryFr): self
     {
-        $this->country_fr = $country_fr;
+        $this->country_fr = $countryFr;
 
         return $this;
     }
@@ -177,9 +178,9 @@ class Content
         return $this->country_en;
     }
 
-    public function setCountryEn(?string $country_en): self
+    public function setCountryEn(?string $countryEn): self
     {
-        $this->country_en = $country_en;
+        $this->country_en = $countryEn;
 
         return $this;
     }

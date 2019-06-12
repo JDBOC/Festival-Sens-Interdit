@@ -1,36 +1,35 @@
 <?php
 
-  namespace App\Form;
+namespace App\Form;
 
 use App\Entity\Content;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Entity\Edition;
 
-class ShowType extends AbstractType
+class ContentType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('title_fr')
+
+            ->add('content_fr', CKEditorType::class)
+            ->add('content_type')
             ->add('title_en')
-            ->add('content_fr')
-            ->add('content_en')
-            ->add('country_fr')
-            ->add('country_en')
-            ->add('edition', EntityType::class, [
-                'class' => Edition::class,
-                'choice_label' => 'name',
-            ]);
+            ->add('content_en', CKEditorType::class)
+            ->add('complete', null, ['data'=>false])
+            ->add('translated', null, ['data'=>false])
+
+
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-        'data_class' => Content::class,
+          'data_class' => Content::class,
         ]);
     }
 }
