@@ -12,6 +12,10 @@
 
                 <th>Titre</th>
                 <th>Contenu</th>
+              <th>Titre Anglais</th>
+              <th>Contenu anglais</th>
+              <th>complete</th>
+              <th>traduit</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +23,10 @@
             <tr>
                 <td>{{ content.titleFr }}</td>
                 <td>{{ content.contentFr }}</td>
+              <td>{{ content.titleEn }}</td>
+              <td>{{ content.contentEn }}</td>
+              <td>{{ content.complete }}</td>
+              <td>{{ content.translated }}</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-secondary"><a href="{{ path('content_show', {'id': content.id}) }}">show</a></button>
