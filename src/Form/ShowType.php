@@ -14,12 +14,12 @@ class ShowType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title_fr')
-            ->add('title_en')
-            ->add('content_fr')
-            ->add('content_en')
-            ->add('country_fr')
-            ->add('country_en')
+            ->add('titleFr')
+            ->add('titleEn')
+            ->add('contentFr')
+            ->add('contentEn')
+            ->add('countryFr')
+            ->add('countryEn')
             ->add('edition', EntityType::class, [
                 'class' => Edition::class,
                 'choice_label' => 'name',

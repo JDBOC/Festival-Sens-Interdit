@@ -14,8 +14,6 @@ class SiFileType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('mimeType')
-            ->add('link')
             ->add('type')
             ->add('mediaFile', FileType::class, ['required' => false])
         ;

@@ -33,16 +33,6 @@ class SiFile
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $mimeType;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $link;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $type;
@@ -69,10 +59,15 @@ class SiFile
      */
     private $pictureContent;
 
- /*   /**
+     /**
      * @ORM\Column(type="datetime")
      */
-  //  private $updatedAt;
+    private $updatedAt;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Edition", mappedBy="editionPicture", cascade={"persist", "remove"})
+     */
+    private $edition;
 
     public function __construct()
     {
@@ -92,30 +87,6 @@ class SiFile
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getMimeType(): ?string
-    {
-        return $this->mimeType;
-    }
-
-    public function setMimeType(string $mimeType): self
-    {
-        $this->mimeType = $mimeType;
-
-        return $this;
-    }
-
-    public function getLink(): ?string
-    {
-        return $this->link;
-    }
-
-    public function setLink(string $link): self
-    {
-        $this->link = $link;
 
         return $this;
     }
@@ -190,9 +161,9 @@ class SiFile
 
         // Only change the updated at if the file is really uploaded to avoid database updates.
         // This is needed when the file should be set when loading the entity.
-  /*      if ($this->mediaFile instanceof UploadedFile) {
+        if ($this->mediaFile instanceof UploadedFile) {
             $this->updatedAt = new \DateTime('now');
-        }*/
+        }
 
         return $this;
     }
@@ -215,17 +186,17 @@ class SiFile
 
         // Only change the updated at if the file is really uploaded to avoid database updates.
         // This is needed when the file should be set when loading the entity.
-        /*      if ($this->mediaFile instanceof UploadedFile) {
-                  $this->updatedAt = new \DateTime('now');
-              }*/
+        if ($this->mediaFile instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
 
         return $this;
     }
 
- /*   /**
-     * @return mixed
+    /**
+     * @return \DateTimeInterface
      */
- /*   public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
@@ -234,9 +205,27 @@ class SiFile
      * @param mixed $updatedAt
      * @return SiFile
      */
- /*   public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
         return $this;
-    }*/
+    }
+
+    public function getEdition(): ?Edition
+    {
+        return $this->edition;
+    }
+
+    public function setEdition(?Edition $edition): self
+    {
+        $this->edition = $edition;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newEditionPicture = $edition === null ? null : $this;
+        if ($newEditionPicture !== $edition->getEditionPicture()) {
+            $edition->setEditionPicture($newEditionPicture);
+        }
+
+        return $this;
+    }
 }
