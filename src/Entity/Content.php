@@ -36,7 +36,7 @@ class Content
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $titleEN;
+    private $titleEn;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -112,14 +112,14 @@ class Content
         return $this;
     }
 
-    public function getTitleEN(): ?string
+    public function getTitleEn(): ?string
     {
-        return $this->titleEN;
+        return $this->titleEn;
     }
 
-    public function setTitleEN(?string $titleEN): self
+    public function setTitleEn(?string $titleEn): self
     {
-        $this->titleEN = $titleEN;
+        $this->titleEn = $titleEn;
 
         return $this;
     }

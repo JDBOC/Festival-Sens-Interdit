@@ -31,7 +31,7 @@ class ShowContentFixtures extends Fixture implements DependentFixtureInterface
             $show->setTranslated(false);
             if (rand(0, 1)) { // in order to have only some translated shows
                 $show->setContentEn($faker->paragraphs($nb = 3, $asText = true));
-                $show->setTitleEN($faker->words($nb = 3, $asText = true));
+                $show->setTitleEn($faker->words($nb = 3, $asText = true));
                 $show->setCountryEn($faker->country);
                 $show->setTranslated(true);
             }
