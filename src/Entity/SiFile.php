@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SiFileRepository")
@@ -18,7 +19,8 @@ class SiFile
 
     const FILE_TYPE = [
         'picture' => 1,
-        'logo' => 2
+        'logo' => 2,
+        'affiche edition' => 3
     ];
     /**
      * @ORM\Id()
@@ -50,6 +52,7 @@ class SiFile
     /**
      * @var File|null
      * @Vich\UploadableField(mapping="Uploaded_file", fileNameProperty="mediaFileName")
+     * @Assert\NotBlank
      */
     private $mediaFile;
 
@@ -69,10 +72,10 @@ class SiFile
      */
     private $pictureContent;
 
- /*   /**
+    /**
      * @ORM\Column(type="datetime")
      */
-  //  private $updatedAt;
+    private $updatedAt;
 
     public function __construct()
     {
@@ -222,10 +225,10 @@ class SiFile
         return $this;
     }
 
- /*   /**
+    /*
      * @return mixed
      */
- /*   public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
@@ -234,9 +237,9 @@ class SiFile
      * @param mixed $updatedAt
      * @return SiFile
      */
- /*   public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
         return $this;
-    }*/
+    }
 }

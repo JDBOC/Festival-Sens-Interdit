@@ -5,6 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EditionRepository")
@@ -27,6 +28,12 @@ class Edition
      * @ORM\OneToMany(targetEntity="App\Entity\Content", mappedBy="edition")
      */
     private $contents;
+
+    /**
+     * @Assert\Type(type="App\Entity\SiFile")
+     */
+    private $siFile;
+
 
     public function __construct()
     {
@@ -77,6 +84,18 @@ class Edition
                 $content->setEdition(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSiFile(): ?SiFile
+    {
+        return $this->siFile;
+    }
+
+    public function setSiFile(?SiFile $siFile): self
+    {
+        $this->siFile = $siFile;
 
         return $this;
     }

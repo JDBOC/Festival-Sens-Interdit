@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Edition;
+use App\Entity\SiFile;
 use App\Form\EditionType;
+use App\Form\SiFileType;
 use App\Repository\EditionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -11,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/edition")
+ * @Route("/admin/edition")
  */
 class EditionController extends AbstractController
 {
@@ -31,12 +33,21 @@ class EditionController extends AbstractController
     public function new(Request $request): Response
     {
         $edition = new Edition();
+        $siFile = new SiFile();
+
         $form = $this->createForm(EditionType::class, $edition);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $siFile->setMimeType('jpeg');
+
+            $edition->setSiFile($siFile);
+
             $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->persist($edition);
+            $entityManager->persist($siFile);
+
             $entityManager->flush();
 
             return $this->redirectToRoute('edition_index');
@@ -64,9 +75,11 @@ class EditionController extends AbstractController
     public function edit(Request $request, Edition $edition): Response
     {
         $form = $this->createForm(EditionType::class, $edition);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $edition->getSiFile();
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('edition_index', [

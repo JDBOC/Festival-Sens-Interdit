@@ -1,10 +1,12 @@
 {{ form_start(form) }}
 
     {{ form_row(form.name) }}
-    {{ form_row(form.mimeType) }}
-    {{ form_row(form.link) }}
     {{ form_row(form.type) }}
-    {{ form_row(form.mediaFile) }}
+
+    {{ form_widget(form.mediaFile) }}
+<!-- <td>
+    <img alt="img_fichier" src="/upload/file/ {# si_file.mediaFileName #}" style="width: 400px; height: auto" />
+</td>-->
 
     <button class="btn">{{ button_label|default('Save') }}</button>
 

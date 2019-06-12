@@ -11,12 +11,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/si/file")
+ * @Route("/admin/file")
  */
 class SiFileController extends AbstractController
 {
     /**
-     * @Route("/", name="si_file_index", methods={"GET"})
+     * @Route("/", name="file_index", methods={"GET"})
      */
     public function index(SiFileRepository $siFileRepository): Response
     {
@@ -26,7 +26,7 @@ class SiFileController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="si_file_new", methods={"GET","POST"})
+     * @Route("/new", name="file_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
@@ -36,10 +36,11 @@ class SiFileController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $siFile->setUpdatedAt(new \DateTime());
             $entityManager->persist($siFile);
             $entityManager->flush();
 
-            return $this->redirectToRoute('si_file_index');
+            return $this->redirectToRoute('file_index');
         }
 
         return $this->render('si_file/new.html.twig', [
@@ -49,7 +50,7 @@ class SiFileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="si_file_show", methods={"GET"})
+     * @Route("/{id}", name="file_show", methods={"GET"})
      */
     public function show(SiFile $siFile): Response
     {
@@ -59,7 +60,7 @@ class SiFileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="si_file_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="file_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, SiFile $siFile): Response
     {
@@ -67,9 +68,10 @@ class SiFileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $siFile->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('si_file_index', [
+            return $this->redirectToRoute('file_index', [
                 'id' => $siFile->getId(),
             ]);
         }
@@ -81,7 +83,7 @@ class SiFileController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="si_file_delete", methods={"DELETE"})
+     * @Route("/{id}", name="file_delete", methods={"DELETE"})
      */
     public function delete(Request $request, SiFile $siFile): Response
     {
@@ -91,6 +93,6 @@ class SiFileController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('si_file_index');
+        return $this->redirectToRoute('file_index');
     }
 }

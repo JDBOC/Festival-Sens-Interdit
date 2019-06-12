@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\SiFile;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,9 +15,9 @@ class SiFileType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('mimeType')
-            ->add('link')
-            ->add('type')
+            ->add('mimeType', null, ['data' => 'img/png'])
+            ->add('link', null, ['data' => 'blabla.com'])
+            ->add('type', ChoiceType::class, ['choices' => SiFile::FILE_TYPE])
             ->add('mediaFile', FileType::class, ['required' => false])
         ;
     }
