@@ -15,11 +15,19 @@ class HomeController extends AbstractController
      */
     public function index(SessionRepository $session): Response
     {
+        $language = $_SESSIONS['language'] = 'fr';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
+            if ($_POST['language'] == "en_EN") {
+                $language =  $_POST['language'];
+            }
+        }
 
         return $this->render(
             'index.html.twig',
             [
-                        'sessions' => $session->findAll()
+                        'sessions' => $session->findAll(),
+                        'language' => $language
                     ]
         );
     }
