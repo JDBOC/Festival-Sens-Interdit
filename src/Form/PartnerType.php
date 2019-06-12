@@ -15,7 +15,7 @@ class PartnerType extends AbstractType
             ->add('link')
             ->add('partnerType')
             ->add('partnerName')
-            ->add('partnerLogo')
+            // ->add('partnerLogo')
         ;
     }
 
