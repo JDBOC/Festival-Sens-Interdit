@@ -1,4 +1,8 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_widget(form) }} 	
+    <div class="category">
+    {{ form_start(form.sifile) }}
+    {{ form_end(form.sifile)}}
+</div>
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
