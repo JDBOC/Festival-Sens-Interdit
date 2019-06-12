@@ -12,7 +12,7 @@ class UserShowController extends AbstractController
      */
     public function userShow()
     {
-        return $this->render('user_show/index.html.twig', [
+        return $this->render('show.html.twig', [
             'controller_name'   => 'UserShowController',
         ]);
     }
