@@ -5,12 +5,12 @@
 {% block body %}
 
 <!-- Kind of head after the navbar : Main show's photo included title and coutry -->
-<div class="container-fluid">
+<div class="container-fluid p-0">
 
-    <div class="row">
+{#     <div class="row">
         <div class="overlay-image">
             <!-- Main show's image -->
-            <img src="https://unsplash.it/1500/250/?random" class="imgTop" alt="show photo"/>
+            <img src="https://unsplash.it/1920/570/?random" class="imgTop" alt="show photo"/>
             <div class="textOverlay text-white p-0 mr-0 w-100">
                 <p>
                     <!-- Show's TITLE -->
@@ -21,7 +21,17 @@
                 </p>
             </div>
         </div>
-    </div>
+
+    </div> #}
+<div class="card bg-dark text-white border-0 ">
+    
+  <img src="https://unsplash.it/1920/570/?random" class="imgTop img-fluid" alt="show photo" class="card-img" alt="...">
+  <div class="card-img-overlay text-center m-auto">
+    <h1 class="card-title">PEER GYNT</h1>
+    <h1 class="card-title">FROM KOSOVO</h1>
+  </div>
+</div>
+
     <!-- A show's card included country, 1/2/3 logo(s), subtitle, description, pdf link, photo or/and video (? optional partner's logos ?) -->
     <div class="container p-0 d-flex">
         <div class="row">
