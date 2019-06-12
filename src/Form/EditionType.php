@@ -14,7 +14,7 @@ class EditionType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('sifile', siFileType::class);
+            ->add('editionPicture', siFileType::class);
         ;
     }
 

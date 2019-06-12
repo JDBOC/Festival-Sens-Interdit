@@ -64,6 +64,11 @@ class SiFile
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Edition", mappedBy="editionPicture", cascade={"persist", "remove"})
+     */
+    private $edition;
+
     public function __construct()
     {
         $this->logoContents = new ArrayCollection();
@@ -203,6 +208,24 @@ class SiFile
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    public function getEdition(): ?Edition
+    {
+        return $this->edition;
+    }
+
+    public function setEdition(?Edition $edition): self
+    {
+        $this->edition = $edition;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newEditionPicture = $edition === null ? null : $this;
+        if ($newEditionPicture !== $edition->getEditionPicture()) {
+            $edition->setEditionPicture($newEditionPicture);
+        }
+
         return $this;
     }
 }
