@@ -14,7 +14,8 @@ class Content
 
     const CONTENT_TYPE = [
         'show' => 1,
-        'news' => 2
+        'news' => 2,
+        'static_page' => 3
     ];
     /**
      * @ORM\Id()
@@ -29,8 +30,8 @@ class Content
     private $titleFr;
 
     /**
-     * @ORM\Column(type="integer")
-     */
+      * @ORM\Column(type="integer")
+      */
     private $contentType;
 
     /**
@@ -108,7 +109,6 @@ class Content
     public function setTitleFr(string $titleFr): self
     {
         $this->titleFr = $titleFr;
-
         return $this;
     }
 
@@ -120,7 +120,6 @@ class Content
     public function setTitleEn(?string $titleEn): self
     {
         $this->titleEn = $titleEn;
-
         return $this;
     }
 
@@ -144,7 +143,6 @@ class Content
     public function setContentEn(?string $contentEn): self
     {
         $this->contentEn = $contentEn;
-
         return $this;
     }
 
@@ -168,7 +166,6 @@ class Content
     public function setCountryFr(?string $countryFr): self
     {
         $this->countryFr = $countryFr;
-
         return $this;
     }
 
@@ -180,7 +177,6 @@ class Content
     public function setCountryEn(?string $countryEn): self
     {
         $this->countryEn = $countryEn;
-
         return $this;
     }
 

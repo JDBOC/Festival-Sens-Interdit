@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Content{% endblock %}
+
+{% block body %}
+  {{ include('content/base.html.twig') }}
+    <h1>Content</h1>
+
+    <table class="table">
+        <tbody>
+
+            <tr>
+                <th>Title_fr</th>
+                <td>{{ content.titleFr }}</td>
+            </tr>
+            <tr>
+              <th>Content_fr</th>
+              <td>{{ content.contentFr }}</td>
+            </tr>
+            <tr>
+              <th>Title_en</th>
+              <td>{{ content.titleEn }}</td>
+            </tr>
+            <tr>
+              <th>Content_en</th>
+              <td>{{ content.contentEn }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+<div class="btn-group" role="group" aria-label="Basic example">
+  <button type="button" class="btn btn-light">
+    <a href="{{ path('content_index') }}">back to list</a>
+  </button>
+  <button type="button" class="btn btn-warning">
+    <a href="{{ path('content_edit', {'id': content.id}) }}">edit</a>
+  </button>
+
+    {{ include('content/_delete_form.html.twig') }}
+
+</div>
+
+{% endblock %}

@@ -64,7 +64,6 @@ class ShowController extends AbstractController
             }
             if (is_null($show->getCountryFr())
                 ||  is_null($show->getContentFr())
-                ||  empty($show->getPicture())
                 ||  empty($show->getSessions())) {
                 $show->setComplete(false);
             } else {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Form;
+  namespace App\Form;
 
 use App\Entity\Content;
 use Symfony\Component\Form\AbstractType;
@@ -30,7 +30,7 @@ class ShowType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Content::class,
+        'data_class' => Content::class,
         ]);
     }
 }
