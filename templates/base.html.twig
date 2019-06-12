@@ -6,8 +6,66 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
-        <link rel="stylesheet" href="../assets/userShow.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <style>
+        /* START OF stylesheet.css of templates/user_show/index.html.twig // by Catherine */
+        
+        /* HEAD */
+        .card-img {
+            width: 100%;
+            border-radius: 0;
+        }
+
+        .overlay-image {
+            position: relative;
+            width: 100%;
+        }
+
+        .overlay-image .imgTop {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .textOverlay {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            top: 50%;
+            left: 60%;
+            text-shadow: 2px 2px 2px #000;
+            font-size: 3vw;
+            font-weight: bold;
+        }
+        /* END OF head */
+
+        /* BODY */
+        /* red COUNTRY pill */
+        #redPill {
+            color: white;
+            background: red;
+            border-bottom-right-radius: 10px 10px;
+            font-size: 1.2rem;
+            width: 6em;
+            text-align: center;
+        }
+
+        .redPill {
+            margin: 0;
+        }
+
+        hr {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* END OF body */
+
+        /* END OF stylesheet.css of templates/user_show/index.html.twig // by Catherine */
+
+        </style>
+
     </head>
 
     <body>
