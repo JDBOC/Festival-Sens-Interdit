@@ -30,10 +30,10 @@ class Edition
     private $contents;
 
     /**
-     * @Assert\Type(type="App\Entity\SiFile")
-     */
-    private $siFile;
 
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", inversedBy="edition", cascade={"persist", "remove"})
+     */
+    private $editionPicture;
 
     public function __construct()
     {
@@ -88,14 +88,15 @@ class Edition
         return $this;
     }
 
-    public function getSiFile(): ?SiFile
+
+    public function getEditionPicture(): ?SiFile
     {
-        return $this->siFile;
+        return $this->editionPicture;
     }
 
-    public function setSiFile(?SiFile $siFile): self
+    public function setEditionPicture(?SiFile $editionPicture): self
     {
-        $this->siFile = $siFile;
+        $this->editionPicture = $editionPicture;
 
         return $this;
     }

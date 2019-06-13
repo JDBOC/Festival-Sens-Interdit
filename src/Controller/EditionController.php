@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Edition;
 use App\Entity\SiFile;
 use App\Form\EditionType;
-use App\Form\SiFileType;
 use App\Repository\EditionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,16 +34,14 @@ class EditionController extends AbstractController
         $edition = new Edition();
         $siFile = new SiFile();
 
+        $siFile->setType(SiFile::FILE_TYPE['editionPicture']);
+        $edition->setEditionPicture($siFile);
+
         $form = $this->createForm(EditionType::class, $edition);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $siFile->setMimeType('jpeg');
-
-            $edition->setSiFile($siFile);
-
             $entityManager = $this->getDoctrine()->getManager();
-
             $entityManager->persist($edition);
             $entityManager->persist($siFile);
 
@@ -79,7 +76,6 @@ class EditionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $edition->getSiFile();
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('edition_index', [

@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Edition;
-use App\Form\SiFileType;
+use App\Form\InSiFileType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,8 +15,7 @@ class EditionType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('siFile', SiFileType::class)
-        ;
+            ->add('editionPicture', InSiFileType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
