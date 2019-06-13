@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190611135022 extends AbstractMigration
+final class Version20190612152750 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -25,14 +25,11 @@ final class Version20190611135022 extends AbstractMigration
             'Migration can only be executed safely on \'mysql\'.'
         );
 
-        $this->addSql(
-            'CREATE TABLE admin (
-                      id INT AUTO_INCREMENT NOT NULL,
-                      username VARCHAR(180) NOT NULL,
-                      roles JSON NOT NULL, password VARCHAR(255) NOT NULL,
-                      UNIQUE INDEX UNIQ_880E0D76F85E0677 (username),
-                      PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB'
-        );
+        $this->addSql('ALTER TABLE edition ADD edition_picture_id INT DEFAULT NULL');
+        $this->addSql('ALTER TABLE edition ADD CONSTRAINT FK_A891181F203F1692 FOREIGN KEY (edition_picture_id) 
+            REFERENCES si_file (id)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_A891181F203F1692 ON edition (edition_picture_id)');
+        $this->addSql('ALTER TABLE si_file ADD updated_at DATETIME NOT NULL, DROP mime_type, DROP link');
     }
 
     public function down(Schema $schema) : void
@@ -43,6 +40,10 @@ final class Version20190611135022 extends AbstractMigration
             'Migration can only be executed safely on \'mysql\'.'
         );
 
-        $this->addSql('DROP TABLE admin');
+        $this->addSql('ALTER TABLE edition DROP FOREIGN KEY FK_A891181F203F1692');
+        $this->addSql('DROP INDEX UNIQ_A891181F203F1692 ON edition');
+        $this->addSql('ALTER TABLE edition DROP edition_picture_id');
+        $this->addSql('ALTER TABLE si_file ADD mime_type VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci,
+         ADD link VARCHAR(255) NOT NULL COLLATE utf8mb4_unicode_ci, DROP updated_at');
     }
 }

@@ -64,7 +64,6 @@ class ShowController extends AbstractController
             }
             if (is_null($show->getCountryFr())
                 ||  is_null($show->getContentFr())
-                ||  empty($show->getPicture())
                 ||  empty($show->getSessions())) {
                 $show->setComplete(false);
             } else {
@@ -83,4 +82,26 @@ class ShowController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    //  /**
+    //  * @Route("/{id}/edit", name="show_edit", methods={"GET","POST"})
+    //  */
+    // public function edit(Request $request, Content $show): Response
+    // {
+    //     $form = $this->createForm(ShowType::class, $show);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $this->getDoctrine()->getManager()->flush();
+
+    //         return $this->redirectToRoute('show_index', [
+    //             'id' => $show->getId(),
+    //         ]);
+    //     }
+
+    //     return $this->render('admin/show/edit.html.twig', [
+    //         'content' => $show,
+    //         'form' => $form->createView(),
+    //     ]);
+    // }
 }
