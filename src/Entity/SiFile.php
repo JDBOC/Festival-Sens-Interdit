@@ -74,6 +74,15 @@ class SiFile
         $this->logoContents = new ArrayCollection();
     }
 
+    /**
+     * returns the key linkd to the value of the filetype const
+     * @return string
+     */
+    public function getFileTypeName():string
+    {
+        return array_search($this->type, self::FILE_TYPE);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
