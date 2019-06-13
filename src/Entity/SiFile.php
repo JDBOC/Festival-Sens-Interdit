@@ -18,7 +18,8 @@ class SiFile
 
     const FILE_TYPE = [
         'picture' => 1,
-        'logo' => 2
+        'logo' => 2,
+        'editionPicture' => 3,
     ];
     /**
      * @ORM\Id()
@@ -72,6 +73,15 @@ class SiFile
     public function __construct()
     {
         $this->logoContents = new ArrayCollection();
+    }
+
+    /**
+     * returns the key linkd to the value of the filetype const
+     * @return string
+     */
+    public function getFileTypeName():string
+    {
+        return array_search($this->type, self::FILE_TYPE);
     }
 
     public function getId(): ?int
