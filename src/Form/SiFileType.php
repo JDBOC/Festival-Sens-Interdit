@@ -7,6 +7,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class SiFileType extends AbstractType
 {
@@ -14,9 +16,13 @@ class SiFileType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('type')
-            ->add('mediaFile', FileType::class, ['required' => false])
-        ;
+            ->add('type', ChoiceType::class, [
+                'choices' => SiFile::FILE_TYPE
+            ])
+            ->add('mediaFile', VichFileType::class, [
+                'required' => false,
+                'download_uri' => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
