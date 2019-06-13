@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Edition;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class ShowType extends AbstractType
 {
@@ -16,8 +17,8 @@ class ShowType extends AbstractType
         $builder
             ->add('titleFr')
             ->add('titleEn')
-            ->add('contentFr')
-            ->add('contentEn')
+            ->add('contentFr', CKEditorType::class)
+            ->add('contentEn', CKEditorType::class)
             ->add('countryFr')
             ->add('countryEn')
             ->add('edition', EntityType::class, [

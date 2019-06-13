@@ -18,7 +18,8 @@ class SiFile
 
     const FILE_TYPE = [
         'picture' => 1,
-        'logo' => 2
+        'logo' => 2,
+        'editionPicture' => 3,
     ];
     /**
      * @ORM\Id()
