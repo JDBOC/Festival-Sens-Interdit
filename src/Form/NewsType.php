@@ -13,10 +13,10 @@ class NewsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title_fr',TextType::class,["label"=>"Titre"])
+            ->add('title_fr', TextType::class, ["label"=>"Titre"])
             //->add('contentType')
             // ->add('title_en')
-            ->add('content_fr',TextType::class,["label"=>"Contenu"])
+            ->add('content_fr', TextType::class, ["label"=>"Contenu"])
             // ->add('content_en')
             //->add('country_fr')
             // ->add('country_en')
