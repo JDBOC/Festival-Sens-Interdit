@@ -14,17 +14,8 @@ class NewsType extends AbstractType
     {
         $builder
             ->add('title_fr', TextType::class, ["label"=>"Titre"])
-            //->add('contentType')
-            // ->add('title_en')
             ->add('content_fr', TextType::class, ["label"=>"Contenu"])
-            // ->add('content_en')
-            //->add('country_fr')
-            // ->add('country_en')
-            // ->add('complete')
-            //->add('translated')
-            // ->add('logos')
-            // ->add('edition')
-            // ->add('picture')
+            ->add('picture')
         ;
     }
 
