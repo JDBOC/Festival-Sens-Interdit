@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} A propos de nous {% endblock %}
+
+{% block body %}
+<div class="col-md-6">
+  <h2>{{ content.titleFr | raw }}</h2>
+
+  <p>{{ content.contentFr | raw }}</p>
+</div>
+  <div class="align-content-md-center">
+  <h2>{{ content.titleEn }}</h2>
+
+  <p>{{ content.contentEn }}</p>
+  </div>
+
+{% endblock %}

@@ -7,6 +7,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\ContentRepository;
 use App\Repository\SessionRepository;
+use App\Entity\Content;
+use App\Form\ContentType;
 
 class HomeController extends AbstractController
 {
@@ -30,5 +32,19 @@ class HomeController extends AbstractController
                         'language' => $language
                     ]
         );
+    }
+
+
+  /**
+   * @Route("/about",
+   *   name="aboutus")
+   * @return Response A response instance
+   */
+
+    public function show(ContentRepository $repository): Response
+    {
+        return $this->render('User/aboutUs.html.twig', [
+        'content' => $repository->findOneBy(['id'=> 37])
+        ]);
     }
 }
