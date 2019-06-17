@@ -9,6 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Partner
 {
+    const PARTNER_TYPE = [
+        'Partenaire Institutionnel' => 1,
+        'Partenaire Principal'      => 2,
+        'Partenaire Théâtre'        => 3
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -87,5 +93,10 @@ class Partner
         $this->partnerLogo = $partnerLogo;
 
         return $this;
+    }
+
+    public function getPartnerTypeName(): string
+    {
+        return array_search($this->partnerType, self::PARTNER_TYPE);
     }
 }
