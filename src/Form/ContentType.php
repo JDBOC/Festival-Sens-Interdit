@@ -20,12 +20,11 @@ class ContentType extends AbstractType
     {
         $builder
             ->add('title_fr')
-
             ->add('content_fr', CKEditorType::class)
             ->add('content_type')
             ->add('title_en')
             ->add('content_en', CKEditorType::class)
-           // ->add('mediaFile', FileType::class, ['required' => false])
+            ->add('picture', SiFile::class, ['required' => false])
             ->add('complete', null, ['data'=>false])
             ->add('translated', null, ['data'=>false])
 
