@@ -83,25 +83,39 @@ class ShowController extends AbstractController
         ]);
     }
 
-    //  /**
-    //  * @Route("/{id}/edit", name="show_edit", methods={"GET","POST"})
-    //  */
-    // public function edit(Request $request, Content $show): Response
-    // {
-    //     $form = $this->createForm(ShowType::class, $show);
-    //     $form->handleRequest($request);
+    
+    /**
+     * @Route("/{id}/edit", name="show_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Content $content): Response
+    {
+        $form = $this->createForm(ShowType::class, $content);
+        $form->handleRequest($request);
 
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $this->getDoctrine()->getManager()->flush();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
 
-    //         return $this->redirectToRoute('show_index', [
-    //             'id' => $show->getId(),
-    //         ]);
-    //     }
+            return $this->redirectToRoute('show_index', [
+                'id' => $content->getId(),
+            ]);
+        }
 
-    //     return $this->render('admin/show/edit.html.twig', [
-    //         'content' => $show,
-    //         'form' => $form->createView(),
-    //     ]);
-    // }
+        return $this->render('admin/show/edit.html.twig', [
+            'content' => $content,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="show_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Content $content): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$content->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($content);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('show_index');
+    }
 }
