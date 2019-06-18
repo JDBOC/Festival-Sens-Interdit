@@ -28,38 +28,38 @@ class Content
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title_fr;
+    private $titleFr;
 
     /**
       * @ORM\Column(type="integer")
       */
-    private $content_type;
+    private $contentType;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $title_en;
+    private $titleEn;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $content_fr;
+    private $contentFr;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $content_en;
+    private $contentEn;
 
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $country_fr;
+    private $countryFr;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $country_en;
+    private $countryEn;
 
      /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Edition", inversedBy="contents")
@@ -106,85 +106,80 @@ class Content
 
     public function getTitleFr(): ?string
     {
-        return $this->title_fr;
+        return $this->titleFr;
     }
 
     public function setTitleFr(string $titleFr): self
     {
-        $this->title_fr = $titleFr;
-
+        $this->titleFr = $titleFr;
         return $this;
     }
 
     public function getTitleEn(): ?string
     {
-        return $this->title_en;
+        return $this->titleEn;
     }
 
     public function setTitleEn(?string $titleEn): self
     {
-        $this->title_en = $titleEn;
-
+        $this->titleEn = $titleEn;
         return $this;
     }
 
     public function getContentFr(): ?string
     {
-        return $this->content_fr;
+        return $this->contentFr;
     }
 
-    public function setContentFr(?string $content_fr): self
+    public function setContentFr(?string $contentFr): self
     {
-        $this->content_fr = $content_fr;
+        $this->contentFr = $contentFr;
 
         return $this;
     }
 
     public function getContentEn(): ?string
     {
-        return $this->content_en;
+        return $this->contentEn;
     }
 
     public function setContentEn(?string $contentEn): self
     {
-        $this->content_en = $contentEn;
-
+        $this->contentEn = $contentEn;
         return $this;
     }
 
     public function getContentType(): ?int
     {
-        return $this->content_type;
+        return $this->contentType;
     }
 
     public function setContentType(int $contentType): self
     {
-        $this->content_type = $contentType;
+        $this->contentType = $contentType;
 
         return $this;
     }
 
     public function getCountryFr(): ?string
     {
-        return $this->country_fr;
+        return $this->countryFr;
     }
 
     public function setCountryFr(?string $countryFr): self
     {
-        $this->country_fr = $countryFr;
-
+        $this->countryFr = $countryFr;
         return $this;
     }
 
     public function getCountryEn(): ?string
     {
-        return $this->country_en;
+        return $this->countryEn;
     }
 
     public function setCountryEn(?string $countryEn): self
     {
-        $this->country_en = $countryEn;
-
+        $this->countryEn = $countryEn;
         return $this;
     }
 

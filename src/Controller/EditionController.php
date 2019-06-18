@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\SiFile;
 
 /**
  * @Route("/edition")
@@ -31,6 +32,9 @@ class EditionController extends AbstractController
     public function new(Request $request): Response
     {
         $edition = new Edition();
+        $sifile = new SiFile();
+        $sifile->setType(SiFile::FILE_TYPE['editionPicture']);
+        $edition->setEditionPicture($sifile);
         $form = $this->createForm(EditionType::class, $edition);
         $form->handleRequest($request);
 
