@@ -1,31 +1,42 @@
-<div class="container">
+<div class="container-fluid">
     <footer>
-        <div class="row">
-            <div class="col-4">
-                <h5>NOUS CONTACTER</h5>
-                <!-- Button Contact -->
-                <a href="#ContactModal">
-                    Contact
-                </a><br>
-                <span>Adresse</span>
-            </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <h5>NOUS CONTACTER</h5>
+                    <!-- Button Modal Contact -->
+                    <a href="#" data-toggle="modal" data-target="#ContactModal">
+                        Envoyer un mail
+                    </a><br><br>
+                    <span class="adress">14 rue Basse Combalot | 69007 Lyon FRANCE</span>
+                </div>
 
-            <div class="col-4">
-                <h5>INFOS PRATIQUES</h5>
-                <a href="{{ path('index') }}">Accueil</a><br>
-                <a href="#">Sens Interdits</a><br>
-                <a href="#">Mentions légales</a>
-            </div>
+                <div class="col-4">
+                    <h5>INFOS PRATIQUES</h5>
+                    <a href="{{ path('index') }}">Accueil</a><br>
+                    <a href="#">Sens Interdits</a><br>
+                    <a href="#">Mentions légales</a>
+                </div>
 
-            <div class="col-4">
-                <h5>NEWSLETTER</h5>
-                <input type="email" id="newsletter" name="newsletter"/>
-                <button type="submit" class="btn">S'inscrire</button>
+                <div class="col-4">
+                    <h5>NEWSLETTER</h5>
+                    <input type="email" id="newsletter" name="newsletter"/>
+                    <a href="#"> S'inscrire</a><br><p></p>
+                    <div class="row">
+                        <div class="col-1">
+                            <a href="https://www.facebook.com/sens.interdits/"><i class="fab fa-facebook" style="color: white"></i></a>
+                        </div>
+                        <div class="col-1">
+                            <a href="https://twitter.com/sens_interdits"><i class="fab fa-twitter" style="color: white"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Modal Contact Form-->
+
+    <!-- Modal Contact Form -->
     <div class="modal fade" id="ContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -38,7 +49,10 @@
 
 
                 <div class="modal-body">
-                    ...
+                    <span>Nom</span>
+                    <span>Prénom</span>
+                    <span>E-mail</span>
+                    <span>Message</span>
                 </div>
 
                 <div class="modal-footer">
@@ -49,20 +63,3 @@
         </div>
     </div>
 </div>
-
-
-<!--
-col 1
-- nous contacter
-
-col 2
-- lien vers page accueil
-- Lien vers page association
-- adresse
-- mentions légales
-
-col 3
-- newsletter
-- réseaux sociaux
-
--->
