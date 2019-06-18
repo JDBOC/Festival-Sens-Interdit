@@ -3,3 +3,16 @@
 twig:
     form_themes:
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+fos_ck_editor:
+    configs:
+        my_config:
+            toolbarGroups:
+                - { name: clipboard, groups: [clipboard, undo] }
+                - { name: editing,   groups: [find, selection, spellchecker] }
+                - { name: links }
+                - "/"
+                - { name: basicstyles, groups: [ basicstyles] }
+                - { name: paragraph,   groups: [ list] }
+                - "/"
+                - { name: styles }  
+
