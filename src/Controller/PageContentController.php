@@ -3,98 +3,86 @@
 namespace App\Controller;
 
 use App\Entity\Content;
-use App\Form\NewsType;
+use App\Form\ContentType;
 use App\Repository\ContentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\SiFile;
 
 /**
- * @Route("/admin/news")
+ * @Route("/content")
  */
-class NewsController extends AbstractController
+class PageContentController extends AbstractController
 {
     /**
-     * @Route("/", name="news_index", methods={"GET"})
+     * @Route("/", name="content_index", methods={"GET"})
      */
     public function index(ContentRepository $contentRepository): Response
     {
-        return $this->render('news/index.html.twig', [
-            'contents' => $contentRepository->findby(['contentType' => 2]),
+        return $this->render('content/index.html.twig', [
+            'contents' => $contentRepository->findAll(),
         ]);
     }
 
     /**
-     * @Route("/new", name="news_new", methods={"GET","POST"})
+     * @Route("/new", name="content_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
         $content = new Content();
-
-        $sifile = new SiFile();
-        $sifile->setType(SiFile::FILE_TYPE['picture']);
-        $content->setPicture($sifile);
-
-        $content
-        ->setContentType(2)
-        ->setComplete(true)
-        ->setTranslated(false);
-        $form = $this->createForm(NewsType::class, $content);
+        $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-
             $entityManager->persist($content);
             $entityManager->flush();
 
-            return $this->redirectToRoute('news_index');
+            return $this->redirectToRoute('content_index');
         }
 
-        return $this->render('news/new.html.twig', [
+        return $this->render('content/new.html.twig', [
             'content' => $content,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="news_show", methods={"GET"})
+     * @Route("/{id}", name="content_show", methods={"GET"})
      */
     public function show(Content $content): Response
     {
-        dump($content);
-
-        return $this->render('news/show.html.twig', [
+        return $this->render('content/show.html.twig', [
             'content' => $content,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="news_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="content_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Content $content): Response
     {
-        $form = $this->createForm(NewsType::class, $content);
+        $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('news_index', [
+            return $this->redirectToRoute('content_index', [
                 'id' => $content->getId(),
+                'content' => $content
             ]);
         }
 
-        return $this->render('news/edit.html.twig', [
+        return $this->render('content/edit.html.twig', [
             'content' => $content,
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="news_delete", methods={"DELETE"})
+     * @Route("/{id}", name="content_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Content $content): Response
     {
@@ -104,6 +92,6 @@ class NewsController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('news_index');
+        return $this->redirectToRoute('content_index');
     }
 }
