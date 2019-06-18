@@ -5,7 +5,6 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use App\Repository\ContentRepository;
 use App\Repository\SessionRepository;
 
 class HomeController extends AbstractController
@@ -30,5 +29,15 @@ class HomeController extends AbstractController
                         'language' => $language
                     ]
         );
+    }
+
+    public function mailer(\Swift_Mailer $mailer)
+    {
+        $message = (new \Swift_Message('??'))
+            ->setFrom('??')
+            ->setTo('cmandonnet@gmail.com')
+            ->setBody('??')
+        ;
+        $mailer->send($message);
     }
 }

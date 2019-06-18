@@ -52,10 +52,30 @@
 
 
                 <div class="modal-body">
-                    <span>Nom</span>
-                    <span>Prénom</span>
-                    <span>E-mail</span>
-                    <span>Message</span>
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="nom">Nom</label>
+                            <input type="text" class="form-control" id="nom" name="nom">
+                        </div>
+                        <div class="col-6">
+                            <label for="prénom">Prénom</label>
+                            <input type="text" class="form-control" id="prénom" name="prénom">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="mail">Mail</label><br>
+                            <input type="email" class="form-control" id="mail" name="mail">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-12">
+                            <label for="message">Votre message</label><br>
+                            <textarea class="form-control" id="message" name="message" rows="10"></textarea>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
