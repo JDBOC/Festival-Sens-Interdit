@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\SessionRepository;
+use App\Form\ContactType;
 
 class HomeController extends AbstractController
 {
@@ -16,28 +17,30 @@ class HomeController extends AbstractController
     {
         $language = $_SESSIONS['language'] = 'fr';
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
+        /*if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
             if ($_POST['language'] == "en_EN") {
                 $language =  $_POST['language'];
             }
-        }
+        }*/
+
+        $contactForm = $this->createForm(ContactType::class);
 
         return $this->render(
             'index.html.twig',
             [
                         'sessions' => $session->findAll(),
-                        'language' => $language
-                    ]
+                        'language' => $language,
+                        'contactForm' => $contactForm->createView()
+            ]
         );
     }
 
-    public function mailer(\Swift_Mailer $mailer)
+ /*   public function contactForm()
     {
-        $message = (new \Swift_Message('??'))
-            ->setFrom('??')
-            ->setTo('cmandonnet@gmail.com')
-            ->setBody('??')
-        ;
-        $mailer->send($message);
-    }
+        $contactForm = $this->createForm(ContactType::class);
+
+        return $this->render('/footer.html.twig', [
+            'contactForm' => $contactForm->createView()
+            ]);
+    }*/
 }

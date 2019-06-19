@@ -52,36 +52,35 @@
 
 
                 <div class="modal-body">
+                {{ form_start(contactForm) }}
                     <div class="row">
                         <div class="col-6">
-                            <label for="nom">Nom</label>
-                            <input type="text" class="form-control" id="nom" name="nom">
+                            {{ form_row(contactForm.lastname) }}
                         </div>
                         <div class="col-6">
-                            <label for="prénom">Prénom</label>
-                            <input type="text" class="form-control" id="prénom" name="prénom">
+                            {{ form_row(contactForm.firstname) }}
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-12">
-                            <label for="mail">Mail</label><br>
-                            <input type="email" class="form-control" id="mail" name="mail">
+                            {{ form_row(contactForm.email) }}
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-12">
-                            <label for="message">Votre message</label><br>
-                            <textarea class="form-control" id="message" name="message" rows="10"></textarea>
+                            {{ form_row(contactForm.message) }}
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                    <button type="button" class="btn btn-primary">Envoyer</button>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
                 </div>
+                {{ form_end(contactForm) }}
+
             </div>
         </div>
     </div>
