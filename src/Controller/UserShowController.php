@@ -9,6 +9,7 @@ use App\Entity\Sifile;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\ContentRepository;
 use App\Repository\SifileRepository;
+use App\Form\ContactType;
 
 class UserShowController extends AbstractController
 {
@@ -17,8 +18,11 @@ class UserShowController extends AbstractController
      */
     public function show(Content $content): Response
     {
+        $contactForm = $this->createForm(ContactType::class);
+
         return $this->render('show.html.twig', [
             'show'   => $content,
+            'contactForm' => $contactForm->createView()
         ]);
     }
 }
