@@ -17,9 +17,11 @@ class SiFile
 {
 
     const FILE_TYPE = [
-        'picture' => 1,
-        'logo' => 2,
-        'editionPicture' => 3,
+        'cover' => 1,  // used on the top of the show
+        'logo' => 2,   // logo shared by multiple shows
+        'editionPicture' => 3,  // picture illustrating the edition
+        'contentPicture' => 4,  // picture displayed inside the content, can be multiple
+        'thumbnail' => 5  // ude to illustrate show with a small squared picture"
     ];
     /**
      * @ORM\Id()
@@ -55,10 +57,6 @@ class SiFile
      */
     private $logoContents;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Content", inversedBy="picture")
-     */
-    private $pictureContent;
 
      /**
      * @ORM\Column(type="datetime")
@@ -69,6 +67,11 @@ class SiFile
      * @ORM\OneToOne(targetEntity="App\Entity\Edition", mappedBy="editionPicture", cascade={"persist", "remove"})
      */
     private $edition;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Content", inversedBy="pictures")
+     */
+    private $pictureContent;
 
     public function __construct()
     {
@@ -137,18 +140,6 @@ class SiFile
             $this->logoContents->removeElement($logoContent);
             $logoContent->removeLogo($this);
         }
-
-        return $this;
-    }
-
-    public function getPictureContent(): ?Content
-    {
-        return $this->pictureContent;
-    }
-
-    public function setPictureContent(?Content $pictureContent): self
-    {
-        $this->pictureContent = $pictureContent;
 
         return $this;
     }
@@ -235,6 +226,18 @@ class SiFile
         if ($newEditionPicture !== $edition->getEditionPicture()) {
             $edition->setEditionPicture($newEditionPicture);
         }
+
+        return $this;
+    }
+
+    public function getPictureContent(): ?Content
+    {
+        return $this->pictureContent;
+    }
+
+    public function setPictureContent(?Content $pictureContent): self
+    {
+        $this->pictureContent = $pictureContent;
 
         return $this;
     }

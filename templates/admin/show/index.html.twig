@@ -48,8 +48,8 @@
                 <td>{{ content.complete }}</td>
                 <td>{{ content.translated }}</td>
                 <td>
-                    {# <a href="{{ path('content_show', {'id': content.id}) }}">show</a>
-                    <a href="{{ path('content_edit', {'id': content.id}) }}">edit</a> #}
+                    {# <a href="{{ path('show_show', {'id': content.id}) }}">show</a> #}
+                    <a href="{{ path('show_edit', {'id': content.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
