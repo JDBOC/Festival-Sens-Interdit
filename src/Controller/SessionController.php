@@ -33,7 +33,7 @@ class SessionController extends AbstractController
         /**
      * @Route("/", name="session_index", methods={"GET"})
      */
-    public function index(SessionRepository $sessionRepository, $id): Response
+    public function index(SessionRepository $sessionRepository): Response
     {
         return $this->render('admin/session/index.html.twig', [
             'sessions' => $sessionRepository->findAll()]);
@@ -95,15 +95,14 @@ class SessionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="session_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="session_delete", methods={"GET"})
      */
     public function delete(Request $request, Session $session): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$session->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($session);
             $entityManager->flush();
-        }
+    
 
         return $this->redirectToRoute('session_index');
     }
