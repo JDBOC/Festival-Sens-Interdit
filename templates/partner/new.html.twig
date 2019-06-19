@@ -3,9 +3,9 @@
 {% block title %}New Partner{% endblock %}
 
 {% block body %}
-    <h1>Create new Partner</h1>
+    <h1>Nouveau Partenaire</h1>
 
     {{ include('partner/_form.html.twig') }}
 
-    <a href="{{ path('partner_index') }}">back to list</a>
+    <a href="{{ path('partner_index') }}" class="text-success">Retour Liste</a>
 {% endblock %}

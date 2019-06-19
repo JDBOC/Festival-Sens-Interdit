@@ -9,10 +9,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Partner
 {
-    const PARTNER_TYPE = [
-        'Partenaire Institutionnel' => 1,
-        'Partenaire Principal'      => 2,
-        'Partenaire Théâtre'        => 3
+    const TYPE = [
+        'Partenaires Institutionnels'   => 1,
+        'Grand Partenaire'              => 2,
+        'Mécènes et Partenaires'        => 3,
+        'Partenaires et Médias'         => 4,
+        'Les Lieux Partenaires'         => 5,
+        'Autres Partenaires'            => 6
     ];
 
     /**
@@ -30,17 +33,17 @@ class Partner
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $partnerType;
+    private $type;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $partnerName;
+    private $name;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
      */
-    private $partnerLogo;
+    private $logo;
 
     public function getId(): ?int
     {
@@ -59,44 +62,44 @@ class Partner
         return $this;
     }
 
-    public function getPartnerType(): ?int
+    public function getType(): ?int
     {
-        return $this->partnerType;
+        return $this->type;
     }
 
-    public function setPartnerType(?int $partnerType): self
+    public function setType(?int $type): self
     {
-        $this->partnerType = $partnerType;
+        $this->type = $type;
 
         return $this;
     }
 
-    public function getPartnerName(): ?string
+    public function getName(): ?string
     {
-        return $this->partnerName;
+        return $this->name;
     }
 
-    public function setPartnerName(string $partnerName): self
+    public function setName(string $name): self
     {
-        $this->partnerName = $partnerName;
+        $this->name = $name;
 
         return $this;
     }
 
-    public function getPartnerLogo(): ?SiFile
+    public function getLogo(): ?SiFile
     {
-        return $this->partnerLogo;
+        return $this->logo;
     }
 
-    public function setPartnerLogo(?SiFile $partnerLogo): self
+    public function setLogo(?SiFile $logo): self
     {
-        $this->partnerLogo = $partnerLogo;
+        $this->logo = $logo;
 
         return $this;
     }
 
-    public function getPartnerTypeName(): string
+    public function getTypeName(): string
     {
-        return array_search($this->partnerType, self::PARTNER_TYPE);
+        return array_search($this->type, self::TYPE);
     }
 }

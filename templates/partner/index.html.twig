@@ -3,36 +3,38 @@
 {% block title %}Partner index{% endblock %}
 
 {% block body %}
-    <h1>Partner index</h1>
+    <h1>Liste des Partenaires</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>PartnerName</th>
-                <th>PartnerType</th>
-                <th>Link</th>
-                <th>actions</th>
+                <th>NOM</th>
+                <th>TYPE</th>
+                <th>LOGO</th>
+                <th>LIEN</th>
+                <th>ACTIONS</th>
             </tr>
         </thead>
         <tbody>
         {% for partner in partners %}
             <tr>
-                <td>{{ partner.partnerName }}</td>
-                <td>{{ partner.partnerTypeName }}</td>
+                <td>{{ partner.name }}</td>
+                <td>{{ partner.typeName }}</td>
+                <!-- TODO : Add logo -->
+                <td>LOGO</td>
                 <td>{{ partner.link }}</td>
 
                 <td>
-                    <a href="{{ path('partner_show', {'id': partner.id}) }}">show</a>
-                    <a href="{{ path('partner_edit', {'id': partner.id}) }}">edit</a>
+                    <a href="{{ path('partner_edit', {'id': partner.id}) }}" class="text-success">modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">aucun Partenaire trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('partner_new') }}">Create new</a>
+    <a href="{{ path('partner_new') }}" class="btn btn-info">Nouveau Partenaire</a>
 {% endblock %}
