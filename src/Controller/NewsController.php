@@ -34,19 +34,18 @@ class NewsController extends AbstractController
         $content = new Content();
 
         $sifile = new SiFile();
-        $sifile->setType(SiFile::FILE_TYPE['picture']);
-        $content->setPicture($sifile);
+        $sifile->setType(SiFile::FILE_TYPE['editionPicture']);
+        $content->addPicture($sifile);
 
         $content
-        ->setContentType(2)
-        ->setComplete(true)
-        ->setTranslated(false);
+            ->setContentType(2)
+            ->setComplete(true)
+            ->setTranslated(false);
         $form = $this->createForm(NewsType::class, $content);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-
             $entityManager->persist($content);
             $entityManager->flush();
 
@@ -64,7 +63,6 @@ class NewsController extends AbstractController
      */
     public function show(Content $content): Response
     {
-        dump($content);
 
         return $this->render('news/show.html.twig', [
             'content' => $content,

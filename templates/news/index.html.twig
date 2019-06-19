@@ -11,7 +11,6 @@
             <tr>
                 <th>Titre</th>
                 <th>Contenu</th>
-                {# <th>Image</th> #}
                 <th>#</th>
             </tr>
         </thead>
@@ -19,8 +18,8 @@
         {% for content in contents %}
             <tr>
                 <td>{{ content.titleFr }}</td>
-                <td><p>{{ content.contentFr|length > 100 ? content.contentFr|slice(0,100) ~ '...' : content.contentFr  }}</p></td>
-                <td>{{ content.picture }}</td>
+                <td><p>{{ content.contentFr|length > 100 ? content.contentFr|slice(0,100) ~ '...' : content.contentFr  }}</p>
+                </td>
                 <td>
                     <a href="{{ path('news_show', {'id': content.id}) }}">show</a>
                     <a href="{{ path('news_edit', {'id': content.id}) }}">edit</a>

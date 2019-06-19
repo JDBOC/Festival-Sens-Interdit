@@ -4,9 +4,12 @@ namespace App\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Entity\Content;
+use App\Form\InSiFileType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 
 class NewsType extends AbstractType
 {
@@ -14,8 +17,11 @@ class NewsType extends AbstractType
     {
         $builder
             ->add('title_fr', TextType::class, ["label"=>"Titre"])
-            ->add('content_fr', TextType::class, ["label"=>"Contenu"])
-            ->add('picture', InSiFileType::class)
+            ->add('content_fr', CKEditorType::class, ["label"=>"Contenu"])
+            ->add('pictures', CollectionType::class, [
+                'entry_type' => InSiFileType::class,
+                 'attr' =>['multiple' => 'multiple']
+            ])
         ;
     }
 
