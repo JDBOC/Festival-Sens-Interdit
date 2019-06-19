@@ -18,7 +18,7 @@ class SessionFixtures extends Fixture implements DependentFixtureInterface
                 $session = new Session();
                 $session->setSessionDate($faker->dateTimeThisYear($max = 'now', $timezone = 'Europe/Paris'));
                 $session->setLocation($faker->streetName);
-                $session->setContent($this->getReference('showBamos'));
+                $session->setContent($this->getReference('showBanos'));
                 $manager->persist($session);
             }
         }

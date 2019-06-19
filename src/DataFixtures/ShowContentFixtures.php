@@ -14,10 +14,30 @@ class ShowContentFixtures extends Fixture implements DependentFixtureInterface
         
         $show = new Content;
         $show   ->setTitleFr('Banos Rama')
+                ->setCountryFr('France')
+                ->setContentFr('
+    <div>
+        <p><strong>De :</strong> Eduardo Bernal, Jorge A. Vargas, Gabriel Contreras</p>
+        <p><strong>Mise en sc&egrave;ne :</strong> Jorge A. Vargas &nbsp;</p>
+        <p><strong>pays :</strong> Mexique</p>
+    </div>
+    <h2>Pr&eacute;sentation</h2>
+    <p>1&Egrave;RE EN FRANCE Pr&eacute;sentation &laquo; Nous cherchons &agrave; restituer l&rsquo;incertitude avec 
+    laquelle on tente d&rsquo;exprimer ce qui fait qu&rsquo;un souvenir se r&eacute;fugie dans la m&eacute;moire.
+     &raquo; (Jorge A. Vargas). C&rsquo;est autour de la figure populaire mexicaine qu&rsquo;est le champion du monde
+      de boxe Jos&eacute; Angel Napoles dit &laquo;Mantequilla&raquo; que s&rsquo;organise Ba&ntilde;os Roma.</p>
+    <h2>L&rsquo;&eacute;quipe:</h2>
+    <p>Avec: blsqfkjsqmlfhsqlkhfq</p>
+    <p>Musique: fdsmlkjglkdshglkjds</p>
+                    ')
                 ->setContentType(Content::CONTENT_TYPE['show'])
                 ->setComplete(true)
-                ->setTranslated(true);
-        $this->addReference('showBamos', $show);
+                ->setTranslated(true)
+                ->setCover($this->getReference('banosCover'))
+                ->addPicture($this->getReference('banosPicture1'))
+                ->addPicture($this->getReference('banosPicture2'))
+                ->addPicture($this->getReference('banosPicture3'));
+        $this->addReference('showBanos', $show);
         $manager->persist($show);
         $manager->flush();
     }
