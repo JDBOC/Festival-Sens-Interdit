@@ -1,14 +1,6 @@
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
 
-body {
-    background-color: $secondary-color;
-}
-
-a {
-    color: $warm-color;
-}
-
 /*css ludo home page*/
 .img-border{
 	border-bottom-right-radius: 40px 40px;
@@ -70,7 +62,7 @@ a {
 /*fin navBar*/
  /* START OF stylesheet.css of templates/user_show/index.html.twig // by Catherine */
 body{
-    background-color:white;
+    background-color: $primary_color;
 }
 
 .redPill {
