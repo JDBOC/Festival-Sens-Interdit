@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Session;
 use App\Form\SessionType;
 use App\Repository\SessionRepository;
+use App\Repository\ContentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,13 +17,26 @@ use Symfony\Component\Routing\Annotation\Route;
 class SessionController extends AbstractController
 {
     /**
+     * @Route("/{id}", name="session_by_content", methods={"GET"})
+     */
+    public function indexByContent(
+        ContentRepository $contentRepository,
+        SessionRepository $sessionRepository,
+        $id
+    ): Response {
+        return $this->render('admin/session/indexByContent.html.twig', [
+                'sessions' => $sessionRepository->findby(['content' => $id]),
+                'content' => $contentRepository->findOneBy(['id'=>$id])
+        ]);
+    }
+
+        /**
      * @Route("/", name="session_index", methods={"GET"})
      */
-    public function index(SessionRepository $sessionRepository): Response
+    public function index(SessionRepository $sessionRepository, $id): Response
     {
         return $this->render('admin/session/index.html.twig', [
-            'sessions' => $sessionRepository->findAll(),
-        ]);
+            'sessions' => $sessionRepository->findAll()]);
     }
 
     /**
