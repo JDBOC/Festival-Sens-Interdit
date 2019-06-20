@@ -94,11 +94,12 @@ class NewsController extends AbstractController
     /**
      * @Route("/{id}", name="news_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Content $content): Response
+    public function delete(Request $request, Content $content, SiFile $siFile): Response
     {
         if ($this->isCsrfTokenValid('delete'.$content->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($content);
+            $entityManager->remove($siFile);
             $entityManager->flush();
         }
 

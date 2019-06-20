@@ -20,7 +20,10 @@ class NewsType extends AbstractType
             ->add('content_fr', CKEditorType::class, ["label"=>"Contenu"])
             ->add('pictures', CollectionType::class, [
                 'entry_type' => InSiFileType::class,
-                 'attr' =>['multiple' => 'multiple']
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false
             ])
         ;
     }
