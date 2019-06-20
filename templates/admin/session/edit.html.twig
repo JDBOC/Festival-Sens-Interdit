@@ -1,13 +1,11 @@
 {% extends 'adminBase.html.twig' %}
 
-{% block title %}Edit Session{% endblock %}
+{% block title %}edition représentation{% endblock %}
 
 {% block body %}
-    <h1>Edit Session</h1>
-
+    <h1>Représentations pour le spectacle:{{content.titleFr}}</h1>
     {{ include('admin/session/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('admin/session/_indexByContent.html.twig') }}
+    
 
-    <a href="{{ path('session_index') }}">back to list</a>
-
-    {{ include('admin/session/_delete_form.html.twig') }}
 {% endblock %}
