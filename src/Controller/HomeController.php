@@ -17,11 +17,11 @@ class HomeController extends AbstractController
     {
         $language = $_SESSIONS['language'] = 'fr';
 
-        /*if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
             if ($_POST['language'] == "en_EN") {
                  $language =  $_POST['language'];
             }
-        }*/
+        }
 
         $contactForm = $this->createForm(ContactType::class);
 
