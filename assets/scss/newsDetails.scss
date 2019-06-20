@@ -12,12 +12,15 @@
 
 .card-img
 {
+    height : 30em;
     border: solid;
     border-width: thin;
     border-color: black;
+    padding: 0px;
 }
 
 .content
 {
     padding-top: 80px;
+    padding-left: 20px;
 }

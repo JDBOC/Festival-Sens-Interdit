@@ -17,11 +17,22 @@ class UserShowController extends AbstractController
         ]);
     }
 
-        /**
-     * @Route("/news", name="user_show")
+    /**
+     * @Route("/news", name="news_index")
      */
     public function newsShow()
     {
         return $this->render('news/index.html.twig');
     }
+
+
+     /**
+      * @Route("/news/details", name="news_details")
+      */
+    public function newsDetails()
+    {
+
+        return $this->render('news/details.html.twig');
+    }
+
 }
