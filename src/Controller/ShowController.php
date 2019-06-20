@@ -13,6 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Knp\Component\Pager\PaginatorInterface;
 use App\Form\ShowSearchType;
 use App\Entity\ShowSearch;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
 /**
  * @Route("/admin/show")
@@ -111,6 +113,10 @@ class ShowController extends AbstractController
     }
 
     /**
+     * @Route("/{id}/edit", name="show_edit", methods={"GET","POST"})
+     */
+
+    /**
      * @Route("/{id}", name="show_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Content $content): Response
@@ -121,5 +127,56 @@ class ShowController extends AbstractController
             $entityManager->flush();
         }
         return $this->redirectToRoute('show_index');
+    }
+
+    /**
+     * returns all contents linked to an other content"
+     * @Route("/echo/{id}/", name="content_en_echo", methods={"GET","POST"})
+     */
+    public function indexEchoByContent(
+        ContentRepository $contentRepository,
+        Request $request,
+        Content $content
+    ): Response {
+        return $this->render('admin/show/echoByContent.html.twig', [
+                'contents' => $contentRepository->findAll(),
+                'echoContent' => $content,
+        ]);
+    }
+
+    /**
+     * add a content linked to an other content"
+     * @Route("/echo_add/{added_id}/{echo_id}", name="add_en_echo", methods={"GET","POST"})
+     * @Entity("echoContent", expr="repository.find(echo_id)")
+     * @Entity("addedContent", expr="repository.find(added_id)")
+     */
+    public function addEchoByContent(
+        ContentRepository $contentRepository,
+        Request $request,
+        Content $echoContent,
+        Content $addedContent
+    ): Response {
+        $echoContent->addEnEcho($addedContent);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('content_en_echo', [
+                'id' => $echoContent->getId() ]);
+    }
+
+       /**
+     * remove a content linked to an other content"
+     * @Route("/echo_remove/{removed_id}/{echo_id}", name="remove_en_echo", methods={"GET","POST"})
+     * @Entity("echoContent", expr="repository.find(echo_id)")
+     * @Entity("removedContent", expr="repository.find(removed_id)")
+     */
+    public function removeEchoByContent(
+        ContentRepository $contentRepository,
+        Request $request,
+        Content $echoContent,
+        Content $removedContent
+    ): Response {
+        $echoContent->removeEnEcho($removedContent);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('content_en_echo', [
+                'id' => $echoContent->getId() ]);
     }
 }

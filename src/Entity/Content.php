@@ -114,6 +114,20 @@ class Content
         $this->enEcho = new ArrayCollection();
     }
 
+    public function __toString():string
+    {
+        return array_search($this->getContentType(), self::CONTENT_TYPE)."-".$this->getTitleFr();
+    }
+
+     /**
+     * returns the key linkd to the value of the contentType const
+     * @return string
+     */
+    public function getContentTypeName():string
+    {
+        return array_search($this->contentType, self::CONTENT_TYPE);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
