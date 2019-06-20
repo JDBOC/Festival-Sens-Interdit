@@ -101,11 +101,17 @@ class Content
      */
     private $pictures;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Content")
+     */
+    private $enEcho;
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
         $this->logos = new ArrayCollection();
         $this->pictures = new ArrayCollection();
+        $this->enEcho = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -336,6 +342,32 @@ class Content
             if ($picture->getPictureContent() === $this) {
                 $picture->setPictureContent(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getEnEcho(): Collection
+    {
+        return $this->enEcho;
+    }
+
+    public function addEnEcho(self $enEcho): self
+    {
+        if (!$this->enEcho->contains($enEcho)) {
+            $this->enEcho[] = $enEcho;
+        }
+
+        return $this;
+    }
+
+    public function removeEnEcho(self $enEcho): self
+    {
+        if ($this->enEcho->contains($enEcho)) {
+            $this->enEcho->removeElement($enEcho);
         }
 
         return $this;
