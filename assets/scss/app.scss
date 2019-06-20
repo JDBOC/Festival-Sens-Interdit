@@ -1,14 +1,6 @@
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
 
-body {
-    background-color: $secondary-color;
-}
-
-a {
-    color: $warm-color;
-}
-
 /*css ludo home page*/
 .img-border{
 	border-bottom-right-radius: 40px 40px;
@@ -68,9 +60,43 @@ a {
 	margin-top: 3em;
 }
 /*fin navBar*/
+
+/* Footer */
+
+.bg-footer{
+	background-color: #343a40;
+}
+
+footer{
+	padding: 15px;
+}
+
+a{
+	text-decoration: none;
+	color:  #FFFFFF;
+}
+#white{
+	color: #FFFFFF;
+}
+.white{
+	color: #FFFFFF;
+}
+
+h5{
+	color: #FFFFFF;
+}
+.adress{
+	color: #FFFFFF;
+}
+
+.modal-title{
+	color: #000000;
+}
+/* Fin footer */
+
  /* START OF stylesheet.css of templates/user_show/index.html.twig // by Catherine */
 body{
-    background-color:white;
+    background-color: $primary_color;
 }
 
 .redPill {

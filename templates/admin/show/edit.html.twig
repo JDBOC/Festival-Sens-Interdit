@@ -6,8 +6,8 @@
     <h1>Edit Show</h1>
 
     {{ include('admin/show/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('show_index') }}">back to list</a>
-
+	 <a href="{{ path('show_index') }}">back to list</a>
+    <a href="{{ path('session_by_content',{'id':content.id}) }}"> <button> Gérer les représentations </button> </a>
+	
     {{ include('admin/show/_delete_form.html.twig') }}
 {% endblock %}
