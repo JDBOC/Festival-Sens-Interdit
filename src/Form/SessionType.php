@@ -14,7 +14,6 @@ class SessionType extends AbstractType
         $builder
             ->add('sessionDate')
             ->add('location')
-            ->add('content')
         ;
     }
 

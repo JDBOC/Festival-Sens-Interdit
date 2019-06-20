@@ -291,7 +291,7 @@ class Content
         return $this->cover;
     }
 
-    public function setCover(?SiFile $cover): self
+    public function setCover(?Object $cover): self
     {
         $this->cover = $cover;
 
@@ -318,7 +318,7 @@ class Content
         return $this->pictures;
     }
 
-    public function addPicture(SiFile $picture): self
+    public function addPicture(Object $picture): self
     {
         if (!$this->pictures->contains($picture)) {
             $this->pictures[] = $picture;
