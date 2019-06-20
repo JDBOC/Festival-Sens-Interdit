@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Content;
 use App\Form\ContentType;
 use App\Repository\ContentRepository;
+use App\Service\ContentService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -93,5 +94,28 @@ class PageContentController extends AbstractController
         }
 
         return $this->redirectToRoute('content_index');
+    }
+
+    /**
+     * Upload a picture and create the related SiFile object with the type in parameter
+     * @Route("/upload/{type}/{id}", name="content_delete", methods={"POST"})
+     * @param Request $request request object
+     * @param Content $content related content
+     * @param string $type upload type, could be contentPicture or logo
+     * @param ContentService $contentService content service
+     * @return Response response object
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function upload(Request $request, Content $content, string $type, ContentService $contentService): Response
+    {
+        $file = $request->files->get('file');
+        $siFile = $contentService->upload($content, $file, $type);
+
+        $response = new Response();
+        $response->setContent(json_encode($siFile));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }
