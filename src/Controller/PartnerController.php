@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * @Route("/partner")
+ * @Route("/partenaires")
  */
 class PartnerController extends AbstractController
 {
@@ -86,7 +86,7 @@ class PartnerController extends AbstractController
     }
 
     /**
-     * @Route("/show", name="user_partner")
+     * @Route("/list", name="user_partner")
      */
     public function userIndex()
     {
