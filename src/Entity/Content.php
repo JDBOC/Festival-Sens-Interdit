@@ -75,7 +75,6 @@ class Content
      */
     private $logos;
 
-
     /**
      * @ORM\Column(type="boolean")
      */
@@ -97,7 +96,7 @@ class Content
     private $thumbnail;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SiFile", mappedBy="pictureContent")
+     * @ORM\OneToMany(targetEntity="App\Entity\SiFile", mappedBy="pictureContent",cascade={"persist"})
      */
     private $pictures;
 
