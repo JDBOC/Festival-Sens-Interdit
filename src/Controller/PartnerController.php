@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * @Route("/partner")
@@ -82,5 +83,20 @@ class PartnerController extends AbstractController
         }
 
         return $this->redirectToRoute('partner_index');
+    }
+
+    /**
+     * @Route("/show", name="user_partner")
+     */
+    public function userIndex()
+    {
+        $partner_type = $this->getDoctrine()->getRepository('App:Partner')->findAll();
+
+        return $this->render(
+            'partner.html.twig',
+            [
+                'partners' => $partner_type
+            ]
+        );
     }
 }

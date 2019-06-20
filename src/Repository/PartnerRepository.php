@@ -19,6 +19,11 @@ class PartnerRepository extends ServiceEntityRepository
         parent::__construct($registry, Partner::class);
     }
 
+    public function findAllType($parameter1, $parameter2)
+    {
+        return $this->findBy(array(), array($parameter1 => $parameter2));
+    }
+
     // /**
     //  * @return Partner[] Returns an array of Partner objects
     //  */
