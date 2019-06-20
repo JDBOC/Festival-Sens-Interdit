@@ -4,17 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Content;
 use App\Entity\SiFile;
+use App\Entity\ShowSearch;
 use App\Form\ShowType;
+use App\Form\ShowSearchType;
 use App\Repository\ContentRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Knp\Component\Pager\PaginatorInterface;
-use App\Form\ShowSearchType;
-use App\Entity\ShowSearch;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @Route("/admin/show")
@@ -75,7 +75,7 @@ class ShowController extends AbstractController
             } else {
                 $show->setComplete(true);
             }
-            // fin de " a passer dans une service"
+            // fin de " a passer dans un service"
                       
             $entityManager->persist($show);
             $entityManager->flush();
@@ -88,8 +88,7 @@ class ShowController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-    
+   
     /**
      * @Route("/{id}/edit", name="show_edit", methods={"GET","POST"})
      */

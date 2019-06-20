@@ -1,10 +1,8 @@
 {% extends 'adminBase.html.twig' %}
-
 {% block title %}Echo index{% endblock %}
-
 {% block body %}
-<h1> Contenus en echo du spectacle : {{echoContent.titleFr}}</h1>
-<h2> Articles en echo</h2>
+    <h1> Contenus en echo du spectacle : {{echoContent.titleFr}}</h1>
+    <h2> Articles en echo</h2>
     <table class="table">
         <thead>
             <tr>
@@ -15,27 +13,27 @@
             </tr>
         </thead>
         <tbody>
-        {% for content in echoContent.enEcho %}
-            <tr>
-                <td> {{ content.contentTypeName }} </td>
-                <td> 
-{#                 {% if content.edition.name is defined%}
-                {{content.edition.name}}
-                {% endif %} #}
-                </td>
-                <td>{{content.titleFr}}</td>
-                <td>                 
-                    <a href="{{ path('remove_en_echo', {echo_id: echoContent.id , removed_id: content.id}) }}">Retirer  </a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
+            {% for content in echoContent.enEcho %}
+                <tr>
+                    <td> {{ content.contentTypeName }} </td>
+                    <td>
+                        {#                 {% if content.edition.name is defined%}
+                            {{content.edition.name}}
+                        {% endif %} #}
+                    </td>
+                    <td>{{content.titleFr}}</td>
+                    <td>
+                        <a href="{{ path('remove_en_echo', {echo_id: echoContent.id , removed_id: content.id}) }}">Retirer  </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="11">no records found</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
-<h2>Liste des contenus </h2>    
+    <h2>Liste des contenus </h2>
     <table class="table">
         <thead>
             <tr>
@@ -46,24 +44,27 @@
             </tr>
         </thead>
         <tbody>
-        {% for content in contents %}
-            <tr>
-                <td> {{ content.contentTypeName }} </td>
-                <td> 
-{#                 {% if content.edition.name is defined%}
-                {{content.edition.name}}
-                {% endif %} #}
-                </td>
-                <td>{{content.titleFr}}</td>
-                <td>
-                    <a href="{{ path('add_en_echo', {echo_id: echoContent.id , added_id: content.id}) }}">ajouter</a>
-                               </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
+            {% for content in contents %}
+                {% if content  not in echoContent.enEcho %}
+                    <tr>
+                        <td> {{ content.contentTypeName }} </td>
+                        <td>
+                            
+                            {#                 {% if content.edition.name is defined%}
+                                {{content.edition.name}}
+                            {% endif %} #}
+                        </td>
+                        <td>{{content.titleFr}}</td>
+                        <td>
+                            <a href="{{ path('add_en_echo', {echo_id: echoContent.id , added_id: content.id}) }}">ajouter</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="11">no records found</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endblock %}

@@ -102,9 +102,15 @@ class Content
     private $pictures;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Content")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Content", inversedBy="isEcho")
      */
     private $enEcho;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Content", mappedBy="enEcho")
+     */
+    private $isEcho;
+
 
     public function __construct()
     {
@@ -112,6 +118,7 @@ class Content
         $this->logos = new ArrayCollection();
         $this->pictures = new ArrayCollection();
         $this->enEcho = new ArrayCollection();
+        $this->isEcho = new ArrayCollection();
     }
 
     public function __toString():string
@@ -382,6 +389,34 @@ class Content
     {
         if ($this->enEcho->contains($enEcho)) {
             $this->enEcho->removeElement($enEcho);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getIsEcho(): Collection
+    {
+        return $this->isEcho;
+    }
+
+    public function addIsEcho(self $isEcho): self
+    {
+        if (!$this->isEcho->contains($isEcho)) {
+            $this->isEcho[] = $isEcho;
+            $isEcho->addEnEcho($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIsEcho(self $isEcho): self
+    {
+        if ($this->isEcho->contains($isEcho)) {
+            $this->isEcho->removeElement($isEcho);
+            $isEcho->removeEnEcho($this);
         }
 
         return $this;
