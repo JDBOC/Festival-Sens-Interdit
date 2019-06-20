@@ -25,7 +25,7 @@ class ContactController extends AbstractController
                 ->setFrom('cmandonnet@gmail.com')
                 ->setTo('cmandonnet@gmail.com')
                 ->setReplyTo($from)
-                ->setBody("Mail de $nom  $prenom
+                ->setBody("Mail de $nom  $prenom ($from)
                 Message : 
                 $contactMessage");
 
