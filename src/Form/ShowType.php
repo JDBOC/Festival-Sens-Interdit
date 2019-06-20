@@ -5,6 +5,7 @@
 use App\Entity\Content;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Form\InSiFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Edition;
@@ -26,8 +27,9 @@ class ShowType extends AbstractType
             ->add('edition', EntityType::class, [
                 'class' => Edition::class,
                 'choice_label' => 'name',
-            ]);
-        ;
+            ])
+            ->add('cover', InSiFileType::class)
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
