@@ -111,15 +111,21 @@ class PageContentController extends AbstractController
      */
     public function upload(Request $request, Content $content, string $type, ContentService $contentService): Response
     {
-        $file = $request->files->get('file');
-        $siFile = $contentService->upload($content, $file, $type);
-
         $response = new Response();
-        $result = [
-            'id' => $siFile->getId(),
-            'mediaFileName' => $siFile->getMediaFileName(),
-            'type' => $siFile->getType()
-        ];
+        $result = [];
+        $file = $request->files->get('file');
+
+        try {
+            $siFile = $contentService->uploadPicture($content, $file, $type);
+            $result = [
+                'id' => $siFile->getId(),
+                'mediaFileName' => $siFile->getMediaFileName(),
+                'type' => $siFile->getType()
+            ];
+        } catch (\Exception $e) {
+            $result['error'] = true;
+        }
+
         $response->setContent(json_encode($result));
         $response->headers->set('Content-Type', 'application/json');
 

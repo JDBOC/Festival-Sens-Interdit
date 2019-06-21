@@ -1,3 +1,6 @@
+<div id="file-error" class="alert alert-danger" style="display: none" role="alert">
+</div>
+
 <div id="file-new" class="input-group mb-3 col-md-4 offset-md-4">
     <div class="custom-file">
         <input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
@@ -35,6 +38,13 @@
         fetch('/content/' + contentId + '/upload/' + type, { method: 'POST', body: data })
             .then(response => response.json())
             .then(result => {
+                if (result.error) {
+                    displayError("Le fichier doit être une image");
+                    return;
+                }
+
+                hideError();
+
                 let fileTemplate = document.getElementById('file-template');
                 let newFileDiv = fileTemplate.cloneNode(true);
                 newFileDiv.style.display = 'block';
@@ -55,5 +65,16 @@
             eltToDelete.remove();
           });
 
+    }
+
+    function displayError(message) {
+        let msgElt = document.getElementById('file-error');
+        msgElt.innerText = message;
+        msgElt.style.display = 'block';
+    }
+
+    function hideError() {
+        let msgElt = document.getElementById('file-error');
+        msgElt.style.display = 'none';
     }
 </script>;

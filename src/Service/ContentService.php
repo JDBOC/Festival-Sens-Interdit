@@ -5,7 +5,6 @@ use App\Entity\Content;
 use App\Entity\SiFile;
 use App\Repository\ContentRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface as Container;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -35,10 +34,20 @@ class ContentService
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Exception
      */
+    public function uploadPicture(Content $content, UploadedFile $file, string $type): SiFile
+    {
+        $extensions = ['jpg', 'jpeg', 'png', 'gif'];
+        if (!in_array($file->guessExtension(), $extensions)) {
+            throw new \Exception("Wrong extension");
+        }
+
+        return $this->upload($content, $file, $type);
+    }
+
     public function upload(Content $content, UploadedFile $file, string $type): SiFile
     {
         $filename = $this->generateFilename();
-        $filename  = $filename . '.' . 'jpg';
+        $filename  = $filename . '.' . $file->guessExtension();
         $file->move($this->dir, $filename);
 
         $siFile = new SiFile();
