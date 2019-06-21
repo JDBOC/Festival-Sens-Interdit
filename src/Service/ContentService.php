@@ -4,7 +4,9 @@ namespace App\Service;
 use App\Entity\Content;
 use App\Entity\SiFile;
 use App\Repository\ContentRepository;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface as Container;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
@@ -15,12 +17,15 @@ class ContentService
 {
     private $contentRepository;
     private $entityManager;
-    private $dir = "";
+    private $dir = "upload/file";
+    private $container;
 
-    public function __construct(ContentRepository $contentRepository, EntityManager $entityManager)
+    public function __construct(Container $container, ContentRepository $contentRepository,
+                                EntityManagerInterface $entityManager)
     {
         $this->contentRepository = $contentRepository;
         $this->entityManager = $entityManager;
+        $this->container = $container;
     }
 
     /**
@@ -31,16 +36,18 @@ class ContentService
      * @return SiFile the created SiFile object
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
+     * @throws \Exception
      */
     public function upload(Content $content, UploadedFile $file, string $type): SiFile
     {
         $filename = $this->generateFilename();
-        $filename  = $filename . '.' . $file->guessExtension();
+        $filename  = $filename . '.' . 'jpg';
         $file->move($this->dir, $filename);
 
         $siFile = new SiFile();
         $siFile->setMediaFileName($filename);
-        if (in_array($type, SiFile::FILE_TYPE)) {
+        $siFile->setUpdatedAt(new \DateTime('now'));
+        if (in_array($type, array_keys(SiFile::FILE_TYPE))) {
             $siFile->setType(SiFile::FILE_TYPE[$type]);
         }
 
@@ -50,6 +57,24 @@ class ContentService
         $this->entityManager->flush();
 
         return $siFile;
+    }
+
+    /**
+     * Delete the picture related to the content in parameter.
+     * @param Content $content related content
+     * @param SiFile $siFile SiFIle to delete
+     */
+    public function deletePicture(Content $content, SiFile $siFile)
+    {
+        $fs = new Filesystem();
+        $filepath = $this->dir . '/' . $siFile->getMediaFileName();
+        if ($fs->exists($filepath)) {
+            $fs->remove($filepath);
+        }
+        $content->removePicture($siFile);
+
+        $this->entityManager->remove($siFile);
+        $this->entityManager->flush();
     }
 
     /**

@@ -1,0 +1,53 @@
+<div id="file-new">
+    <input type="file" name="file" onchange="upload(this, {{ contentId }}, '{{ type }}')"/>
+</div>
+
+<div id="files">
+{% for file in files %}
+    <div id="file-{{ file.id }}">
+        <img class="uploaded-img" src="/upload/file/{{ file.mediaFileName }}" />
+        <input type="button" value="X" onclick="deletePicture(this, {{ contentId }})"/>
+    </div>
+{% endfor %}
+</div>
+
+<div id="file-template" style="display: none">
+    <img class="uploaded-img" />
+    <input type="button" value="X" onclick="deletePicture(this, {{ contentId }})"/>
+</div>
+
+<script>
+    function upload(elt, contentId, type) {
+        let file = elt.files[0];
+        if (!file) {
+            return;
+        }
+
+        const data = new FormData();
+        data.append('file', file);
+        data.append('type', type);
+        fetch('/content/' + contentId + '/upload/' + type, { method: 'POST', body: data })
+            .then(response => response.json())
+            .then(result => {
+                let fileTemplate = document.getElementById('file-template');
+                let newFileDiv = fileTemplate.cloneNode(true);
+                newFileDiv.style.display = 'block';
+                newFileDiv.setAttribute('id', 'file-' + result.id);
+                let newImgElt = newFileDiv.firstElementChild;
+                newImgElt.src = "/upload/file/" + result.mediaFileName;
+                let filesElt = document.getElementById('files');
+
+                filesElt.appendChild(newFileDiv);
+            });
+    }
+
+    function deletePicture(elt, contentId) {
+        let fileId = elt.parentElement.id.split('-')[1];
+        fetch('/content/' + contentId + '/picture/' + fileId)
+          .then(response => {
+            let eltToDelete = document.getElementById('file-' + fileId) ;
+            eltToDelete.remove();
+          });
+
+    }
+</script>;
