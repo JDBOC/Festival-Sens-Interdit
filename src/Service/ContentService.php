@@ -18,14 +18,11 @@ class ContentService
     private $contentRepository;
     private $entityManager;
     private $dir = "upload/file";
-    private $container;
 
-    public function __construct(Container $container, ContentRepository $contentRepository,
-                                EntityManagerInterface $entityManager)
+    public function __construct(ContentRepository $contentRepository, EntityManagerInterface $entityManager)
     {
         $this->contentRepository = $contentRepository;
         $this->entityManager = $entityManager;
-        $this->container = $container;
     }
 
     /**
