@@ -1,19 +1,25 @@
-<div id="file-new">
-    <input type="file" name="file" onchange="upload(this, {{ contentId }}, '{{ type }}')"/>
-</div>
-
-<div id="files">
-{% for file in files %}
-    <div id="file-{{ file.id }}">
-        <img class="uploaded-img" src="/upload/file/{{ file.mediaFileName }}" />
-        <input type="button" value="X" onclick="deletePicture(this, {{ contentId }})"/>
+<div id="file-new" class="input-group mb-3 col-md-4 offset-md-4">
+    <div class="custom-file">
+        <input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
+               aria-describedby="inputGroupFileAddon01" onchange="upload(this, {{ contentId }}, '{{ type }}')">
+        <label class="custom-file-label" for="inputGroupFile01">Choisissez une image</label>
     </div>
-{% endfor %}
 </div>
 
-<div id="file-template" style="display: none">
+<div class="container mt-4 mb-4">
+    <div id="files" class="row">
+    {% for file in files %}
+        <div id="file-{{ file.id }}" class="col-md-3 text-center">
+            <img class="uploaded-img" src="/upload/file/{{ file.mediaFileName }}" />
+            <input type="button" class="btn btn-sm btn-danger mt-1" value="Supprimer" onclick="deletePicture(this, {{ contentId }})"/>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+<div id="file-template" style="display: none" class="col-md-3 text-center">
     <img class="uploaded-img" />
-    <input type="button" value="X" onclick="deletePicture(this, {{ contentId }})"/>
+    <input type="button" class="btn btn-sm btn-danger mt-1" value="Supprimer" onclick="deletePicture(this, {{ contentId }})"/>
 </div>
 
 <script>
