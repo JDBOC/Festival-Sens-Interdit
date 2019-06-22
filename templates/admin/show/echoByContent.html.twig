@@ -2,7 +2,9 @@
 {% block title %}Echo index{% endblock %}
 {% block body %}
     <h1> Contenus en echo du spectacle : {{echoContent.titleFr}}</h1>
-    <h2> Articles en echo</h2>
+    <div class="jumbotron py-2 mb-1">
+        <h2> Articles en echo</h2>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -33,7 +35,21 @@
             {% endfor %}
         </tbody>
     </table>
-    <h2>Liste des contenus </h2>
+    <div class="jumbotron py-2 mb-1">
+        <h2>Liste des contenus </h2>
+        <div>
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col">
+                    {{ form_row(form.contentType) }}
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary"> Rechercher</button>
+                </div>
+            </div>
+            {{ form_end(form)}}
+        </div>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -67,4 +83,7 @@
             {% endfor %}
         </tbody>
     </table>
+    <div class="navigation">
+        {{ knp_pagination_render(contents) }}
+    </div>
 {% endblock %}

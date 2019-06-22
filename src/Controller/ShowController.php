@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Content;
 use App\Entity\SiFile;
-use App\Entity\ShowSearch;
 use App\Form\ShowType;
+use App\Entity\ShowSearch;
 use App\Form\ShowSearchType;
+use App\Entity\RelatedContentSearch;
+use App\Form\RelatedContentSearchType;
 use App\Repository\ContentRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -112,10 +114,6 @@ class ShowController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="show_edit", methods={"GET","POST"})
-     */
-
-    /**
      * @Route("/{id}", name="show_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Content $content): Response
@@ -134,12 +132,24 @@ class ShowController extends AbstractController
      */
     public function indexEchoByContent(
         ContentRepository $contentRepository,
+        PaginatorInterface $paginator,
         Request $request,
         Content $content
     ): Response {
+        $relatedSearch = new RelatedContentSearch();
+        $form = $this->createForm(RelatedContentSearchType::class, $relatedSearch);
+        $form->handleRequest($request);
+
+        $contents = $paginator->paginate(
+            $contentRepository->findAllContentQuery($relatedSearch),
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('admin/show/echoByContent.html.twig', [
-                'contents' => $contentRepository->findAll(),
+                'contents' => $contents,
                 'echoContent' => $content,
+                'form' =>  $form->createView()
         ]);
     }
 
@@ -161,7 +171,7 @@ class ShowController extends AbstractController
                 'id' => $echoContent->getId() ]);
     }
 
-       /**
+    /**
      * remove a content linked to an other content"
      * @Route("/echo_remove/{removed_id}/{echo_id}", name="remove_en_echo", methods={"GET","POST"})
      * @Entity("echoContent", expr="repository.find(echo_id)")
