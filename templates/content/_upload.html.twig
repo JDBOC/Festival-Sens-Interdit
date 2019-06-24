@@ -1,0 +1,80 @@
+<div id="file-error" class="alert alert-danger" style="display: none" role="alert">
+</div>
+
+<div id="file-new" class="input-group mb-3 col-md-4 offset-md-4">
+    <div class="custom-file">
+        <input type="file" name="file" class="custom-file-input" id="inputGroupFile01"
+               aria-describedby="inputGroupFileAddon01" onchange="upload(this, {{ contentId }}, '{{ type }}')">
+        <label class="custom-file-label" for="inputGroupFile01">Choisissez une image</label>
+    </div>
+</div>
+
+<div class="container mt-4 mb-4">
+    <div id="files" class="row">
+    {% for file in files %}
+        <div id="file-{{ file.id }}" class="col-md-3 text-center">
+            <img class="uploaded-img" src="/upload/file/{{ file.mediaFileName }}" />
+            <input type="button" class="btn btn-sm btn-danger mt-1" value="Supprimer" onclick="deletePicture(this, {{ contentId }})"/>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+<div id="file-template" style="display: none" class="col-md-3 text-center">
+    <img class="uploaded-img" />
+    <input type="button" class="btn btn-sm btn-danger mt-1" value="Supprimer" onclick="deletePicture(this, {{ contentId }})"/>
+</div>
+
+<script>
+    function upload(elt, contentId, type) {
+        let file = elt.files[0];
+        if (!file) {
+            return;
+        }
+
+        const data = new FormData();
+        data.append('file', file);
+        data.append('type', type);
+        fetch('/content/' + contentId + '/upload/' + type, { method: 'POST', body: data })
+            .then(response => response.json())
+            .then(result => {
+                if (result.error) {
+                    displayError("Le fichier doit être une image");
+                    return;
+                }
+
+                hideError();
+
+                let fileTemplate = document.getElementById('file-template');
+                let newFileDiv = fileTemplate.cloneNode(true);
+                newFileDiv.style.display = 'block';
+                newFileDiv.setAttribute('id', 'file-' + result.id);
+                let newImgElt = newFileDiv.firstElementChild;
+                newImgElt.src = "/upload/file/" + result.mediaFileName;
+                let filesElt = document.getElementById('files');
+
+                filesElt.appendChild(newFileDiv);
+            });
+    }
+
+    function deletePicture(elt, contentId) {
+        let fileId = elt.parentElement.id.split('-')[1];
+        fetch('/content/' + contentId + '/picture/' + fileId)
+          .then(response => {
+            let eltToDelete = document.getElementById('file-' + fileId) ;
+            eltToDelete.remove();
+          });
+
+    }
+
+    function displayError(message) {
+        let msgElt = document.getElementById('file-error');
+        msgElt.innerText = message;
+        msgElt.style.display = 'block';
+    }
+
+    function hideError() {
+        let msgElt = document.getElementById('file-error');
+        msgElt.style.display = 'none';
+    }
+</script>;

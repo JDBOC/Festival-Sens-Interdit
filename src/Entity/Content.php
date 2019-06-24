@@ -77,11 +77,6 @@ class Content
     private $logos;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", mappedBy="pictureContent")
-     */
-    private $picture;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $complete;
@@ -91,12 +86,26 @@ class Content
      */
     private $translated;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
+     */
+    private $cover;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
+     */
+    private $thumbnail;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SiFile", mappedBy="pictureContent",cascade={"persist"})
+     */
+    private $pictures;
 
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
         $this->logos = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -253,22 +262,6 @@ class Content
         return $this;
     }
 
-    /**
-     * @return SiFile
-     */
-    public function getPicture(): ?SiFile
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(Object $picture): self
-    {
-        if ($picture instanceof SiFile) {
-            $this->picture = $picture;
-        }
-        return $this;
-    }
-
     public function getComplete(): ?bool
     {
         return $this->complete;
@@ -289,6 +282,61 @@ class Content
     public function setTranslated(bool $translated): self
     {
         $this->translated = $translated;
+
+        return $this;
+    }
+
+    public function getCover(): ?SiFile
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?Object $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?SiFile
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?SiFile $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SiFile[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Object $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setPictureContent($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(SiFile $picture): self
+    {
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
+            // set the owning side to null (unless already changed)
+            if ($picture->getPictureContent() === $this) {
+                $picture->setPictureContent(null);
+            }
+        }
 
         return $this;
     }

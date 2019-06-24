@@ -1,0 +1,13 @@
+@import "vars";
+@import "~bootstrap/scss/bootstrap";
+body {
+    background-color: $secondary-color;
+}
+
+a {
+    color: $warm-color;
+}
+
+.uploaded-img {
+  width: 100%;
+}

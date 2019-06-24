@@ -5,10 +5,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
-use App\Repository\ContentRepository;
 use App\Repository\SessionRepository;
+use App\Form\ContactType;
 use App\Entity\Content;
 use App\Form\ContentType;
+use App\Repository\ContentRepository;
 
 class HomeController extends AbstractController
 {
@@ -21,18 +22,30 @@ class HomeController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
             if ($_POST['language'] == "en_EN") {
-                $language =  $_POST['language'];
+                 $language =  $_POST['language'];
             }
         }
+
+        $contactForm = $this->createForm(ContactType::class);
 
         return $this->render(
             'index.html.twig',
             [
                         'sessions' => $session->findAll(),
-                        'language' => $language
-                    ]
+                        'language' => $language,
+                        'contactForm' => $contactForm->createView()
+            ]
         );
     }
+
+ /*   public function contactForm()
+    {
+        $contactForm = $this->createForm(ContactType::class);
+
+        return $this->render('/footer.html.twig', [
+            'contactForm' => $contactForm->createView()
+            ]);
+    }*/
 
 
   /**
