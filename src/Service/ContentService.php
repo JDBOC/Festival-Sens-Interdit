@@ -38,7 +38,7 @@ class ContentService
     {
         $extensions = ['jpg', 'jpeg', 'png', 'gif'];
         if (!in_array($file->guessExtension(), $extensions)) {
-           throw new \Exception("Wrong extension");
+            throw new \Exception("Wrong extension");
         }
 
         return $this->upload($content, $file, $type);
