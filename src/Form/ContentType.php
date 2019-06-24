@@ -2,11 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\SiFile;
+use App\Form\InSiFileType;
+use App\Form\SiFileType;
 use App\Entity\Content;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,7 +25,7 @@ class ContentType extends AbstractType
             ->add('content_type')
             ->add('title_en')
             ->add('content_en', CKEditorType::class)
-            ->add('picture', SiFile::class, ['required' => false])
+            ->add('picture', InSiFileType::class)
             ->add('complete', null, ['data'=>false])
             ->add('translated', null, ['data'=>false])
 

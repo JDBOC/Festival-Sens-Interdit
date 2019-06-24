@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Content;
+use App\Entity\SiFile;
 use App\Form\ContentType;
 use App\Repository\ContentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -31,12 +32,16 @@ class PageContentController extends AbstractController
     public function new(Request $request): Response
     {
         $content = new Content();
+        $sifile = new SiFile();
+        $sifile->setType(SiFile::FILE_TYPE['picture']);
+        $content->setPicture($sifile);
         $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($content);
+            $entityManager->persist($sifile);
             $entityManager->flush();
 
             return $this->redirectToRoute('content_index');
@@ -53,8 +58,10 @@ class PageContentController extends AbstractController
      */
     public function show(Content $content): Response
     {
+
         return $this->render('content/show.html.twig', [
             'content' => $content,
+
         ]);
     }
 

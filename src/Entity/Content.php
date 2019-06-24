@@ -256,7 +256,7 @@ class Content
     /**
      * @return SiFile
      */
-    public function getPicture(): SiFile
+    public function getPicture(): ?SiFile
     {
         return $this->picture;
     }
