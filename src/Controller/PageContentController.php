@@ -35,6 +35,7 @@ class PageContentController extends AbstractController
         $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $content->setContentType(Content::CONTENT_TYPE['static_page']);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($content);
             $entityManager->flush();
@@ -88,7 +89,7 @@ class PageContentController extends AbstractController
     /**
      * Upload a picture and create the related SiFile object with the type in parameter
      *
-     * @Route("/{id}/upload/{type}", name="content_delete", methods={"POST"})
+     * @Route("/{id}/upload/{type}", name="content_upload", methods={"POST"})
      * @param Request $request request object
      * @param Content $content related content
      * @param string $type upload type, could be contentPicture or logo

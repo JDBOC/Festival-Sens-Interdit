@@ -33,6 +33,21 @@ class Edition
      */
     private $editionPicture;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $dateDebut;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $dateFin;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $status;
+    
     public function __construct()
     {
         $this->contents = new ArrayCollection();
@@ -94,6 +109,42 @@ class Edition
     public function setEditionPicture(?SiFile $editionPicture): self
     {
         $this->editionPicture = $editionPicture;
+
+        return $this;
+    }
+
+    public function getDateDebut(): ?\DateTimeInterface
+    {
+        return $this->dateDebut;
+    }
+
+    public function setDateDebut(\DateTimeInterface $dateDebut): self
+    {
+        $this->dateDebut = $dateDebut;
+
+        return $this;
+    }
+
+    public function getDateFin(): ?\DateTimeInterface
+    {
+        return $this->dateFin;
+    }
+
+    public function setDateFin(\DateTimeInterface $dateFin): self
+    {
+        $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
