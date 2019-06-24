@@ -1,0 +1,16 @@
+{% block title %}{% endblock %}
+{%  block body %}
+    {{ form_start(form) }}
+    {{ form_row(form.title_fr) }}
+<div id="editor">
+    {{ form_row(form.content_fr) }}
+  </div>
+  {{ form_row(form.title_en) }}
+  <div id="editor">
+    {{ form_row(form.content_en) }}
+  </div>
+    {{ form_row(form.content_type) }}
+  <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+{% endblock %}

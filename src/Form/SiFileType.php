@@ -7,18 +7,25 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
+/**
+ * Form used in order to have a complete form
+ */
 class SiFileType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('name')
-            ->add('mimeType')
-            ->add('link')
-            ->add('type')
-            ->add('mediaFile', FileType::class, ['required' => false])
-        ;
+            ->add('type', ChoiceType::class, [
+                'choices' => SiFile::FILE_TYPE
+            ])
+            ->add('mediaFile', VichFileType::class, [
+                'required' => false,
+                'download_uri' => true,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

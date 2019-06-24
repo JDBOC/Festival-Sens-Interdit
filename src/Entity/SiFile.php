@@ -17,8 +17,11 @@ class SiFile
 {
 
     const FILE_TYPE = [
-        'picture' => 1,
-        'logo' => 2
+        'cover' => 1,  // used on the top of the show
+        'logo' => 2,   // logo shared by multiple shows
+        'editionPicture' => 3,  // picture illustrating the edition
+        'contentPicture' => 4,  // picture displayed inside the content, can be multiple
+        'thumbnail' => 5  // ude to illustrate show with a small squared picture"
     ];
     /**
      * @ORM\Id()
@@ -28,19 +31,9 @@ class SiFile
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $mimeType;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $link;
 
     /**
      * @ORM\Column(type="integer")
@@ -64,19 +57,34 @@ class SiFile
      */
     private $logoContents;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Content", inversedBy="picture")
-     */
-    private $pictureContent;
 
- /*   /**
+     /**
      * @ORM\Column(type="datetime")
      */
-  //  private $updatedAt;
+    private $updatedAt;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Edition", mappedBy="editionPicture", cascade={"persist", "remove"})
+     */
+    private $edition;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Content", inversedBy="pictures")
+     */
+    private $pictureContent;
 
     public function __construct()
     {
         $this->logoContents = new ArrayCollection();
+    }
+
+    /**
+     * returns the key linkd to the value of the filetype const
+     * @return string
+     */
+    public function getFileTypeName():string
+    {
+        return array_search($this->type, self::FILE_TYPE);
     }
 
     public function getId(): ?int
@@ -92,30 +100,6 @@ class SiFile
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getMimeType(): ?string
-    {
-        return $this->mimeType;
-    }
-
-    public function setMimeType(string $mimeType): self
-    {
-        $this->mimeType = $mimeType;
-
-        return $this;
-    }
-
-    public function getLink(): ?string
-    {
-        return $this->link;
-    }
-
-    public function setLink(string $link): self
-    {
-        $this->link = $link;
 
         return $this;
     }
@@ -160,18 +144,6 @@ class SiFile
         return $this;
     }
 
-    public function getPictureContent(): ?Content
-    {
-        return $this->pictureContent;
-    }
-
-    public function setPictureContent(?Content $pictureContent): self
-    {
-        $this->pictureContent = $pictureContent;
-
-        return $this;
-    }
-
     /**
      * @return File|null
      */
@@ -190,9 +162,9 @@ class SiFile
 
         // Only change the updated at if the file is really uploaded to avoid database updates.
         // This is needed when the file should be set when loading the entity.
-  /*      if ($this->mediaFile instanceof UploadedFile) {
+        if ($this->mediaFile instanceof UploadedFile) {
             $this->updatedAt = new \DateTime('now');
-        }*/
+        }
 
         return $this;
     }
@@ -215,17 +187,17 @@ class SiFile
 
         // Only change the updated at if the file is really uploaded to avoid database updates.
         // This is needed when the file should be set when loading the entity.
-        /*      if ($this->mediaFile instanceof UploadedFile) {
-                  $this->updatedAt = new \DateTime('now');
-              }*/
+        if ($this->mediaFile instanceof UploadedFile) {
+            $this->updatedAt = new \DateTime('now');
+        }
 
         return $this;
     }
 
- /*   /**
-     * @return mixed
+    /**
+     * @return \DateTimeInterface
      */
- /*   public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
         return $this->updatedAt;
     }
@@ -234,9 +206,39 @@ class SiFile
      * @param mixed $updatedAt
      * @return SiFile
      */
- /*   public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
         return $this;
-    }*/
+    }
+
+    public function getEdition(): ?Edition
+    {
+        return $this->edition;
+    }
+
+    public function setEdition(?Edition $edition): self
+    {
+        $this->edition = $edition;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newEditionPicture = $edition === null ? null : $this;
+        if ($newEditionPicture !== $edition->getEditionPicture()) {
+            $edition->setEditionPicture($newEditionPicture);
+        }
+
+        return $this;
+    }
+
+    public function getPictureContent(): ?Content
+    {
+        return $this->pictureContent;
+    }
+
+    public function setPictureContent(?Content $pictureContent): self
+    {
+        $this->pictureContent = $pictureContent;
+
+        return $this;
+    }
 }

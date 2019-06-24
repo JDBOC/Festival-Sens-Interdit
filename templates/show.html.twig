@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+    <!-- Kind of head after the navbar : Main show's photo included title and coutry -->
+<div class="container-fluid p-0">
+    <div class="card bg-dark text-white border-0 ">
+        {# titre #}
+        <h1 class=" d-md-none d-inline pl-2">{{show.titleFr}}</h1> 
+        {# banniere #}
+        <img src="/upload/file/{{ show.cover.mediaFileName }}" class="imgTop img-fluid" alt="show photo" class="card-img" alt="...">
+        <div class="card-img-overlay text-center">
+            {# titre #}
+            <h1 class="card-title pt-4 mt-4 d-none d-md-block"> {{ show.titleFr }} </h1>
+        </div>
+    </div>
+
+    <div class="container p-0 d-flex">
+        <div class="row">
+            <div class="col-md-10 col-offset-md-1 d-flex">               
+                <div class="mr-4 d-flex align-items-center redPill">
+                        {# country #}
+                    <p class="m-auto px-1 d-block">{{show.countryFr}}</p> 
+                </div>
+                <div class="mr-2 mt-2"> <!-- Show's LOGOS (1 or more) NEED A FOR LOOP IN TWIG -->
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo1" height="40rem" width="40rem">
+                </div>
+                <div class="mr-2 mt-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo2" height="40rem" width="40rem">
+                </div>
+                <div class="mr-2 mt-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
+                </div>
+                <div class="mr-2 mt-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
+                </div>
+                <div class="mr-2 mt-2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container px-0 py-2 d-flex justify-content-center m-auto">
+
+        <div class="mt-4 row no-gutters">
+            <div class="col-md-6 px-2 pr-md-3">
+                <!-- Show's SUBTITLE -->
+                <h4 class=" text-muted">Ceci est l'histoire d'un rêve brisé.</h4>
+                <!-- Show's DESCRIPTION -->
+                <div id="showContent" class="text-justify">
+                    {{show.contentFr|raw}}
+                </div>
+                <!-- Show's PDF LINK -->
+                <div class="row my-0 ml-0 mr-2">
+                    <a href="#" class="card-link">lien pdf</a>
+                </div>
+            </div>
+            <!-- Show's PHOTO or/and VIDEO  -->
+            <div class="col-md-4 d-flex flex-column justify-content-around ">
+                {% for picture in show.pictures %}
+                <div class="p-2"> <img src="/upload/file/{{ picture.mediaFileName }}" class="card-img" alt="show photo"/></div>
+                {% endfor %}
+            </div>
+            <!-- Show's partner logos -->
+            <div class="col-md-2 d-flex flex-md-column align-items-md-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo1" height="40rem" width="40rem">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo2" height="40rem" width="40rem">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 1/2/3 card(s) related to this show (other shows, news...) -->
+    <div class=" container ">
+        <hr class="m-0">
+        <!-- "mais aussi" pill -->
+        <div class="p-0 m-auto redPill">
+            <p class="redPill">mais aussi...</p>
+        </div>
+        <div class="d-flex justify-content-around">
+        <div class="px-2 col-md-6">
+            <div class="card border-0">
+                <img class="card-img-top" src="https://unsplash.it/250/150/?random" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">CONVERSATIONS À LA MAISON</h5>
+                    <h6 class="card-text"> Les 1ers mots de la description du spectacle ou de la news</h6>
+                </div>
+            </div>
+        </div>
+        <div class="px-2 col-md-6">
+            <div class="card border-0">
+                <img class="card-img-top" src="https://unsplash.it/250/150/?random" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">CONVERSATIONS À LA MAISON</h5>
+                    <h6 class="card-text"> Les 1ers mots de la description du spectacle ou de la news</h6>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>      
+    </div>
+
+</br>
+</br>
+{% endblock %}

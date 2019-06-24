@@ -12,12 +12,12 @@
                     {{ form_row(form.isComplete) }}
                 </div>
                 <div class="col">
-                    {{ form_row(form.isTranslated) }}        
+                    {{ form_row(form.isTranslated) }}
                 </div>
                 <div class="col">
                     <button class="btn btn-primary"> Rechercher</button>
                 </div>
-            </div>    
+            </div>
             {{ form_end(form)}}
         </div>
     </div>
@@ -43,13 +43,13 @@
                 {% endif %}
                 </td>
                 <td>{{ content.titleFr }}</td>
-                <td>{{ content.sessions|length }}</td>
-                <td>{{ content.logos|length }}</td>
+                <td>{{ content.sessions | length }}</td>
+                <td>{{ content.logos | length }}</td>
                 <td>{{ content.complete }}</td>
-                <td>{{ content.translated }}</td>   
+                <td>{{ content.translated }}</td>
                 <td>
-                    {# <a href="{{ path('content_show', {'id': content.id}) }}">show</a>
-                    <a href="{{ path('content_edit', {'id': content.id}) }}">edit</a> #}
+                    {# <a href="{{ path('show_show', {'id': content.id}) }}">show</a> #}
+                    <a href="{{ path('show_edit', {'id': content.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Content;
+use App\Entity\SiFile;
 use App\Form\ShowType;
 use App\Repository\ContentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,6 +48,9 @@ class ShowController extends AbstractController
     public function new(Request $request): Response
     {
         $show = new Content();
+        $cover = new SiFile();
+        $cover->setType(SiFile::FILE_TYPE['cover']);
+        $show->setCover($cover);
         $form = $this->createForm(ShowType::class, $show);
         $form->handleRequest($request);
 
@@ -54,7 +58,7 @@ class ShowController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
 
             // a passer dans un service
-            $show-> setContentType(Content::CONTENT_TYPE['show']);
+            $show->setContentType(Content::CONTENT_TYPE['show']);
             if (is_null($show->getTitleEn())
                 ||  is_null($show->getContentEn())
                 ||  is_null($show->getCountryEn()) ) {
@@ -64,14 +68,13 @@ class ShowController extends AbstractController
             }
             if (is_null($show->getCountryFr())
                 ||  is_null($show->getContentFr())
-                ||  empty($show->getPicture())
                 ||  empty($show->getSessions())) {
                 $show->setComplete(false);
             } else {
                 $show->setComplete(true);
             }
             // fin de " a passer dans une service"
-            
+                      
             $entityManager->persist($show);
             $entityManager->flush();
 
@@ -82,5 +85,41 @@ class ShowController extends AbstractController
             'content' => $show,
             'form' => $form->createView(),
         ]);
+    }
+
+    
+    /**
+     * @Route("/{id}/edit", name="show_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Content $content): Response
+    {
+        $form = $this->createForm(ShowType::class, $content);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('show_index', [
+                'id' => $content->getId(),
+            ]);
+        }
+
+        return $this->render('admin/show/edit.html.twig', [
+            'content' => $content,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="show_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Content $content): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$content->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($content);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('show_index');
     }
 }

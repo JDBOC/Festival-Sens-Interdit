@@ -1,0 +1,47 @@
+{% extends 'content/base.html.twig' %}
+
+{% block title %}Content index{% endblock %}
+
+{% block body %}
+
+    <h1>Content index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th>Titre</th>
+                <th>Contenu</th>
+              <th>Titre Anglais</th>
+              <th>Contenu anglais</th>
+              <th>complete</th>
+              <th>traduit</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for content in contents %}
+            <tr>
+                <td>{{ content.titleFr }}</td>
+                <td>{{ content.contentFr }}</td>
+              <td>{{ content.titleEn }}</td>
+              <td>{{ content.contentEn }}</td>
+              <td>{{ content.complete }}</td>
+              <td>{{ content.translated }}</td>
+                <td>
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary"><a href="{{ path('content_show', {'id': content.id}) }}">show</a></button>
+                    <button type="button" class="btn btn-secondary"> <a href="{{ path('content_edit', {'id': content.id}) }}">edit</a></button>
+                    <button type="button" class="btn btn-secondary"> <a href="{{ path('content_new') }}">Create new</a></button>
+                  </div>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

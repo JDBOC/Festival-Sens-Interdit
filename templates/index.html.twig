@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>index festival</h1>
 	    <div class="container">
+	    	<h1>{% trans into language %} Bonjour{% endtrans %}</h1>
 	    	<div class="row">
 	    {% for session in sessions %}
 	    	<div class=" col-12 col-md-3">
 		    	<div class="card-spectacle">
 		    		<div>
-		    			<a href="#"><img src="https://via.placeholder.com/120" class="card-img-top img-border" alt="..."></a>
+		    			<a href="/show/3"><img src="https://via.placeholder.com/120" class="card-img-top img-border" alt="..."></a>
 						<p class="textDate">{{ session.sessionDate|date("d/m/Y") }}</p>
 						<p class="textLieu">{{ session.content.countryFr }}</p>
 					</div>

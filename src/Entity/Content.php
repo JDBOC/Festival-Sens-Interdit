@@ -14,7 +14,8 @@ class Content
 
     const CONTENT_TYPE = [
         'show' => 1,
-        'news' => 2
+        'news' => 2,
+        'static_page' => 3
     ];
     /**
      * @ORM\Id()
@@ -26,38 +27,38 @@ class Content
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title_fr;
+    private $titleFr;
 
     /**
-     * @ORM\Column(type="integer")
-     */
+      * @ORM\Column(type="integer")
+      */
     private $contentType;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $title_en;
+    private $titleEn;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $content_fr;
+    private $contentFr;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $content_en;
+    private $contentEn;
 
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $country_fr;
+    private $countryFr;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $country_en;
+    private $countryEn;
 
      /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Edition", inversedBy="contents")
@@ -75,11 +76,6 @@ class Content
     private $logos;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", mappedBy="pictureContent")
-     */
-    private $picture;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $complete;
@@ -89,10 +85,26 @@ class Content
      */
     private $translated;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
+     */
+    private $cover;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
+     */
+    private $thumbnail;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SiFile", mappedBy="pictureContent",cascade={"persist"})
+     */
+    private $pictures;
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
         $this->logos = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -102,49 +114,46 @@ class Content
 
     public function getTitleFr(): ?string
     {
-        return $this->title_fr;
+        return $this->titleFr;
     }
 
-    public function setTitleFr(string $title_fr): self
+    public function setTitleFr(string $titleFr): self
     {
-        $this->title_fr = $title_fr;
-
+        $this->titleFr = $titleFr;
         return $this;
     }
 
     public function getTitleEn(): ?string
     {
-        return $this->title_en;
+        return $this->titleEn;
     }
 
-    public function setTitleEn(?string $title_en): self
+    public function setTitleEn(?string $titleEn): self
     {
-        $this->title_en = $title_en;
-
+        $this->titleEn = $titleEn;
         return $this;
     }
 
     public function getContentFr(): ?string
     {
-        return $this->content_fr;
+        return $this->contentFr;
     }
 
-    public function setContentFr(?string $content_fr): self
+    public function setContentFr(?string $contentFr): self
     {
-        $this->content_fr = $content_fr;
+        $this->contentFr = $contentFr;
 
         return $this;
     }
 
     public function getContentEn(): ?string
     {
-        return $this->content_en;
+        return $this->contentEn;
     }
 
-    public function setContentEn(?string $content_en): self
+    public function setContentEn(?string $contentEn): self
     {
-        $this->content_en = $content_en;
-
+        $this->contentEn = $contentEn;
         return $this;
     }
 
@@ -162,25 +171,23 @@ class Content
 
     public function getCountryFr(): ?string
     {
-        return $this->country_fr;
+        return $this->countryFr;
     }
 
-    public function setCountryFr(?string $country_fr): self
+    public function setCountryFr(?string $countryFr): self
     {
-        $this->country_fr = $country_fr;
-
+        $this->countryFr = $countryFr;
         return $this;
     }
 
     public function getCountryEn(): ?string
     {
-        return $this->country_en;
+        return $this->countryEn;
     }
 
-    public function setCountryEn(?string $country_en): self
+    public function setCountryEn(?string $countryEn): self
     {
-        $this->country_en = $country_en;
-
+        $this->countryEn = $countryEn;
         return $this;
     }
 
@@ -254,22 +261,6 @@ class Content
         return $this;
     }
 
-    /**
-     * @return SiFile
-     */
-    public function getPicture(): SiFile
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(Object $picture): self
-    {
-        if ($picture instanceof SiFile) {
-            $this->picture = $picture;
-        }
-        return $this;
-    }
-
     public function getComplete(): ?bool
     {
         return $this->complete;
@@ -290,6 +281,61 @@ class Content
     public function setTranslated(bool $translated): self
     {
         $this->translated = $translated;
+
+        return $this;
+    }
+
+    public function getCover(): ?SiFile
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?Object $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?SiFile
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?SiFile $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SiFile[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Object $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setPictureContent($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(SiFile $picture): self
+    {
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
+            // set the owning side to null (unless already changed)
+            if ($picture->getPictureContent() === $this) {
+                $picture->setPictureContent(null);
+            }
+        }
 
         return $this;
     }
