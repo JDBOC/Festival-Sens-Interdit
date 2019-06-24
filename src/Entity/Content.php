@@ -121,7 +121,7 @@ class Content
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $showStatus;
+    private $showType;
 
 
     public function __construct()
@@ -139,12 +139,21 @@ class Content
     }
 
      /**
-     * returns the key linkd to the value of the contentType const
+     * returns the key linked to the value of the contentType const
      * @return string
      */
     public function getContentTypeName():string
     {
         return array_search($this->contentType, self::CONTENT_TYPE);
+    }
+
+     /**
+     * returns the key linked to the value of the showType const
+     * @return string
+     */
+    public function getShowTypeName():string
+    {
+        return array_search($this->showType, self::SHOW_TYPE);
     }
 
     public function getId(): ?int
@@ -434,14 +443,14 @@ class Content
         return $this;
     }
 
-    public function getShowStatus(): ?int
+    public function getShowType(): ?int
     {
-        return $this->showStatus;
+        return $this->showType;
     }
 
-    public function setShowStatus(?int $showStatus): self
+    public function setShowType(?int $showType): self
     {
-        $this->showStatus = $showStatus;
+        $this->showType = $showType;
 
         return $this;
     }
