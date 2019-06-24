@@ -3,24 +3,25 @@
 {% block title %}{% endblock %}
 
 {% block body %}
-
-<!-- Kind of head after the navbar : Main show's photo included title and coutry -->
+    <!-- Kind of head after the navbar : Main show's photo included title and coutry -->
 <div class="container-fluid p-0">
     <div class="card bg-dark text-white border-0 ">
-        <h1 class=" d-md-none d-inline pl-2">PEER GYNT</h1>
-        <h1 class="d-md-none d-inline pl-2">FROM KOSOVO</h1>
-        <img src="https://unsplash.it/1920/570/?random" class="imgTop img-fluid" alt="show photo" class="card-img" alt="...">
+        {# titre #}
+        <h1 class=" d-md-none d-inline pl-2">{{show.titleFr}}</h1> 
+        {# banniere #}
+        <img src="/upload/file/{{ show.cover.mediaFileName }}" class="imgTop img-fluid" alt="show photo" class="card-img" alt="...">
         <div class="card-img-overlay text-center">
-            <h1 class="card-title pt-4 mt-4 d-none d-md-block">PEER GYNT</h1>
-            <h1 class="card-title d-none d-md-block">FROM KOSOVO</h1>
+            {# titre #}
+            <h1 class="card-title pt-4 mt-4 d-none d-md-block"> {{ show.titleFr }} </h1>
         </div>
     </div>
-    <!-- A show's card included country, 1/2/3 logo(s), subtitle, description, pdf link, photo or/and video (? optional partner's logos ?) -->
+
     <div class="container p-0 d-flex">
         <div class="row">
             <div class="col-md-10 col-offset-md-1 d-flex">               
                 <div class="mr-4 d-flex align-items-center redPill">
-                    <p class="m-auto px-1 d-block">KOSOVO</p> <!-- Show's COUNTRY -->
+                        {# country #}
+                    <p class="m-auto px-1 d-block">{{show.countryFr}}</p> 
                 </div>
                 <div class="mr-2 mt-2"> <!-- Show's LOGOS (1 or more) NEED A FOR LOOP IN TWIG -->
                     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo1" height="40rem" width="40rem">
@@ -49,11 +50,7 @@
                 <h4 class=" text-muted">Ceci est l'histoire d'un rêve brisé.</h4>
                 <!-- Show's DESCRIPTION -->
                 <div id="showContent" class="text-justify">
-                    <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ea sit reprehenderit accusantium quibusdam ducimus nobis nemo eum cum, quo, nam voluptate assumenda, hic sint quisquam repudiandae nesciunt laudantium doloribus?</p>
-                    <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ea sit reprehenderit accusantium quibusdam ducimus nobis nemo eum cum, quo, nam voluptate assumenda, hic sint quisquam repudiandae nesciunt laudantium doloribus?</p>
-                    <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ea sit reprehenderit accusantium quibusdam ducimus nobis nemo eum cum, quo, nam voluptate assumenda, hic sint quisquam repudiandae nesciunt laudantium doloribus?</p>
-                    <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ea sit reprehenderit accusantium quibusdam ducimus nobis nemo eum cum, quo, nam voluptate assumenda, hic sint quisquam repudiandae nesciunt laudantium doloribus?</p>
-                    <p >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque ea sit reprehenderit accusantium quibusdam ducimus nobis nemo eum cum, quo, nam voluptate assumenda, hic sint quisquam repudiandae nesciunt laudantium doloribus?</p>
+                    {{show.contentFr|raw}}
                 </div>
                 <!-- Show's PDF LINK -->
                 <div class="row my-0 ml-0 mr-2">
@@ -62,8 +59,9 @@
             </div>
             <!-- Show's PHOTO or/and VIDEO  -->
             <div class="col-md-4 d-flex flex-column justify-content-around ">
-                <div class="p-2"> <img src="https://unsplash.it/250/250/?random" class="card-img" alt="show photo"/></div>
-                <div class="p-2"> <img src="https://unsplash.it/250/250/?random" class="card-img" alt="show photo"/></div>
+                {% for picture in show.pictures %}
+                <div class="p-2"> <img src="/upload/file/{{ picture.mediaFileName }}" class="card-img" alt="show photo"/></div>
+                {% endfor %}
             </div>
             <!-- Show's partner logos -->
             <div class="col-md-2 d-flex flex-md-column align-items-md-center">

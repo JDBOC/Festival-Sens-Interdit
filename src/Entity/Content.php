@@ -75,7 +75,6 @@ class Content
      */
     private $logos;
 
-
     /**
      * @ORM\Column(type="boolean")
      */
@@ -97,7 +96,7 @@ class Content
     private $thumbnail;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\SiFile", mappedBy="pictureContent")
+     * @ORM\OneToMany(targetEntity="App\Entity\SiFile", mappedBy="pictureContent",cascade={"persist"})
      */
     private $pictures;
 
@@ -291,7 +290,7 @@ class Content
         return $this->cover;
     }
 
-    public function setCover(?SiFile $cover): self
+    public function setCover(?Object $cover): self
     {
         $this->cover = $cover;
 
@@ -318,7 +317,7 @@ class Content
         return $this->pictures;
     }
 
-    public function addPicture(SiFile $picture): self
+    public function addPicture(Object $picture): self
     {
         if (!$this->pictures->contains($picture)) {
             $this->pictures[] = $picture;

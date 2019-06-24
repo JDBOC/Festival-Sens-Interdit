@@ -18,7 +18,10 @@ class PageContentFixtures extends Fixture
         // $manager->persist($product);
         $content = new Content();
         $content->setTitleFr("test");
-        $content->setContentFr("lorem ipsum");
+        $content->setContentFr("lorem ipsum")
+        ->setContentType(Content::CONTENT_TYPE['static_page'])
+        ->setComplete(true)
+        ->setTranslated(true);
         
         $manager->persist($content);
         $manager->flush();

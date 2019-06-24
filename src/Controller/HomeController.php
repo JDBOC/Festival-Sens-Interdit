@@ -18,7 +18,7 @@ class HomeController extends AbstractController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
             if ($_POST['language'] == "en_EN") {
-                $language =  $_POST['language'];
+                 $language =  $_POST['language'];
             }
         }
 
