@@ -40,27 +40,27 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("admin/editpassword", name="app_editPassword")
+     * @Route("editpassword", name="app_editPassword")
      */
     public function editPassword(ObjectManager $manager, UserPasswordEncoderInterface $encoder)
     {
-
         $user = $this->get('security.token_storage')->getToken()->getUser();
-
         if (!empty($_POST)) {
             if ($encoder->isPasswordValid($user, $_POST['AncienPassword'])) {
                 if ($_POST['NewPassword'] == $_POST['ConfirmePassword']) {
+                    dump($_POST['NewPassword']);
+                    dump($_POST['ConfirmePassword']);
                     $user->setPassword($encoder->encodePassword($user, $_POST['NewPassword']));
                     $manager->persist($user);
                     $manager->flush();
                 } else {
-                    $error1 = 'Non valide';
+                    $error1 = 'Les mots de passe ne correspondent pas';
                     return $this->render('/security/editPassword.html.twig', [
                                         "error1" => $error1
                                         ]);
                 }
             } else {
-                $error2 = 'Mauvais password';
+                $error2 = 'Mauvais mot de passe';
                 return $this->render('/security/editPassword.html.twig', [
                             "error2" => $error2
                             ]);
