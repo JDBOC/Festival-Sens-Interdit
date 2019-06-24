@@ -3,8 +3,11 @@
 {% block title %}Content index{% endblock %}
 
 {% block body %}
-    <div class="jumbotron py-3">
+    <div class="title px-4 pb-4 pt-2">
         <h1>Liste des spectacles</h1>
+    </div>
+    <a href="{{ path('show_new') }}"> <button class="btn btn-primary m-2"> Nouveau Spectacle</button></a>
+    <div class="jumbotron py-3 m-2">
         <div>
             {{ form_start(form) }}
             <div class="form-row">
@@ -21,8 +24,7 @@
             {{ form_end(form)}}
         </div>
     </div>
-    <a href="{{ path('show_new') }}"> Nouveau Spectacle</a>
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Edition</th>
@@ -49,7 +51,7 @@
                 <td>{{ content.translated }}</td>
                 <td>
                     {# <a href="{{ path('show_show', {'id': content.id}) }}">show</a> #}
-                    <a href="{{ path('show_edit', {'id': content.id}) }}">edit</a>
+                    <a href="{{ path('show_edit', {'id': content.id}) }}"><button class="btn btn-secondary">edit</button> </a>
                 </td>
             </tr>
         {% else %}

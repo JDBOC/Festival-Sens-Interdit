@@ -31,7 +31,6 @@ class SessionController extends AbstractController
         $session = new Session();
         $form = $this->createForm(SessionType::class, $session);
         $form->handleRequest($request);
-        dump($form->isSubmitted());
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $session->setContent($contentRepository->findOneBy(['id'=>$id]));
