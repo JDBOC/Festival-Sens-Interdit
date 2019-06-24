@@ -17,7 +17,15 @@ class Content
         'news' => 2,
         'static_page' => 3
     ];
+
+    const SHOW_TYPE = [
+        'festival' => 1,
+        'hors scene' => 2,
+        'tournée' => 3
+    ];
+    
     /**
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -109,6 +117,11 @@ class Content
      * @ORM\ManyToMany(targetEntity="App\Entity\Content", mappedBy="enEcho")
      */
     private $isEcho;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $showStatus;
 
 
     public function __construct()
@@ -417,6 +430,18 @@ class Content
             $this->isEcho->removeElement($isEcho);
             $isEcho->removeEnEcho($this);
         }
+
+        return $this;
+    }
+
+    public function getShowStatus(): ?int
+    {
+        return $this->showStatus;
+    }
+
+    public function setShowStatus(?int $showStatus): self
+    {
+        $this->showStatus = $showStatus;
 
         return $this;
     }
