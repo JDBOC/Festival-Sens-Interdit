@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Partner;
+use App\Entity\SiFile;
+use App\Form\SiFileType;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 

@@ -8,19 +8,19 @@
     <table class="table">
         <thead>
             <tr>
-                <th>NOM</th>
                 <th>TYPE</th>
+                <th>NOM</th>
                 <th>LOGO</th>
                 <th>LIEN</th>
                 <th>ACTIONS</th>
             </tr>
         </thead>
         <tbody>
-        {% for partner in partners %}
             <tr>
-                <td>{{ partner.name }}</td>
                 <td>{{ partner.typeName }}</td>
-                <!-- TODO : Add logo -->
+                {% for partner in partners %}
+                <td>{{ partner.name }}</td>
+                <!-- TODO : Add logo with SI_FILE -->
                 <td>LOGO</td>
                 <td>{{ partner.link }}</td>
 

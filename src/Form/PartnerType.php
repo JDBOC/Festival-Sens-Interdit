@@ -14,10 +14,10 @@ class PartnerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('link')
             ->add('type', ChoiceType::class, ['choices'=>Partner::TYPE])
-            ->add('name');
-            // ->add('logo')
+            ->add('name')
+            ->add('logo')
+            ->add('link');
     }
 
     public function configureOptions(OptionsResolver $resolver)

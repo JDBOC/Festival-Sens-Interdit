@@ -31,7 +31,7 @@ class Partner
     private $link;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer", nullable=false)
      */
     private $type;
 

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Partner;
 use App\Form\PartnerType;
+use App\Entity\SiFile;
+use App\Form\SiFileType;
 use App\Repository\PartnerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

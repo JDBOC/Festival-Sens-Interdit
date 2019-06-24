@@ -1,22 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Nos Partenaires</h1>
+    <h1 class="text-center p-2">Nos Partenaires</h1>
 
-    <div class="container">
-        <div class="row">
-            {% for partner in partners %}
-
-                <h2> {{ partner.typeName }} </h2>
-                <div class="d-flex justify-content-around">
-                    {{ partner.logo }}
-                    {{ partner.name }}
-                    {{ partner.link }}
+    <div class="container p-2">
+        {% for partner in partners %}
+            <div class="row">
+                <h3 class="text-center"> {{ partner.typeName }} </h3>
+            </div>
+            {% for partner in partner.typeName %}
+                <div class=" row d-flex">
+                    <div class="col-md-2">
+                        {{ partner.logo }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ partner.name }}
+                    </div>
+                    <div class="col-md-2">
+                        {{ partner.link }}
+                    </div>
                 </div>
-
-                
-             {% endfor %}
-        </div>
+            {% endfor %}
+            <div class="row">
+                <hr align="center" width="70%">
+            </div>
+        {% endfor %}
     </div>
 
 {% endblock %}
