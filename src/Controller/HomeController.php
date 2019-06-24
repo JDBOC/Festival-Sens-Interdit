@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\SessionRepository;
 use App\Form\ContactType;
+use App\Service\Footer;
 
 class HomeController extends AbstractController
 {
@@ -15,16 +16,6 @@ class HomeController extends AbstractController
      */
     public function index(SessionRepository $session): Response
     {
-        $language = $_SESSIONS['language'] = 'fr';
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
-            if ($_POST['language'] == "en_EN") {
-                 $language =  $_POST['language'];
-            }
-        }
-
-        $contactForm = $this->createForm(ContactType::class);
-
         return $this->render(
             'index.html.twig',
             [
