@@ -17,11 +17,11 @@ use App\Entity\SiFile;
 class NewsController extends AbstractController
 {
     /**
-     * @Route("/", name="news_index", methods={"GET"})
+     * @Route("/", name="news_admin", methods={"GET"})
      */
     public function index(ContentRepository $contentRepository): Response
     {
-        return $this->render('news/index.html.twig', [
+        return $this->render('admin/news/index.html.twig', [
             'contents' => $contentRepository->findby(['contentType' => 2]),
         ]);
     }
