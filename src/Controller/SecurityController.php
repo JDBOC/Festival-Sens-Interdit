@@ -38,4 +38,34 @@ class SecurityController extends AbstractController
         $manager->flush();
         return $this->render('security/login.html.twig');
     }
+
+    /**
+     * @Route("admin/editpassword", name="app_editPassword")
+     */
+    public function editPassword(ObjectManager $manager, UserPasswordEncoderInterface $encoder)
+    {
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        if (!empty($_POST)) {
+            if ($encoder->isPasswordValid($user, $_POST['AncienPassword'])) {
+                if ($_POST['NewPassword'] == $_POST['ConfirmePassword']) {
+                    $user->setPassword($encoder->encodePassword($user, $_POST['NewPassword']));
+                    $manager->persist($user);
+                    $manager->flush();
+                } else {
+                    $error1 = 'Non valide';
+                    return $this->render('/security/editPassword.html.twig', [
+                                        "error1" => $error1
+                                        ]);
+                }
+            } else {
+                $error2 = 'Mauvais password';
+                return $this->render('/security/editPassword.html.twig', [
+                            "error2" => $error2
+                            ]);
+            }
+        }
+        return $this->render('/security/editPassword.html.twig');
+    }
 }
