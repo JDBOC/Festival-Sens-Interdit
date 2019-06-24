@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Content;
+use App\Entity\SiFile;
 use App\Form\ShowType;
 use App\Repository\ContentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -47,6 +48,9 @@ class ShowController extends AbstractController
     public function new(Request $request): Response
     {
         $show = new Content();
+        $cover = new SiFile();
+        $cover->setType(SiFile::FILE_TYPE['cover']);
+        $show->setCover($cover);
         $form = $this->createForm(ShowType::class, $show);
         $form->handleRequest($request);
 
@@ -54,7 +58,7 @@ class ShowController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
 
             // a passer dans un service
-            $show-> setContentType(Content::CONTENT_TYPE['show']);
+            $show->setContentType(Content::CONTENT_TYPE['show']);
             if (is_null($show->getTitleEn())
                 ||  is_null($show->getContentEn())
                 ||  is_null($show->getCountryEn()) ) {
@@ -70,7 +74,7 @@ class ShowController extends AbstractController
                 $show->setComplete(true);
             }
             // fin de " a passer dans une service"
-            
+                      
             $entityManager->persist($show);
             $entityManager->flush();
 
