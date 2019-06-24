@@ -5,14 +5,18 @@ namespace App\Controller;
 use App\Entity\Content;
 use App\Entity\SiFile;
 use App\Form\ShowType;
+use App\Entity\ShowSearch;
+use App\Form\ShowSearchType;
+use App\Entity\RelatedContentSearch;
+use App\Form\RelatedContentSearchType;
 use App\Repository\ContentRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Knp\Component\Pager\PaginatorInterface;
-use App\Form\ShowSearchType;
-use App\Entity\ShowSearch;
 
 /**
  * @Route("/admin/show")
@@ -73,7 +77,7 @@ class ShowController extends AbstractController
             } else {
                 $show->setComplete(true);
             }
-            // fin de " a passer dans une service"
+            // fin de " a passer dans un service"
                       
             $entityManager->persist($show);
             $entityManager->flush();
@@ -86,8 +90,7 @@ class ShowController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-    
+   
     /**
      * @Route("/{id}/edit", name="show_edit", methods={"GET","POST"})
      */
@@ -121,5 +124,68 @@ class ShowController extends AbstractController
             $entityManager->flush();
         }
         return $this->redirectToRoute('show_index');
+    }
+
+    /**
+     * returns all contents linked to an other content"
+     * @Route("/echo/{id}/", name="content_en_echo", methods={"GET","POST"})
+     */
+    public function indexEchoByContent(
+        ContentRepository $contentRepository,
+        PaginatorInterface $paginator,
+        Request $request,
+        Content $content
+    ): Response {
+        $relatedSearch = new RelatedContentSearch();
+        $form = $this->createForm(RelatedContentSearchType::class, $relatedSearch);
+        $form->handleRequest($request);
+
+        $contents = $paginator->paginate(
+            $contentRepository->findAllContentQuery($relatedSearch),
+            $request->query->getInt('page', 1),
+            10
+        );
+
+        return $this->render('admin/show/echoByContent.html.twig', [
+                'contents' => $contents,
+                'echoContent' => $content,
+                'form' =>  $form->createView()
+        ]);
+    }
+
+    /**
+     * add a content linked to an other content"
+     * @Route("/echo_add/{added_id}/{echo_id}", name="add_en_echo", methods={"GET","POST"})
+     * @Entity("echoContent", expr="repository.find(echo_id)")
+     * @Entity("addedContent", expr="repository.find(added_id)")
+     */
+    public function addEchoByContent(
+        ContentRepository $contentRepository,
+        Request $request,
+        Content $echoContent,
+        Content $addedContent
+    ): Response {
+        $echoContent->addEnEcho($addedContent);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('content_en_echo', [
+                'id' => $echoContent->getId() ]);
+    }
+
+    /**
+     * remove a content linked to an other content"
+     * @Route("/echo_remove/{removed_id}/{echo_id}", name="remove_en_echo", methods={"GET","POST"})
+     * @Entity("echoContent", expr="repository.find(echo_id)")
+     * @Entity("removedContent", expr="repository.find(removed_id)")
+     */
+    public function removeEchoByContent(
+        ContentRepository $contentRepository,
+        Request $request,
+        Content $echoContent,
+        Content $removedContent
+    ): Response {
+        $echoContent->removeEnEcho($removedContent);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('content_en_echo', [
+                'id' => $echoContent->getId() ]);
     }
 }
