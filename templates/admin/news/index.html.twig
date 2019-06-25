@@ -1,0 +1,38 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}News{% endblock %}
+
+{% block body %}
+    <div class="title px-4 pb-4 pt-2">
+        <h1>Liste des news</h1>
+    </div>
+    <a href="{{ path('news_new') }}"> <button class="btn btn-primary m-2"> Création new</button></a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for content in contents %}
+            <tr>
+                <td>{{ content.titleFr }}</td>
+                <td><p>{{ content.contentFr|length > 100 ? content.contentFr|slice(0,100) ~ '...' : content.contentFr  }}</p>
+                </td>
+                <td>
+                    <a href="{{ path('news_show', {'id': content.id}) }}">show</a>
+                    <a href="{{ path('news_edit', {'id': content.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
