@@ -13,8 +13,8 @@ class EditionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('editionPicture', InSiFileType::class);
+            ->add('name');
+       //     ->add('editionPicture', InSiFileType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -1,0 +1,18 @@
+{{ form_start(formEdition) }}
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formEdition.name, "Nom de l'édition") }}
+            {{ form_widget(formEdition.name) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+       {#{{ form_label(formEdition.PassJeune, 'Affiche') }}
+            {{ form_widget(formEdition.PassJeune) }}#}
+        </div>
+    </div>
+
+    <button class="btn btn-success btn-sm">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(formEdition) }}
