@@ -1,11 +1,10 @@
 {% extends 'adminBase.html.twig' %}
-
 {% block title %}News{% endblock %}
-
 {% block body %}
-    <h1>Liste des news</h1>
-    <a href="{{ path('news_new') }}">Création new</a>
-
+    <div class="title px-4 pb-4 pt-2">
+        <h1>Liste des news</h1>
+    </div>
+    <a href="{{ path('news_new') }}"> <button class="btn btn-primary m-2"> Création new</button></a>
     <table class="table">
         <thead>
             <tr>
@@ -32,5 +31,4 @@
         {% endfor %}
         </tbody>
     </table>
-
 {% endblock %}
