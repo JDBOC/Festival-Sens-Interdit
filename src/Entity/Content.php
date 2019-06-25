@@ -18,7 +18,15 @@ class Content
         'news' => 2,
         'static_page' => 3
     ];
+
+    const SHOW_TYPE = [
+        'festival' => 1,
+        'hors scene' => 2,
+        'tournée' => 3
+    ];
+
     /**
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -101,11 +109,52 @@ class Content
      */
     private $pictures;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Content", inversedBy="isEcho")
+     */
+    private $enEcho;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Content", mappedBy="enEcho")
+     */
+    private $isEcho;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $showType;
+
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
         $this->logos = new ArrayCollection();
         $this->pictures = new ArrayCollection();
+        $this->enEcho = new ArrayCollection();
+        $this->isEcho = new ArrayCollection();
+    }
+
+    public function __toString():string
+    {
+        return array_search($this->getContentType(), self::CONTENT_TYPE)."-".$this->getTitleFr();
+    }
+
+     /**
+     * returns the key linked to the value of the contentType const
+     * @return string
+     */
+    public function getContentTypeName():string
+    {
+        return array_search($this->contentType, self::CONTENT_TYPE);
+    }
+
+     /**
+     * returns the key linked to the value of the showType const
+     * @return string
+     */
+    public function getShowTypeName():string
+    {
+        return array_search($this->showType, self::SHOW_TYPE);
     }
 
     public function getId(): ?int
@@ -337,6 +386,72 @@ class Content
                 $picture->setPictureContent(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getEnEcho(): Collection
+    {
+        return $this->enEcho;
+    }
+
+    public function addEnEcho(self $enEcho): self
+    {
+        if (!$this->enEcho->contains($enEcho)) {
+            $this->enEcho[] = $enEcho;
+        }
+
+        return $this;
+    }
+
+    public function removeEnEcho(self $enEcho): self
+    {
+        if ($this->enEcho->contains($enEcho)) {
+            $this->enEcho->removeElement($enEcho);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getIsEcho(): Collection
+    {
+        return $this->isEcho;
+    }
+
+    public function addIsEcho(self $isEcho): self
+    {
+        if (!$this->isEcho->contains($isEcho)) {
+            $this->isEcho[] = $isEcho;
+            $isEcho->addEnEcho($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIsEcho(self $isEcho): self
+    {
+        if ($this->isEcho->contains($isEcho)) {
+            $this->isEcho->removeElement($isEcho);
+            $isEcho->removeEnEcho($this);
+        }
+
+        return $this;
+    }
+
+    public function getShowType(): ?int
+    {
+        return $this->showType;
+    }
+
+    public function setShowType(?int $showType): self
+    {
+        $this->showType = $showType;
 
         return $this;
     }

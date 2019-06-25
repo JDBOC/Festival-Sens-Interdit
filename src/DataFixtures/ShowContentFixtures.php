@@ -14,7 +14,9 @@ class ShowContentFixtures extends Fixture implements DependentFixtureInterface
         
         $show = new Content;
         $show   ->setTitleFr('Banos Rama')
+                ->setEdition($this->getReference('edition'))
                 ->setCountryFr('France')
+                ->setShowType(1)
                 ->setContentFr('
     <div>
         <p><strong>De :</strong> Eduardo Bernal, Jorge A. Vargas, Gabriel Contreras</p>

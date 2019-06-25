@@ -26,6 +26,7 @@
         <thead>
             <tr>
                 <th>Edition</th>
+                <th>Catégorie</th>
                 <th>Titre</th>
                 <th>représentations</th>
                 <th>Logos</th>
@@ -37,11 +38,8 @@
         <tbody>
         {% for content in contents %}
             <tr>
-                <td>
-                {% if content.edition.name is defined%}
-                {{content.edition.name}}
-                {% endif %}
-                </td>
+                <td>{{content.edition.name}}</td>
+                <td>{{ content.showTypeName }}</td>
                 <td>{{ content.titleFr }}</td>
                 <td>{{ content.sessions | length }}</td>
                 <td>{{ content.logos | length }}</td>

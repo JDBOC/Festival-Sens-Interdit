@@ -5,6 +5,8 @@
 use App\Entity\Content;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use App\Form\InSiFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Edition;
@@ -15,6 +17,9 @@ class ShowType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('showType', ChoiceType::class, [
+                'choices' => Content::SHOW_TYPE
+            ])
             ->add('titleFr')
             ->add('titleEn')
             ->add('contentFr', CKEditorType::class)

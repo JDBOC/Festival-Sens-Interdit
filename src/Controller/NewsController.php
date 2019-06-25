@@ -52,7 +52,7 @@ class NewsController extends AbstractController
             return $this->redirectToRoute('news_index');
         }
 
-        return $this->render('news/new.html.twig', [
+        return $this->render('admin/news/new.html.twig', [
             'content' => $content,
             'form' => $form->createView(),
         ]);
@@ -64,7 +64,7 @@ class NewsController extends AbstractController
     public function show(Content $content): Response
     {
 
-        return $this->render('news/show.html.twig', [
+        return $this->render('admin/news/show.html.twig', [
             'content' => $content,
         ]);
     }
@@ -85,7 +85,7 @@ class NewsController extends AbstractController
             ]);
         }
 
-        return $this->render('news/edit.html.twig', [
+        return $this->render('admin/news/edit.html.twig', [
             'content' => $content,
             'form' => $form->createView(),
         ]);
@@ -94,9 +94,10 @@ class NewsController extends AbstractController
     /**
      * @Route("/{id}", name="news_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Content $content, SiFile $siFile): Response
+    public function delete(Request $request, Content $content): Response
     {
         if ($this->isCsrfTokenValid('delete'.$content->getId(), $request->request->get('_token'))) {
+            $siFile = new SiFile;
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($content);
             $entityManager->remove($siFile);
