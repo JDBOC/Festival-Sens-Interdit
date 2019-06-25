@@ -351,7 +351,7 @@ class Content
         return $this->thumbnail;
     }
 
-    public function setThumbnail(?SiFile $thumbnail): self
+    public function setThumbnail(?Object $thumbnail): self
     {
         $this->thumbnail = $thumbnail;
 

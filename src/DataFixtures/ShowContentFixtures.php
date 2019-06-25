@@ -38,7 +38,9 @@ class ShowContentFixtures extends Fixture implements DependentFixtureInterface
                 ->setCover($this->getReference('banosCover'))
                 ->addPicture($this->getReference('banosPicture1'))
                 ->addPicture($this->getReference('banosPicture2'))
-                ->addPicture($this->getReference('banosPicture3'));
+                ->addPicture($this->getReference('banosPicture3'))
+                ->setThumbnail($this->getReference('banosThumbnail'))
+                ;
         $this->addReference('showBanos', $show);
         $manager->persist($show);
         $manager->flush();

@@ -42,6 +42,14 @@ class SiFileFixtures extends Fixture
         $manager->persist($banosPicture3);
         $this->addReference('banosPicture3', $banosPicture3);
 
+        $banosThumbnail = new SiFile;
+        $banosThumbnail ->setName('banosThumbnail')
+                    ->setType(Sifile::FILE_TYPE['contentPicture'])
+                    ->setMediaFileName('banosThumbnail.jpg')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($banosThumbnail);
+        $this->addReference('banosThumbnail', $banosThumbnail);
+
         $manager->flush();
     }
 }
