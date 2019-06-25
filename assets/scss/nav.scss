@@ -1,14 +1,19 @@
-/*ludo navBar*/
+/*navBar*/
 .navBg{
 	background-color: #ed1c24;
 }
 
 .nav-item{
 	color: white;
-	font-size: 0.8em;
-	margin-top: 0em;
-	padding-bottom: 0em;
-	padding-top: 0em;
+	font-size: 1em;
+}
+
+.dropdown-item{
+	color: white !important;
+}
+
+.dropdown-menu{
+	background-color: #343a40 !important;
 }
 
 .navbar{
