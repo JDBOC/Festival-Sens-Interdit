@@ -13,7 +13,7 @@
     <body>
     <div class="container px-0">
         <nav class="navbar navbar-expand-lg ">
-            <p class="navbar-brand mb-0">Sens Interdits</p>
+            <a href="{{ path('admin_index') }}" class="navbar-brand mb-0" style="color: #FFFFFF;">Sens Interdits</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,7 +39,7 @@
                         <a class="nav-link" href="#">News</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Fichiers</a>
+                        <a class="nav-link" href="{{ path('sifile_index') }}">Fichiers</a>
                     </li>
                 </ul>
             </div>
