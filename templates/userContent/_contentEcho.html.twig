@@ -1,29 +1,26 @@
-<div class=" container ">
+<div class=" container pb-3 ">
     <hr class="m-0">
     <!-- "mais aussi" pill -->
     <div class="p-0 m-auto redPill">
         <p class="redPill">mais aussi...</p>
     </div>
     
-    <div class="d-flex justify-content-around">
-        <div class="px-2 col-md-6">
-            <div class="card border-0">
-                <img class="card-img-top" src="https://unsplash.it/250/150/?random" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">CONVERSATIONS À LA MAISON</h5>
-                    <h6 class="card-text"> Les 1ers mots de la description du spectacle ou de la news</h6>
+    <div class="row">
+        {% if content.enEcho is defined %}
+            {% for relativeContent in content.enEcho %}
+                <div class="col-4">
+                    <div class="card">
+                        <img src="/upload/file/{{relativeContent.thumbnail.mediaFileName}}" class="card-img-top" alt="{{relativeContent.titleFr}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{relativeContent.titleFr}}</h5>
+                            <p class="card-text">{{relativeContent.contentTypeName}}</p>
+                            <p class="card-text">{{relativeContent.titleFr}}</p>
+                            <a href="{{ path('show_show', {'id': relativeContent.id}) }}" class="btn btn-primary">En savoir plus</a>
+                        </div>
+                    </div>
+                    
                 </div>
-            </div>
-        </div>
-        <div class="px-2 col-md-6">
-            <div class="card border-0">
-                <img class="card-img-top" src="https://unsplash.it/250/150/?random" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">CONVERSATIONS À LA MAISON</h5>
-                    <h6 class="card-text"> Les 1ers mots de la description du spectacle ou de la news</h6>
-                </div>
-            </div>
-        </div>
+            {% endfor%}
+        {% endif %}
     </div>
-</div>
 </div>
