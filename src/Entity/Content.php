@@ -17,7 +17,15 @@ class Content
         'news' => 2,
         'static_page' => 3
     ];
+
+    const SHOW_TYPE = [
+        'festival' => 1,
+        'hors scene' => 2,
+        'tournée' => 3
+    ];
+    
     /**
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -110,6 +118,11 @@ class Content
      */
     private $isEcho;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $showType;
+
 
     public function __construct()
     {
@@ -126,12 +139,21 @@ class Content
     }
 
      /**
-     * returns the key linkd to the value of the contentType const
+     * returns the key linked to the value of the contentType const
      * @return string
      */
     public function getContentTypeName():string
     {
         return array_search($this->contentType, self::CONTENT_TYPE);
+    }
+
+     /**
+     * returns the key linked to the value of the showType const
+     * @return string
+     */
+    public function getShowTypeName():string
+    {
+        return array_search($this->showType, self::SHOW_TYPE);
     }
 
     public function getId(): ?int
@@ -417,6 +439,18 @@ class Content
             $this->isEcho->removeElement($isEcho);
             $isEcho->removeEnEcho($this);
         }
+
+        return $this;
+    }
+
+    public function getShowType(): ?int
+    {
+        return $this->showType;
+    }
+
+    public function setShowType(?int $showType): self
+    {
+        $this->showType = $showType;
 
         return $this;
     }
