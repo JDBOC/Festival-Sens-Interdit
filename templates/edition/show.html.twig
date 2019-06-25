@@ -15,6 +15,14 @@
                 <th>Name</th>
                 <td>{{ edition.name }}</td>
             </tr>
+            <tr>
+              <th>Date de début</th>
+              <td>{{ edition.dateDebut|date("d/m/Y") }}</td>
+            </tr>
+            <tr>
+              <th>Date de fin</th>
+              <td>{{ edition.dateFin|date("d/m/Y") }}</td>
+            </tr>
         </tbody>
     </table>
 

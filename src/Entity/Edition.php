@@ -33,20 +33,20 @@ class Edition
      */
     private $editionPicture;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+  /**
+   * @ORM\Column(type="datetime")
+   */
     private $dateDebut;
 
-    /**
-     * @ORM\Column(type="date")
-     */
+  /**
+   * @ORM\Column(type="datetime")
+   */
     private $dateFin;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $status;
+  /**
+   * @ORM\Column(type="string", length=255)
+   */
+    private $status = "en ligne";
     
     public function __construct()
     {

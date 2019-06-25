@@ -1,5 +1,6 @@
 {{ form_start(form) }}
     {{ form_widget(form) }} 	
-
+{{ form_row(form.dateDebut) }}
+{{ form_row(form.dateFin) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
