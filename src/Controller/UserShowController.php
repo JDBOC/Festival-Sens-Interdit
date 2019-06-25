@@ -20,7 +20,7 @@ class UserShowController extends AbstractController
     {
         $contactForm = $this->createForm(ContactType::class);
 
-        return $this->render('show.html.twig', [
+        return $this->render('userContent/show.html.twig', [
             'show'   => $content,
             'contactForm' => $contactForm->createView()
         ]);
