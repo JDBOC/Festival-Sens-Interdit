@@ -40,11 +40,7 @@
         <tbody>
         {% for content in contents %}
             <tr>
-                <td>
-                
-               {# {{content.edition.name}} #}
-               
-                </td>
+                <td>{{content.edition.name}}</td>
                 <td>{{ content.showTypeName }}</td>
                 <td>{{ content.titleFr }}</td>
                 <td>{{ content.sessions | length }}</td>
