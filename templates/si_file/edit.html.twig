@@ -3,11 +3,11 @@
 {% block title %}Edit SiFile{% endblock %}
 
 {% block body %}
-    <h1>Edit SiFile</h1>
+    <h1>Editer un fichier</h1>
 
-    {{ include('si_file/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('si_file/_form.html.twig', {'button_label': 'Enregistrer'}) }}
 
-    <a href="{{ path('si_file_index') }}">back to list</a>
+    <a href="{{ path('sifile_index') }}">Retour</a>
 
     {{ include('si_file/_delete_form.html.twig') }}
 {% endblock %}

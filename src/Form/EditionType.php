@@ -16,8 +16,8 @@ class EditionType extends AbstractType
         $builder
             ->add('name')
             ->add('editionPicture', InSiFileType::class)
-          ->add('dateDebut', Type\DateType::class)
-          ->add('dateFin', Type\DateType::class);
+            ->add('dateDebut', Type\DateType::class)
+            ->add('dateFin', Type\DateType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -86,12 +86,12 @@ class Content
     /**
      * @ORM\Column(type="boolean")
      */
-    private $complete;
+    private $complete = false;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $translated;
+    private $translated = false;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
@@ -122,6 +122,36 @@ class Content
      * @ORM\Column(type="integer", nullable=true)
      */
     private $showType;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $archive = false;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $duree;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lieu;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $author;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $director;
 
 
     public function __construct()
@@ -351,7 +381,7 @@ class Content
         return $this->thumbnail;
     }
 
-    public function setThumbnail(?SiFile $thumbnail): self
+    public function setThumbnail(?Object $thumbnail): self
     {
         $this->thumbnail = $thumbnail;
 
@@ -451,6 +481,78 @@ class Content
     public function setShowType(?int $showType): self
     {
         $this->showType = $showType;
+
+        return $this;
+    }
+
+    public function getArchive(): ?bool
+    {
+        return $this->archive;
+    }
+
+    public function setArchive(bool $archive): self
+    {
+        $this->archive = $archive;
+
+        return $this;
+    }
+
+    public function getDuree(): ?string
+    {
+        return $this->duree;
+    }
+
+    public function setDuree(?string $duree): self
+    {
+        $this->duree = $duree;
+
+        return $this;
+    }
+
+    public function getLieu(): ?string
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(?string $lieu): self
+    {
+        $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(?string $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?string $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    public function getDirector(): ?string
+    {
+        return $this->director;
+    }
+
+    public function setDirector(?string $director): self
+    {
+        $this->director = $director;
 
         return $this;
     }
