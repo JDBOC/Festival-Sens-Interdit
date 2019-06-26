@@ -1,0 +1,38 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block body %}
+
+    <div class="row">
+        <h1>Liste des représentations</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Spectacle</th>
+                        <th>Date</th>
+                        <th>Lieu</th>
+                        <th>Tarifs</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for session in sessions %}
+                    <tr>
+                        <td>Spectacle</td>
+                        <td>{{ session.sessionDate ? session.sessionDate|date('d-m-Y à H:i') : '' }}</td>
+                        <td>{{ session.location }}</td>
+                        <td>Tarif</td>
+                        <td>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

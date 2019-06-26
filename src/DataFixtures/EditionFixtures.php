@@ -16,6 +16,7 @@ class EditionFixtures extends Fixture
             ->setdateFin(new \DateTime('now'));
         $manager->persist($edition);
         $this->addReference('edition', $edition);
+
         // une 2eme edition  pour tester liste choix dans formulaire show
         $edition = new Edition();
         $edition->setName('2017')

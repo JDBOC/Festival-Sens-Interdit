@@ -1,0 +1,32 @@
+{{ form_start(formEdition) }}
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formEdition.name, "Nom de l'édition") }}
+            {{ form_widget(formEdition.name) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+       {#{{ form_label(formEdition.PassJeune, 'Affiche') }}
+            {{ form_widget(formEdition.PassJeune) }}#}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formEdition.dateDebut, 'Date de début') }}
+                 {{ form_widget(formEdition.dateDebut) }}
+        </div>
+        <div class="col-4">
+            {{ form_label(formEdition.dateFin, 'Date de fin') }}
+                 {{ form_widget(formEdition.dateFin) }}
+        </div>
+    </div>
+
+    <button class="btn btn-success btn-sm">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(formEdition) }}
+
+
+
