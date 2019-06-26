@@ -47,7 +47,7 @@ class ShowContentFixtures extends Fixture implements DependentFixtureInterface
 
 
         $faker = Faker\Factory::create();
-        for ($i=0; $i <10; $i++) { // for each created show
+        for ($i=0; $i <5; $i++) { // for each created show
             for ($j=0; $j < rand(0, 3); $j++) { // generate 0 to 3 session for each show
                 $content = new Content();
                 $content
@@ -58,11 +58,7 @@ class ShowContentFixtures extends Fixture implements DependentFixtureInterface
                     ->setContentFr($faker->text($maxNbChars = 200))
                     ->setContentType(Content::CONTENT_TYPE['show'])
                     ->setComplete(false)
-                    ->setTranslated(false)
-                    ->setCover($this->getReference('banosCover'))
-                    ->addPicture($this->getReference('banosPicture2'))
-                    ->addPicture($this->getReference('banosPicture3'))
-                    ->setThumbnail($this->getReference('banosThumbnail'));
+                    ->setTranslated(false);
 
                 $manager->persist($content);
             }
