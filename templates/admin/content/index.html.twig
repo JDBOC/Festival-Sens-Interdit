@@ -30,17 +30,17 @@
                 <th>Edition</th>
                 <th>Catégorie</th>
                 <th>Titre</th>
-                <th>représentations</th>
+                <th>Représentations</th>
                 <th>Logos</th>
                 <th>Complet</th>
                 <th>Traduit</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for content in contents %}
             <tr>
-                <td>{{content.edition.name}}</td>
+             {#<td>{{content.edition.name}}</td>#}
                 <td>{{ content.showTypeName }}</td>
                 <td>{{ content.titleFr }}</td>
                 <td>{{ content.sessions | length }}</td>
@@ -48,12 +48,13 @@
                 <td>{{ content.complete }}</td>
                 <td>{{ content.translated }}</td>
                 <td>
-                    <a href="{{ path('show_edit', {'id': content.id}) }}"><button class="btn btn-secondary">edit</button> </a>
+                    {# <a href="{{ path('show_show', {'id': content.id}) }}">show</a> #}
+                    <a href="{{ path('show_edit', {'id': content.id}) }}"><button class="btn btn-secondary">Modifier</button> </a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="11">no records found</td>
+                <td colspan="11">Aucun spectacle enregistré</td>
             </tr>
         {% endfor %}
         </tbody>

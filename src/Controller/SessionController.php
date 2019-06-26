@@ -7,6 +7,8 @@ use App\Entity\Content;
 use App\Form\SessionType;
 use App\Repository\SessionRepository;
 use App\Repository\ContentRepository;
+use App\Repository\SiFileRepository;
+use App\Repository\TarifRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +21,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
  */
 class SessionController extends AbstractController
 {
+
     /**
      * @Route("/{id}/new", name="session_by_content", methods={"GET","POST"})
      */
