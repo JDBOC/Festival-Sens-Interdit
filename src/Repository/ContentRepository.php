@@ -15,39 +15,39 @@ class ContentRepository extends ServiceEntityRepository
         parent::__construct($registry, Content::class);
     }
 
-    // /**
-    //  * returns a query of all shows with potential filters on show admin list
-    //  * @param ShowSearch $search parameters for filtering shows
-    //  * @return \Doctrine\ORM\Query a query that will be managed by Paginator
-    //  */
-    // public function findAllShowsQuery(ShowSearch $search)
-    // {
-    //     $query =  $this->createQueryBuilder('c')
-    //         ->andWhere('c.contentType = :val')
-    //         ->setParameter('val', Content::CONTENT_TYPE['show'])
-    //         ->orderBy('c.id', 'DESC')
-    //         ->setMaxResults(10);
+    /**
+     * returns a query of all shows with potential filters on show admin list
+     * @param ShowSearch $search parameters for filtering shows
+     * @return \Doctrine\ORM\Query a query that will be managed by Paginator
+     */
+    public function findAllShowsQuery(ShowSearch $search)
+    {
+        $query =  $this->createQueryBuilder('c')
+            ->andWhere('c.contentType = :val')
+            ->setParameter('val', Content::CONTENT_TYPE['festival'])
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(10);
             
-    //     if ($search->getIsComplete()) {
-    //         $query = $query->andWhere('c.complete != :complete');
-    //         $query->setParameter('complete', $search->getIsComplete());
-    //     }
-    //     if ($search->getIsTranslated()) {
-    //         $query = $query->andWhere('c.translated != :translated');
-    //         $query->setParameter('translated', $search->getIsTranslated());
-    //     }
-    //         return $query->getQuery() ;
-    // }
+        if ($search->getIsComplete()) {
+            $query = $query->andWhere('c.complete != :complete');
+            $query->setParameter('complete', $search->getIsComplete());
+        }
+        if ($search->getIsTranslated()) {
+            $query = $query->andWhere('c.translated != :translated');
+            $query->setParameter('translated', $search->getIsTranslated());
+        }
+            return $query->getQuery() ;
+    }
 
-    // public function findAllContentQuery(RelatedContentSearch $search)
-    // {
-    //         $query =  $this->createQueryBuilder('c')
-    //         ->orderBy('c.id', 'DESC')
-    //         ->setMaxResults(10);
-    //     if ($search->getContentType()) {
-    //         $query = $query->andWhere('c.contentType = :type');
-    //         $query->setParameter('type', $search->getContentType());
-    //     }
-    //         return $query->getQuery() ;
-    // }
+    public function findAllContentQuery(RelatedContentSearch $search)
+    {
+            $query =  $this->createQueryBuilder('c')
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(10);
+        if ($search->getContentType()) {
+            $query = $query->andWhere('c.contentType = :type');
+            $query->setParameter('type', $search->getContentType());
+        }
+            return $query->getQuery() ;
+    }
 }
