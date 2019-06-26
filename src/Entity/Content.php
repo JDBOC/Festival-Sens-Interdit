@@ -86,12 +86,12 @@ class Content
     /**
      * @ORM\Column(type="boolean")
      */
-    private $complete;
+    private $complete = false;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $translated;
+    private $translated = false;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
@@ -126,7 +126,7 @@ class Content
     /**
      * @ORM\Column(type="boolean")
      */
-    private $archive;
+    private $archive = false;
 
     /**
      * @ORM\Column(type="string", length=100, nullable=true)
