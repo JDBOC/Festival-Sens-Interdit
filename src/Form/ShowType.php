@@ -33,6 +33,7 @@ class ShowType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('cover', InSiFileType::class)
+            ->add('thumbnail', InSiFileType::class)
             ;
     }
 
