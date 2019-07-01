@@ -52,6 +52,56 @@ C&rsquo;est autour de la figure populaire mexicaine qu&rsquo;est le champion du 
                 ;
         $this->addReference('showBanos', $show);
         $manager->persist($show);
+
+        $show2 = new Content;
+        $show2   ->setTitleFr('Ma petite Antartique')
+                ->setEdition($this->getReference('edition'))
+                ->setCountryFr('Mexique')
+                ->setContentType(Content::CONTENT_TYPE['festival'])
+                ->setComplete(false)
+                ->setTranslated(false)
+                ->setThumbnail($this->getReference('antartiqueThumbnail'))
+                ;
+        $this->addReference('showAntartique', $show2);
+        $manager->persist($show2);
+
+        $show3 = new Content;
+        $show3   ->setTitleFr('Constitution')
+                ->setEdition($this->getReference('edition'))
+                ->setCountryFr('Mexique')
+                ->setContentType(Content::CONTENT_TYPE['festival'])
+                ->setComplete(false)
+                ->setTranslated(false)
+                ->setThumbnail($this->getReference('constitutionThumbnail'))
+                ;
+        $this->addReference('showConstitution', $show3);
+        $manager->persist($show3);
+
+
+        $show4 = new Content;
+        $show4   ->setTitleFr('Girls boys love cash')
+                ->setEdition($this->getReference('edition'))
+                ->setCountryFr('Mexique')
+                ->setContentType(Content::CONTENT_TYPE['festival'])
+                ->setComplete(false)
+                ->setTranslated(false)
+                ->setThumbnail($this->getReference('girlsCashThumbnail'))
+                ;
+        $this->addReference('showGirlsCash', $show4);
+        $manager->persist($show4);
+
+
+        $show5 = new Content;
+        $show5   ->setTitleFr('Tijuana')
+                ->setEdition($this->getReference('edition'))
+                ->setCountryFr('Mexique')
+                ->setContentType(Content::CONTENT_TYPE['festival'])
+                ->setComplete(false)
+                ->setTranslated(false)
+                ->setThumbnail($this->getReference('tijuanaThumbnail'))
+                ;
+        $this->addReference('showTijuana', $show5);
+        $manager->persist($show5);
         $manager->flush();
     }
 
