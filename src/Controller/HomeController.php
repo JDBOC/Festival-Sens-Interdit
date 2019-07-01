@@ -37,9 +37,6 @@ class HomeController extends AbstractController
      */
     public function archives(EditionRepository $editionRepository)
     {
-        return $this->render('UserTemplate/archives.html.twig',
-            [
-                'edition' => $editionRepository->findAll()
-            ]);
+        return $this->render('UserTemplate/archives.html.twig', ['editions' => $editionRepository->findAll()]);
     }
 }
