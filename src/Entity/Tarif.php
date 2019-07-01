@@ -49,7 +49,7 @@ class Tarif
     private $RSA;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $grille;
 
