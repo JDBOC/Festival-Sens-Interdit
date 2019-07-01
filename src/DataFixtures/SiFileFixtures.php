@@ -42,6 +42,62 @@ class SiFileFixtures extends Fixture
         $manager->persist($banosPicture3);
         $this->addReference('banosPicture3', $banosPicture3);
 
+        $banosThumbnail = new SiFile;
+        $banosThumbnail ->setName('banosThumbnail')
+                    ->setType(Sifile::FILE_TYPE['thumbnail'])
+                    ->setMediaFileName('banosThumbnail.jpg')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($banosThumbnail);
+        $this->addReference('banosThumbnail', $banosThumbnail);
+
+        $antartiqueThumbnail = new SiFile;
+        $antartiqueThumbnail ->setName('antartiqueThumbnail')
+                    ->setType(Sifile::FILE_TYPE['thumbnail'])
+                    ->setMediaFileName('antartiqueThumbnail.jpg')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($antartiqueThumbnail);
+        $this->addReference('antartiqueThumbnail', $antartiqueThumbnail);
+
+        $constitutionThumbnail = new SiFile;
+        $constitutionThumbnail ->setName('constitutionThumbnail')
+                    ->setType(Sifile::FILE_TYPE['thumbnail'])
+                    ->setMediaFileName('constitutionThumbnail.jpg')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($constitutionThumbnail);
+        $this->addReference('constitutionThumbnail', $constitutionThumbnail);
+
+        $girlsCashThumbnail = new SiFile;
+        $girlsCashThumbnail ->setName('girlsCashThumbnail')
+                    ->setType(Sifile::FILE_TYPE['thumbnail'])
+                    ->setMediaFileName('girlsCashThumbnail.jpg')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($girlsCashThumbnail);
+        $this->addReference('girlsCashThumbnail', $girlsCashThumbnail);
+
+        $tijuanaThumbnail = new SiFile;
+        $tijuanaThumbnail ->setName('tijuanaThumbnail')
+                    ->setType(Sifile::FILE_TYPE['thumbnail'])
+                    ->setMediaFileName('tijuanaThumbnail.jpg')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($tijuanaThumbnail);
+        $this->addReference('tijuanaThumbnail', $tijuanaThumbnail);
+
+        $logo1 = new SiFile;
+        $logo1 ->setName('croixRousse')
+                    ->setType(Sifile::FILE_TYPE['logo'])
+                    ->setMediaFileName('croixRousse.png')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($logo1);
+        $this->addReference('croixRousse', $logo1);
+
+        $logo2 = new SiFile;
+        $logo2 ->setName('onda')
+                    ->setType(Sifile::FILE_TYPE['logo'])
+                    ->setMediaFileName('onda.png')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($logo2);
+        $this->addReference('onda', $logo2);
+
         $manager->flush();
     }
 }

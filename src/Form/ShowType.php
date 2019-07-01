@@ -17,14 +17,9 @@ class ShowType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('showType', ChoiceType::class, [
-                'choices' => Content::SHOW_TYPE
-            ])
             ->add('titleFr')
             ->add('titleEn')
-            ->add('contentFr', CKEditorType::class, array(
-                    'config_name' => 'my_config',
-                ))
+            ->add('contentFr', CKEditorType::class)
             ->add('contentEn', CKEditorType::class)
             ->add('countryFr')
             ->add('countryEn')
@@ -33,6 +28,7 @@ class ShowType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('cover', InSiFileType::class)
+            ->add('thumbnail', InSiFileType::class)
             ;
     }
 

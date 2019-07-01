@@ -13,17 +13,13 @@ class Content
 {
 
     const CONTENT_TYPE = [
-        'show' => 1,
-        'news' => 2,
-        'static_page' => 3
+        'festival' => 1,
+        'actualités' => 2,
+        'static_page' => 3,
+        'hors scène' => 4,
+        'tournée' => 5
     ];
 
-    const SHOW_TYPE = [
-        'festival' => 1,
-        'hors scene' => 2,
-        'tournée' => 3
-    ];
-    
     /**
      *
      * @ORM\Id()
@@ -86,12 +82,12 @@ class Content
     /**
      * @ORM\Column(type="boolean")
      */
-    private $complete;
+    private $complete = false;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $translated;
+    private $translated = false;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
@@ -119,10 +115,39 @@ class Content
     private $isEcho;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="boolean")
      */
-    private $showType;
+    private $archive = false;
 
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $duree;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lieu;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $author;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $director;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $note;
 
     public function __construct()
     {
@@ -145,15 +170,6 @@ class Content
     public function getContentTypeName():string
     {
         return array_search($this->contentType, self::CONTENT_TYPE);
-    }
-
-     /**
-     * returns the key linked to the value of the showType const
-     * @return string
-     */
-    public function getShowTypeName():string
-    {
-        return array_search($this->showType, self::SHOW_TYPE);
     }
 
     public function getId(): ?int
@@ -351,7 +367,7 @@ class Content
         return $this->thumbnail;
     }
 
-    public function setThumbnail(?SiFile $thumbnail): self
+    public function setThumbnail(?Object $thumbnail): self
     {
         $this->thumbnail = $thumbnail;
 
@@ -443,14 +459,94 @@ class Content
         return $this;
     }
 
-    public function getShowType(): ?int
+    public function getArchive(): ?bool
     {
-        return $this->showType;
+        return $this->archive;
     }
 
-    public function setShowType(?int $showType): self
+    public function setArchive(bool $archive): self
     {
-        $this->showType = $showType;
+        $this->archive = $archive;
+
+        return $this;
+    }
+
+    public function getDuree(): ?string
+    {
+        return $this->duree;
+    }
+
+    public function setDuree(?string $duree): self
+    {
+        $this->duree = $duree;
+
+        return $this;
+    }
+
+    public function getLieu(): ?string
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(?string $lieu): self
+    {
+        $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(?string $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?string $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    public function getDirector(): ?string
+    {
+        return $this->director;
+    }
+
+    public function setDirector(?string $director): self
+    {
+        $this->director = $director;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param mixed $note
+     *
+     * @return self
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
 
         return $this;
     }

@@ -1,0 +1,27 @@
+{% if content.sessions is defined  %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th >SessionDate</th>
+				<th>Location</th>
+				<th> tarif </th>
+				<th>réservation</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for session in content.sessions %}
+				<tr>
+					<td>{{ session.sessionDate ? session.sessionDate|date('d-m-Y à H:i') : '' }}</td>
+					<td>{{ session.location }}</td>
+					<td>
+					{% for tarif in session.tarifs %}
+						{{tarif.grille}} 
+					{% endfor %}
+					</td>
+					<td> <a href="{{session.mapadoLink}}"> billetterie</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endif %}
