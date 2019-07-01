@@ -14,30 +14,44 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * @Route("/partenaires")
+ * Manage Partner's entity
+ * @route("/")
  */
 class PartnerController extends AbstractController
 {
     /**
-     * @Route("/", name="partner_index", methods={"GET"})
+     * @Route("admin/partenaires", name="partner_index", methods={"GET"})
+     * @return Response
      */
     public function index(PartnerRepository $partnerRepository): Response
     {
-        return $this->render('partner/index.html.twig', [
-            'partners' => $partnerRepository->findAll(),
-        ]);
+        $partners = $partnerRepository->findBy(
+            [],
+            ['type' => 'ASC']
+        );
+
+        return $this->render(
+            'partner/index.html.twig',
+            ['partners' => $partners]
+        );
     }
 
     /**
-     * @Route("/new", name="partner_new", methods={"GET","POST"})
+     * @Route("admin/partenaires/new", name="partner_new", methods={"GET","POST"})
+     * @return Response
      */
     public function new(Request $request): Response
     {
         $partner = new Partner();
-        $form = $this->createForm(PartnerType::class, $partner);
-        $form->handleRequest($request);
+        $siFile = new SiFile();
+        $siFile->setType(2);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $partner->setLogo($siFile);
+
+        $PartnerForm = $this->createForm(PartnerType::class, $partner);
+        $PartnerForm->handleRequest($request);
+
+        if ($PartnerForm->isSubmitted() && $PartnerForm->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($partner);
             $entityManager->flush();
@@ -47,19 +61,20 @@ class PartnerController extends AbstractController
 
         return $this->render('partner/new.html.twig', [
             'partner' => $partner,
-            'form' => $form->createView(),
+            'PartnerForm' => $PartnerForm->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="partner_edit", methods={"GET","POST"})
+     * @Route("admin/partenaires/{id}/edit", name="partner_edit", methods={"GET","POST"})
+     * @return Response
      */
     public function edit(Request $request, Partner $partner): Response
     {
-        $form = $this->createForm(PartnerType::class, $partner);
-        $form->handleRequest($request);
+        $PartnerForm = $this->createForm(PartnerType::class, $partner);
+        $PartnerForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($PartnerForm->isSubmitted() && $PartnerForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('partner_index', [
@@ -69,12 +84,13 @@ class PartnerController extends AbstractController
 
         return $this->render('partner/edit.html.twig', [
             'partner' => $partner,
-            'form' => $form->createView(),
+            'PartnerForm' => $PartnerForm->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="partner_delete", methods={"DELETE"})
+     * @Route("admin/partenaires/{id}", name="partner_delete", methods={"DELETE"})
+     * @return Response
      */
     public function delete(Request $request, Partner $partner): Response
     {
@@ -88,9 +104,10 @@ class PartnerController extends AbstractController
     }
 
     /**
-     * @Route("/list", name="user_partner")
+     * @Route("partenaires", name="user_partner")
+     * @return Response
      */
-    public function userIndex()
+    public function userIndex():Response
     {
         $partner_type = $this->getDoctrine()->getRepository('App:Partner')->findAll();
 

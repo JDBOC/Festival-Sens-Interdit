@@ -57,7 +57,6 @@ class SiFile
      */
     private $logoContents;
 
-
      /**
      * @ORM\Column(type="datetime")
      */
@@ -67,6 +66,11 @@ class SiFile
      * @ORM\OneToOne(targetEntity="App\Entity\Edition", mappedBy="editionPicture", cascade={"persist", "remove"})
      */
     private $edition;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Partner", inversedBy="logo", cascade={"persist", "remove"})
+     */
+    private $partnerLogo;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Content", inversedBy="pictures")
@@ -238,6 +242,18 @@ class SiFile
     public function setPictureContent(?Content $pictureContent): self
     {
         $this->pictureContent = $pictureContent;
+
+        return $this;
+    }
+
+    public function getPartnerLogo(): ?int
+    {
+        return $this->partnerLogo;
+    }
+
+    public function setPartnerLogo(int $partnerLogo): self
+    {
+        $this->partnerLogo = $partnerLogo;
 
         return $this;
     }

@@ -16,12 +16,17 @@
             </tr>
         </thead>
         <tbody>
+        {% for partner in partners %}
             <tr>
-                <td>{{ partner.typeName }}</td>
-                {% for partner in partners %}
+                <td>{{ partner.typeName }}
+                </td>
                 <td>{{ partner.name }}</td>
-                <!-- TODO : Add logo with SI_FILE -->
-                <td>LOGO</td>
+                <td>
+                    <img src="/upload/file/
+                    {% if partner.logo.mediaFileName is defined %}
+                        {{ partner.logo.mediaFileName }}
+                    {% endif %}" alt="logo"/> 
+                </td>
                 <td>{{ partner.link }}</td>
 
                 <td>
@@ -30,7 +35,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">aucun Partenaire trouvé</td>
+                <td colspan="5">Aucun Partenaire trouvé</td>
             </tr>
         {% endfor %}
         </tbody>

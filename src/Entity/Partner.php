@@ -41,7 +41,7 @@ class Partner
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", mappedBy="partnerLogo", cascade={"persist", "remove"})
      */
     private $logo;
 
@@ -86,12 +86,12 @@ class Partner
         return $this;
     }
 
-    public function getLogo(): ?SiFile
+    public function getLogo(): ?Object
     {
         return $this->logo;
     }
 
-    public function setLogo(?SiFile $logo): self
+    public function setLogo(?Object $logo): self
     {
         $this->logo = $logo;
 
