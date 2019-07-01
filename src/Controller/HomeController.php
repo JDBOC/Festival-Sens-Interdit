@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\EditionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,5 +30,16 @@ class HomeController extends AbstractController
                         'language' => $language
             ]
         );
+    }
+
+    /**
+     * @Route("/archives", name="archive")
+     */
+    public function archives(EditionRepository $editionRepository)
+    {
+        return $this->render('UserTemplate/archives.html.twig',
+            [
+                'edition' => $editionRepository->findAll()
+            ]);
     }
 }
