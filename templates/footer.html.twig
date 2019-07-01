@@ -85,6 +85,13 @@
                         <br>
                         <div class="row">
                             <div class="col-12">
+                                <label for="title">Titre du mail</label><br>
+                                <input type="text" class="form-control" id="title" name="title" required>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-12">
                                 <label for="message">Votre message</label><br>
                                 <textarea class="form-control" id="message" name="message" rows="10" required></textarea>
                                 <input type="hidden" name="url" value="{{ path(app.request.attributes.get('_route'),

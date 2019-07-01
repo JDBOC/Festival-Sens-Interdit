@@ -19,9 +19,10 @@ class ContactController extends AbstractController
             $nom = $request->request->get('nom');
             $prenom = $request->request->get('prenom');
             $from = $request->request->get('email');
+            $title = $request->request->get('title');
             $contactMessage = $request->request->get('message');
 
-            $message = (new \Swift_Message('Nouvelle demande de contact'))
+            $message = (new \Swift_Message($title))
                 ->setFrom('cmandonnet@gmail.com')
                // ->setFrom('com.sensinterdits@gmail.com')
                 ->setTo('cmandonnet@gmail.com')
