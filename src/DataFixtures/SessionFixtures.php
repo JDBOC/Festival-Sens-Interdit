@@ -6,29 +6,38 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Session;
-use Faker;
 
 class SessionFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $faker = Faker\Factory::create();
-        for ($i=0; $i <15; $i++) { // for each created show
-            for ($j=0; $j < rand(0, 3); $j++) { // generate 0 to 3 session for each show
-                $session = new Session();
-                $session->setSessionDate($faker->dateTimeThisYear($max = 'now', $timezone = 'Europe/Paris'));
-                $session->setLocation($faker->streetName);
-                $session->setContent($this->getReference('showBanos'));
-                $manager->persist($session);
-            }
-        }
+        $session = new Session();
+        $session->setSessionDate(new \DateTime('18 Oct 2019 19:00'))
+                ->setLocation('Théâtre de la Croix Rousse')
+                ->setMapadoLink('https://sensinterdits.mapado.com/event/lyon/banos-roma')
+                ->setContent($this->getReference('showBanos'))
+                ->addTarif($this->getReference('tarif1'))
+                ->addTarif($this->getReference('tarif2'))
+        ;
+        $manager->persist($session);
+            $session2 = new Session();
+            $session2->setSessionDate(new \DateTime('19 Oct 2019 16:00'))
+                ->setLocation('Théâtre de la Croix Rousse')
+                ->setMapadoLink('https://sensinterdits.mapado.com/event/lyon/banos-roma')
+                ->setContent($this->getReference('showBanos'))
+                ->addTarif($this->getReference('tarif1'))
+                ->addTarif($this->getReference('tarif2'))
+        ;
+        $manager->persist($session2);
+
         $manager->flush();
     }
 
     public function getDependencies()
     {
         return [
-            ShowContentFixtures::class
+            ShowContentFixtures::class,
+            TarifsFixtures::class
         ];
     }
 }

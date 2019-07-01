@@ -19,9 +19,7 @@ class ShowType extends AbstractType
         $builder
             ->add('titleFr')
             ->add('titleEn')
-            ->add('contentFr', CKEditorType::class, array(
-                    'config_name' => 'my_config',
-                ))
+            ->add('contentFr', CKEditorType::class)
             ->add('contentEn', CKEditorType::class)
             ->add('countryFr')
             ->add('countryEn')

@@ -144,6 +144,10 @@ class Content
      */
     private $director;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $note;
 
     public function __construct()
     {
@@ -523,6 +527,26 @@ class Content
     public function setDirector(?string $director): self
     {
         $this->director = $director;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param mixed $note
+     *
+     * @return self
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
 
         return $this;
     }
