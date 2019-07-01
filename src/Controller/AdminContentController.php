@@ -62,7 +62,7 @@ class AdminContentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
 
             // a passer dans un service
-            $show->setContentType(Content::CONTENT_TYPE['show']);
+            $show->setContentType(Content::CONTENT_TYPE['festival']);
             if (is_null($show->getTitleEn())
                 ||  is_null($show->getContentEn())
                 ||  is_null($show->getCountryEn()) ) {
@@ -88,6 +88,31 @@ class AdminContentController extends AbstractController
         return $this->render('admin/content/new.html.twig', [
             'content' => $show,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/newTest", name="new_test", methods={"GET","POST"})
+     */
+    public function newTest(Request $request): Response
+    {
+        $show = new Content();
+        $form = $this->createForm(ShowType::class, $show);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $value = $_GET['type'];
+            $show = new Content();
+            $show->setContentType(Content::CONTENT_TYPE[$value]);
+            $form = $this->createForm(ShowType::class, $show);
+            $form->handleRequest($request);
+            
+            $entityManager = $this->getDoctrine()->getManager();
+//            return $this->redirectToRoute('show_edit',['content'=>$content]);
+        }
+        
+        return $this->render('admin/content/newTest.html.twig', [
+            'form' =>  $form->createView()
         ]);
     }
    
