@@ -34,6 +34,9 @@ class Session
      */
     private $content;
 
+
+    private $mapadoLink;
+
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Tarif", mappedBy="session")
      */
@@ -95,7 +98,7 @@ class Session
         return $this->tarifs;
     }
 
-    public function addTarif(Tarif $tarif): self
+    public function addTarif(Object $tarif): self
     {
         if (!$this->tarifs->contains($tarif)) {
             $this->tarifs[] = $tarif;
@@ -105,12 +108,32 @@ class Session
         return $this;
     }
 
-    public function removeTarif(Tarif $tarif): self
+    public function removeTarif(Object $tarif): self
     {
         if ($this->tarifs->contains($tarif)) {
             $this->tarifs->removeElement($tarif);
             $tarif->removeSession($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMapadoLink()
+    {
+        return $this->mapadoLink;
+    }
+
+    /**
+     * @param mixed $mapadoLink
+     *
+     * @return self
+     */
+    public function setMapadoLink($mapadoLink)
+    {
+        $this->mapadoLink = $mapadoLink;
 
         return $this;
     }

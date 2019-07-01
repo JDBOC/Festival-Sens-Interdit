@@ -19,9 +19,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Knp\Component\Pager\PaginatorInterface;
 
 /**
- * @Route("/admin/show")
+ * @Route("/admin/content")
  */
-class ShowController extends AbstractController
+class AdminContentController extends AbstractController
 {
     /**
      * @Route("/", name="show_index", methods={"GET"})
@@ -40,7 +40,7 @@ class ShowController extends AbstractController
             $request->query->getInt('page', 1),
             10
         );
-        return $this->render('admin/show/index.html.twig', [
+        return $this->render('admin/content/index.html.twig', [
             'contents' => $shows,
             'form' =>  $form->createView()
         ]);
@@ -85,7 +85,7 @@ class ShowController extends AbstractController
             return $this->redirectToRoute('show_index');
         }
 
-        return $this->render('admin/show/new.html.twig', [
+        return $this->render('admin/content/new.html.twig', [
             'content' => $show,
             'form' => $form->createView(),
         ]);
@@ -107,7 +107,7 @@ class ShowController extends AbstractController
             ]);
         }
 
-        return $this->render('admin/show/edit.html.twig', [
+        return $this->render('admin/content/edit.html.twig', [
             'content' => $content,
             'form' => $form->createView(),
         ]);
@@ -146,7 +146,7 @@ class ShowController extends AbstractController
             10
         );
 
-        return $this->render('admin/show/echoByContent.html.twig', [
+        return $this->render('admin/content/echoByContent.html.twig', [
                 'contents' => $contents,
                 'echoContent' => $content,
                 'form' =>  $form->createView()
