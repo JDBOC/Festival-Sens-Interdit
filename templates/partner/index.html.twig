@@ -22,10 +22,10 @@
                 </td>
                 <td>{{ partner.name }}</td>
                 <td>
-                    <img src="/upload/file/
-                    {% if partner.logo.mediaFileName is defined %}
-                        {{ partner.logo.mediaFileName }}
-                    {% endif %}" alt="logo"/> 
+                   {% if partner.logo.mediaFileName is defined %}
+                    <img class="img-fluid" src="/upload/file/{{ partner.logo.mediaFileName }}
+                    " alt="logo"/> 
+                   {% endif %}
                 </td>
                 <td>{{ partner.link }}</td>
 

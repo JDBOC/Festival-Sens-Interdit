@@ -43,16 +43,15 @@ class PartnerController extends AbstractController
     public function new(Request $request): Response
     {
         $partner = new Partner();
-        $siFile = new SiFile();
-        $siFile->setType(2);
-
-        $partner->setLogo($siFile);
 
         $PartnerForm = $this->createForm(PartnerType::class, $partner);
         $PartnerForm->handleRequest($request);
 
         if ($PartnerForm->isSubmitted() && $PartnerForm->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $logo = $partner->getLogo();
+            $logo->setType(SiFile::FILE_TYPE['logo']);
+
             $entityManager->persist($partner);
             $entityManager->flush();
 

@@ -31,7 +31,7 @@ class PartnerFixtures extends Fixture implements DependentFixtureInterface
                 $partner->setName($faker->name)
                         ->setLink($faker->url)
                         ->setType($j)
-                        ->setLogo($this->getReference('partnerLogoFixture1'));
+                        ->setLogo($this->getReference('partnerLogoFixture'.($j*$i)));
 
                 $manager->persist($partner);
             }

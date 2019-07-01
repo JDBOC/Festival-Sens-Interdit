@@ -41,7 +41,7 @@ class Partner
     private $name;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", mappedBy="partnerLogo", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
      */
     private $logo;
 
