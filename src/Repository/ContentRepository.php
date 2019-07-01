@@ -24,9 +24,10 @@ class ContentRepository extends ServiceEntityRepository
     {
         $query =  $this->createQueryBuilder('c')
             ->andWhere('c.contentType = :val')
-            ->setParameter('val', Content::CONTENT_TYPE['show'])
+            ->setParameter('val', Content::CONTENT_TYPE['festival'])
             ->orderBy('c.id', 'DESC')
             ->setMaxResults(10);
+            
         if ($search->getIsComplete()) {
             $query = $query->andWhere('c.complete != :complete');
             $query->setParameter('complete', $search->getIsComplete());

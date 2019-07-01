@@ -6,6 +6,7 @@ namespace App\DataFixtures;
 use App\Entity\Tarif;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 class TarifsFixtures extends Fixture
 {
@@ -22,8 +23,8 @@ class TarifsFixtures extends Fixture
                 ->setReduce(21)
                 ->setJeune(13)
                 ->setRSA(9);
-
         $manager->persist($tarif);
+        $this->addReference('tarif1', $tarif);
 
         $tarif2 = new Tarif();
         $tarif2  ->setGrille(2)
@@ -35,6 +36,7 @@ class TarifsFixtures extends Fixture
             ->setRSA(9);
 
         $manager->persist($tarif2);
+        $this->addReference('tarif2', $tarif2);
 
         $manager->flush();
     }

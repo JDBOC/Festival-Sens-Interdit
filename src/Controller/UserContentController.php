@@ -11,16 +11,16 @@ use App\Repository\ContentRepository;
 use App\Repository\SifileRepository;
 use App\Form\ContactType;
 
-class UserShowController extends AbstractController
+class UserContentController extends AbstractController
 {
     /**
-     * @Route("/show/{id}", name="show_show", methods={"GET"})
+     * @Route("/show/{id}", name="show_content", methods={"GET"})
      */
-    public function show(Content $content): Response
+    public function showContent(Content $content): Response
     {
         $contactForm = $this->createForm(ContactType::class);
 
-        return $this->render('userContent/show.html.twig', [
+        return $this->render('userContent/contentShow.html.twig', [
             'content'   => $content,
             'contactForm' => $contactForm->createView()
         ]);

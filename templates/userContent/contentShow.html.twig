@@ -15,9 +15,13 @@
     <div class="container px-0 py-2 d-flex justify-content-center m-auto">
         <div class="mt-4 row no-gutters">
             <div class="col-md-6 px-2 pr-md-3"> {# Bloc du contenu enrichi #}
-                {{content.contentFr|raw}}
                 <div> {# Bloc des infos pratiques #}
                     {% include '/userContent/_contentInfospratiques.html.twig' %}
+                </div>
+                {{content.contentFr|raw}}
+                <div class="row">
+                    <div class="col-6 "> <img  class="img-fluid" src="/upload/file/credit1.png" alt=""></div>
+                    <div class="col-6 "> <img class="img-fluid" src="/upload/file/credit2.png" alt=""></div>
                 </div>
             </div>
 
@@ -29,7 +33,7 @@
                 {% include '/userContent/_contentPartnerLogos.html.twig' %}
             </div>
 
-            <div class="col-12">{# Bloc des représentations #}
+            <div class="col-12 mt-2">{# Bloc des représentations #}
                 {% include '/userContent/_contentRepesentations.html.twig' %}
             </div>
 
