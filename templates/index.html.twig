@@ -1,6 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+{% endblock %}
 {% block body %}
+	{% for category, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ category }}">
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endfor %}
 	    <div class="container">
 	    	<h1>{% trans into language %} Bonjour{% endtrans %}</h1>
 	    	<div class="row">

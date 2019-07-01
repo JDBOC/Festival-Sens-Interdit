@@ -3,9 +3,10 @@
 {% block title %}New Content{% endblock %}
 
 {% block body %}
-    <h1>Créer un nouveau spectacle</h1>
+    <div class="title px-4 pb-4 pt-2"><h1>Créer un nouveau spectacle</h1></div>
 
+<div class="container">
+    <a href="{{ path('show_index') }}"><button class="btn btn-primary m-2">	Retourner aux spectacles</button>	</a>
     {{ include('admin/show/_form.html.twig') }}
-
-    <a href="{{ path('show_index') }}">back to list</a>
+</div>
 {% endblock %}
