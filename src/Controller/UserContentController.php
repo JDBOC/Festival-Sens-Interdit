@@ -6,10 +6,8 @@ use App\Repository\TarifRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Content;
-use App\Entity\SiFile;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\ContentRepository;
-use App\Repository\SifileRepository;
 use App\Form\ContactType;
 
 class UserContentController extends AbstractController
