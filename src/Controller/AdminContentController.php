@@ -108,18 +108,17 @@ class AdminContentController extends AbstractController
             $show->setComplete(false);
             $show->setTranslated(false);
             $show->setArchive(false);
-            if ($show->getContentType() == 'festival') {
-                $form = $this->createForm(ShowType::class, $show);
-                return $this->redirectToRoute('show_edit', ['content'=>$show , 'id'=>$show->getId()]);
-            } elseif ($show->getContentType() == 'actualités') {
-                $form = $this->createForm(NewsType::class, $show);
-                return $this->redirectToRoute('news_edit', ['content'=>$show , 'id'=>$show->getId()]);
-            }
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($show);
+            $entityManager->flush();
+
+            $form = $this->createForm(ShowType::class, $show);
+            return $this->redirectToRoute('show_edit', ['content'=>$show , 'id'=>$show->getId()]);
         }
-        
-        return $this->render('admin/content/newTest.html.twig', [
-            'form' =>  $form->createView()
-        ]);
+
+            return $this->render('admin/content/newTest.html.twig', [
+                'form' =>  $form->createView()
+            ]);
     }
    
     /**
