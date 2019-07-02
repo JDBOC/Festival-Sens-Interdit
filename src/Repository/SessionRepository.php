@@ -20,21 +20,24 @@ class SessionRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Session[] Returns an array of Session objects
+    //  * @return Session[] Returns an array of Session for the given date
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findContentByDate($date)
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
+        $date2 = clone $date;
+        $date2 = $date2->add(new \DateInterval('P1D'));
+        return  $this->createQueryBuilder('s')
+            ->andWhere('s.sessionDate > :val1')
+            ->setParameter('val1', $date)
+            ->andWhere('s.sessionDate < :val2')
+            ->setParameter('val2', $date2)
             ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Session

@@ -4,6 +4,15 @@
             {{ encore_entry_link_tags('app') }}
 {% endblock %}
 {% block body %}
+
+<div class="row">
+	{%for date in period %}
+		<div class="col-4 col-md-1">
+		<a href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}">	{{date|date('D d')}}</a>
+		</div>
+	{% endfor %}
+</div>
+
 	{% for category, messages in app.flashes %}
 		{% for message in messages %}
 			<div class="alert alert-{{ category }}">
@@ -14,22 +23,15 @@
 	    <div class="container">
 	    	<h1>{% trans into language %} Bonjour{% endtrans %}</h1>
 	    	<div class="row">
-	    {% for session in sessions %}
+	    {% for content in contents %}
 	    	<div class=" col-12 col-md-3">
 		    	<div class="card-spectacle">
 		    		<div>
+		    			<a href="/show/{{content.id}}"><img src="upload/file/{{content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
 
-		    			<a href="/show/{{session.content.id}}"><img src="upload/file/{{session.content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
-						<p class="textDate">{{ session.sessionDate|date("d/m/Y") }}</p>
-						<p class="textLieu">{{ session.content.countryFr }}</p>
 					</div>
 				  	<div class="card-body pt-0">
-					  	<h3 class="mb-0 text-muted">{{ session.content.titleFr }}</h3>
-					  	<p class="mb-0 fontHome"><b>Cie Lagartijas ---</b></p>
-					  	<p class="mb-0 fontHome"><b>{{ session.location }}</b></p>
-					    <p class="mb-0 fontHome">{{ session.sessionDate|date("d/m/Y h") }}H</p>
-					    <p class="mb-0 fontHome">DURÉE / 2H ---</p>
-					    <p class="mb-0 fontHome">TARIF 1 ---</p>
+					  	<h3 class="mb-0 text-muted">{{	content.titleFr }}</h3>
 				    </div>
 				</div>
 			</div>
