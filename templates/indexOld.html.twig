@@ -11,8 +11,28 @@
 			</div>
 		{% endfor %}
 	{% endfor %}
-	    <div class="container">
-	    	<h1>{% trans into language %} Bonjour{% endtrans %}</h1>
+
+
+
+        <div class="container">
+          <div class="row">
+            {%for date in period %}
+              <div class="col-4 col-md-1 px-1 pb-1">
+                <div class="planning {% if date|date('d-m-Y') == sessionDate|date('d-m-Y') %} activeDate
+                    {% endif %}">
+
+                  <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> {{date|date('D d')}}</a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          <div class="boutonHorsScene">
+            <button type="button" class="btn btn-outline-danger btn-block"><a class="horsSceneLien" href="">Hors Scène</a></button>
+          </div>
+        </div>
+
+        <br>
+        <div class="container">
 	    	<div class="row">
 	    {% for session in sessions %}
 	    	<div class=" col-12 col-md-3">
