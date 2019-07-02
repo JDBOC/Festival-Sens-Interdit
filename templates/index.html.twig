@@ -5,13 +5,7 @@
 {% endblock %}
 {% block body %}
 
-<div class="row">
-	{%for date in period %}
-		<div class="col-4 col-md-1">
-		<a href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}">	{{date|date('D d')}}</a>
-		</div>
-	{% endfor %}
-</div>
+
 
 	{% for category, messages in app.flashes %}
 		{% for message in messages %}
@@ -20,8 +14,7 @@
 			</div>
 		{% endfor %}
 	{% endfor %}
-	    <div class="container">
-	    	<h1>{% trans into language %} Bonjour{% endtrans %}</h1>
+
 
         <div class="container-fluid">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -47,6 +40,15 @@
           </a>
         </div>
         </div>
+
+        <div class="row">
+          {%for date in period %}
+            <div class="col-4 col-md-1">
+              <a href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}">	{{date|date('D d')}}</a>
+            </div>
+          {% endfor %}
+        </div>
+        <br>
 
 	    	<div class="row">
 	    {% for content in contents %}
