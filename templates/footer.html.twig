@@ -52,52 +52,71 @@
     </footer>
 
     <!-- Modal Contact Form -->
-    <div class="modal fade" id="ContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade bd-example-modal-lg" id="ContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Contacter Sens Interdit</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
+                <div class="row">
+                    <div class="container">
+
+                        <div class="col-6">
+                            <h4>Nous contacter</h4>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Contacter Sens Interdit</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form method="post" action="{{ path('contact') }}">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="nom">Nom</label>
+                                            <input type="text" class="form-control" id="nom" name="nom" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="prenom">Prénom</label>
+                                            <input type="text" class="form-control" id="prenom" name="prenom" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="email">Mail</label><br>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="title">Titre du mail</label><br>
+                                            <input type="text" class="form-control" id="title" name="title" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="message">Votre message</label><br>
+                                            <textarea class="form-control" id="message" name="message" rows="10" required></textarea>
+                                            <input type="hidden" name="url" value="{{ path(app.request.attributes.get('_route'),
+                                                app.request.attributes.get('_route_params')) }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-
-
-                <div class="modal-body">
-                    <form method="post" action="{{ path('contact') }}">
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="nom">Nom</label>
-                                <input type="text" class="form-control" id="nom" name="nom" required>
-                            </div>
-                            <div class="col-6">
-                                <label for="prenom">Prénom</label>
-                                <input type="text" class="form-control" id="prenom" name="prenom" required>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-12">
-                                <label for="email">Mail</label><br>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-12">
-                                <label for="message">Votre message</label><br>
-                                <textarea class="form-control" id="message" name="message" rows="10" required></textarea>
-                                <input type="hidden" name="url" value="{{ path(app.request.attributes.get('_route'),
-                                    app.request.attributes.get('_route_params')) }}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary">Envoyer</button>
-                    </div>
-                </form>
 
             </div>
         </div>
