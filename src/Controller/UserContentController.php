@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\TarifRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Content;
@@ -16,13 +17,14 @@ class UserContentController extends AbstractController
     /**
      * @Route("/show/{id}", name="show_content", methods={"GET"})
      */
-    public function showContent(Content $content): Response
+    public function showContent(Content $content, TarifRepository $tarifRepository): Response
     {
         $contactForm = $this->createForm(ContactType::class);
 
         return $this->render('userContent/contentShow.html.twig', [
             'content'   => $content,
-            'contactForm' => $contactForm->createView()
+            'contactForm' => $contactForm->createView(),
+            'tarifs' => $tarifRepository->findAll()
         ]);
     }
 
