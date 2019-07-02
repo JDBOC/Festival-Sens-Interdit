@@ -1,17 +1,25 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Partenaires{% endblock %}
+
 {% block body %}
     <h1 class="text-center p-2">Nos Partenaires</h1>
-
     <div class="container p-2">
-        {% for partner in partners %}
+
+        {% for type in constant('App\\Entity\\Partner::TYPE') %}
+
             <div class="row">
-                <h3 class="text-center"> {{ partner.typeName }} </h3>
+                <h3 class="text-center">{{ type }}</h3>
             </div>
-            {% for partner in partner.typeName %}
+            {% for partner in partners %}
+
+            {% if partner.type == type %}
+            
                 <div class=" row d-flex">
                     <div class="col-md-2">
-                        {{ partner.logo }}
+                        {% if partner.logo.mediaFileName is defined %}
+                            <img class="img-fluid" src="/upload/file/{{ partner.logo.mediaFileName }}" alt="logo"/> 
+                        {% endif %}
                     </div>
                     <div class="col-md-2">
                         {{ partner.name }}
@@ -20,10 +28,11 @@
                         {{ partner.link }}
                     </div>
                 </div>
+                <div class="row">
+                    <hr align="center" width="70%">
+                </div>
+                {% endif %}
             {% endfor %}
-            <div class="row">
-                <hr align="center" width="70%">
-            </div>
         {% endfor %}
     </div>
 

@@ -106,9 +106,12 @@ class PartnerController extends AbstractController
      * @Route("partenaires", name="user_partner")
      * @return Response
      */
-    public function userIndex():Response
+    public function userIndex(PartnerRepository $partnerRepository):Response
     {
-        $partner_type = $this->getDoctrine()->getRepository('App:Partner')->findAll();
+        $partner_type = $partnerRepository->findBy(
+            [],
+            ['type' => 'ASC']
+        );
 
         return $this->render(
             'partner.html.twig',

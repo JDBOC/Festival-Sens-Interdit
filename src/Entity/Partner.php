@@ -10,12 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Partner
 {
     const TYPE = [
-        'Partenaires Institutionnels'   => 1,
-        'Grand Partenaire'              => 2,
-        'Mécènes et Partenaires'        => 3,
-        'Partenaires et Médias'         => 4,
-        'Les Lieux Partenaires'         => 5,
-        'Autres Partenaires'            => 6
+        1   => 'Partenaires Institutionnels',
+        2   => 'Grand Partenaire',
+        3   => 'Mécènes et Partenaires',
+        4   => 'Partenaires et Médias',
+        5   => 'Les Lieux Partenaires',
+        6   => 'Autres Partenaires'
     ];
 
     /**
@@ -62,9 +62,9 @@ class Partner
         return $this;
     }
 
-    public function getType(): ?int
+    public function getType(): ?string
     {
-        return $this->type;
+        return self::TYPE[$this->type];
     }
 
     public function setType(?int $type): self
