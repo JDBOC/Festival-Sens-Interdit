@@ -7,6 +7,8 @@ use App\Entity\SiFile;
 use App\Form\ShowType;
 use App\Entity\ShowSearch;
 use App\Form\ShowSearchType;
+use App\Form\PreFormType;
+use App\Form\NewsType;
 use App\Entity\RelatedContentSearch;
 use App\Form\RelatedContentSearchType;
 use App\Repository\ContentRepository;
@@ -97,18 +99,22 @@ class AdminContentController extends AbstractController
     public function newTest(Request $request): Response
     {
         $show = new Content();
-        $form = $this->createForm(ShowType::class, $show);
+        $form = $this->createForm(PreFormType::class, $show);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            $value = $_GET['type'];
-            $show = new Content();
-            $show->setContentType(Content::CONTENT_TYPE[$value]);
-            $form = $this->createForm(ShowType::class, $show);
-            $form->handleRequest($request);
-            
-            $entityManager = $this->getDoctrine()->getManager();
-//            return $this->redirectToRoute('show_edit',['content'=>$content]);
+            $show->setTitleFr('placeholder title');
+            $show->setContentFr('placeholder content');
+            $show->setComplete(false);
+            $show->setTranslated(false);
+            $show->setArchive(false);
+            if ($show->getContentType() == 'festival') {
+                $form = $this->createForm(ShowType::class, $show);
+                return $this->redirectToRoute('show_edit', ['content'=>$show , 'id'=>$show->getId()]);
+            } elseif ($show->getContentType() == 'actualités') {
+                $form = $this->createForm(NewsType::class, $show);
+                return $this->redirectToRoute('news_edit', ['content'=>$show , 'id'=>$show->getId()]);
+            }
         }
         
         return $this->render('admin/content/newTest.html.twig', [
