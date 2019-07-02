@@ -1,13 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'adminBase.html.twig' %}
 
-{% block title %}Edition{% endblock %}
+{% block title %}Edit static{% endblock %}
 
 {% block body %}
+    <div class="title px-4 pb-4 pt-2"><h1>Editer la page statique: {{content.titleFr}}</h1></div>
+    <div class="container">
 
-    <h1>Edition</h1>
-<div class="col-md-3">
-    {{ include('content/_form.html.twig', {'button_label': 'Save'}) }}
-    <button type="button" class="btn btn-outline-primary"><a href="{{ path('content_index') }}">back to list</a></button>
-    {{ include('content/_delete_form.html.twig', {'button_label': 'Delete'}) }}
-</div>
-  {% endblock %}
+	    {{ include('content/_form.html.twig', {'button_label': 'Update'}) }}
+	    <h2>Upload des pictures</h2>
+	    {{ include('content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}
+	  </div>
+
+{% endblock %}

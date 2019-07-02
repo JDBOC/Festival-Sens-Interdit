@@ -1,37 +1,28 @@
-{% extends 'content/base.html.twig' %}
+{% extends 'adminBase.html.twig' %}
 
-{% block title %}Content index{% endblock %}
+{% block title %}Edition pages statiques{% endblock %}
 
 {% block body %}
 
-    <h1>Content index</h1>
+    <h1>Liste des pages statiques éditables</h1>
 
     <table class="table">
         <thead>
             <tr>
-
+                <th>id</th>
                 <th>Titre</th>
-                <th>Contenu</th>
-              <th>Titre Anglais</th>
-              <th>Contenu anglais</th>
-              <th>complete</th>
-              <th>traduit</th>
+                <th>#</th>
+
             </tr>
         </thead>
         <tbody>
         {% for content in contents %}
             <tr>
+                <td>{{content.id}}</td>
                 <td>{{ content.titleFr }}</td>
-                <td>{{ content.contentFr }}</td>
-              <td>{{ content.titleEn }}</td>
-              <td>{{ content.contentEn }}</td>
-              <td>{{ content.complete }}</td>
-              <td>{{ content.translated }}</td>
                 <td>
                   <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-secondary"><a href="{{ path('content_show', {'id': content.id}) }}">show</a></button>
-                    <button type="button" class="btn btn-secondary"> <a href="{{ path('content_edit', {'id': content.id}) }}">edit</a></button>
-                    <button type="button" class="btn btn-secondary"> <a href="{{ path('content_new') }}">Create new</a></button>
+                    <button type="button" class="btn btn-secondary"> <a href="{{ path('static_edit', {'id': content.id}) }}">edit</a></button>
                   </div>
                 </td>
             </tr>

@@ -18,17 +18,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class PageContentController extends AbstractController
 {
     /**
-     * @Route("/", name="content_index", methods={"GET"})
+     * @Route("/", name="static_index", methods={"GET"})
      */
     public function index(ContentRepository $contentRepository): Response
     {
         return $this->render('content/index.html.twig', [
-        'contents' => $contentRepository->findBy(['ContentType' => Content::CONTENT_TYPE['static_page']]),
+        'contents' => $contentRepository->findBy(['contentType' => Content::CONTENT_TYPE['static_page']]),
           ]);
     }
  
     /**
-     * @Route("/{id}/edit", name="content_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="static_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Content $content): Response
     {
@@ -36,7 +36,7 @@ class PageContentController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-            return $this->redirectToRoute('content_index', [
+            return $this->redirectToRoute('static_index', [
             'id' => $content->getId(),
             'content' => $content
             ]);
