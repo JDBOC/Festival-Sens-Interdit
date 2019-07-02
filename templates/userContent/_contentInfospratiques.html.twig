@@ -1,0 +1,13 @@
+{% if content.duree is defined %}
+	<div class="bg-dark p-2 text-light">
+	<p>Durée : <strong>{{content.duree}}</strong></p>
+{% endif %}
+
+{% if content.lieu is defined %}
+	<p>Lieu : <strong>{{content.lieu}}</strong></p>
+{% endif %}
+
+{% if content.note is defined %}
+		<p>A noter	 : <strong>{{content.note|raw}}</strong></p>
+		</div>
+{% endif %}

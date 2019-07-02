@@ -5,6 +5,7 @@
 use App\Entity\Content;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Form\InSiFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,9 +19,7 @@ class ShowType extends AbstractType
         $builder
             ->add('titleFr')
             ->add('titleEn')
-            ->add('contentFr', CKEditorType::class, array(
-                    'config_name' => 'my_config',
-                ))
+            ->add('contentFr', CKEditorType::class)
             ->add('contentEn', CKEditorType::class)
             ->add('countryFr')
             ->add('countryEn')
@@ -29,6 +28,7 @@ class ShowType extends AbstractType
                 'choice_label' => 'name',
             ])
             ->add('cover', InSiFileType::class)
+            ->add('thumbnail', InSiFileType::class)
             ;
     }
 

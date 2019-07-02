@@ -23,10 +23,9 @@ class PageContentController extends AbstractController
     public function index(ContentRepository $contentRepository): Response
     {
         return $this->render('content/index.html.twig', [
-            'contents' => $contentRepository->findAll(),
-        ]);
+        'contents' => $contentRepository->findAll(),
+          ]);
     }
-
     /**
      * @Route("/new", name="content_new", methods={"GET","POST"})
      */
@@ -35,31 +34,27 @@ class PageContentController extends AbstractController
         $content = new Content();
         $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+            $content->setContentType(Content::CONTENT_TYPE['static_page']);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($content);
             $entityManager->flush();
-
             return $this->redirectToRoute('content_index');
         }
-
         return $this->render('content/new.html.twig', [
-            'content' => $content,
-            'form' => $form->createView(),
+        'content' => $content,
+        'form' => $form->createView(),
         ]);
     }
-
     /**
      * @Route("/{id}", name="content_show", methods={"GET"})
      */
     public function show(Content $content): Response
     {
         return $this->render('content/show.html.twig', [
-            'content' => $content,
+        'content' => $content,
         ]);
     }
-
     /**
      * @Route("/{id}/edit", name="content_edit", methods={"GET","POST"})
      */
@@ -67,20 +62,17 @@ class PageContentController extends AbstractController
     {
         $form = $this->createForm(ContentType::class, $content);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('content_index', [
-                'id' => $content->getId(),
-                'content' => $content
+            'id' => $content->getId(),
+            'content' => $content
             ]);
         }
-
-        return $this->render('content/edit.html.twig', [
-            'content' => $content,
-            'form' => $form->createView(),
-        ]);
+          return $this->render('content/edit.html.twig', [
+        'content' => $content,
+        'form' => $form->createView(),
+          ]);
     }
 
     /**
@@ -93,14 +85,12 @@ class PageContentController extends AbstractController
             $entityManager->remove($content);
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('content_index');
     }
-
     /**
      * Upload a picture and create the related SiFile object with the type in parameter
      *
-     * @Route("/{id}/upload/{type}", name="content_delete", methods={"POST"})
+     * @Route("/{id}/upload/{type}", name="content_upload", methods={"POST"})
      * @param Request $request request object
      * @param Content $content related content
      * @param string $type upload type, could be contentPicture or logo
@@ -114,24 +104,20 @@ class PageContentController extends AbstractController
         $response = new Response();
         $result = [];
         $file = $request->files->get('file');
-
         try {
             $siFile = $contentService->uploadPicture($content, $file, $type);
             $result = [
-                'id' => $siFile->getId(),
-                'mediaFileName' => $siFile->getMediaFileName(),
-                'type' => $siFile->getType()
+            'id' => $siFile->getId(),
+            'mediaFileName' => $siFile->getMediaFileName(),
+            'type' => $siFile->getType()
             ];
         } catch (\Exception $e) {
             $result['error'] = true;
         }
-
-        $response->setContent(json_encode($result));
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+          $response->setContent(json_encode($result));
+          $response->headers->set('Content-Type', 'application/json');
+         return $response;
     }
-
     /**
      * Delete the picture in parameter from the content in parameter.
      * @Route("/{id}/picture/{siFile}")
