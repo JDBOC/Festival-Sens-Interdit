@@ -35,7 +35,7 @@
         const data = new FormData();
         data.append('file', file);
         data.append('type', type);
-        fetch('/content/' + contentId + '/upload/' + type, { method: 'POST', body: data })
+        fetch('/admin/static/' + contentId + '/upload/' + type, { method: 'POST', body: data })
             .then(response => response.json())
             .then(result => {
                 if (result.error) {
@@ -59,7 +59,7 @@
 
     function deletePicture(elt, contentId) {
         let fileId = elt.parentElement.id.split('-')[1];
-        fetch('/content/' + contentId + '/picture/' + fileId)
+        fetch('/admin/static/' + contentId + '/picture/' + fileId)
           .then(response => {
             let eltToDelete = document.getElementById('file-' + fileId) ;
             eltToDelete.remove();

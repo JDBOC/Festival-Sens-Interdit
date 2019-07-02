@@ -111,6 +111,11 @@ body{
   text-align: center;
   width: auto;
 }
+
+.planning:active
+{
+color: red;
+}
 .txtplanning
 {
   color: black;
@@ -143,6 +148,12 @@ body{
   width: auto;
   alignment: center;
   color: black;
+}
+
+.activeDate{
+  background-color: #ed1c24;
+  padding-bottom: 10px;
+  color: red;
 }
 
 .horsSceneLien
