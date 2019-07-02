@@ -54,14 +54,16 @@ class AdminContentController extends AbstractController
     public function new(Request $request): Response
     {
         $show = new Content();
-        $cover = new SiFile();
-        $cover->setType(SiFile::FILE_TYPE['cover']);
-        $show->setCover($cover);
         $form = $this->createForm(ShowType::class, $show);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $cover = $show->getCover();
+            $cover->setType(SiFile::FILE_TYPE['cover']);
+
+            $thumbnail = $show->getThumbnail();
+            $thumbnail->setType(SiFile::FILE_TYPE['thumbnail']);
 
             // a passer dans un service
             $show->setContentType(Content::CONTENT_TYPE['festival']);
@@ -80,8 +82,9 @@ class AdminContentController extends AbstractController
                 $show->setComplete(true);
             }
             // fin de " a passer dans un service"
-                      
+                     
             $entityManager->persist($show);
+
             $entityManager->flush();
 
             return $this->redirectToRoute('show_index');
