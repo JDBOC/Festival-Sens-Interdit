@@ -23,9 +23,12 @@ class ArchivesController extends AbstractController
     /**
      * @Route("/{id}", name="list_content_edition_archive")
      */
-    public function contentEditionArchives(ContentRepository $contentRepository, EditionRepository $editionRepository)
-    {
-        $edition = $editionRepository->findAll();
+    public function contentEditionArchives(
+        ContentRepository $contentRepository,
+        EditionRepository $editionRepository,
+        $id
+    ) {
+        $edition = $editionRepository->findOneBy(['id' => $id]);
         $content = $contentRepository->findby(['edition' => $edition]);
         return $this->render(
             'UserTemplate/editionArchives.html.twig',
