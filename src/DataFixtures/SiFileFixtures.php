@@ -10,6 +10,14 @@ class SiFileFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        $blackCover = new SiFile;
+        $blackCover ->setName('blackCover')
+                    ->setType(Sifile::FILE_TYPE['cover'])
+                    ->setMediaFileName('blackCover.jpg')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($blackCover);
+        $this->addReference('blackCover', $blackCover);
+
         $banosCover = new SiFile;
         $banosCover ->setName('banosCover')
                     ->setType(Sifile::FILE_TYPE['cover'])
