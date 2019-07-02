@@ -54,22 +54,6 @@ C&rsquo;est autour de la figure populaire mexicaine qu&rsquo;est le champion du 
         $this->addReference('showBanos', $show);
         $manager->persist($show);
 
-        $faker = Faker\Factory::create();
-        for ($i=0; $i <5; $i++) { // for each created show
-            for ($j=0; $j < rand(0, 3); $j++) { // generate 0 to 3 session for each show
-                $content = new Content();
-                $content->setTitleFr($faker->word)
-                    ->setEdition($this->getReference('edition'))
-                    ->setCountryFr($faker->word)
-                    ->setContentFr($faker->text($maxNbChars = 200))
-                    ->setContentType(Content::CONTENT_TYPE['festival'])
-                    ->setComplete(false)
-                    ->setTranslated(false);
-
-                $manager->persist($content);
-            }
-        }
-
         $show2 = new Content;
         $show2   ->setTitleFr('Ma petite Antartique')
                 ->setEdition($this->getReference('edition'))

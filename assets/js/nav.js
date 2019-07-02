@@ -20,4 +20,10 @@ $(document).ready(function() {
     $('[data-toggle="popover"]').popover();
 });
 
+$(document).ready(function(){
+    $(".owl-carousel").owlCarousel();
+});
+
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+
+
