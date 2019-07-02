@@ -9,6 +9,8 @@ class ShowSearch
 
     private $exactEdition;
 
+    private $contentType;
+
     /**
      * @return mixed
      */
@@ -65,6 +67,26 @@ class ShowSearch
     public function setExactEdition($exactEdition)
     {
         $this->exactEdition = $exactEdition;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of contentType
+     */
+    public function getContentType()
+    {
+        return $this->contentType;
+    }
+
+    /**
+     * Set the value of contentType
+     *
+     * @return  self
+     */
+    public function setContentType($contentType)
+    {
+        $this->contentType = $contentType;
 
         return $this;
     }

@@ -130,8 +130,25 @@ class AdminContentController extends AbstractController
     public function edit(Request $request, Content $content): Response
     {
         $form = $this->createForm(ShowType::class, $content);
+        switch ($content->getContentType()) {
+            case 1: //festival
+                $form = $this->createForm(ShowType::class, $content);
+                break;
+            
+            case 2: //actualité
+                $form = $this->createForm(NewsType::class, $content);
+                break;
+            
+            case 4: //hors scène
+                $form = $this->createForm(ShowType::class, $content);
+                break;
+            
+            case 5: //tournée
+                $form = $this->createForm(ShowType::class, $content);
+                break;
+        }
+        
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 

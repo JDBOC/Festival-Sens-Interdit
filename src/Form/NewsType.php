@@ -18,6 +18,12 @@ class NewsType extends AbstractType
         $builder
             ->add('title_fr', TextType::class, ["label"=>"Titre"])
             ->add('content_fr', CKEditorType::class, ["label"=>"Contenu"])
+            ->add('country_fr')
+            ->add('title_en')
+            ->add('content_en', CKEditorType::class)
+            ->add('country_en')
+            ->add('complete', null, ['data'=>false])
+            ->add('translated', null, ['data'=>false])
         ;
     }
 
