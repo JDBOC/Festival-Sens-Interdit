@@ -1,0 +1,44 @@
+{{ form_start(formTarif) }}
+
+    <div class="row">
+        <div class="col-3">
+            {{ form_label(formTarif.grille, 'Tarif') }}
+            {{ form_widget(formTarif.grille) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formTarif.PassFestival, 'Pass festival') }}
+            {{ form_widget(formTarif.PassFestival) }}
+        </div>
+        <div class="col-4">
+            {{ form_label(formTarif.PassJeune, 'Pass festival -28 ans') }}
+            {{ form_widget(formTarif.PassJeune) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formTarif.pleinTarif, 'Plein tarif') }}
+            {{ form_widget(formTarif.pleinTarif) }}
+        </div>
+        <div class="col-4">
+            {{ form_label(formTarif.reduce, 'Tarif réduit') }}
+            {{ form_widget(formTarif.reduce) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formTarif.jeune, 'Jeunes -28 ans') }}
+            {{ form_widget(formTarif.jeune) }}
+        </div>
+        <div class="col-4">
+            {{ form_label(formTarif.RSA, 'Bénéficiaire du RSA') }}
+            {{ form_widget(formTarif.RSA) }}
+        </div>
+    </div>
+
+    <button class="btn btn-success btn-sm">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(formTarif) }}

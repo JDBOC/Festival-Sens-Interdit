@@ -1,0 +1,16 @@
+<div class="card bg-dark text-white border-0 ">
+        {# titre #}
+        <h1 class=" d-md-none d-inline pl-2">{{content.titleFr}}</h1> 
+        {# banniere #}
+        <img src="/upload/file/{{ content.cover.mediaFileName }}" class="imgTop img-fluid" alt="show photo" class="card-img" alt="...">
+        <div class="card-img-overlay text-center">
+            {# titre #}
+            <h1 class="card-title pt-4 mt-4 d-none d-md-block"> {{ content.titleFr }} </h1>
+            {% if content.author is not null %}
+                <h4 class="card-text p-0 mt-1 d-none d-md-block"> De : {{ content.author }} </h4>
+            {% endif %}
+            {% if content.author is not null %}
+                <h4 class="card-text p-0 mt-1 d-none d-md-block"> Mise en scène : {{ content.director }} </h4>
+            {% endif %}
+        </div>
+    </div>

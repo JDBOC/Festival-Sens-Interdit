@@ -1,31 +1,86 @@
+
 <div class="navBg">
 	<div class="container-fluid">
  		<form method="post">
-			<button name="language" value="fr" class="btn btn-default">
-				<img class="m-0" src="/drapFr.jpg" width="30" style="border:solid; border-width: thin;"	 />
-			</button>
-			<button name="language" value="en_EN" class="btn btn-default">
-				<img src="/drapEn.jpg" width="30" style="border:solid; border-width: thin;" />
-			</button>
+ 			<div class="row">
+				<button name="language" value="fr" class="btn btn-default">
+					<img class="m-0" src="/drapFr.jpg" width="30" style="border:solid; border-width: thin;"/>
+				</button>
+				<button name="language" value="en_EN" class="btn btn-default">
+					<img src="/drapEn.jpg" width="30" style="border:solid; border-width: thin;" />
+				</button>
+			</div>
 		</form>
 	</div>
-	 <div class="container">
+{# ------------------------------------- #}
+	 <div class="container mb-0">
 	 	<div class="row">
 			<img class="col-12 col-md-3" src="/logoNavbar.png" width="328" height="129" alt="">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark col-8 offset-1">
-				<button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-					<a class="nav-item nav-link" href="#">Programmation</a>
-					<a class="nav-item nav-link" href="#">Billetterie</a>
-					<a class="nav-item nav-link" href="#">Sens Interdits</a>
-					<a class="nav-item nav-link" href="#">Partenaires</a>
-					<a class="nav-item nav-link" href="#">Archives</a>
-					<a class="nav-item nav-link" href="#">Soutenez-nous</a>
-					<a class="nav-item nav-link" href="#" data-toggle="modal" data-target="#ContactModal">Contact</a>
-				</div>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark col-md-9 mb-2">
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			    <ul class="navbar-nav mr-auto">
+			      <li>
+			      	<div class="dropdown">
+					  	<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sens Interdits</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					    	<a class="dropdown-item" href="#">Le festival</a>
+					    	<a class="dropdown-item" href="#">Les spectacles en tournée</a>
+					    	<a class="dropdown-item" href="#">Les partenaires</a>
+					    	<a class="dropdown-item" href="#">L'équipe</a>
+						</div>
+					</div>
+			      </li>
+			      <li>
+			      	<div class="dropdown">
+					  	<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Avec les publics</button>
+					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					    	<a class="dropdown-item" href="#">Ecole éphémère </a>
+					    	<a class="dropdown-item" href="#">Hors Scéne</a>
+					    	<a class="dropdown-item" href="#">Action de médiation</a>
+						</div>
+					</div>
+			      </li>
+			      <li>
+					<div class="dropdown">
+					  	<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informations pratiques	</button>
+					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					    	<a class="dropdown-item" href="#">Le chapiteau</a>
+					    	<a class="dropdown-item" href="#">Lieux et accès</a>
+					    	<a class="dropdown-item" href="#">Tarifs et réservation</a>
+					    	<a class="dropdown-item" href="#">Contact</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="dropdown">
+					  	<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Médias</button>
+					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					    	<a class="dropdown-item" href="#">Gallerie</a>
+					    	<a class="dropdown-item" href="#">Web radio</a>
+					    	<a class="dropdown-item" href="#">Presse</a>
+						</div>
+					</div>
+				</li>
+					<div class="mt-2">
+						<a class="text-light ml-2" href="{{ path('archives') }}">Archives</a>
+					</div>
+					<div class="mt-2">
+						<a class="text-light ml-2" href="#">Nous soutenir</a>
+					</div>
+			    </ul>
+
+			  </div>
 			</nav>
-	    </div>
+		</div>
+	<div class="offset-md-4">
+		<button class="mb-2 mr-md-4" style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
+		<h5 class="text-light mt-1 mx-1"><i class="fas fa-theater-masks"></i>Billetterie</h5></button>
+		<button class="offset-1" style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
+		<h5 class="text-light mt-1"><i class="fas fa-book-open"></i>Programme</h5></button>
+	</div>
 	</div>
 </div>

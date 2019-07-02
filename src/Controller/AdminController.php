@@ -14,10 +14,10 @@ class AdminController extends AbstractController
      * Main Page for the admin site
      * @param  ContentRepository $contentRepository
      * @return Response
-     * @Route("/admin", name="admin")
+     * @Route("/admin", name="admin_index")
      */
     public function index(ContentRepository $contentRepository):Response
     {
-        return $this->render('adminBase.html.twig');
+        return $this->render('admin/indexAdmin.html.twig');
     }
 }
