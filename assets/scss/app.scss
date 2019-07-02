@@ -56,3 +56,49 @@ body{
     text-align: center;
 }
 /* END OF stylesheet.css of templates/user_show/index.html.twig // by Catherine */
+
+/* Tableau des tarifs */
+
+.tarifTable {
+	.modalTarif {
+		margin: 10px;
+	}
+
+	table {
+		border-collapse: collapse;
+		border-spacing : 0;
+	}
+
+	th, td {
+		width: 200px;
+		height: 30px;
+		border: 1px black solid;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.noBorder {
+		border: none;
+	}
+
+	.TarifTitle {
+		color: white;
+		background-color: #9b0000;
+	}
+
+	.tarifName {
+		background-color: #b4b4b4;
+	}
+}
+
+
+/* End Tableau des tarifs */
+
+
+
+
+
+
+
+
+
+

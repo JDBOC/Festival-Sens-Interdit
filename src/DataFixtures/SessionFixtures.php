@@ -16,7 +16,6 @@ class SessionFixtures extends Fixture implements DependentFixtureInterface
                 ->setLocation('Théâtre de la Croix Rousse')
                 ->setMapadoLink('https://sensinterdits.mapado.com/event/lyon/banos-roma')
                 ->setContent($this->getReference('showBanos'))
-                ->addTarif($this->getReference('tarif1'))
                 ->addTarif($this->getReference('tarif2'));
         $manager->persist($session);
 

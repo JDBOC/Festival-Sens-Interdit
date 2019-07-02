@@ -62,7 +62,7 @@ class AdminContentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
 
             // a passer dans un service
-            $show->setContentType(Content::CONTENT_TYPE['show']);
+            $show->setContentType(Content::CONTENT_TYPE['festival']);
             if (is_null($show->getTitleEn())
                 ||  is_null($show->getContentEn())
                 ||  is_null($show->getCountryEn()) ) {
