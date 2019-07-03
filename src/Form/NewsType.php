@@ -20,17 +20,14 @@ class NewsType extends AbstractType
     {
         $builder
             ->add('title_fr', TextType::class, ["label"=>"Titre"])
-            ->add('content_fr', CKEditorType::class, ["label"=>"Contenu"])
-            ->add('country_fr')
-            ->add('title_en')
-            ->add('content_en', CKEditorType::class)
-            ->add('country_en')
+            ->add('content_fr', CKEditorType::class, ["label"=>"Contenu", 'required' => false])
+            ->add('country_fr', TextType::class, ["label"=>"Pays", 'required' => false])
+            ->add('title_en', TextType::class, ["label"=>"Titre anglais", 'required' => false])
+            ->add('content_en', CKEditorType::class, ["label"=>"Contenu anglais", 'required' => false])
+            ->add('country_en', TextType::class, ["label"=>"Pays", 'required' => false])
             ->add('cover', InSiFileType::class)
             ->add('thumbnail', InSiFileType::class)
-            ->add('complete', null, ['data'=>false])
-            ->add('translated', null, ['data'=>false])
             ->add('edition', EntityType::Class, ['class' => Edition::Class,    'choice_label' => 'name',])
-            ->add('sessions', EntityType::Class, ['class' => Session::Class,    'choice_label' => 'location',])
         ;
     }
 

@@ -48,66 +48,20 @@ class AdminContentController extends AbstractController
         ]);
     }
 
+   
+
     /**
      * @Route("/new", name="show_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
         $show = new Content();
-        $form = $this->createForm(ShowType::class, $show);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $cover = $show->getCover();
-            $cover->setType(SiFile::FILE_TYPE['cover']);
-
-            $thumbnail = $show->getThumbnail();
-            $thumbnail->setType(SiFile::FILE_TYPE['thumbnail']);
-
-            // a passer dans un service
-            $show->setContentType(Content::CONTENT_TYPE['festival']);
-            if (is_null($show->getTitleEn())
-                ||  is_null($show->getContentEn())
-                ||  is_null($show->getCountryEn()) ) {
-                $show->setTranslated(false);
-            } else {
-                $show->setTranslated(true);
-            }
-            if (is_null($show->getCountryFr())
-                ||  is_null($show->getContentFr())
-                ||  empty($show->getSessions())) {
-                $show->setComplete(false);
-            } else {
-                $show->setComplete(true);
-            }
-            // fin de " a passer dans un service"
-                     
-            $entityManager->persist($show);
-
-            $entityManager->flush();
-
-            return $this->redirectToRoute('show_index');
-        }
-
-        return $this->render('admin/content/new.html.twig', [
-            'content' => $show,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/newTest", name="new_test", methods={"GET","POST"})
-     */
-    public function newTest(Request $request): Response
-    {
-        $show = new Content();
         $cover = new SiFile();
-        $cover->setType(1);
+        $cover->setType(SiFile::FILE_TYPE['cover']);
         $cover->setMediaFileName("something");
         $cover->setUpdatedAt(new \DateTime("now"));
         $thumbnail = new SiFile();
-        $thumbnail->setType(5);
+        $thumbnail->setType(SiFile::FILE_TYPE['thumbnail']);
         $thumbnail->setMediaFileName("something");
         $thumbnail->setUpdatedAt(new \DateTime("now"));
 
@@ -115,8 +69,8 @@ class AdminContentController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $show->setTitleFr('placeholder title');
-            $show->setContentFr('placeholder content');
+            $show->setTitleFr('titre');
+            $show->setContentFr('contenu');
             $show->setComplete(false);
             $show->setTranslated(false);
             $show->setArchive(false);
@@ -130,7 +84,7 @@ class AdminContentController extends AbstractController
             return $this->redirectToRoute('show_edit', ['content'=>$show , 'id'=>$show->getId()]);
         }
 
-            return $this->render('admin/content/newTest.html.twig', [
+            return $this->render('admin/content/new.html.twig', [
                 'form' =>  $form->createView()
             ]);
     }
