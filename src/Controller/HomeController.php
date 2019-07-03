@@ -83,12 +83,11 @@ class HomeController extends AbstractController
 
     /**
      * index des spectacles hors scene  en festival
-     * @Route("/festival/hors-scene", name="index_hors_scene")
+     * @Route("/hors-scene", name="index_hors_scene")
      */
     public function indexHorsScene(
         ContentRepository $contentRepo,
-        EditionRepository $EditionRepo,
-        string $sessionDate
+        EditionRepository $EditionRepo
     ): Response {
         $language = $_SESSIONS['language'] = 'fr';
 
@@ -107,7 +106,7 @@ class HomeController extends AbstractController
         $dateRange[] = $currentEdition->getDateFin();
 
         return $this->render(
-            'indexFestival.html.twig',
+            'indexHorsScene.html.twig',
             [
                         'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['hors scène']]),
                         'language' => $language,
