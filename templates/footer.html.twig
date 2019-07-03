@@ -2,7 +2,7 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-xl-4 col-md-3 col-sm-1">
+                <div class="col-xl-4 col-md-6 col-sm-12">
                     <h5>NOUS CONTACTER</h5>
                     <!-- Button Modal Contact -->
                     <a href="#" data-toggle="modal" data-target="#ContactModal">
@@ -11,14 +11,14 @@
                     <span class="adress">14 rue Basse Combalot | 69007 Lyon FRANCE</span>
                 </div>
 
-                <div class="col-xl-4 col-md-3 col-sm-1">
+                <div class="col-xl-4 col-md-6 col-sm-12">
                     <h5>INFOS PRATIQUES</h5>
                     <a href="{{ path('index') }}">Accueil</a><br>
                     <a href="#">Sens Interdits</a><br>
                     <a href="#">Mentions légales</a>
                 </div>
 
-                <div class="col-xl-4 col-md-3 col-sm-1">
+                <div class="col-xl-4 col-md-6 col-sm-12">
                     <h5>NEWSLETTER</h5>
             <!-- Begin Mailchimp Signup Form -->
                     <form action="https://wix.us10.list-manage.com/subscribe/post?u=bb60c0f0d68fe87e07e39b3ce&amp;id=8874bc7e3e"
@@ -52,59 +52,97 @@
     </footer>
 
     <!-- Modal Contact Form -->
-    <div class="modal fade" id="ContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade bd-example-modal-lg" id="ContactModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Contacter Sens Interdit</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-xl-6" style="padding: 20px;">
+                            <h4 style="color: #d50000;">Association Sens Interdits</h4>
+
+                            <span>14 rue Basse Combalot</span><br>
+                            <span>69007 Lyon FRANCE</span>
+                            <p>Mail : festivalsensinterdits@gmail.com</p>
+                            <p>Tel : 09 67 02 00 85</p>
+
+
+                            <div>
+                                <h4 style="color: #d50000;">Newsletter</h4>
+                                <!-- Begin Mailchimp Signup Form -->
+                                <form action="https://wix.us10.list-manage.com/subscribe/post?u=bb60c0f0d68fe87e07e39b3ce&amp;id=8874bc7e3e"
+                                      method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+                                      class="validate" target="_blank" novalidate>
+                                    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Votre adresse mail" required>
+
+                                    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                    <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                                        <input type="text" name="b_bb60c0f0d68fe87e07e39b3ce_8874bc7e3e" tabindex="-1" value="">
+                                    </div>
+                                    <div class="clear">
+                                        <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                                    </div>
+                                </form>
+                                <!-- End Mailchimp Signup Form -->
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel" style="color: #d50000;">Nous écrire par mail</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+
+                            <div class="modal-body">
+                                <form method="post" action="{{ path('contact') }}">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="nom">Nom</label>
+                                            <input type="text" class="form-control" id="nom" name="nom" required>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="prenom">Prénom</label>
+                                            <input type="text" class="form-control" id="prenom" name="prenom" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="email">Mail</label><br>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="title">Titre du mail</label><br>
+                                            <input type="text" class="form-control" id="title" name="title" required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label for="message">Votre message</label><br>
+                                            <textarea class="form-control" id="message" name="message" rows="10" required></textarea>
+                                            <input type="hidden" name="url" value="{{ path(app.request.attributes.get('_route'),
+                                                app.request.attributes.get('_route_params')) }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-
-
-                <div class="modal-body">
-                    <form method="post" action="{{ path('contact') }}">
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="nom">Nom</label>
-                                <input type="text" class="form-control" id="nom" name="nom" required>
-                            </div>
-                            <div class="col-6">
-                                <label for="prenom">Prénom</label>
-                                <input type="text" class="form-control" id="prenom" name="prenom" required>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-12">
-                                <label for="email">Mail</label><br>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-12">
-                                <label for="title">Titre du mail</label><br>
-                                <input type="text" class="form-control" id="title" name="title" required>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-12">
-                                <label for="message">Votre message</label><br>
-                                <textarea class="form-control" id="message" name="message" rows="10" required></textarea>
-                                <input type="hidden" name="url" value="{{ path(app.request.attributes.get('_route'),
-                                    app.request.attributes.get('_route_params')) }}">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary">Envoyer</button>
-                    </div>
-                </form>
 
             </div>
         </div>
