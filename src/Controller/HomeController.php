@@ -35,7 +35,7 @@ class HomeController extends AbstractController
         $dateRange[] = $currentEdition->getDateFin();
 
         return $this->render(
-            'index.html.twig',
+            'indexFestival.html.twig',
             [
                         'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['festival']]),
                         'language' => $language,
@@ -71,7 +71,7 @@ class HomeController extends AbstractController
         $dateRange[] = $currentEdition->getDateFin();
 
         return $this->render(
-            'indexOld.html.twig',
+            'indexFestivalByDate.html.twig',
             [
                         'sessions' => $sessionRepo->findContentByDate($sessionDate),
                         'sessionDate' => $sessionDate,
