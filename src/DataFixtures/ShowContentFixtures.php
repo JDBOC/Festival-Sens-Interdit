@@ -33,6 +33,41 @@ C&rsquo;est autour de la figure populaire mexicaine qu&rsquo;est le champion du 
    C&rsquo;est du basculement dans le conflit dont t&eacute;moignent les cinq interpr&egrave;tes au plateau, 
    confront&eacute;s comme sur un ring &agrave; une histoire r&eacute;cente douloureuse qu&rsquo;ils doivent porter 
    ensemble jusque dans le pr&eacute;sent.</p>
+   
+   <p>Textes : eduardo Bernal, Jorge A. vargas, Gabriel Contreras.<br>
+   Extraits du texte de Prometeo de Rodrigo Garcia.<br>
+   Mise en scène : Jorge A. Vargas<br>
+   Création/conception : Eduardo Bernal et Jorge A. Vargas<br>
+   <br>
+   <br>
+   Avec <br>
+   Zuadd atal, Vianey Salinas, Gilberto Barraza, Alicia Laguna, Malcolm Vargas<br>
+   Musique <br>
+   Jesus Cueva (saxophone et chant), Francesco Quartucci (accordéon), Gregorio Rodriguez Orozco (guitare)<br>
+   Scénographie et création lumières<br>
+   Jesus Hernandez<br>
+   Création sonore et musique originale<br>
+   Jorge Verdin<br>
+   Images et vidéo<br>
+   Marina Espana, Malcolm Vargas<br>
+   Assistante mise en scène<br>
+   Fabiola Mata<br>
+   Production exécutive<br>
+   Alicia Laguna<br>
+   Coordination de production (Mexique)<br>
+   Patricia Diaz<br>
+   Assistant de production<br>
+   Moisés Flores
+   </p>
+   <p>Production : <br>
+   Teatro Linea de Sombra<br>
+   Production déléguée France :<br>
+   Association Sens Interdits<br>
+   Avec le soutien du Fondo Nacional por la Cultura y las Artes(FONCA)<br>
+   Jorge A. Vargas est membre du Sistema Nacional de Creadores de Arte<br>
+   Avec le soutien de l\'Office National de Diffusion Artistique < br><br >
+    Co - Réalisation Festival Sens Interdits et Théâtre de la Croix - Rousse </p >
+    \')
                     ')
                 ->setContentType(Content::CONTENT_TYPE['festival'])
                 ->setComplete(false)
