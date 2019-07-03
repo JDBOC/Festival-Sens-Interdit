@@ -14,9 +14,9 @@ class HomeController extends AbstractController
 {
     /**
      * index des spectacles en festival
-     * @Route("/", name="index")
+     * @Route("/", name="index_festival")
      */
-    public function index(ContentRepository $contentRepo, EditionRepository $EditionRepo): Response
+    public function indexFestival(ContentRepository $contentRepo, EditionRepository $EditionRepo): Response
     {
         $language = $_SESSIONS['language'] = 'fr';
 
@@ -45,7 +45,7 @@ class HomeController extends AbstractController
     }
     
     /**
-     * index des sessions pour une date donnée
+     * index des sessions pour une date donnée en festival
      * @Route("/festival/{sessionDate}", name="index_by_date")
      */
     public function indexByDate(
