@@ -1,0 +1,24 @@
+{{ form_start(form) }}
+  <a href="{{ path('show_index') }}"><button class="btn btn-primary m-2">	Retourner à l'index</button>	</a>
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-fr" role="tabpanel" aria-labelledby="nav-fr-tab">
+  	<div class="row">
+  	<div class="col-6"> {{ form_row(form.title_fr) }}</div>
+  	<div class="col-6"> {{ form_row(form.country_fr) }} </div>
+  	</div>
+  	{{ form_row(form.content_fr) }}
+  </div>
+  <div class="tab-pane fade" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
+  	<div class="row">
+  	<div class="col-6"> {{ form_row(form.title_en) }}</div>
+  	<div class="col-6"> {{ form_row(form.country_en) }} </div>
+  	</div>
+		
+  	{{ form_row(form.content_en) }}
+  </div>
+</div>
+  	<div class="col-6"> {{ form_row(form.cover) }}</div>
+  	<div class="col-6"> {{ form_row(form.thumbnail) }} </div>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

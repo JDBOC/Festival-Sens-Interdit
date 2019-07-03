@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Content;
 use Symfony\Component\HttpFoundation\Response;
 use App\Repository\ContentRepository;
+use App\Repository\SiFileRepository;
 use App\Form\ContactType;
 
 class UserContentController extends AbstractController
@@ -29,12 +30,13 @@ class UserContentController extends AbstractController
     /**
      * @Route("/news", name="news_index")
      */
-    public function newsShow(ContentRepository $contentRepository)
+    public function newsShow(ContentRepository $contentRepository, SiFileRepository $pictures)
     {
 
 
         return $this->render('news/index.html.twig', [
             'contents' => $contentRepository->findby(['contentType' => 2]),
+            'pictures' => $pictures->findAll()
         ]);
     }
 

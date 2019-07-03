@@ -1,0 +1,40 @@
+{{ form_start(form) }}
+<nav class="row align-items-center">
+
+  <a class="col-3" href="{{ path('content_en_echo',{'id':content.id}) }}"> <button class="btn btn-primary m-2"> Sélectionner les "En Echo" </button> </a>
+  <a class="col-3" href="{{ path('show_index') }}"><button class="btn btn-primary m-2">	Retourner à l'index</button>	</a>
+	  
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-fr" role="tab" aria-controls="nav-home" aria-selected="true">FR</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-en" role="tab" aria-controls="nav-profile" aria-selected="false">EN</a>
+  </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-fr" role="tabpanel" aria-labelledby="nav-fr-tab">
+  	<div class="row">
+  	<div class="col-6"> {{ form_row(form.titleFr) }}</div>
+  	<div class="col-6"> {{ form_row(form.countryFr) }} </div>
+  	</div>
+  	{{ form_row(form.contentFr) }}
+  </div>
+  <div class="tab-pane fade" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
+  	<div class="row">
+  	<div class="col-6"> {{ form_row(form.titleEn) }}</div>
+  	<div class="col-6"> {{ form_row(form.countryEn) }} </div>
+  	</div>
+  	{{ form_row(form.contentEn) }}
+  </div>
+</div>
+  	<div class="row justify-content-center">
+      	<div class="col-6">{{ form_row(form.thumbnail) }}</div>
+        <div class="col-6">{{ form_row(form.cover) }}</div>
+      	<div class="col-6">{{ form_row(form.duree) }}</div>
+        <div class="col-6">{{ form_row(form.lieu) }}</div>
+        <div class="col-6">{{ form_row(form.date) }}</div>
+        <div class="col-6">{{ form_row(form.author) }}</div>
+        <div class="col-6">{{ form_row(form.director) }}</div>
+        <div class="col-6">{{ form_row(form.note) }}</div>
+    </div>
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
