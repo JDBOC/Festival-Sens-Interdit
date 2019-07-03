@@ -74,6 +74,7 @@ class HomeController extends AbstractController
             'indexOld.html.twig',
             [
                         'sessions' => $sessionRepo->findContentByDate($sessionDate),
+                        'sessionDate' => $sessionDate,
                         'language' => $language,
                         'period'=>$dateRange
             ]

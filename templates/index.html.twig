@@ -5,13 +5,7 @@
 {% endblock %}
 {% block body %}
 
-<div class="row">
-	{%for date in period %}
-		<div class="col-4 col-md-1">
-		<a href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}">	{{date|date('D d')}}</a>
-		</div>
-	{% endfor %}
-</div>
+
 
 	{% for category, messages in app.flashes %}
 		{% for message in messages %}
@@ -20,17 +14,16 @@
 			</div>
 		{% endfor %}
 	{% endfor %}
-	    <div class="container">
-	    	<h1>{% trans into language %} Bonjour{% endtrans %}</h1>
 
-        <div class="container-fluid">
+<div class="container-fluid">
+        <div class="carousel">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img src="https://i.ytimg.com/vi/tFF1A3v2_Tk/maxresdefault.jpg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" id="video" width="1280" height="720" src="https://www.youtube.com/embed/x_Oo1mwC6tU" allowfullscreen frameborder="0" scrolling="no" onload="resizeIframe(this)">
+              <iframe class="embed-responsive-item" id="video" src="https://www.youtube.com/embed/x_Oo1mwC6tU" allowfullscreen frameborder="0" scrolling="no" onload="resizeIframe(this)">
               </iframe>
             </div>
             <div class="carousel-item">
@@ -47,9 +40,29 @@
           </a>
         </div>
         </div>
+</div>
 
 
 
+  <div class="container">
+        <div class="row">
+          {%for date in period %}
+            <div class="col-4 col-md-1 px-1 pb-1">
+              <div class="planning">
+              <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> {{date|date('D d')}}</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+    <div class="boutonHorsScene">
+    <button type="button" class="btn btn-outline-danger btn-block"><a class="horsSceneLien" href="">Hors Scène</a></button>
+</div>
+  </div>
+
+
+  <br>
+  <br>
+    <div class="container-fluid">
 	    	<div class="row">
 	    {% for content in contents %}
 	    	<div class=" col-12 col-md-3">
@@ -57,7 +70,8 @@
 		    		<div>
 		    			<a href="/show/{{content.id}}"><img src="upload/file/{{content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
 
-					</div>
+
+            </div>
 				  	<div class="card-body pt-0">
 					  	<h3 class="mb-0 text-muted">{{	content.titleFr }}</h3>
 				    </div>
@@ -66,4 +80,5 @@
 		{% endfor %}
 			</div>
 		</div>
+
 {% endblock %}

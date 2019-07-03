@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        {% for content in contents %}
+            <div class="col-xl-3 col-md-5 col-sm-1" style="margin: 10px;">
+                <div class="card" style="width: 18rem;">
+                    <a href="{{ path('show_content', {'id': content.id}) }}">
+                        <img class="card-img-top" src="/upload/file/{{ content.thumbnail.mediaFileName }}" alt="Card image cap">
+                    </a>
+                    <div class="card-body">
+                        <h5 style="color: black; text-align: center;">{{ content.titleFr }}</h5>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

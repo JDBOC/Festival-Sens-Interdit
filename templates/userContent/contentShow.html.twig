@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}{% endblock %}
-
 {% block body %}
 <div class="container-fluid p-0">
                 {# Image de couverture avec le titre #}
@@ -19,15 +18,13 @@
                     {% include '/userContent/_contentInfospratiques.html.twig' %}
                 </div>
                 {{content.contentFr|raw}}
-                <div class="row">
-                    <div class="col-6 "> <img  class="img-fluid" src="/upload/file/credit1.png" alt=""></div>
-                    <div class="col-6 "> <img class="img-fluid" src="/upload/file/credit2.png" alt=""></div>
-                </div>
             </div>
-
+            
+            {% if content.pictures is defined%}
             <div class="col-md-5"> {# Bloc des illustrations du contenu #}             
                 {% include '/userContent/_contentPictures.html.twig' %}
             </div>
+        {% endif %}
             
             <div class="col-md-1 "> {# Bloc des logos partenaires du spectacle #}             
                 {% include '/userContent/_contentPartnerLogos.html.twig' %}
