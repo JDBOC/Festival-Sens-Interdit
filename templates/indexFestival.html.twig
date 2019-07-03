@@ -15,7 +15,8 @@
 		{% endfor %}
 	{% endfor %}
 
-<div class="container-fluid">
+<div class="container-fluid carousel">
+  <div class="container">
         <div class="carousel">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
@@ -40,6 +41,7 @@
           </a>
         </div>
         </div>
+        </div>
 </div>
 
 
@@ -50,15 +52,12 @@
             <div class="col-4 col-md-1 px-1 pb-1">
               <div class="planning">
               <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> {{date|date('D d')}}</a>
-
               </div>
             </div>
           {% endfor %}
         </div>
-
-
     <div class="boutonHorsScene">
-    <button type="button" class="btn btn-outline-danger btn-block"><a class="horsSceneLien" href="">Hors Scène</a></button>
+    <button type="button" class="btn btn-outline-danger btn-block"><a class="horsSceneLien" href="{{path('index_hors_scene')}}">Hors Scène</a></button>
 </div>
   </div>
 
@@ -71,7 +70,7 @@
 	    	<div class=" col-12 col-md-3">
 		    	<div class="card-spectacle">
 		    		<div>
-		    			<a href="/show/{{content.id}}"><img src="upload/file/{{content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
+		    			<a href="/show/{{content.id}}"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
 
 
             </div>

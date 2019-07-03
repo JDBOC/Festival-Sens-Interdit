@@ -12,31 +12,39 @@
 			</div>
 		</form>
 	</div>
+  <br />
 {# ------------------------------------- #}
-	 <div class="container mb-0">
+	 <div class="container-fluid">
 	 	<div class="row">
-			<img class="col-12 col-md-3" src="/logoNavbar.png" width="328" height="129" alt="">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark col-md-9 mb-2">
+<div class="col-sd-4 logo">
+      <a href="{{ path('index_festival') }}">
+      <img class="ml-md-5" src="/logoNavbar.png" alt="logo">
+    </a>
+    </div>
+      <div class="col-md-6 pl-md-5 ml-md-5">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			    <span class="navbar-toggler-icon"></span>
 			  </button>
 
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			    <ul class="navbar-nav mr-auto">
-			      <li>
+
+			      <li class="liNav liNav1">
 			      	<div class="dropdown">
-					  	<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sens Interdits</button>
+					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sens Interdits</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					    	<a class="dropdown-item" href="#">Le festival</a>
-					    	<a class="dropdown-item" href="#">Les spectacles en tournée</a>
+					    	<a class="dropdown-item" href="{{ path('index_tournee') }}">Les spectacles en tournée</a>
 					    	<a class="dropdown-item" href="#">Les partenaires</a>
 					    	<a class="dropdown-item" href="#">L'équipe</a>
 						</div>
 					</div>
 			      </li>
-			      <li>
+			      <li class="liNav">
 			      	<div class="dropdown">
-					  	<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Avec les publics</button>
+					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Avec les publics</button>
 					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					    	<a class="dropdown-item" href="#">Ecole éphémère </a>
 					    	<a class="dropdown-item" href="#">Hors Scéne</a>
@@ -44,20 +52,20 @@
 						</div>
 					</div>
 			      </li>
-			      <li>
+			      <li class="liNav">
 					<div class="dropdown">
-					  	<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informations pratiques	</button>
+					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informations pratiques	</button>
 					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					    	<a class="dropdown-item" href="#">Le chapiteau</a>
 					    	<a class="dropdown-item" href="#">Lieux et accès</a>
 					    	<a class="dropdown-item" href="#">Tarifs et réservation</a>
-					    	<a class="dropdown-item" href="#">Contact</a>
+					    	<a class="dropdown-item" href="#" data-toggle="modal" data-target="#ContactModal">Contact</a>
 						</div>
 					</div>
 				</li>
-				<li>
+				<li class="liNav">
 					<div class="dropdown">
-					  	<button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Médias</button>
+					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Médias</button>
 					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					    	<a class="dropdown-item" href="#">Gallerie</a>
 					    	<a class="dropdown-item" href="#">Web radio</a>
@@ -65,22 +73,35 @@
 						</div>
 					</div>
 				</li>
-					<div class="mt-2">
+					<div class="mt-2 archivesMenu">
 						<a class="text-light ml-2" href="{{ path('archives') }}">Archives</a>
 					</div>
-					<div class="mt-2">
+					<div class="mt-2 md-5">
 						<a class="text-light ml-2" href="#">Nous soutenir</a>
 					</div>
 			    </ul>
+        </div>
 
-			  </div>
 			</nav>
+      </div>
 		</div>
-	<div class="offset-md-4">
+	<div class="offset-md-5">
 		<button class="mb-2 mr-md-4" style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
-		<h5 class="text-light mt-1 mx-1"><i class="fas fa-theater-masks"></i>Billetterie</h5></button>
+      <a href="https://sensinterdits.mapado.com/">
+		    <h5 class="text-light mt-1 mx-1">
+          <i class="fas fa-theater-masks"></i>
+          Billetterie
+        </h5>
+      </a>
+    </button>
 		<button class="offset-1" style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
-		<h5 class="text-light mt-1"><i class="fas fa-book-open"></i>Programme</h5></button>
+      <a href="{{ path('index_festival') }}">
+		    <h5 class="text-light mt-1">
+          <i class="fas fa-book-open"></i>
+          Programme
+        </h5>
+      </a>
+    </button>
 	</div>
 	</div>
 </div>

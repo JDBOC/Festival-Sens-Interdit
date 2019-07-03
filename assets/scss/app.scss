@@ -111,6 +111,11 @@ body{
   text-align: center;
   width: auto;
 }
+
+.planning:active
+{
+color: red;
+}
 .txtplanning
 {
   color: black;
@@ -135,6 +140,8 @@ body{
 
 }
 
+
+
 .boutonHorsScene
 {
   margin-top: 1em;
@@ -145,11 +152,25 @@ body{
   color: black;
 }
 
+.activeDate{
+  background-color: #ed1c24;
+  padding-bottom: 10px;
+  color: red;
+}
+
 .horsSceneLien
 {
   color: black;
 }
 /*carousel*/
+
+.carousel
+{
+  background-color: black;
+  max-height: 80rem;
+ width: auto;
+}
+
 
 
 
