@@ -16,12 +16,12 @@
 {# ------------------------------------- #}
 	 <div class="container-fluid">
 	 	<div class="row">
-<div class="col-sd-4">
+<div class="col-sd-4 logo">
       <a href="{{ path('index') }}">
-      <img src="/logoNavbar.png" alt="logo">
+      <img class="ml-md-5" src="/logoNavbar.png" alt="logo">
     </a>
     </div>
-      <div class="col-md-6">
+      <div class="col-md-6 pl-md-5 ml-md-5">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
 			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,7 +31,7 @@
 			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 			    <ul class="navbar-nav mr-auto">
 
-			      <li>
+			      <li class="liNav liNav1">
 			      	<div class="dropdown">
 					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sens Interdits</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -42,7 +42,7 @@
 						</div>
 					</div>
 			      </li>
-			      <li>
+			      <li class="liNav">
 			      	<div class="dropdown">
 					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Avec les publics</button>
 					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -52,7 +52,7 @@
 						</div>
 					</div>
 			      </li>
-			      <li>
+			      <li class="liNav">
 					<div class="dropdown">
 					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informations pratiques	</button>
 					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -63,7 +63,7 @@
 						</div>
 					</div>
 				</li>
-				<li>
+				<li class="liNav">
 					<div class="dropdown">
 					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Médias</button>
 					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -73,10 +73,10 @@
 						</div>
 					</div>
 				</li>
-					<div class="mt-2 menuItem2">
+					<div class="mt-2 archivesMenu">
 						<a class="text-light ml-2" href="{{ path('archives') }}">Archives</a>
 					</div>
-					<div class="mt-2">
+					<div class="mt-2 md-5">
 						<a class="text-light ml-2" href="#">Nous soutenir</a>
 					</div>
 			    </ul>
