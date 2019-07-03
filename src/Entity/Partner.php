@@ -31,7 +31,7 @@ class Partner
     private $link;
 
     /**
-     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $type;
 
@@ -62,7 +62,12 @@ class Partner
         return $this;
     }
 
-    public function getType(): ?string
+    public function getType() :?int
+    {
+        return $this->type;
+    }
+
+    public function getTypeByIndex(): ?string
     {
         return self::TYPE[$this->type];
     }

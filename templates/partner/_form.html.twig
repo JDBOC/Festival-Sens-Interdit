@@ -1,6 +1,16 @@
-{{ form_start(PartnerForm) }}
-    {{ form_widget(PartnerForm) }}
+{{ form_start(partnerForm) }}
+
+    <div>
+        <label>Type</label>
+        <select name="type">
+            {% for type in constant('App\\Entity\\Partner::TYPE')%}
+                <option value="{{loop.index}}"> {{type}} </option>
+            {% endfor %}
+        </select>
+
+    </div>
+    {{ form_widget(partnerForm) }}
 
     <button class="btn btn-primary btn-sm m-1">{{ button_label|default('Save') }}</button>
 
-{{ form_end(PartnerForm) }}
+{{ form_end(partnerForm) }}

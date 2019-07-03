@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Manage Partner's entity
@@ -40,27 +41,29 @@ class PartnerController extends AbstractController
      * @Route("admin/partenaires/new", name="partner_new", methods={"GET","POST"})
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ObjectManager $manager): Response
     {
         $partner = new Partner();
 
-        $PartnerForm = $this->createForm(PartnerType::class, $partner);
-        $PartnerForm->handleRequest($request);
+        $partnerForm = $this->createForm(PartnerType::class, $partner);
+        $partnerForm->handleRequest($request);
 
-        if ($PartnerForm->isSubmitted() && $PartnerForm->isValid()) {
+        if ($partnerForm->isSubmitted() && $partnerForm->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $logo = $partner->getLogo();
             $logo->setType(SiFile::FILE_TYPE['logo']);
 
-            $entityManager->persist($partner);
-            $entityManager->flush();
+            $type = $request->request->get('type');
+            $partner->setType($type);
+            $manager->persist($partner);
+            $manager->flush();
 
             return $this->redirectToRoute('partner_index');
         }
 
         return $this->render('partner/new.html.twig', [
             'partner' => $partner,
-            'PartnerForm' => $PartnerForm->createView(),
+            'partnerForm' => $partnerForm->createView(),
         ]);
     }
 
@@ -70,10 +73,10 @@ class PartnerController extends AbstractController
      */
     public function edit(Request $request, Partner $partner): Response
     {
-        $PartnerForm = $this->createForm(PartnerType::class, $partner);
-        $PartnerForm->handleRequest($request);
+        $partnerForm = $this->createForm(PartnerType::class, $partner);
+        $partnerForm->handleRequest($request);
 
-        if ($PartnerForm->isSubmitted() && $PartnerForm->isValid()) {
+        if ($partnerForm->isSubmitted() && $partnerForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('partner_index', [
@@ -83,7 +86,7 @@ class PartnerController extends AbstractController
 
         return $this->render('partner/edit.html.twig', [
             'partner' => $partner,
-            'PartnerForm' => $PartnerForm->createView(),
+            'partnerForm' => $partnerForm->createView(),
         ]);
     }
 

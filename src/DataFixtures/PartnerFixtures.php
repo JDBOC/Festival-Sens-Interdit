@@ -22,21 +22,21 @@ class PartnerFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         // initialization of Faker in chosen language
-        $faker  =  Faker\Factory::create('fr_FR');
+        // $faker  =  Faker\Factory::create('fr_FR');
 
-        for ($j=1; $j < 7; $j++) {
-            // Create 5 partners in each type
-            for ($i=0; $i < 5; $i++) {
-                $partner = new Partner();
-                $partner->setName($faker->name)
-                        ->setLink($faker->url)
-                        ->setType($j)
-                        ->setLogo($this->getReference('partnerLogoFixture'.($j*$i)));
+        // for ($j=1; $j < 7; $j++) {
+        //     // Create 5 partners in each type
+        //     for ($i=0; $i < 5; $i++) {
+        //         $partner = new Partner();
+        //         $partner->setName($faker->name)
+        //                 ->setLink($faker->url)
+        //                 ->setType($j)
+        //                 ->setLogo($this->getReference('partnerLogoFixture'.($j*$i)));
 
-                $manager->persist($partner);
-            }
-        }
-        $manager->flush();
+        //         $manager->persist($partner);
+        //     }
+        // }
+        // $manager->flush();
     }
 
     /**

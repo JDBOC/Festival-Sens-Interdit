@@ -2,6 +2,10 @@
 
 {% block title %}Partenaires{% endblock %}
 
+{% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
 {% block body %}
     <h1 class="text-center p-2">Nos Partenaires</h1>
     <div class="container p-2">
@@ -22,10 +26,10 @@
                         {% endif %}
                     </div>
                     <div class="col-md-2">
-                        {{ partner.name }}
+                        {{ name }}
                     </div>
                     <div class="col-md-2">
-                        {{ partner.link }}
+                        {{ link }}
                     </div>
                 </div>
                 <div class="row">
