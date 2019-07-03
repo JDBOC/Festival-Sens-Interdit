@@ -100,7 +100,7 @@ class SiFileFixtures extends Fixture
         $exilConflitsThumbnail = new SiFile;
         $exilConflitsThumbnail ->setName('exilConflitsThumbnail')
                     ->setType(Sifile::FILE_TYPE['thumbnail'])
-                    ->setMediaFileName('exilConflitsThumbnail.jpg')
+                    ->setMediaFileName('exilConflitsThumbnail.png')
                     ->setUpdatedAt(new \DateTime('now'));
         $manager->persist($exilConflitsThumbnail);
         $this->addReference('exilConflitsThumbnail', $exilConflitsThumbnail);

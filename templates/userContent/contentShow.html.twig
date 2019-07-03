@@ -12,14 +12,16 @@
     </div>
     
     <div class="container px-0 py-2 d-flex justify-content-center m-auto">
-        <div class="mt-4 row no-gutters">
+        <div class="mt-4 row">
             <div class=" {# Bloc du contenu enrichi #}
-            {% if content.pictures|length > 0 %} col-md-6 pr-md-3
-            {% else %} col-md-11 {% endif %} px-2"> 
-                <div> {# Bloc des infos pratiques #}
+            {% if content.pictures|length > 0 %} col-md-6 
+            {% else %} col-md-11 {% endif %} col-12"> 
+                <div class="px-2"> {# Bloc des infos pratiques #}
                     {% include '/userContent/_contentInfospratiques.html.twig' %}
                 </div>
-                {{content.contentFr|raw}}
+                <div class="px-3">
+                    {{content.contentFr|raw}}
+                </div>
             </div>
             
             {% if content.pictures|length > 0 %}
