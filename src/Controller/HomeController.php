@@ -80,4 +80,64 @@ class HomeController extends AbstractController
             ]
         );
     }
+
+    /**
+     * index des spectacles hors scene  en festival
+     * @Route("/festival/hors-scene", name="index_hors_scene")
+     */
+    public function indexHorsScene(
+        ContentRepository $contentRepo,
+        EditionRepository $EditionRepo,
+        string $sessionDate
+    ): Response {
+        $language = $_SESSIONS['language'] = 'fr';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
+            if ($_POST['language'] == "en_EN") {
+                 $language =  $_POST['language'];
+            }
+        }
+
+        $currentEdition = $EditionRepo->findOneBy(['status'=>'en ligne']);
+        $interval = new \DateInterval('P1D');
+        $dateRangeTmp = new \DatePeriod($currentEdition->getDateDebut(), $interval, $currentEdition->getDateFin());
+        foreach ($dateRangeTmp as $date) {
+            $dateRange[] = $date;
+        }
+        $dateRange[] = $currentEdition->getDateFin();
+
+        return $this->render(
+            'indexFestival.html.twig',
+            [
+                        'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['hors scène']]),
+                        'language' => $language,
+                        'period'=>$dateRange
+            ]
+        );
+    }
+
+    /**
+     * index des spectacles en tournée
+     * @Route("/festival/hors-scene", name="index_tournee")
+     */
+    public function indexTournee(
+        ContentRepository $contentRepo,
+        string $sessionDate
+    ): Response {
+        $language = $_SESSIONS['language'] = 'fr';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
+            if ($_POST['language'] == "en_EN") {
+                 $language =  $_POST['language'];
+            }
+        }
+
+        return $this->render(
+            'indexFestival.html.twig',
+            [
+                'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['tournée']]),
+                'language' => $language,
+            ]
+        );
+    }
 }
