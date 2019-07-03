@@ -31,7 +31,8 @@ class PartnerRepository extends ServiceEntityRepository
      * [findPartner description]
      * @return Partner[]
      */
-    public function findPartner(){
+    public function findPartner()
+    {
         return $this->createQueryBuilder('p')
             ->orderBy('p.type', 'ASC')
             ->getQuery()
