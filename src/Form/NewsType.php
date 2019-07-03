@@ -4,12 +4,16 @@ namespace App\Form;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use App\Entity\Content;
+use App\Entity\Session;
+use App\Entity\Edition;
 use App\Form\InSiFileType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class NewsType extends AbstractType
 {
@@ -24,6 +28,8 @@ class NewsType extends AbstractType
             ->add('country_en')
             ->add('complete', null, ['data'=>false])
             ->add('translated', null, ['data'=>false])
+            ->add('edition', EntityType::Class, ['class' => Edition::Class,    'choice_label' => 'name',])
+            ->add('sessions', EntityType::Class, ['class' => Session::Class,    'choice_label' => 'location',])
         ;
     }
 

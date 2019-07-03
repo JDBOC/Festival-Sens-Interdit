@@ -23,5 +23,10 @@
   	{{ form_row(form.contentEn) }}
   </div>
 </div>
+      	{{ form_row(form.duree) }}
+        {{ form_row(form.lieu) }}
+        {{ form_row(form.date) }}
+        {{ form_row(form.author) }}
+        {{ form_row(form.director) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

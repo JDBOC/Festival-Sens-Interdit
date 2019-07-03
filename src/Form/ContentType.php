@@ -21,7 +21,7 @@ class ContentType extends AbstractType
             ->add('content_en', CKEditorType::class)
             ->add('complete', null, ['data'=>false])
             ->add('translated', null, ['data'=>false])
-            ->add('duree')
+
 
         ;
     }
