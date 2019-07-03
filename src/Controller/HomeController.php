@@ -18,13 +18,8 @@ class HomeController extends AbstractController
      */
     public function indexFestival(ContentRepository $contentRepo, EditionRepository $EditionRepo): Response
     {
-        $language = $_SESSIONS['language'] = 'fr';
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
-            if ($_POST['language'] == "en_EN") {
-                 $language =  $_POST['language'];
-            }
-        }
+        
+        
 
         $currentEdition = $EditionRepo->findOneBy(['status'=>'en ligne']);
         $interval = new \DateInterval('P1D');
@@ -38,7 +33,6 @@ class HomeController extends AbstractController
             'indexFestival.html.twig',
             [
                         'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['festival']]),
-                        'language' => $language,
                         'period'=>$dateRange
             ]
         );
@@ -138,5 +132,20 @@ class HomeController extends AbstractController
                 'language' => $language,
             ]
         );
+    }
+
+     /**
+     * index des spectacles en tournée
+     * @Route("/translate", name="translate")
+     */
+    public function translate()
+    {
+        $session = $this->get('session');
+        $session->set('session', array('language' => $_GET['value']));
+        $route = explode('::', $_GET['route']);
+        $route = $route[1];
+        $route = preg_replace("/(?<=\\w)(?=[A-Z])/", "_$1", $route);
+        $route = strtolower($route);
+        return $this->redirectToRoute($route);
     }
 }
