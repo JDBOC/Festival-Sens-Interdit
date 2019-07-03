@@ -1,8 +1,6 @@
 {% set session = app.session.get('session') %}
 {% set language = session['language'] %}
 
-{{dump(app.request.attributes.get("_controller"),
-                       app.request.attributes.get('_route_params'))}}
 <div class="navBg">
 	<div class="container-fluid">
  			<div class="row">

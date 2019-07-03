@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 
+{% set session = app.session.get('session') %}
+{% set language = session['language'] %}
+
 {% block title %}{% endblock %}
 {% block body %}
 <div class="container-fluid p-0">
@@ -20,7 +23,11 @@
                     {% include '/userContent/_contentInfospratiques.html.twig' %}
                 </div>
                 <div class="px-3">
+                {% if language == "en_EN" and content.contentEn is not null %}
+                    {{content.contentEn|raw}}
+                {% else %}
                     {{content.contentFr|raw}}
+                {% endif %}
                 </div>
             </div>
             
