@@ -46,7 +46,7 @@ class HomeController extends AbstractController
     
     /**
      * index des sessions pour une date donnée en festival
-     * @Route("/festival/{sessionDate}", name="index_by_date")
+     * @Route("/festival/byDate/{sessionDate}", name="index_by_date", methods={"GET","POST"})
      */
     public function indexByDate(
         ContentRepository $contentRepo,
