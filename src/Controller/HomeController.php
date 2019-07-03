@@ -14,9 +14,9 @@ class HomeController extends AbstractController
 {
     /**
      * index des spectacles en festival
-     * @Route("/", name="index")
+     * @Route("/", name="index_festival")
      */
-    public function index(ContentRepository $contentRepo, EditionRepository $EditionRepo): Response
+    public function indexFestival(ContentRepository $contentRepo, EditionRepository $EditionRepo): Response
     {
         $language = $_SESSIONS['language'] = 'fr';
 
@@ -35,7 +35,7 @@ class HomeController extends AbstractController
         $dateRange[] = $currentEdition->getDateFin();
 
         return $this->render(
-            'index.html.twig',
+            'indexFestival.html.twig',
             [
                         'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['festival']]),
                         'language' => $language,
@@ -45,7 +45,7 @@ class HomeController extends AbstractController
     }
     
     /**
-     * index des sessions pour une date donnée
+     * index des sessions pour une date donnée en festival
      * @Route("/festival/{sessionDate}", name="index_by_date")
      */
     public function indexByDate(
@@ -71,12 +71,71 @@ class HomeController extends AbstractController
         $dateRange[] = $currentEdition->getDateFin();
 
         return $this->render(
-            'indexOld.html.twig',
+            'indexFestivalByDate.html.twig',
             [
                         'sessions' => $sessionRepo->findContentByDate($sessionDate),
                         'sessionDate' => $sessionDate,
                         'language' => $language,
                         'period'=>$dateRange
+            ]
+        );
+    }
+
+    /**
+     * index des spectacles hors scene  en festival
+     * @Route("/hors-scene", name="index_hors_scene")
+     */
+    public function indexHorsScene(
+        ContentRepository $contentRepo,
+        EditionRepository $EditionRepo
+    ): Response {
+        $language = $_SESSIONS['language'] = 'fr';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
+            if ($_POST['language'] == "en_EN") {
+                 $language =  $_POST['language'];
+            }
+        }
+
+        $currentEdition = $EditionRepo->findOneBy(['status'=>'en ligne']);
+        $interval = new \DateInterval('P1D');
+        $dateRangeTmp = new \DatePeriod($currentEdition->getDateDebut(), $interval, $currentEdition->getDateFin());
+        foreach ($dateRangeTmp as $date) {
+            $dateRange[] = $date;
+        }
+        $dateRange[] = $currentEdition->getDateFin();
+
+        return $this->render(
+            'indexHorsScene.html.twig',
+            [
+                        'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['hors scène']]),
+                        'language' => $language,
+                        'period'=>$dateRange
+            ]
+        );
+    }
+
+    /**
+     * index des spectacles en tournée
+     * @Route("/festival/hors-scene", name="index_tournee")
+     */
+    public function indexTournee(
+        ContentRepository $contentRepo,
+        string $sessionDate
+    ): Response {
+        $language = $_SESSIONS['language'] = 'fr';
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
+            if ($_POST['language'] == "en_EN") {
+                 $language =  $_POST['language'];
+            }
+        }
+
+        return $this->render(
+            'indexFestival.html.twig',
+            [
+                'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['tournée']]),
+                'language' => $language,
             ]
         );
     }

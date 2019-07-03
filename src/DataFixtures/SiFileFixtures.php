@@ -17,6 +17,13 @@ class SiFileFixtures extends Fixture
                     ->setUpdatedAt(new \DateTime('now'));
         $manager->persist($blackCover);
         $this->addReference('blackCover', $blackCover);
+        $blackCover2 = new SiFile;
+        $blackCover2 ->setName('blackCover')
+                    ->setType(Sifile::FILE_TYPE['cover'])
+                    ->setMediaFileName('blackCover.jpg')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($blackCover2);
+        $this->addReference('blackCover2', $blackCover2);
 
         $banosCover = new SiFile;
         $banosCover ->setName('banosCover')
@@ -89,6 +96,14 @@ class SiFileFixtures extends Fixture
                     ->setUpdatedAt(new \DateTime('now'));
         $manager->persist($tijuanaThumbnail);
         $this->addReference('tijuanaThumbnail', $tijuanaThumbnail);
+
+        $exilConflitsThumbnail = new SiFile;
+        $exilConflitsThumbnail ->setName('exilConflitsThumbnail')
+                    ->setType(Sifile::FILE_TYPE['thumbnail'])
+                    ->setMediaFileName('exilConflitsThumbnail.png')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($exilConflitsThumbnail);
+        $this->addReference('exilConflitsThumbnail', $exilConflitsThumbnail);
 
         $logo1 = new SiFile;
         $logo1 ->setName('croixRousse')
