@@ -17,7 +17,7 @@
 	 <div class="container-fluid">
 	 	<div class="row">
 <div class="col-sd-4 logo">
-      <a href="{{ path('index') }}">
+      <a href="{{ path('index_festival') }}">
       <img class="ml-md-5" src="/logoNavbar.png" alt="logo">
     </a>
     </div>
@@ -36,7 +36,7 @@
 					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sens Interdits</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 					    	<a class="dropdown-item" href="#">Le festival</a>
-					    	<a class="dropdown-item" href="#">Les spectacles en tournée</a>
+					    	<a class="dropdown-item" href="{{ path('index_tournee') }}">Les spectacles en tournée</a>
 					    	<a class="dropdown-item" href="#">Les partenaires</a>
 					    	<a class="dropdown-item" href="#">L'équipe</a>
 						</div>
