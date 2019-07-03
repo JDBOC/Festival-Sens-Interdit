@@ -26,6 +26,19 @@ class PartnerRepository extends ServiceEntityRepository
         return $this->findBy(array(), array($parameter1 => $parameter2));
     }
 
+
+    /**
+     * [findPartner description]
+     * @return Partner[]
+     */
+    public function findPartner(){
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.type', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Partner[] Returns an array of Partner objects
     //  */

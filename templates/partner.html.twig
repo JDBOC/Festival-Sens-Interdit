@@ -7,37 +7,63 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-center p-2">Nos Partenaires</h1>
-    <div class="container p-2">
+    <h1 class="text-center">Nos Partenaires</h1>
+    <div class="container p-0">
+        <p class="text-center">Sens Interdits remercie pour leur soutien</p>
 
-        {% for type in constant('App\\Entity\\Partner::TYPE') %}
 
-            <div class="row">
-                <h3 class="text-center">{{ type }}</h3>
+            <div class="row p-0">
+                <h3></h3>
             </div>
-            {% for partner in partners %}
+            <h1>Institutionnel</h1>
 
-            {% if partner.type == type %}
-            
-                <div class=" row d-flex">
-                    <div class="col-md-2">
-                        {% if partner.logo.mediaFileName is defined %}
-                            <img class="img-fluid" src="/upload/file/{{ partner.logo.mediaFileName }}" alt="logo"/> 
-                        {% endif %}
+            {% for partner in partners %}
+                {% if partner.type == 1 %}
+                    <div class=" row m-0 d-flex">
+                        <div class="col-md-2">
+
+                            {% if partner.logo.mediaFileName is defined %}
+                                <img class="img-fluid" src="/upload/file/{{ partner.logo.mediaFileName }}
+                            " alt="logo"/> 
+                            {% endif %}
+
+                        </div>
+                        <div class="col-md-2">
+                            {{ partner.name }}
+                        </div>
+                        <div class="col-md-2">
+                            {{ partner.link }}
+                        </div>
                     </div>
-                    <div class="col-md-2">
-                        {{ name }}
+                    <div class="row">
+                        <hr align="center" width="70%">
                     </div>
-                    <div class="col-md-2">
-                        {{ link }}
-                    </div>
-                </div>
-                <div class="row">
-                    <hr align="center" width="70%">
-                </div>
-                {% endif %}
+                    {% endif %}
             {% endfor %}
-        {% endfor %}
+            <h1>Grand </h1>
+              {% for partner in partners %}
+                {% if partner.type == 4 %}
+                    <div class=" row m-0 d-flex">
+                        <div class="col-md-2">
+
+                            {% if partner.logo.mediaFileName is defined %}
+                                <img class="img-fluid" src="/upload/file/{{ partner.logo.mediaFileName }}
+                            " alt="logo"/> 
+                            {% endif %}
+
+                        </div>
+                        <div class="col-md-2">
+                            {{ partner.name }}
+                        </div>
+                        <div class="col-md-2">
+                            {{ partner.link }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <hr align="center" width="70%">
+                    </div>
+                    {% endif %}
+            {% endfor %}
     </div>
 
 {% endblock %}

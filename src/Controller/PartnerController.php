@@ -3,16 +3,16 @@
 namespace App\Controller;
 
 use App\Entity\Partner;
-use App\Form\PartnerType;
 use App\Entity\SiFile;
+use App\Form\PartnerType;
 use App\Form\SiFileType;
 use App\Repository\PartnerRepository;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Manage Partner's entity
@@ -26,10 +26,7 @@ class PartnerController extends AbstractController
      */
     public function index(PartnerRepository $partnerRepository): Response
     {
-        $partners = $partnerRepository->findBy(
-            [],
-            ['type' => 'ASC']
-        );
+        $partners = $partnerRepository->findPartner();
 
         return $this->render(
             'partner/index.html.twig',
@@ -111,15 +108,12 @@ class PartnerController extends AbstractController
      */
     public function userIndex(PartnerRepository $partnerRepository):Response
     {
-        $partner_type = $partnerRepository->findBy(
-            [],
-            ['type' => 'ASC']
-        );
+        $partners = $partnerRepository->findPartner();
 
         return $this->render(
             'partner.html.twig',
             [
-                'partners' => $partner_type
+                'partners' => $partners
             ]
         );
     }

@@ -16,27 +16,28 @@
             </tr>
         </thead>
         <tbody>
-        {% for partner in partners %}
+            
 
-            <tr>
-                <td>{{ partner.typeName }}</td>
-                <td>{{ partner.name }}</td>
-                <td>
-                   {% if partner.logo.mediaFileName is defined %}
-                    <img class="img-fluid" src="/upload/file/{{ partner.logo.mediaFileName }}
-                    " alt="logo"/> 
-                   {% endif %}
-                </td>
-                <td>{{ partner.link }}</td>
-                <td>
-                    <a href="{{ path('partner_edit', {'id': partner.id}) }}" class="btn btn-warning btn-sm">modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">Aucun Partenaire trouvé</td>
-            </tr>
-        {% endfor %}
+                {% for partner in partners %}
+                    <tr>
+                
+                        <td>{{ partner.type }}</td>
+
+                        <td>{{ partner.name }}</td>
+                        <td>
+                            {% if partner.logo.mediaFileName is defined %}
+                                <img class="img-fluid" src="/upload/file/{{ partner.logo.mediaFileName }}
+                            " alt="logo"/> 
+                            {% endif %}
+
+                        </td>
+                        <td>{{ partner.link }}</td>
+                        <td>
+                            <a href="{{ path('partner_edit', {'id': partner.id}) }}" class="btn btn-warning btn-sm">modifier</a>
+                        </td>
+                    </tr>
+                
+            {% endfor %}
         </tbody>
     </table>
 
