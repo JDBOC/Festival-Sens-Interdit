@@ -14,7 +14,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
-
 class NewsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -26,6 +25,8 @@ class NewsType extends AbstractType
             ->add('title_en')
             ->add('content_en', CKEditorType::class)
             ->add('country_en')
+            ->add('cover', InSiFileType::class)
+            ->add('thumbnail', InSiFileType::class)
             ->add('complete', null, ['data'=>false])
             ->add('translated', null, ['data'=>false])
             ->add('edition', EntityType::Class, ['class' => Edition::Class,    'choice_label' => 'name',])

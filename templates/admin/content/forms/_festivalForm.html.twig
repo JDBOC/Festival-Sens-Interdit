@@ -5,6 +5,11 @@
     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-fr" role="tab" aria-controls="nav-home" aria-selected="true">FR</a>
     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-en" role="tab" aria-controls="nav-profile" aria-selected="false">EN</a>
   </div>
+    {# {{ form_row(form.sessions) }}
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-fr" role="tab" aria-controls="nav-home" aria-selected="true">FR</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-en" role="tab" aria-controls="nav-profile" aria-selected="false">EN</a>
+  </div> #}
 </nav>
 
 <div class="tab-content" id="nav-tabContent">
@@ -23,6 +28,8 @@
   	{{ form_row(form.contentEn) }}
   </div>
 </div>
+      	{{ form_row(form.thumbnail) }}
+        {{ form_row(form.cover) }}
       	{{ form_row(form.duree) }}
         {{ form_row(form.lieu) }}
         {{ form_row(form.date) }}

@@ -102,6 +102,15 @@ class AdminContentController extends AbstractController
     public function newTest(Request $request): Response
     {
         $show = new Content();
+        $cover = new SiFile();
+        $cover->setType(1);
+        $cover->setMediaFileName("something");
+        $cover->setUpdatedAt(new \DateTime("now"));
+        $thumbnail = new SiFile();
+        $thumbnail->setType(5);
+        $thumbnail->setMediaFileName("something");
+        $thumbnail->setUpdatedAt(new \DateTime("now"));
+
         $form = $this->createForm(PreFormType::class, $show);
         $form->handleRequest($request);
         
@@ -111,6 +120,8 @@ class AdminContentController extends AbstractController
             $show->setComplete(false);
             $show->setTranslated(false);
             $show->setArchive(false);
+            $show->setCover($cover);
+            $show->setThumbnail($thumbnail);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($show);
             $entityManager->flush();
