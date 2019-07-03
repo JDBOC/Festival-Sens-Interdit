@@ -103,6 +103,33 @@ C&rsquo;est autour de la figure populaire mexicaine qu&rsquo;est le champion du 
                 ;
         $this->addReference('showTijuana', $show5);
         $manager->persist($show5);
+
+        $horScene1 = new Content;
+        $horScene1  ->setTitleFr('Rencontre avec Milo Rau')
+                    ->setContentType(Content::CONTENT_TYPE['hors scène'])
+                    ->setContentFr("<h2 style='text-align:justify'><span style='color:#ff0000'>RENCONTRE
+                     (sous r&eacute;serve)&nbsp;</span></h2>
+<p>&nbsp;</p>
+<p>Le metteur en sc&egrave;ne et cin&eacute;aste suisse, aujourd&rsquo;hui&nbsp;directeur du th&eacute;&acirc;tre belge
+ NT-Gent, vient nous faire part&nbsp;des questionnements qui l&rsquo;animent en tant qu&rsquo;artiste de&nbsp;th&eacute;
+ &acirc;tre politique &agrave; la recherche de formes th&eacute;&acirc;trales&nbsp;radicales en prise directe avec le 
+ monde, Milo Rau&nbsp;d&eacute;veloppe depuis plusieurs ann.es avec sa soci&eacute;t&eacute; de&nbsp;production, 
+ International Institute of Political Murder, des&nbsp;oeuvres centr&eacute;es sur la violence et l&rsquo;oppression 
+ politique.</p>
+<p>Il a particip&eacute; en 2015 au Festival Sens Interdits avec sa&nbsp;cr&eacute;ation 
+<a href='http://www.sensinterdits.org/evenement/hate-radio/'><span style='color:#ff0000'><em>Hate Radio</em></span></a> 
+issue d&rsquo;un travail documentaire sur&nbsp;le g&eacute;nocide rwandais. L&rsquo;artiste revient cette ann&eacute;e 
+avec&nbsp;<em>Oreste &agrave; Mossoul</em>, un spectacle autour des trag&eacute;dies&nbsp;d&rsquo;Eschyle qui rassemble 
+des artistes europ&eacute;ens et Irakiens&nbsp;dans la ville d&eacute;truite par l&rsquo;Etat Islamique.</p>")
+                    ->setCover($this->getReference('blackCover2'))
+                    ->setComplete(false)
+                    ->setTranslated(false)
+                    ->setThumbnail($this->getReference('exilConflitsThumbnail'))
+                    ->setLieu("Célestins, Théâtre de Lyon")
+                    ->setNote("Date et horaire à préciser")
+                ;
+        $this->addReference('exilConflits', $horScene1);
+        $manager->persist($horScene1);
         $manager->flush();
     }
 
