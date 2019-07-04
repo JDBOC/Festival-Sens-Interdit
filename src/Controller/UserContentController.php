@@ -30,7 +30,7 @@ class UserContentController extends AbstractController
     /**
      * @Route("/news", name="news_index")
      */
-    public function newsShow(ContentRepository $contentRepository, SiFileRepository $pictures)
+    public function newsIndex(ContentRepository $contentRepository, SiFileRepository $pictures)
     {
 
 
