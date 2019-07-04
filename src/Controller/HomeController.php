@@ -117,11 +117,10 @@ class HomeController extends AbstractController
 
     /**
      * index des spectacles en tournée
-     * @Route("/festival/hors-scene", name="index_tournee")
+     * @Route("/tournees", name="index_tournee")
      */
     public function indexTournee(
-        ContentRepository $contentRepo,
-        string $sessionDate
+        ContentRepository $contentRepo
     ): Response {
         $language = $_SESSIONS['language'] = 'fr';
 
@@ -132,7 +131,7 @@ class HomeController extends AbstractController
         }
 
         return $this->render(
-            'indexFestival.html.twig',
+            'UserTemplate/indexEnTournee.html.twig',
             [
                 'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['tournée']]),
                 'language' => $language,
