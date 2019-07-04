@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Entity\Edition;
 
 /**
@@ -24,7 +25,14 @@ class ShowSearchType extends AbstractType
             ->add('isTranslated', CheckBoxType::class, [
                 'label' => 'Non traduit',
                 'required' => false])
-        ;
+            ->add('contentType', ChoiceType::class, [
+                'choices' => [
+                'spéctacle' => 1,
+                'actualités' => 2,
+                'hors scène' => 4,
+                'tournée' => 5,]
+            ]);
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

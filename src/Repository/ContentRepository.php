@@ -22,9 +22,13 @@ class ContentRepository extends ServiceEntityRepository
      */
     public function findAllShowsQuery(ShowSearch $search)
     {
+        $type = 'festival';
+        if (null !== $search->getContentType()) {
+            $type = $search->getContentType();
+        }
         $query =  $this->createQueryBuilder('c')
             ->andWhere('c.contentType = :val')
-            ->setParameter('val', Content::CONTENT_TYPE['festival'])
+            ->setParameter('val', $type)
             ->orderBy('c.id', 'DESC')
             ->setMaxResults(10);
             
@@ -36,6 +40,7 @@ class ContentRepository extends ServiceEntityRepository
             $query = $query->andWhere('c.translated != :translated');
             $query->setParameter('translated', $search->getIsTranslated());
         }
+
             return $query->getQuery() ;
     }
 

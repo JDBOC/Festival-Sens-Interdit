@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% set session = app.session.get('session') %}
+{% if session['language'] is not defined %}
+{% set language = "fr" %}
+{% else %}
+{% set language = session['language'] %}
+{% endif %}
+
 {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
 {% endblock %}
@@ -15,7 +22,8 @@
 		{% endfor %}
 	{% endfor %}
 
-<div class="container-fluid">
+<div class="container-fluid carousel">
+  <div class="container">
         <div class="carousel">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
           <div class="carousel-inner">
@@ -40,6 +48,7 @@
           </a>
         </div>
         </div>
+        </div>
 </div>
 
 
@@ -55,7 +64,7 @@
           {% endfor %}
         </div>
     <div class="boutonHorsScene">
-    <button type="button" class="btn btn-outline-danger btn-block"><a class="horsSceneLien" href="">Hors Scène</a></button>
+    <button type="button" class="btn btn-outline-danger btn-block"><a class="horsSceneLien" href="{{path('index_hors_scene')}}">{% trans into language %}Hors Scène{% endtrans %}</a></button>
 </div>
   </div>
 
@@ -68,13 +77,17 @@
 	    	<div class=" col-12 col-md-3">
 		    	<div class="card-spectacle">
 		    		<div>
-		    			<a href="/show/{{content.id}}"><img src="upload/file/{{content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
+		    			<a href="/show/{{content.id}}"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
 
 
             </div>
 				  	<div class="card-body pt-0">
+              {% if language == "en_EN" and content.titleEn is not null %}
+              <h3 class="mb-0 text-muted">{{	content.titleEn }}</h3>
+              {% else %}
 					  	<h3 class="mb-0 text-muted">{{	content.titleFr }}</h3>
-				    </div>
+              {% endif %}
+            </div>
 				</div>
 			</div>
 		{% endfor %}
