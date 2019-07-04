@@ -6,8 +6,7 @@
                 <h1 class=" d-md-none d-inline pl-2">{{content.titleFr}}</h1>
         {% endif %}
         {# banniere #}
-        <img src="/upload/file/{% if content.cover.mediaFileName is defined %}
-                                    {{content.cover.mediaFileName }}
+        <img src="/upload/file/{% if content.cover.mediaFileName is defined %}{{content.cover.mediaFileName }}
                                 {% else %}blackCover.jpg
                                 {% endif %}"
             class="imgTop img-fluid" alt="show photo" class="card-img" alt="...">
