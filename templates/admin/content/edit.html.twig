@@ -25,6 +25,7 @@
 
 
 
-    <button class="btn float-right btn-primary">{{ button_label|default('Mettre a jour le contenu') }}</button>
+    <a href="{{ path('show_index') }}"> <button class="btn float-right btn-primary">{{ button_label|default('Mise à jour du contenu') }}</button></a>
     {{ include('admin/content/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
