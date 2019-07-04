@@ -1,6 +1,10 @@
 <div class="card bg-dark text-white border-0 ">
         {# titre #}
-        <h1 class=" d-md-none d-inline pl-2">{{content.titleFr}}</h1> 
+        {% if language == "en_EN" and content.titleEn is not null %}
+            <h1 class=" d-md-none d-inline pl-2">{{content.titleEn}}</h1> 
+        {% else %}
+                <h1 class=" d-md-none d-inline pl-2">{{content.titleFr}}</h1>
+        {% endif %}
         {# banniere #}
         <img src="/upload/file/{% if content.cover.mediaFileName is defined %}
                                     {{content.cover.mediaFileName }}
@@ -11,10 +15,10 @@
             {# titre #}
             <h1 class="card-title pt-4 mt-4 d-none d-md-block"> {{ content.titleFr }} </h1>
             {% if content.author is not null %}
-                <h4 class="card-text p-0 mt-1 d-none d-md-block"> De : {{ content.author }} </h4>
+                <h4 class="card-text p-0 mt-1 d-none d-md-block"> {% trans into language %}De{% endtrans %} : {{ content.author }} </h4>
             {% endif %}
             {% if content.author is not null %}
-                <h4 class="card-text p-0 mt-1 d-none d-md-block"> Mise en scène : {{ content.director }} </h4>
+                <h4 class="card-text p-0 mt-1 d-none d-md-block"> {% trans into language %}Mise en scène{% endtrans %} : {{ content.director }} </h4>
             {% endif %}
         </div>
     </div>
