@@ -15,10 +15,10 @@ class PreFormType extends AbstractType
     {
         $builder->add('content_type', ChoiceType::class, [
             'choices' => [
-            'festival' => 1,
-            'actualités' => 2,
-            'hors scène' => 4,
-            'tournée' => 5],
+            'Spectacle' => 1,
+            'Actualités' => 2,
+            'Hors scène' => 4,
+            'Tournée' => 5],
         ]);
     }
 

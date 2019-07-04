@@ -27,10 +27,10 @@ class ShowSearchType extends AbstractType
                 'required' => false])
             ->add('contentType', ChoiceType::class, [
                 'choices' => [
-                'spéctacle' => 1,
-                'actualités' => 2,
-                'hors scène' => 4,
-                'tournée' => 5,]
+                'Spectacle' => 1,
+                'Actualités' => 2,
+                'Hors scène' => 4,
+                'Tournée' => 5,]
             ]);
             ;
     }
