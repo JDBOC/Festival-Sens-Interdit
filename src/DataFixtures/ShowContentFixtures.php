@@ -106,6 +106,7 @@ C&rsquo;est autour de la figure populaire mexicaine qu&rsquo;est le champion du 
 
         $horScene1 = new Content;
         $horScene1  ->setTitleFr('Rencontre avec Milo Rau')
+                    ->setEdition($this->getReference('edition'))
                     ->setContentType(Content::CONTENT_TYPE['hors scène'])
                     ->setContentFr("<h2 style='text-align:justify'><span style='color:#ff0000'>RENCONTRE
                      (sous r&eacute;serve)&nbsp;</span></h2>
@@ -130,6 +131,61 @@ des artistes europ&eacute;ens et Irakiens&nbsp;dans la ville d&eacute;truite par
                 ;
         $this->addReference('exilConflits', $horScene1);
         $manager->persist($horScene1);
+
+        $tournee = new Content;
+        $tournee  ->setTitleFr('Nord-Est')
+                    ->setContentType(Content::CONTENT_TYPE['tournée'])
+                    ->setContentFr("<h2><span style='color:#e74c3c'>Pr&eacute;sentation</span></h2>
+
+<p>Le 23 octobre 2002, au th&eacute;&acirc;tre Doubrovka de Moscou, pendant la repr&eacute;sentation de la
+ com&eacute;die musicale&nbsp;<em>Nord-Est</em>, 42 terroristes tch&eacute;tch&egrave;nes surgissent et prennent en 
+ otage les 850 spectateurs pr&eacute;sents dans la salle. R&eacute;clamant le retrait des forces russes en
+  Tch&eacute;tch&eacute;nie, ils entrent en n&eacute;gociation avec la police. Mais apr&egrave;s trois jours
+   d&rsquo;&eacute;changes tendus entre preneurs d&rsquo;otage et forces sp&eacute;ciales, l&rsquo;assaut est
+    donn&eacute; par ces derni&egrave;res portant le bilan &agrave;&nbsp;130&nbsp;morts.<br />
+Sur sc&egrave;ne, ARTiSHOCK donne la parole &agrave; trois personnages f&eacute;minins&nbsp;: terroriste, otage et
+ m&eacute;decin. Celles-ci croisent leurs regards pour d&eacute;voiler aux spectateurs les m&eacute;canismes et les 
+ causes menant &agrave;&nbsp;une telle explosion de violence. M&eacute;lange d&rsquo;interviews, de documents 
+ vid&eacute;o authentiques, mais aussi de r&eacute;cits fictifs,&nbsp;<em>Nord-Est</em>&nbsp;d&eacute;peint une sale 
+ guerre o&ugrave;, entre terrorisme et violence d&rsquo;&Eacute;tat, il n&rsquo;y a ni bien, ni mal, ni&nbsp;vaincu, ni
+  vainqueur.</p>
+
+<h2><span style='color:#e74c3c'>Distribution</span></h2>
+
+<p>Auteur :&nbsp;<strong>Torsten Buchsteiner</strong><br />
+Mise en sc&egrave;ne :&nbsp;<strong>Galina Pyanova, ARTiSHOCK&nbsp;Theater (театр artишок)</strong></p>
+
+<p>Avec :<strong> Kuantay Abdimadi, Anton Bolkunov, Anna Fedorova, Aleksey Kachshin, Chingiz Kapin, Dmitriy Kopylov,
+ Nursultan Mukhamedjanov, Victoriya Mukhamedjanova, Galina Pyanova, Anastassiya Tarassova, Temir Ukushev </strong></p>
+
+<p>Texte français :&nbsp;<strong>Pascal Paul-Harang</strong>&nbsp;<br />
+Lumi&egrave;re et sc&eacute;nographie :&nbsp;<strong>Anton Bolkunov</strong>&nbsp;<br />
+Son :&nbsp;<strong>Yaroslav Korchevskiy</strong>&nbsp;<br />
+Vid&eacute;o :<strong>&nbsp;Vyacheslav Kuznetsov</strong></p>
+
+<p>Production :&nbsp;<strong>Th&eacute;&acirc;tre ARTiSHOCK</strong><br />
+Avec le soutien de<strong>&nbsp;l&rsquo;ONDA &ndash; Office National de&nbsp;Diffusion Artistique</strong></p>
+
+<h2><span style='color:#e74c3c'>Dans la presse</span></h2>
+
+<p>Consultez <a href='http://www.sensinterdits.org/wp-content/uploads/2017/11/RDP_Nord-Est.pdf'>la revue de presse</a>
+ en ligne.</p>
+")
+                    ->setComplete(false)
+                    ->setTranslated(false)
+                    ->setThumbnail($this->getReference('nordEstThumbnail'))
+                    ->addPicture($this->getReference('nordEstPicture1'))
+                    ->addPicture($this->getReference('nordEstPicture2'))
+                    ->addPicture($this->getReference('nordEstPicture3'))
+                    ->setNote("Spectacle en russe, surtitré en français")
+                    ->setDuree("2h")
+                    ->setAuthor(" Torsten Buchsteiner")
+                    ->setDirector("Galina Pyanova, Artishock Theater (театр artишок)")
+                    ->setCountryFr("Kazakhstan")
+                ;
+        $this->addReference('tournee', $tournee);
+        $manager->persist($tournee);
+
         $manager->flush();
     }
 
