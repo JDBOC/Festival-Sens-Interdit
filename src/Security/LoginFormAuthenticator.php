@@ -90,7 +90,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator
         }
 
              // redirect to some "app_homepage" route - of wherever you want
-             return new RedirectResponse($this->urlGenerator->generate('index'));
+             return new RedirectResponse($this->urlGenerator->generate('admin_index'));
     }
 
     protected function getLoginUrl()

@@ -19,7 +19,24 @@
   	{{ form_row(form.content_en) }}
   </div>
 </div>
-  	<div class="col-6"> {{ form_row(form.cover) }}</div>
-  	<div class="col-6"> {{ form_row(form.thumbnail) }} </div>
-    <button class="btn">{{ button_label|default('Save') }}</button>
+  	<div class="row justify-content-center">
+{% if content.thumbnail.mediaFileName == "something" %}
+<div class="col-6"><img src="https://via.placeholder.com/570x530" class="w-50 pb-3"></div>
+{% else %}
+<div class="col-6"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="w-50 pb-3"></div>
+{% endif %}
+      	<div class="col-6">{{ form_row(form.thumbnail) }}</div>
+{% if content.cover.mediaFileName == "something" %}
+<div class="col-6"><img src="https://via.placeholder.com/1920x570" class="w-50 pb-3"></div>
+{% else %}
+    <div class="col-6"><img src="/upload/file/{{content.cover.mediaFileName}}" class="w-100"></div>
+{% endif %}
+        <div class="col-6">{{ form_row(form.cover) }}</div>
+</div>
+
+			<h2>Ajouter des images</h2>
+	    {{ include('content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}
+	  </div>
+
+
 {{ form_end(form) }}
