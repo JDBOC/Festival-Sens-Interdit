@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% set session = app.session.get('session') %}
+{% if session['language'] is not defined %}
+{% set language = "fr" %}
+{% else %}
 {% set language = session['language'] %}
+{% endif %}
 
 {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}

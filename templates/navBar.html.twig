@@ -1,5 +1,9 @@
 {% set session = app.session.get('session') %}
+{% if session['language'] is not defined %}
+{% set language = "fr" %}
+{% else %}
 {% set language = session['language'] %}
+{% endif %}
 
 <div class="navBg">
 	<div class="container-fluid">
