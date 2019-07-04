@@ -17,14 +17,14 @@
 						</div>
 						<div class="card-body pt-0 col-9">
 							<h3 class="mb-0">{{content.titleFr}}</h3>
-							<p>{{content.contentFr}}</p>
-							<a href="{{ path('news_details', {'id': content.id}) }}" class="float-right"><button class="btn btn-outline-primary">en savoir plus</button></a>
+							<p>{{content.contentFr|striptags|raw|length > 100 ? content.contentFr|slice(0,400) ~ '...' : content.contentFr}}</p>
+							<a href="{{ path('show_content', {'id': content.id}) }}" class="float-right"><button class="btn btn-outline-primary">en savoir plus</button></a>
 						</div>
 						{% else %}
 						<div class="card-body pt-0 col-9">
 							<h3 class="mb-0">{{content.titleFr}}</h3>
-							<p>{{content.contentFr}}</p>
-							<a href="{{ path('news_details', {'id': content.id}) }}" class="float-left"><button class="btn btn-outline-primary">en savoir plus</button></a>
+							<p>{{content.contentFr|striptags|raw|length > 100 ? content.contentFr|slice(0,400) ~ '...' : content.contentFr}}</p>
+							<a href="{{ path('show_content', {'id': content.id}) }}" class="float-left"><button class="btn btn-outline-primary">en savoir plus</button></a>
 						</div>
 						<div class="col-3">
 						<img src="upload/file/{{content.thumbnail.mediaFileName}}" class="card-img" alt="...">
