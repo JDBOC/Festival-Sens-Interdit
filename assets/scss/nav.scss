@@ -22,11 +22,13 @@
 
 .logo
 {
-padding-right: 5%;
+	padding-right: 5%;
+	padding-top: 20px;
 }
 
-.search{
-	background-color: #ed1c24 !important;
+.search
+{
+	background-color: rgba(0,0,0,0) !important;
 }
 
 .nav-item{
@@ -43,12 +45,22 @@ padding-right: 5%;
 .bg01{
 	background-color: #343a40 !important;
 }
-
 .navbar{
 	margin-bottom: 3em;
 	margin-top: 3em;
- 
 }
+
+@media screen and  (min-width : 1000px) {
+	.navbar{
+		border-radius: 100px;
+	}
+}
+@media screen and  (min-width : 768px) and (max-width: 884px) {
+	.bb{
+		width: 800px;
+	}
+}
+
 /*fin navBar*/
 
 /* Footer */
