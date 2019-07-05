@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Content;
 use App\Entity\SiFile;
+use App\Entity\Theme;
 use App\Form\ShowType;
 use App\Entity\ShowSearch;
 use App\Form\ShowSearchType;
@@ -12,6 +13,7 @@ use App\Form\NewsType;
 use App\Entity\RelatedContentSearch;
 use App\Form\RelatedContentSearchType;
 use App\Repository\ContentRepository;
+use App\Repository\ThemeRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -202,5 +204,52 @@ class AdminContentController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('content_en_echo', [
                 'id' => $echoContent->getId() ]);
+    }
+
+     /**
+     * returns all themes linked to an other content"
+     * @Route("/themes/{id}", name="content_themes", methods={"GET","POST"})
+     */
+    public function indexThemesByContent(ThemeRepository $themeRepo, Content $content): Response
+    {
+        return $this->render('admin/content/themesByContent.html.twig', [
+                'themes' => $themeRepo->findAll(),
+                'content' => $content
+        ]);
+    }
+       /**
+     * add a content linked to an other content"
+     * @Route("/theme_add/{theme_id}/{content_id}", name="add_theme", methods={"GET","POST"})
+     * @Entity("content", expr="repository.find(content_id)")
+     * @Entity("theme", expr="repository.find(theme_id)")
+     */
+    public function addThemeByContent(
+        ContentRepository $contentRepository,
+        Request $request,
+        Theme $theme,
+        Content $content
+    ): Response {
+        $content->addTheme($theme);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('content_themes', [
+                'id' => $content->getId() ]);
+    }
+
+    /**
+     * remove a content linked to an other content"
+     * @Route("/theme_remove/{theme_id}/{content_id}", name="remove_theme", methods={"GET","POST"})
+     * @Entity("content", expr="repository.find(content_id)")
+     * @Entity("theme", expr="repository.find(theme_id)")
+     */
+    public function removeThemeByContent(
+        ContentRepository $contentRepository,
+        Request $request,
+        Theme $theme,
+        Content $content
+    ): Response {
+        $content->removeTheme($theme);
+        $this->getDoctrine()->getManager()->flush();
+        return $this->redirectToRoute('content_themes', [
+                'id' => $content->getId() ]);
     }
 }

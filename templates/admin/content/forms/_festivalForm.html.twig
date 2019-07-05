@@ -4,6 +4,7 @@
   <span class="col-3">{{ form_row(form.edition) }}</span>
   <a class="col-3" href="{{ path('session_by_content',{'id':content.id}) }}"> <button class="btn btn-primary m-2"> Gérer les représentations </button> </a>
   <a class="col-3" href="{{ path('content_en_echo',{'id':content.id}) }}"> <button class="btn btn-primary m-2"> Sélectionner les "En Echo" </button> </a>
+    <a class="col-3 btn btn-primary m-2" href="{{ path('content_themes',{'id':content.id}) }}"> Sélectionner les themes </a>
   <a class="col-3" href="{{ path('show_index') }}"><button class="btn btn-primary m-2">	Retourner à l'index</button>	</a>
 	  
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
