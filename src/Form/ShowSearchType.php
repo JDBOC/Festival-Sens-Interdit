@@ -29,6 +29,7 @@ class ShowSearchType extends AbstractType
                 'choices' => [
                 'Spectacle' => 1,
                 'Actualités' => 2,
+                'Pages Statique' => 3,
                 'Hors scène' => 4,
                 'Tournée' => 5,]
             ]);
