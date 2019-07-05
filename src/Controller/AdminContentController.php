@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Content;
 use App\Entity\SiFile;
-use App\Form\ShowType;
 use App\Entity\ShowSearch;
-use App\Form\ShowSearchType;
-use App\Form\PreFormType;
-use App\Form\NewsType;
 use App\Entity\RelatedContentSearch;
+use App\Form\ShowType;
+use App\Form\PreFormType;
+use App\Form\ShowSearchType;
+use App\Form\NewsType;
+use App\Form\StaticType;
 use App\Form\RelatedContentSearchType;
 use App\Repository\ContentRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -102,6 +103,10 @@ class AdminContentController extends AbstractController
             
             case 2: //actualité
                 $form = $this->createForm(NewsType::class, $content);
+                break;
+            
+            case 3: //static_page
+                $form = $this->createForm(StaticType::class, $content);
                 break;
             
             case 4: //hors scène
