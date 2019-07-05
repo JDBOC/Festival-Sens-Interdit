@@ -149,6 +149,11 @@ class Content
      */
     private $note;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Theme", mappedBy="contents")
+     */
+    private $themes;
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
@@ -156,6 +161,7 @@ class Content
         $this->pictures = new ArrayCollection();
         $this->enEcho = new ArrayCollection();
         $this->isEcho = new ArrayCollection();
+        $this->themes = new ArrayCollection();
     }
 
     public function __toString():string
@@ -547,6 +553,34 @@ class Content
     public function setNote($note)
     {
         $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Theme[]
+     */
+    public function getThemes(): Collection
+    {
+        return $this->themes;
+    }
+
+    public function addTheme(Theme $theme): self
+    {
+        if (!$this->themes->contains($theme)) {
+            $this->themes[] = $theme;
+            $theme->addContent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTheme(Theme $theme): self
+    {
+        if ($this->themes->contains($theme)) {
+            $this->themes->removeElement($theme);
+            $theme->removeContent($this);
+        }
 
         return $this;
     }
