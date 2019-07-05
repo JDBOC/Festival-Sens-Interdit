@@ -19,12 +19,12 @@ class NewsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titleFr', TextType::class, ["label"=>"Titre"])
-            ->add('contentFr', CKEditorType::class, ["label"=>"Contenu", 'required' => false])
-            ->add('countryFr', TextType::class, ["label"=>"Pays", 'required' => false])
-            ->add('titleEn', TextType::class, ["label"=>"Titre anglais", 'required' => false])
-            ->add('contentEn', CKEditorType::class, ["label"=>"Contenu anglais", 'required' => false])
-            ->add('countryEn', TextType::class, ["label"=>"Pays", 'required' => false])
+            ->add('title_fr', TextType::class, ["label"=>"Titre"])
+            ->add('content_fr', CKEditorType::class, ["label"=>"Contenu", 'required' => false])
+            ->add('country_fr', TextType::class, ["label"=>"Pays", 'required' => false])
+            ->add('title_en', TextType::class, ["label"=>"Titre anglais", 'required' => false])
+            ->add('content_en', CKEditorType::class, ["label"=>"Contenu anglais", 'required' => false])
+            ->add('country_en', TextType::class, ["label"=>"Pays", 'required' => false])
             ->add('cover', InSiFileType::class)
             ->add('thumbnail', InSiFileType::class)
             ->add('edition', EntityType::Class, ['class' => Edition::Class,    'choice_label' => 'name',])
