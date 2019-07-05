@@ -31,5 +31,6 @@
     			<h2>Ajouter des images</h2>
 	    {{ include('content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="btn float-right btn-primary">{{ button_label|default('Mise à jour du contenu') }}</button>
+
 {{ form_end(form) }}
