@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Theme;
+use App\Form\InSiFileType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,8 +14,7 @@ class ThemeType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('picture')
-            ->add('contents')
+            ->add('picture', InSiFileType::class)
         ;
     }
 

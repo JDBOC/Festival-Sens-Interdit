@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Theme;
 use App\Form\ThemeType;
+use App\Entity\SiFile;
 use App\Repository\ThemeRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -34,8 +35,12 @@ class ThemeController extends AbstractController
         $form = $this->createForm(ThemeType::class, $theme);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        
+        if ($form->isSubmitted() && $form->isValid() && $form->getData()->getPicture()->getMediaFile() != null) {
             $entityManager = $this->getDoctrine()->getManager();
+            $logo = $theme->getPicture();
+            $logo->setType(SiFile::FILE_TYPE['logo']);
+            $theme->setPicture($logo);
             $entityManager->persist($theme);
             $entityManager->flush();
 
