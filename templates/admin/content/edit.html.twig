@@ -3,17 +3,29 @@
 {% block title %}Edit Show{% endblock %}
 
 {% block body %}
-    <div class="title px-4 pb-4 pt-2"><h1>Editer le spectacle: {{content.titleFr}}</h1></div>
+    <div class="title px-4 pb-4 pt-2"><h1>Editer le contenu: {{content.titleFr}}</h1></div>
     <div class="container">
-	    <a href="{{ path('session_by_content',{'id':content.id}) }}"> <button class="btn btn-primary m-2"> Gérer les représentations </button> </a>
-			<a href="{{ path('content_en_echo',{'id':content.id}) }}"> <button class="btn btn-primary m-2"> Sélectionner les "En Echo" </button> </a>
-		    <a href="{{ path('show_index') }}"><button class="btn btn-primary m-2">	Retourner aux spectacles</button>	</a>
-	    {{ include('admin/content/_form.html.twig', {'button_label': 'Update'}) }}
-	    <h2>Upload des pictures</h2>
-	    {{ include('content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}
-	  </div>
+	    
+	    {% if content.contentType == 1 %}
+			{{ include('admin/content/forms/_festivalForm.html.twig', {'button_label': 'mettre a jour le contenu'}) }}
+
+	    {% elseif content.contentType == 2 %}
+			{{ include('admin/content/forms/_actualiteForm.html.twig', {'button_label': 'mettre a jour le contenu'}) }}
+
+	    {% elseif content.contentType == 3 %}
+			{{ include('admin/content/forms/_staticForm.html.twig', {'button_label': 'mettre a jour le contenu'}) }}
+
+	    {% elseif content.contentType == 4 %}
+			{{ include('admin/content/forms/_horsSceneForm.html.twig', {'button_label': 'mettre a jour le contenu'}) }}
+
+	    {% elseif content.contentType == 5 %}
+			{{ include('admin/content/forms/_tourneeForm.html.twig', {'button_label': 'mettre a jour le contenu'}) }}
+
+			{% endif %}
 
 
 
+    <a href="{{ path('show_index') }}"> <button class="btn float-right btn-primary">{{ button_label|default('Mise à jour du contenu') }}</button></a>
     {{ include('admin/content/_delete_form.html.twig') }}
+    </div>
 {% endblock %}

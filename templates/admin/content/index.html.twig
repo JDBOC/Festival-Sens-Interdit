@@ -4,9 +4,9 @@
 
 {% block body %}
     <div class="title px-4 pb-4 pt-2">
-        <h1>Liste des spectacles</h1>
+        <h1>Liste des contenu</h1>
     </div>
-    <a href="{{ path('show_new') }}"> <button class="btn btn-primary m-2"> Nouveau spectacle</button></a>
+    <a href="{{ path('show_new') }}"> <button class="btn btn-primary m-2"> Nouveau contenu</button></a>
     <div class="jumbotron py-3 m-2">
         <div>
             {{ form_start(form) }}
@@ -16,6 +16,9 @@
                 </div>
                 <div class="col">
                     {{ form_row(form.isTranslated) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.contentType) }}
                 </div>
                 <div class="col">
                     <button class="btn btn-primary"> Rechercher</button>
@@ -40,7 +43,6 @@
         {% for content in contents %}
             <tr>
 
-                <td>{{content.edition.name}}</td>
                 <td>{{ content.titleFr }}</td>
                 <td>{{ content.sessions | length }}</td>
                 <td>{{ content.logos | length }}</td>

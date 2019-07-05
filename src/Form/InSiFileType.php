@@ -24,7 +24,8 @@ class InSiFileType extends AbstractType
             // ])
             ->add('mediaFile', VichFileType::class, [
                 'required' => false,
-                'download_uri' => true,
+                'download_uri' => false,
+                'allow_delete' => false
             ]);
     }
 

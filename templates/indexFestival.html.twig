@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% set session = app.session.get('session') %}
+{% if session['language'] is not defined %}
+{% set language = "fr" %}
+{% else %}
+{% set language = session['language'] %}
+{% endif %}
+
 {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
 {% endblock %}
@@ -57,14 +64,14 @@
           {% endfor %}
         </div>
     <div class="boutonHorsScene">
-    <button type="button" class="btn btn-outline-danger btn-block"><a class="horsSceneLien" href="{{path('index_hors_scene')}}">Hors Scène</a></button>
+    <button type="button" class="btn btn-outline-danger btn-block"><a class="horsSceneLien" href="{{path('index_hors_scene')}}">{% trans into language %}Hors Scène{% endtrans %}</a></button>
 </div>
   </div>
 
 
   <br>
   <br>
-    <div class="container-fluid">
+    <div class="container">
 	    	<div class="row">
 	    {% for content in contents %}
 	    	<div class=" col-12 col-md-3">
@@ -75,8 +82,12 @@
 
             </div>
 				  	<div class="card-body pt-0">
+              {% if language == "en_EN" and content.titleEn is not null %}
+              <h3 class="mb-0 text-muted">{{	content.titleEn }}</h3>
+              {% else %}
 					  	<h3 class="mb-0 text-muted">{{	content.titleFr }}</h3>
-				    </div>
+              {% endif %}
+            </div>
 				</div>
 			</div>
 		{% endfor %}

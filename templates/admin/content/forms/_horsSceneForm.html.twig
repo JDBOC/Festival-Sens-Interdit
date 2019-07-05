@@ -1,0 +1,57 @@
+{{ form_start(form) }}
+<nav class="row align-items-center">
+  <span class="col-3">{{ form_row(form.edition) }}</span>
+
+  <a class="col-3" href="{{ path('session_by_content',{'id':content.id}) }}"> <button class="btn btn-primary m-2"> Gérer les représentations </button> </a>
+  <a class="col-3" href="{{ path('content_en_echo',{'id':content.id}) }}"> <button class="btn btn-primary m-2"> Sélectionner les "En Echo" </button> </a>
+  <a class="col-3" href="{{ path('show_index') }}"><button class="btn btn-primary m-2">	Retourner à l'index</button>	</a>
+	  
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-fr" role="tab" aria-controls="nav-home" aria-selected="true">FR</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-en" role="tab" aria-controls="nav-profile" aria-selected="false">EN</a>
+  </div>
+</nav>
+
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-fr" role="tabpanel" aria-labelledby="nav-fr-tab">
+  	<div class="row">
+  	<div class="col-6"> {{ form_row(form.titleFr) }}</div>
+  	<div class="col-6"> {{ form_row(form.countryFr) }} </div>
+  	</div>
+  	{{ form_row(form.contentFr) }}
+  </div>
+  <div class="tab-pane fade" id="nav-en" role="tabpanel" aria-labelledby="nav-en-tab">
+  	<div class="row">
+  	<div class="col-6"> {{ form_row(form.titleEn) }}</div>
+  	<div class="col-6"> {{ form_row(form.countryEn) }} </div>
+  	</div>
+  	{{ form_row(form.contentEn) }}
+  </div>
+</div>
+  	<div class="row justify-content-center">
+{% if content.thumbnail.mediaFileName == "something" %}
+<div class="col-6"><img src="https://via.placeholder.com/570x530" class="w-50 pb-3"></div>
+{% else %}
+<div class="col-6"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="w-50 pb-3"></div>
+{% endif %}
+      	<div class="col-6">{{ form_row(form.thumbnail) }}</div>
+{% if content.cover.mediaFileName == "something" %}
+<div class="col-6"><img src="https://via.placeholder.com/1920x570" class="w-50 pb-3"></div>
+{% else %}
+    <div class="col-6"><img src="/upload/file/{{content.cover.mediaFileName}}" class="w-100"></div>
+{% endif %}
+        <div class="col-6">{{ form_row(form.cover) }}</div>
+
+      	<div class="col-6">{{ form_row(form.duree) }}</div>
+        <div class="col-6">{{ form_row(form.lieu) }}</div>
+        <div class="col-6">{{ form_row(form.date) }}</div>
+        <div class="col-6">{{ form_row(form.author) }}</div>
+        <div class="col-6">{{ form_row(form.director) }}</div>
+        <div class="col-6">{{ form_row(form.note) }}</div>
+    </div>
+
+    			<h2>Ajouter des images</h2>
+	    {{ include('content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}
+
+
+{{ form_end(form) }}

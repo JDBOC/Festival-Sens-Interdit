@@ -7,6 +7,8 @@ use App\Entity\SiFile;
 use App\Form\ShowType;
 use App\Entity\ShowSearch;
 use App\Form\ShowSearchType;
+use App\Form\PreFormType;
+use App\Form\NewsType;
 use App\Entity\RelatedContentSearch;
 use App\Form\RelatedContentSearchType;
 use App\Repository\ContentRepository;
@@ -46,52 +48,45 @@ class AdminContentController extends AbstractController
         ]);
     }
 
+   
+
     /**
      * @Route("/new", name="show_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
     {
         $show = new Content();
-        $form = $this->createForm(ShowType::class, $show);
+        $cover = new SiFile();
+        $cover->setType(SiFile::FILE_TYPE['cover']);
+        $cover->setMediaFileName("something");
+        $cover->setUpdatedAt(new \DateTime("now"));
+        $thumbnail = new SiFile();
+        $thumbnail->setType(SiFile::FILE_TYPE['thumbnail']);
+        $thumbnail->setMediaFileName("something");
+        $thumbnail->setUpdatedAt(new \DateTime("now"));
+
+        $form = $this->createForm(PreFormType::class, $show);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            $show->setTitleFr('titre');
+            $show->setContentFr('contenu');
+            $show->setComplete(false);
+            $show->setTranslated(false);
+            $show->setArchive(false);
+            $show->setCover($cover);
+            $show->setThumbnail($thumbnail);
             $entityManager = $this->getDoctrine()->getManager();
-            $cover = $show->getCover();
-            $cover->setType(SiFile::FILE_TYPE['cover']);
-
-            $thumbnail = $show->getThumbnail();
-            $thumbnail->setType(SiFile::FILE_TYPE['thumbnail']);
-
-            // a passer dans un service
-            $show->setContentType(Content::CONTENT_TYPE['festival']);
-            if (is_null($show->getTitleEn())
-                ||  is_null($show->getContentEn())
-                ||  is_null($show->getCountryEn()) ) {
-                $show->setTranslated(false);
-            } else {
-                $show->setTranslated(true);
-            }
-            if (is_null($show->getCountryFr())
-                ||  is_null($show->getContentFr())
-                ||  empty($show->getSessions())) {
-                $show->setComplete(false);
-            } else {
-                $show->setComplete(true);
-            }
-            // fin de " a passer dans un service"
-                     
             $entityManager->persist($show);
-
             $entityManager->flush();
 
-            return $this->redirectToRoute('show_index');
+            $form = $this->createForm(ShowType::class, $show);
+            return $this->redirectToRoute('show_edit', ['content'=>$show , 'id'=>$show->getId()]);
         }
 
-        return $this->render('admin/content/new.html.twig', [
-            'content' => $show,
-            'form' => $form->createView(),
-        ]);
+            return $this->render('admin/content/new.html.twig', [
+                'form' =>  $form->createView()
+            ]);
     }
    
     /**
@@ -100,8 +95,25 @@ class AdminContentController extends AbstractController
     public function edit(Request $request, Content $content): Response
     {
         $form = $this->createForm(ShowType::class, $content);
+        switch ($content->getContentType()) {
+            case 1: //festival
+                $form = $this->createForm(ShowType::class, $content);
+                break;
+            
+            case 2: //actualité
+                $form = $this->createForm(NewsType::class, $content);
+                break;
+            
+            case 4: //hors scène
+                $form = $this->createForm(ShowType::class, $content);
+                break;
+            
+            case 5: //tournée
+                $form = $this->createForm(ShowType::class, $content);
+                break;
+        }
+        
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 

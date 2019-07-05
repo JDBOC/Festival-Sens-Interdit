@@ -1,107 +1,141 @@
+{% set session = app.session.get('session') %}
+{% if session['language'] is not defined %}
+	{% set language = "fr" %}
+{% else %}
+	{% set language = session['language'] %}
+{% endif %}
 
 <div class="navBg">
 	<div class="container-fluid">
- 		<form method="post">
- 			<div class="row">
-				<button name="language" value="fr" class="btn btn-default">
-					<img class="m-0" src="/drapFr.jpg" width="30" style="border:solid; border-width: thin;"/>
-				</button>
-				<button name="language" value="en_EN" class="btn btn-default">
-					<img src="/drapEn.jpg" width="30" style="border:solid; border-width: thin;" />
-				</button>
+
+		<div class="row">
+
+			<div class="col-1">
+				<a href="{{ path('translate', {value: 'fr', route: app.request.attributes.get('_controller'), parameters: app.request.attributes.get('_route_params')}) }}">
+					<button name="language" class="btn btn-default">
+						<img class="m-0" src="/drapFr.jpg" width="30" style="border:solid; border-width: thin;"/>
+					</button>
+				</a>
+				<a href="{{ path('translate', {value: 'en_EN', route: app.request.attributes.get('_controller'), parameters: app.request.attributes.get('_route_params')})}}">
+					<button name="language" value="en_EN" class="btn btn-default">
+						<img src="/drapEn.jpg" width="30" style="border:solid; border-width: thin;" />
+					</button>
+				</a>
 			</div>
-		</form>
-	</div>
-  <br />
-{# ------------------------------------- #}
-	 <div class="container-fluid">
-	 	<div class="row">
-<div class="col-sd-4 logo">
-      <a href="{{ path('index_festival') }}">
-      <img class="ml-md-5" src="/logoNavbar.png" alt="logo">
-    </a>
-    </div>
-      <div class="col-md-6 pl-md-5 ml-md-5">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-			    <span class="navbar-toggler-icon"></span>
-			  </button>
-
-			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-			    <ul class="navbar-nav mr-auto">
-
-			      <li class="liNav liNav1">
-			      	<div class="dropdown">
-					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sens Interdits</button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    	<a class="dropdown-item" href="#">Le festival</a>
-					    	<a class="dropdown-item" href="{{ path('index_tournee') }}">Les spectacles en tournée</a>
-					    	<a class="dropdown-item" href="#">Les partenaires</a>
-					    	<a class="dropdown-item" href="#">L'équipe</a>
-						</div>
+			<div class="col-1 offset-10">
+				<div class="row">
+					<div class="col-1">
+						<a href="https://www.facebook.com/sens.interdits/"><i class="fab fa-facebook" style="color: white"></i></a>
 					</div>
-			      </li>
-			      <li class="liNav">
-			      	<div class="dropdown">
-					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Avec les publics</button>
-					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    	<a class="dropdown-item" href="#">Ecole éphémère </a>
-					    	<a class="dropdown-item" href="#">Hors Scéne</a>
-					    	<a class="dropdown-item" href="#">Action de médiation</a>
-						</div>
+					<div class="col-1">
+						<a href="https://twitter.com/sens_interdits"><i class="fab fa-twitter" style="color: white"></i></a>
 					</div>
-			      </li>
-			      <li class="liNav">
-					<div class="dropdown">
-					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informations pratiques	</button>
-					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    	<a class="dropdown-item" href="#">Le chapiteau</a>
-					    	<a class="dropdown-item" href="#">Lieux et accès</a>
-					    	<a class="dropdown-item" href="#">Tarifs et réservation</a>
-					    	<a class="dropdown-item" href="#" data-toggle="modal" data-target="#ContactModal">Contact</a>
-						</div>
+					<div class="col-1">
+						<a href="https://www.youtube.com/channel/UCIoz5kqDlIfEuRR4gxXDfFw"><i class="fab fa-youtube" style="color: white"></i></a>
 					</div>
-				</li>
-				<li class="liNav">
-					<div class="dropdown">
-					  	<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Médias</button>
-					  	<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					    	<a class="dropdown-item" href="#">Gallerie</a>
-					    	<a class="dropdown-item" href="#">Web radio</a>
-					    	<a class="dropdown-item" href="#">Presse</a>
-						</div>
-					</div>
-				</li>
-					<div class="mt-2 archivesMenu">
-						<a class="text-light ml-2" href="{{ path('archives') }}">Archives</a>
-					</div>
-					<div class="mt-2 md-5">
-						<a class="text-light ml-2" href="#">Nous soutenir</a>
-					</div>
-			    </ul>
-        </div>
-
-			</nav>
-      </div>
+				</div>
+			</div>
 		</div>
-	<div class="offset-md-5">
-		<button class="mb-2 mr-md-4" style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
-      <a href="https://sensinterdits.mapado.com/">
-		    <h5 class="text-light mt-1 mx-1">
-          <i class="fas fa-theater-masks"></i>
-          Billetterie
-        </h5>
-      </a>
-    </button>
-		<button class="offset-1" style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
-      <a href="{{ path('index_festival') }}">
-		    <h5 class="text-light mt-1">
-          <i class="fas fa-book-open"></i>
-          Programme
-        </h5>
-      </a>
-    </button>
 	</div>
+
+	<br />
+	{# ------------------------------------- #}
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sd-4 logo">
+				<a href="{{ path('index_festival') }}">
+					<img class="ml-md-5" src="/logoNavbar.png" alt="logo">
+				</a>
+			</div>
+
+			<div class="col-md-6 pl-md-5 ml-md-5">
+				<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="liNav liNav1">
+								<div class="dropdown">
+									<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sens Interdits</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<a class="dropdown-item" href="#">{% trans into language %}Le Festival{% endtrans %}</a>
+										<a class="dropdown-item" href="{{ path('index_tournee') }}">{% trans into language %}Les spectacles en tournée{% endtrans %}</a>
+										<a class="dropdown-item" href="#">{% trans into language %}Les partenaires{% endtrans %}</a>
+										<a class="dropdown-item" href="#">{% trans into language %}L'équipe{% endtrans %}</a>
+									</div>
+								</div>
+							</li>
+
+							<li class="liNav">
+								<div class="dropdown">
+									<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans into language %}Avec les publics{% endtrans %}</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<a class="dropdown-item" href="#">Ecole éphémère </a>
+										<a class="dropdown-item" href="#">{% trans into language %}Hors-Scène{% endtrans %}</a>
+										<a class="dropdown-item" href="#">{% trans into language %}Actions de médiation{% endtrans %}</a>
+									</div>
+								</div>
+							</li>
+
+							<li class="liNav">
+								<div class="dropdown">
+									<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans into language %}Informations pratiques{% endtrans %}	</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<a class="dropdown-item" href="#">Le chapiteau</a>
+										<a class="dropdown-item" href="#">{% trans into language %}Lieux et accès{% endtrans %}</a>
+										<a class="dropdown-item" href="#">{% trans into language %}Tarifs et réservation{% endtrans %}</a>
+										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#ContactModal">Contact</a>
+									</div>
+								</div>
+							</li>
+
+							<li class="liNav">
+								<div class="dropdown">
+									<button class="btn btn-dark dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans into language %}Médias{% endtrans %}</button>
+									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										<a class="dropdown-item" href="#">{% trans into language %}Galerie{% endtrans %}</a>
+										<a class="dropdown-item" href="#">Web radio</a>
+										<a class="dropdown-item" href="#">{% trans into language %}Presse{% endtrans %}</a>
+									</div>
+								</div>
+							</li>
+
+							<div class="mt-2 archivesMenu">
+								<a class="text-light ml-2" href="{{ path('archives') }}">Archives</a>
+							</div>
+
+							<div class="mt-2 md-5">
+								<a class="text-light ml-2" href="#">{% trans into language %}Nous soutenir{% endtrans %}</a>
+							</div>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
+
+		<div class="offset-md-5">
+			<button class="mb-2 mr-md-4" style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
+				<a href="https://sensinterdits.mapado.com/">
+					<h5 class="text-light mt-1 mx-1">
+						<i class="fas fa-theater-masks"></i>
+						{% trans into language %}Billetterie{% endtrans %}
+					</h5>
+				</a>
+			</button>
+			<button class="offset-1" style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
+				<a href="{{ path('index_festival') }}">
+					<h5 class="text-light mt-1">
+						<i class="fas fa-book-open"></i>
+						{% trans into language %}Programme{% endtrans %}
+					</h5>
+				</a>
+			</button>
+		</div>
+
 	</div>
 </div>
