@@ -1,42 +1,40 @@
-<div class="container-fluid" style="padding-left: 100px; padding-right: 100px;">
-    {{ form_start(formEdition) }}
+{{ form_start(formEdition) }}
 
-        <div class="row">
-            <div class="col-4">
-                {{ form_label(formEdition.name, "Nom de l'édition") }}
-                {{ form_widget(formEdition.name) }}
-            </div>
-
-            <div class="col-4">
-                <label>Statut</label>
-                <select name="statut">
-                    {% for status in constant('App\\Entity\\Edition::STATUS')%}
-                        <option value="{{loop.index}}"> {{status}} </option>
-                    {% endfor %}
-                </select>
-            </div>
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formEdition.name, "Nom de l'édition") }}
+            {{ form_widget(formEdition.name) }}
         </div>
 
-        <div class="row">
-            <div class="col-4">
-                {{ form_label(formEdition.dateDebut, 'Date de début') }}
-                     {{ form_widget(formEdition.dateDebut) }}
-            </div>
-            <div class="col-4">
-                {{ form_label(formEdition.dateFin, 'Date de fin') }}
-                     {{ form_widget(formEdition.dateFin) }}
-            </div>
+        <div class="col-4">
+            <label>Statut</label>
+            <select name="statut">
+                {% for status in constant('App\\Entity\\Edition::STATUS')%}
+                    <option value="{{loop.index}}"> {{status}} </option>
+                {% endfor %}
+            </select>
         </div>
+    </div>
 
-        <div class="row">
-            <div class="col-4">
-                {{ form_label(formEdition.editionPicture, "image de  l'édition") }}
-                {%if noBlankFile is defined %}<span class="badge badge-warning">{{ noBlankFile}}</span>{% endif %}
-                {{ form_widget(formEdition.editionPicture) }}
-            </div>
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formEdition.dateDebut, 'Date de début') }}
+                 {{ form_widget(formEdition.dateDebut) }}
         </div>
+        <div class="col-4">
+            {{ form_label(formEdition.dateFin, 'Date de fin') }}
+                 {{ form_widget(formEdition.dateFin) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formEdition.editionPicture, "image de  l'édition") }}
+            {%if noBlankFile is defined %}<span class="badge badge-warning">{{ noBlankFile}}</span>{% endif %}
+            {{ form_widget(formEdition.editionPicture) }}
+        </div>
+    </div>
 
 
-        <button class="btn btn-success btn-sm">{{ button_label|default('Enregistrer') }}</button>
-    {{ form_end(formEdition) }}
-</div>
+    <button class="btn btn-success btn-sm">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(formEdition) }}
