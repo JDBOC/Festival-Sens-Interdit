@@ -16,6 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SiFileController extends AbstractController
 {
     /**
+
      * @Route("/", name="sifile_index", methods={"GET"})
      */
     public function index(SiFileRepository $siFileRepository): Response
@@ -36,10 +37,11 @@ class SiFileController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $siFile->setUpdatedAt(new \DateTime());
             $entityManager->persist($siFile);
             $entityManager->flush();
 
-            return $this->redirectToRoute('si_file_index');
+            return $this->redirectToRoute('file_index');
         }
 
         return $this->render('si_file/new.html.twig', [
@@ -67,6 +69,7 @@ class SiFileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $siFile->setUpdatedAt(new \DateTime());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('sifile_index', [

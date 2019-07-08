@@ -4,11 +4,11 @@ namespace App\Form;
 
 use App\Entity\SiFile;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 /**
  * Form used in order to have a complete form
@@ -19,6 +19,7 @@ class SiFileType extends AbstractType
     {
         $builder
             ->add('name')
+
             ->add('type', ChoiceType::class, [
                 'choices' => SiFile::FILE_TYPE
             ])
