@@ -20,7 +20,7 @@ class UserContentController extends AbstractController
     {
         $contactForm = $this->createForm(ContactType::class);
 
-        return $this->render('userContent/contentShow.html.twig', [
+        return $this->render('UserTemplate/userContent/contentShow.html.twig', [
             'content'   => $content,
             'contactForm' => $contactForm->createView(),
             'tarifs' => $tarifRepository->findAll()
