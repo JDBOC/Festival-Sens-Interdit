@@ -18,7 +18,7 @@
         {% include '/userContent/_contentLogoCountry.html.twig' %}
     </div>
     
-    <div class="container px-0 py-2 d-flex justify-content-center m-auto">
+    <div class="container px-0 py-2 d-flex justify-content-center">
         <div class="mt-4 row">
             <div class=" {# Bloc du contenu enrichi #}
             {% if content.pictures|length > 0 %} col-md-6 
@@ -26,7 +26,7 @@
                 <div class="px-2"> {# Bloc des infos pratiques #}
                     {% include '/userContent/_contentInfospratiques.html.twig' %}
                 </div>
-                <div class="px-3 textareaScroll">
+                <div class="pre-scrollable">
                 {% if language == "en_EN" and content.contentEn is not null %}
                     {{content.contentEn|raw}}
                 {% else %}
