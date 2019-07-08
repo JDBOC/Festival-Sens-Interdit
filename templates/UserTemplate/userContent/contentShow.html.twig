@@ -13,20 +13,20 @@
                 {# Image de couverture avec le titre #}
     {% include 'UserTemplate//userContent/_contentCover.html.twig' %}
 
-    <div class="container p-0 d-flex">
+    <div class="container p-0">
                 {# pays et logo des themes du spectacle #}
         {% include 'UserTemplate//userContent/_contentLogoCountry.html.twig' %}
     </div>
     
-    <div class="container px-0 py-2 d-flex justify-content-center">
-        <div class="mt-4 row">
+    <div class="container px-0 py-2">
+        <div class="mt-4 row p-0">
             <div class=" {# Bloc du contenu enrichi #}
             {% if content.pictures|length > 0 %} col-md-6 
             {% else %} col-md-11 {% endif %} col-12"> 
-                <div class="px-2"> {# Bloc des infos pratiques #}
+                <div class="px-0 "> {# Bloc des infos pratiques #}
                     {% include 'UserTemplate//userContent/_contentInfospratiques.html.twig' %}
                 </div>
-                <div class="pre-scrollable">
+                <div class="pre-scrollable px-2 pr-3 px-md-0 mt-2">
                 {% if language == "en_EN" and content.contentEn is not null %}
                     {{content.contentEn|raw}}
                 {% else %}
@@ -36,7 +36,7 @@
             </div>
             
             {% if content.pictures|length > 0 %}
-            <div class="col-md-5"> {# Bloc des illustrations du contenu #}             
+            <div class="col-md-5 pl-0 pr-1"> {# Bloc des illustrations du contenu #}             
                 {% include 'UserTemplate//userContent/_contentPictures.html.twig' %}
             </div>
         {% endif %}
