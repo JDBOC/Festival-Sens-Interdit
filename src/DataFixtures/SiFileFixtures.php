@@ -153,6 +153,14 @@ class SiFileFixtures extends Fixture
         $manager->persist($edition2017Thumbnail);
         $this->addReference('edition2017Thumbnail', $edition2017Thumbnail);
 
+        $edition2015Thumbnail = new SiFile;
+        $edition2015Thumbnail ->setName('edition2015Thumbnail')
+            ->setType(Sifile::FILE_TYPE['thumbnail'])
+            ->setMediaFileName('edition2015.jpg')
+            ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($edition2015Thumbnail);
+        $this->addReference('edition2015Thumbnail', $edition2015Thumbnail);
+
         $logo1 = new SiFile;
         $logo1 ->setName('croixRousse')
                     ->setType(Sifile::FILE_TYPE['logo'])

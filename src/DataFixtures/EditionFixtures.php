@@ -28,7 +28,17 @@ class EditionFixtures extends Fixture implements DependentFixtureInterface
             ->setEditionPicture($this->getReference('edition2017Thumbnail'))
             ->setStatus("archive");
         $manager->persist($edition);
-            $manager->flush();
+
+        // une 3eme edition  pour tester les archives
+        $edition = new Edition();
+        $edition->setName('2015')
+            ->setdateDebut(new \DateTime('18 Sep 2015'))
+            ->setdateFin(new \DateTime('29 Sep 2015'))
+            ->setEditionPicture($this->getReference('edition2015Thumbnail'))
+            ->setStatus("archive");
+        $manager->persist($edition);
+
+        $manager->flush();
     }
 
     public function getDependencies()
