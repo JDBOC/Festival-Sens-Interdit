@@ -21,7 +21,7 @@
                 <div class="planning {% if date|date('d-m-Y') == sessionDate|date('d-m-Y') %} activeDate
                     {% endif %}">
 
-                  <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> {{date|date('D d')}}</a>
+                  <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> {{date|date('j/n')}}</a>
                 </div>
               </div>
             {% endfor %}
