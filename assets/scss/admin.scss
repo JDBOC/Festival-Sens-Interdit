@@ -1,0 +1,38 @@
+@import "vars";
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: $admin-body-color;
+    font-family: roboto;
+}
+
+.container{
+	background-color:$admin-inner-container-color;
+}
+
+ .navbar{
+ 	background-color: $admin-primary-color;
+ 	color:$admin-primary-color-text;
+ }
+
+.nav-item:hover, .nav-item a:hover{
+	background-color:$admin-primary-color-text;
+	color: $admin-primary-color;
+}
+.nav-item a {
+	color: $admin-primary-color-text;
+}
+
+.title, .title h1{
+	background-color:$admin-secondary-color;
+	color: $admin-primary-color-text;
+	font-size: 20px;
+}
+
+.jumbotron{
+background-color: $admin-third-color;
+
+}
+.uploaded-img {
+  width: 100%;
+}

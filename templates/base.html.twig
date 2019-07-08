@@ -3,15 +3,23 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        {{ encore_entry_link_tags('nav') }}
+        {{ encore_entry_link_tags('app')}}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
         {% endblock %}
     </head>
+
     <body>
         {% include 'navBar.html.twig' %}
+
         {% block body %}{% endblock %}
+
+
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+           {{ encore_entry_script_tags('nav') }}
         {% endblock %}
+        {% include 'footer.html.twig' %}
+        <script src="https://kit.fontawesome.com/3f21093845.js"></script>
+
     </body>
 </html>

@@ -1,0 +1,66 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Content index{% endblock %}
+
+{% block body %}
+    <div class="title px-4 pb-4 pt-2">
+        <h1>Liste des contenu</h1>
+    </div>
+    <a href="{{ path('show_new') }}"> <button class="btn btn-primary m-2"> Nouveau contenu</button></a>
+    <div class="jumbotron py-3 m-2">
+        <div>
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col">
+                    {{ form_row(form.isComplete) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.isTranslated) }}
+                </div>
+                <div class="col">
+                    {{ form_row(form.contentType) }}
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary"> Rechercher</button>
+                </div>
+            </div>
+            {{ form_end(form)}}
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Edition</th>
+                <th>Titre</th>
+                <th>Représentations</th>
+                <th>Logos</th>
+                <th>Complet</th>
+                <th>Traduit</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for content in contents %}
+            <tr>
+
+                <td>{{ content.titleFr }}</td>
+                <td>{{ content.sessions | length }}</td>
+                <td>{{ content.logos | length }}</td>
+                <td>{{ content.complete }}</td>
+                <td>{{ content.translated }}</td>
+                <td>
+                    {# <a href="{{ path('show_show', {'id': content.id}) }}">show</a> #}
+                    <a href="{{ path('show_edit', {'id': content.id}) }}"><button class="btn btn-secondary">Modifier</button> </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">Aucun spectacle enregistré</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(contents) }}
+    </div>
+{% endblock %}

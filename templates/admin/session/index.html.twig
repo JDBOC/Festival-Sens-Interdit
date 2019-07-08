@@ -1,39 +1,38 @@
 {% extends 'adminBase.html.twig' %}
 
-{% block title %}Session index{% endblock %}
-
 {% block body %}
-    <h1>Session index</h1>
-    <a href="{{ path('session_new') }}">Create new</a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>SessionDate</th>
-                <th>Location</th>
-                <th>Spectacle</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for session in sessions %}
-            <tr>
-                <td>{{ session.id }}</td>
-                <td>{{ session.sessionDate ? session.sessionDate|date('d-m-Y à H:i') : '' }}</td>
-                <td>{{ session.location }}</td>
-                <td>{{ session.content.titleFr}}</td>
-                <td>
-                    <a href="{{ path('session_show', {'id': session.id}) }}">show</a>
-                    <a href="{{ path('session_edit', {'id': session.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="row">
+        <h1>Liste des représentations</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Spectacle</th>
+                        <th>Date</th>
+                        <th>Lieu</th>
+                        <th>Tarifs</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for session in sessions %}
+                    <tr>
+                        <td>Spectacle</td>
+                        <td>{{ session.sessionDate ? session.sessionDate|date('d-m-Y à H:i') : '' }}</td>
+                        <td>{{ session.location }}</td>
+                        <td>Tarif</td>
+                        <td>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 {% endblock %}

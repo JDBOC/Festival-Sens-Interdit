@@ -3,94 +3,93 @@
 namespace App\Controller;
 
 use App\Entity\Session;
+use App\Entity\Content;
 use App\Form\SessionType;
 use App\Repository\SessionRepository;
+use App\Repository\ContentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 
 /**
  * @Route("/admin/session")
  */
 class SessionController extends AbstractController
 {
-    /**
-     * @Route("/", name="session_index", methods={"GET"})
-     */
-    public function index(SessionRepository $sessionRepository): Response
-    {
-        return $this->render('admin/session/index.html.twig', [
-            'sessions' => $sessionRepository->findAll(),
-        ]);
-    }
 
     /**
-     * @Route("/new", name="session_new", methods={"GET","POST"})
+     * @Route("/{id}/new", name="session_by_content", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
-    {
+    public function indexByContent(
+        ContentRepository $contentRepository,
+        SessionRepository $sessionRepository,
+        Request $request,
+        $id
+    ): Response {
         $session = new Session();
         $form = $this->createForm(SessionType::class, $session);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $session->setContent($contentRepository->findOneBy(['id'=>$id]));
             $entityManager->persist($session);
             $entityManager->flush();
 
-            return $this->redirectToRoute('session_index');
+            return $this->redirectToRoute('session_by_content', [
+                'id' => $id
+            ]);
         }
-
         return $this->render('admin/session/new.html.twig', [
-            'session' => $session,
-            'form' => $form->createView(),
+                'sessions' => $sessionRepository->findby(['content' => $id]),
+                'content' => $contentRepository->findOneBy(['id'=>$id]),
+                'session' => $session,
+                'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/{id}", name="session_show", methods={"GET"})
+     * @Route("/{id}/edit/{content_id}", name="session_edit", methods={"GET","POST"})
+     * @Entity("content", expr="repository.find(content_id)")
      */
-    public function show(Session $session): Response
-    {
-        return $this->render('admin/session/show.html.twig', [
-            'session' => $session,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="session_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Session $session): Response
-    {
+    public function edit(
+        Request $request,
+        Session $session,
+        Content $content,
+        SessionRepository $sessionRepository
+    ): Response {
         $form = $this->createForm(SessionType::class, $session);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('session_index', [
-                'id' => $session->getId(),
+            return $this->redirectToRoute('session_by_content', [
+                'id' => $content->getId()
             ]);
         }
 
         return $this->render('admin/session/edit.html.twig', [
             'session' => $session,
             'form' => $form->createView(),
+            'sessions' => $sessionRepository->findby(['content' => $content->getId()]),
+            'content' => $content,
         ]);
     }
 
     /**
-     * @Route("/{id}", name="session_delete", methods={"DELETE"})
+     * @Route("/delete/{id}", name="session_delete", methods={"GET"})
      */
     public function delete(Request $request, Session $session): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$session->getId(), $request->request->get('_token'))) {
+            $contentId = $session->getContent()->getId();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($session);
             $entityManager->flush();
-        }
 
-        return $this->redirectToRoute('session_index');
+        return $this->redirectToRoute('session_by_content', [
+                'id' => $contentId
+            ]);
     }
 }

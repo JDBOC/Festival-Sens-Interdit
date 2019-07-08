@@ -18,13 +18,14 @@ class InSiFileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
+            // ->add('name')
             // ->add('type', ChoiceType::class, [
             //     'choices' => SiFile::FILE_TYPE
             // ])
             ->add('mediaFile', VichFileType::class, [
                 'required' => false,
-                'download_uri' => true,
+                'download_uri' => false,
+                'allow_delete' => false
             ]);
     }
 

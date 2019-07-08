@@ -1,13 +1,4 @@
 @import "vars";
-@import "~bootstrap/scss/bootstrap";
-
-body {
-    background-color: $secondary-color;
-}
-
-a {
-    color: $warm-color;
-}
 
 /*css ludo home page*/
 .img-border{
@@ -50,21 +41,144 @@ a {
 }
 /*fin ludo*/
 
-/*ludo navBar*/
-.navBg{
-	background-color: #ed1c24;
+
+ /* START OF stylesheet.css of templates/user_show/index.html.twig // by Catherine */
+body{
+    background-color: $primary_color;
 }
 
-.nav-item{
-	color: white;
-	font-size: 0.8em;
-	margin-top: 0em;
-	padding-bottom: 0em;
-	padding-top: 0em;
+.redPill {
+    color: white;
+    background: red;
+    border-bottom-right-radius: 10px 10px;
+    font-size: 1.2rem;
+    width: 6em;
+    text-align: center;
+}
+/* END OF stylesheet.css of templates/user_show/index.html.twig // by Catherine */
+
+/* Tableau des tarifs */
+
+.tarifTable {
+	.modalTarif {
+		margin: 10px;
+	}
+
+	table {
+		border-collapse: collapse;
+		border-spacing : 0;
+	}
+
+	th, td {
+		width: 200px;
+		height: 30px;
+		border: 1px black solid;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.noBorder {
+		border: none;
+	}
+
+	.TarifTitle {
+		color: white;
+		background-color: #9b0000;
+	}
+
+	.tarifName {
+		background-color: #b4b4b4;
+	}
 }
 
-.navbar{
-	margin-bottom: 3em;
-	margin-top: 3em;
+
+/* End Tableau des tarifs */
+
+/* planning homepage */
+.planning
+{
+  color: black;
+  column-width: 15rem;
+  background-color: darkgray;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  transition: background-color 1.5s ease, width 2.5s;
+  align-content: space-between;
+  text-align: center;
+  width: auto;
 }
-/*fin navBar*/
+
+.planning:active
+{
+color: red;
+}
+.txtplanning
+{
+  color: black;
+
+}
+
+.txtplanning:hover
+{
+  color: white;
+}
+.planning:hover
+{
+  background-color: #ed1c24;
+  padding-bottom: 10px;
+  color: red;
+}
+
+.card-spectacle
+{
+  width: 85%;
+  height: 85%;
+
+}
+
+
+
+.boutonHorsScene
+{
+  margin-top: 1em;
+  text-align: center;
+
+  width: auto;
+  alignment: center;
+  color: black;
+}
+
+.activeDate{
+  background-color: #ed1c24;
+  padding-bottom: 10px;
+  color: red;
+}
+
+.horsSceneLien
+{
+  color: black;
+}
+/*carousel*/
+
+.carousel
+{
+  background-color: black;
+  max-height: 80rem;
+ width: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+

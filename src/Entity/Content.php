@@ -13,11 +13,15 @@ class Content
 {
 
     const CONTENT_TYPE = [
-        'show' => 1,
-        'news' => 2,
-        'static_page' => 3
+        'festival' => 1,
+        'actualités' => 2,
+        'static_page' => 3,
+        'hors scène' => 4,
+        'tournée' => 5
     ];
+
     /**
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -76,24 +80,102 @@ class Content
     private $logos;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", mappedBy="pictureContent")
+     * @ORM\Column(type="boolean")
      */
-    private $picture;
+    private $complete = false;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $complete;
+    private $translated = false;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
+     */
+    private $cover;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
+     */
+    private $thumbnail;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\SiFile", mappedBy="pictureContent",cascade={"persist"})
+     */
+    private $pictures;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Content", inversedBy="isEcho")
+     */
+    private $enEcho;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Content", mappedBy="enEcho")
+     */
+    private $isEcho;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $translated;
+    private $archive = false;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $duree;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lieu;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $author;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $director;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $note;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Theme", mappedBy="contents")
+     */
+    private $themes;
 
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
         $this->logos = new ArrayCollection();
+        $this->pictures = new ArrayCollection();
+        $this->enEcho = new ArrayCollection();
+        $this->isEcho = new ArrayCollection();
+        $this->themes = new ArrayCollection();
+    }
+
+    public function __toString():string
+    {
+        return array_search($this->getContentType(), self::CONTENT_TYPE)."-".$this->getTitleFr();
+    }
+
+     /**
+     * returns the key linked to the value of the contentType const
+     * @return string
+     */
+    public function getContentTypeName():string
+    {
+        return array_search($this->contentType, self::CONTENT_TYPE);
     }
 
     public function getId(): ?int
@@ -250,22 +332,6 @@ class Content
         return $this;
     }
 
-    /**
-     * @return SiFile
-     */
-    public function getPicture(): SiFile
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(Object $picture): self
-    {
-        if ($picture instanceof SiFile) {
-            $this->picture = $picture;
-        }
-        return $this;
-    }
-
     public function getComplete(): ?bool
     {
         return $this->complete;
@@ -286,6 +352,235 @@ class Content
     public function setTranslated(bool $translated): self
     {
         $this->translated = $translated;
+
+        return $this;
+    }
+
+    public function getCover(): ?SiFile
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?Object $cover): self
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    public function getThumbnail(): ?SiFile
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?Object $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SiFile[]
+     */
+    public function getPictures(): Collection
+    {
+        return $this->pictures;
+    }
+
+    public function addPicture(Object $picture): self
+    {
+        if (!$this->pictures->contains($picture)) {
+            $this->pictures[] = $picture;
+            $picture->setPictureContent($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(SiFile $picture): self
+    {
+        if ($this->pictures->contains($picture)) {
+            $this->pictures->removeElement($picture);
+            // set the owning side to null (unless already changed)
+            if ($picture->getPictureContent() === $this) {
+                $picture->setPictureContent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getEnEcho(): Collection
+    {
+        return $this->enEcho;
+    }
+
+    public function addEnEcho(self $enEcho): self
+    {
+        if (!$this->enEcho->contains($enEcho)) {
+            $this->enEcho[] = $enEcho;
+        }
+
+        return $this;
+    }
+
+    public function removeEnEcho(self $enEcho): self
+    {
+        if ($this->enEcho->contains($enEcho)) {
+            $this->enEcho->removeElement($enEcho);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getIsEcho(): Collection
+    {
+        return $this->isEcho;
+    }
+
+    public function addIsEcho(self $isEcho): self
+    {
+        if (!$this->isEcho->contains($isEcho)) {
+            $this->isEcho[] = $isEcho;
+            $isEcho->addEnEcho($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIsEcho(self $isEcho): self
+    {
+        if ($this->isEcho->contains($isEcho)) {
+            $this->isEcho->removeElement($isEcho);
+            $isEcho->removeEnEcho($this);
+        }
+
+        return $this;
+    }
+
+    public function getArchive(): ?bool
+    {
+        return $this->archive;
+    }
+
+    public function setArchive(bool $archive): self
+    {
+        $this->archive = $archive;
+
+        return $this;
+    }
+
+    public function getDuree(): ?string
+    {
+        return $this->duree;
+    }
+
+    public function setDuree(?string $duree): self
+    {
+        $this->duree = $duree;
+
+        return $this;
+    }
+
+    public function getLieu(): ?string
+    {
+        return $this->lieu;
+    }
+
+    public function setLieu(?string $lieu): self
+    {
+        $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(?string $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?string $author): self
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    public function getDirector(): ?string
+    {
+        return $this->director;
+    }
+
+    public function setDirector(?string $director): self
+    {
+        $this->director = $director;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param mixed $note
+     *
+     * @return self
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Theme[]
+     */
+    public function getThemes(): Collection
+    {
+        return $this->themes;
+    }
+
+    public function addTheme(Theme $theme): self
+    {
+        if (!$this->themes->contains($theme)) {
+            $this->themes[] = $theme;
+            $theme->addContent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTheme(Theme $theme): self
+    {
+        if ($this->themes->contains($theme)) {
+            $this->themes->removeElement($theme);
+            $theme->removeContent($this);
+        }
 
         return $this;
     }

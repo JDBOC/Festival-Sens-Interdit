@@ -2,39 +2,38 @@
 
 
 {% block body %}
-    <h1>SiFile index</h1>
+    <h1>Liste des fichiers</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Type</th>
                 <th>Fichier</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for si_file in si_files %}
             <tr>
-                <td>{{ si_file.id }}</td>
                 <td>{{ si_file.name }}</td>
                 <td>{{ si_file.fileTypeName }}</td>
                 <td>
                     <img alt="img_fichier" src="/upload/file/{{ si_file.mediaFileName }}" style="width: 200px; height: auto" />
                 </td>
                 <td>
-                    <a href="{{ path('file_show', {'id': si_file.id}) }}">show</a>
-                    <a href="{{ path('file_edit', {'id': si_file.id}) }}">edit</a>
+                    <a href="{{ path('sifile_show', {'id': si_file.id}) }}">Voir</a>
+                    <a href="{{ path('sifile_edit', {'id': si_file.id}) }}">Modifier</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Aucun fichier enregistré</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('file_new') }}">Create new</a>
+    <a href="{{ path('sifile_new') }}">Nouveau</a>
+
 {% endblock %}

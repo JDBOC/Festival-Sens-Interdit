@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,20 @@ class Session
      * @ORM\JoinColumn(nullable=false)
      */
     private $content;
+
+
+    private $mapadoLink;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Tarif", mappedBy="session")
+     */
+    private $tarifs;
+
+
+    public function __construct()
+    {
+        $this->tarifs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -72,5 +88,53 @@ class Session
             $this->content = $content;
         }
             return $this;
+    }
+
+    /**
+     * @return Collection|Tarif[]
+     */
+    public function getTarifs(): Collection
+    {
+        return $this->tarifs;
+    }
+
+    public function addTarif(Object $tarif): self
+    {
+        if (!$this->tarifs->contains($tarif)) {
+            $this->tarifs[] = $tarif;
+            $tarif->addSession($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTarif(Object $tarif): self
+    {
+        if ($this->tarifs->contains($tarif)) {
+            $this->tarifs->removeElement($tarif);
+            $tarif->removeSession($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMapadoLink()
+    {
+        return $this->mapadoLink;
+    }
+
+    /**
+     * @param mixed $mapadoLink
+     *
+     * @return self
+     */
+    public function setMapadoLink($mapadoLink)
+    {
+        $this->mapadoLink = $mapadoLink;
+
+        return $this;
     }
 }

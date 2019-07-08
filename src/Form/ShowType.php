@@ -5,27 +5,46 @@
 use App\Entity\Content;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use App\Form\InSiFileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Entity\Edition;
+use App\Entity\Session;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ShowType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titleFr')
-            ->add('titleEn')
-            ->add('contentFr', CKEditorType::class)
-            ->add('contentEn', CKEditorType::class)
-            ->add('countryFr')
-            ->add('countryEn')
+
+            ->add('edition', EntityType::Class, ['class' => Edition::Class,    'choice_label' => 'name',])
+            // ->add('sessions', EntityType::Class, ['class' => Session::Class,    'choice_label' => 'location',])
+            ->add('titleFr', TextType::class, ["label"=>"Titre"])
+            ->add('contentFr', CKEditorType::class, ["label"=>"Contenu", 'required' => false])
+            ->add('countryFr', TextType::class, ["label"=>"Pays", 'required' => false])
+            ->add('titleEn', TextType::class, ["label"=>"Titre anglais", 'required' => false])
+            ->add('contentEn', CKEditorType::class, ["label"=>"Contenu anglais", 'required' => false])
+            ->add('countryEn', TextType::class, ["label"=>"Pays anglais", 'required' => false])
+            ->add('cover', InSiFileType::class)
+            ->add('thumbnail', InSiFileType::class)
+            ->add('duree', TextType::class, ["label"=>"Durée", 'required' => false])
+            ->add('lieu', TextType::class, ["label"=>"Lieu", 'required' => false])
+            ->add('date', TextType::class, ["label"=>"Date", 'required' => false])
+            ->add('author', TextType::class, ["label"=>"Auteur", 'required' => false])
+            ->add('director', TextType::class, ["label"=>"Directeur", 'required' => false])
+            ->add('note', TextType::class, ["label"=>"A Noté", 'required' => false])
+
+
+
             ->add('edition', EntityType::class, [
                 'class' => Edition::class,
                 'choice_label' => 'name',
-            ]);
-        ;
+            ])
+
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
