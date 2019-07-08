@@ -36,6 +36,7 @@ class EditionController extends AbstractController
 
         $form = $this->createForm(EditionType::class, $edition);
         $form->handleRequest($request);
+        $noBlankFile = null;
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -50,11 +51,14 @@ class EditionController extends AbstractController
             $entityManager->flush();
 
             return $this->redirectToRoute('edition_index');
+        } else {
+            $noBlankFile = "Image de l'édition nécessaire";
         }
 
         return $this->render('admin/edition/new.html.twig', [
             'edition' => $edition,
             'formEdition' => $form->createView(),
+            'noBlankFile' => $noBlankFile
         ]);
     }
 

@@ -109,12 +109,12 @@ class Edition
     }
 
 
-    public function getEditionPicture(): ?SiFile
+    public function getEditionPicture(): ?Object
     {
         return $this->editionPicture;
     }
 
-    public function setEditionPicture(?SiFile $editionPicture): self
+    public function setEditionPicture(?Object $editionPicture): self
     {
         $this->editionPicture = $editionPicture;
 

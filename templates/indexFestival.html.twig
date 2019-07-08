@@ -58,28 +58,27 @@
           {%for date in period %}
             <div class="col-4 col-md-1 px-1 pb-1">
               <div class="planning">
-              <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> {{date|date('D d')}}</a>
+              <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> {{date|date('j/n')}}</a>
               </div>
             </div>
           {% endfor %}
         </div>
-    <div class="boutonHorsScene">
-    <button type="button" class="btn btn-outline-danger btn-block"><a class="horsSceneLien" href="{{path('index_hors_scene')}}">{% trans into language %}Hors Scène{% endtrans %}</a></button>
-</div>
+        <div class="boutonHorsScene">
+          <a class="horsSceneLien" href="{{path('index_hors_scene')}}"><button type="button" class="btn btn-outline-danger btn-block">{% trans into language %}Hors Scène{% endtrans %}</button></a>
+        </div>
   </div>
 
 
   <br>
   <br>
-    <div class="container">
-	    	<div class="row">
+  <div class="container">
+	  <div class="row">
 	    {% for content in contents %}
 	    	<div class=" col-12 col-md-3">
 		    	<div class="card-spectacle">
 		    		<div>
 		    			<a href="/show/{{content.id}}"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
-
-
+              <p class="textDate">{{ content.countryFr }}</p>
             </div>
 				  	<div class="card-body pt-0">
               {% if language == "en_EN" and content.titleEn is not null %}
@@ -87,11 +86,11 @@
               {% else %}
 					  	<h3 class="mb-0 text-muted">{{	content.titleFr }}</h3>
               {% endif %}
-            </div>
-				</div>
-			</div>
+              <p class="mb-0 fontHome"><b>{{ content.director }}</b></p>
+				    </div>
+			    </div>
+			  </div>
 		{% endfor %}
-			</div>
 		</div>
-
+  </div>
 {% endblock %}

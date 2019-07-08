@@ -28,6 +28,15 @@
             </div>
         </div>
 
+        <div class="row">
+            <div class="col-4">
+                {{ form_label(formEdition.editionPicture, "image de  l'édition") }}
+                {%if noBlankFile is defined %}<span class="badge badge-warning">{{ noBlankFile}}</span>{% endif %}
+                {{ form_widget(formEdition.editionPicture) }}
+            </div>
+        </div>
+
+
         <button class="btn btn-success btn-sm">{{ button_label|default('Enregistrer') }}</button>
     {{ form_end(formEdition) }}
 </div>
