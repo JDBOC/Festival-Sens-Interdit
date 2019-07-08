@@ -7,12 +7,9 @@
   </ol>
 
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="" class="d-block w-100" alt="show photo"/>
-    </div>
     {% for picture in content.pictures %}
-    <div class="carousel-item">
-      <img src="/upload/file/{{ picture.mediaFileName }}" class="d-block w-100" alt="show photo"/>
+    <div class="carousel-item {%if loop.index == 1 %} active {%endif%}">
+      <img src="/upload/file/{{ picture.mediaFileName }}" class="d-block w-100 " alt="show photo"/>
     </div>
     {% endfor %}
   </div>
