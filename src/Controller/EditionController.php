@@ -56,15 +56,6 @@ class EditionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="edition_show", methods={"GET"})
-     */
-    public function show(Edition $edition): Response
-    {
-        return $this->render('admin/edition/show.html.twig', [
-            'edition' => $edition,
-        ]);
-    }
 
     /**
      * @Route("/{id}/edit", name="edition_edit", methods={"GET","POST"})

@@ -24,7 +24,6 @@
                     <td>{{ edition.dateDebut|date("d/m/Y") }}</td>
                     <td>{{ edition.dateFin|date("d/m/Y") }}</td>
                     <td>
-                        <a href="{{ path('edition_show', {'id': edition.id}) }}" class="btn btn-info btn-sm">Voir</a>
                         <a href="{{ path('edition_edit', {'id': edition.id}) }}" class="btn btn-info btn-sm">Editer</a>
                     </td>
                 </tr>
