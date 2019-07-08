@@ -18,14 +18,11 @@
           {%for date in period %}
             <div class="col-4 col-md-1 px-1 pb-1">
               <div class="planning">
-              <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> {{date|date('D d')}}</a>
+              <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> {{date|date('j/n')}}</a>
               </div>
             </div>
           {% endfor %}
         </div>
-    <div class="boutonHorsScene">
-    <button type="button" class="btn btn-danger btn-block"><a class="horsSceneLien" href="{{path('index_hors_scene')}}">Hors Scène</a></button>
-</div>
   </div>
 
 
