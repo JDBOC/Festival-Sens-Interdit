@@ -114,12 +114,11 @@ body{
 
 .planning:active
 {
-color: red;
+  color: red;
 }
 .txtplanning
 {
   color: black;
-
 }
 
 .txtplanning:hover
@@ -167,6 +166,7 @@ color: red;
 .horsSceneLien
 {
   color: black;
+  text-decoration: none !important;
 }
 /*carousel*/
 
