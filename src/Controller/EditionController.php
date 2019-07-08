@@ -37,18 +37,23 @@ class EditionController extends AbstractController
         $edition->setEditionPicture($sifile);
         $form = $this->createForm(EditionType::class, $edition);
         $form->handleRequest($request);
+        $noBlankFile = null;
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($edition);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('edition_index');
+            if ($form->getData()->getEditionPicture()->getMediaFile()!= null) {
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($edition);
+                $entityManager->flush();
+                return $this->redirectToRoute('edition_index');
+            } else {
+                $noBlankFile = "image de l'édition nécessaire";
+            }
         }
 
         return $this->render('admin/edition/new.html.twig', [
             'edition' => $edition,
             'formEdition' => $form->createView(),
+            'noBlankFile' => $noBlankFile
         ]);
     }
 
