@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SiFileRepository")
@@ -23,6 +24,8 @@ class SiFile
         'contentPicture' => 4,  // picture displayed inside the content, can be multiple
         'thumbnail' => 5  // ude to illustrate show with a small squared picture"
     ];
+
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -43,6 +46,7 @@ class SiFile
     /**
      * @var File|null
      * @Vich\UploadableField(mapping="Uploaded_file", fileNameProperty="mediaFileName")
+     * @Assert\NotBlank
      */
     private $mediaFile;
 
@@ -56,7 +60,6 @@ class SiFile
      * @ORM\ManyToMany(targetEntity="App\Entity\Content", mappedBy="logos")
      */
     private $logoContents;
-
 
      /**
      * @ORM\Column(type="datetime")
@@ -72,6 +75,7 @@ class SiFile
      * @ORM\ManyToOne(targetEntity="App\Entity\Content", inversedBy="pictures")
      */
     private $pictureContent;
+
 
     public function __construct()
     {
@@ -193,6 +197,7 @@ class SiFile
 
         return $this;
     }
+
 
     /**
      * @return \DateTimeInterface

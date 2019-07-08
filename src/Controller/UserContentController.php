@@ -18,11 +18,8 @@ class UserContentController extends AbstractController
      */
     public function showContent(Content $content, TarifRepository $tarifRepository): Response
     {
-        $contactForm = $this->createForm(ContactType::class);
-
         return $this->render('UserTemplate/userContent/contentShow.html.twig', [
             'content'   => $content,
-            'contactForm' => $contactForm->createView(),
             'tarifs' => $tarifRepository->findAll()
         ]);
     }

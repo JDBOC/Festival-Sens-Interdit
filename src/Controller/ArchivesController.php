@@ -17,7 +17,12 @@ class ArchivesController extends AbstractController
      */
     public function archives(EditionRepository $editionRepository)
     {
-        return $this->render('UserTemplate/archives.html.twig', ['editions' => $editionRepository->findAll()]);
+        return $this->render(
+            'UserTemplate/archives.html.twig',
+            [
+                'editions' => $editionRepository->editionByStatus('archive')
+            ]
+        );
     }
 
     /**
