@@ -6,6 +6,15 @@
                 {{ form_label(formEdition.name, "Nom de l'édition") }}
                 {{ form_widget(formEdition.name) }}
             </div>
+
+            <div class="col-4">
+                <label>Statut</label>
+                <select name="statut">
+                    {% for status in constant('App\\Entity\\Edition::STATUS')%}
+                        <option value="{{loop.index}}"> {{status}} </option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
 
         <div class="row">
