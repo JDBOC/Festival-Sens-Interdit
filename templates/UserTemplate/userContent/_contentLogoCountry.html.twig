@@ -1,5 +1,5 @@
 <div class="row m-0">
-            <div class="col-md-10 p-0">               
+            <div class="col-md-3 p-0">               
                 <div class=" mr-4 d-flex align-items-center redPill">
                         {# country #}
                     {% if language == "en_EN" and content.CountryEn is not null %}
@@ -8,20 +8,15 @@
                     <p class="m-auto px-1 d-block">{{content.countryFr}}</p>
                     {% endif %}
                 </div>
-               {#  <div class="mr-2 mt-2"> <!-- Show's LOGOS (1 or more) NEED A FOR LOOP IN TWIG -->
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo1" height="40rem" width="40rem">
-                </div>
-                <div class="mr-2 mt-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo2" height="40rem" width="40rem">
-                </div>
-                <div class="mr-2 mt-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
-                </div>
-                <div class="mr-2 mt-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
-                </div>
-                <div class="mr-2 mt-2">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Logo_TV_2015.png/280px-Logo_TV_2015.png" alt="logo3" height="40rem" width="40rem">
-                </div> #}
             </div>
+            <div class="col-md-9 row">
+            {% if content.themes|length > 0 %}
+                {% for theme in content.themes %}
+                    <div class=" col-4 col-md-3">
+                        <img src="/upload/file/{{ theme.picture.mediaFileName }}" class="img-fluid"   alt="">
+                    </div>
+                {% endfor %}
+            {% endif %}                
+            </div>
+                }
         </div>
