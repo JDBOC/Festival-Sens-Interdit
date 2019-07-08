@@ -1,8 +1,9 @@
 {% extends 'adminBase.html.twig' %}
 
-{% block title %}Edit Edition{% endblock %}
+{% block title %}Edition{% endblock %}
 
 {% block body %}
+<div class="container-fluid" style="padding-left: 100px; padding-right: 100px;">
     <h1>Modifier une édition</h1>
 
     {{ include('admin/edition/_form.html.twig', {'button_label': 'Enregistrer'}) }}
@@ -10,4 +11,5 @@
     <a href="{{ path('edition_index') }}" class="btn btn-info btn-sm">Retour</a>
 
     {{ include('admin/edition/_delete_form.html.twig') }}
+</div>
 {% endblock %}
