@@ -7,11 +7,11 @@
         </div>
 
         <div class="col-4">
-            <label>Statut</label>
-            <select name="statut">
-                {% for status in constant('App\\Entity\\Edition::STATUS')%}
-                    <option value="{{loop.index}}"> {{status}} </option>
-                {% endfor %}
+            <label>Statut</label><br>
+            <select name="status">
+               {% for status in constant('App\\Entity\\Edition::STATUS')%}
+                    <option value="{{loop.index}}"> {{ status }} </option>
+               {% endfor %}
             </select>
         </div>
     </div>
@@ -37,4 +37,6 @@
 
 
     <button class="btn btn-success btn-sm">{{ button_label|default('Enregistrer') }}</button>
+
+
 {{ form_end(formEdition) }}

@@ -16,7 +16,8 @@ class EditionType extends AbstractType
             ->add('name')
             ->add('editionPicture', InSiFileType::class)
             ->add('dateDebut', Type\DateType::class)
-            ->add('dateFin', Type\DateType::class);
+            ->add('dateFin', Type\DateType::class)
+            ->add('status', Type\ChoiceType::class, ['choices' => Edition::STATUS]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

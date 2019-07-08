@@ -8,16 +8,16 @@
         </div>
         <div class="row">
             {% for edition in editions %}
-            <div class="col-xl-3 col-md-5 col-sm-1" style="margin: 10px;">
-                <div class="card" style="width: 18rem;">
-                    <a href="{{ path('list_content_edition_archive', {'id': edition.id}) }}">
-                        <img class="card-img-top" src="https://via.placeholder.com/200" alt="Card image cap">
-                    </a>
-                    <div class="card-body">
-                        <h5 style="color: black; text-align: center;">{{ edition.name }}</h5>
+                <div class="col-xl-3 col-md-5 col-sm-1" style="margin: 10px;">
+                    <div class="card" style="width: 18rem;">
+                        <a href="{{ path('list_content_edition_archive', {'id': edition.id}) }}">
+                            <img class="card-img-top" src="https://via.placeholder.com/200" alt="Card image cap">
+                        </a>
+                        <div class="card-body">
+                            <h5 style="color: black; text-align: center;">{{ edition.name }}</h5>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
     </div>
