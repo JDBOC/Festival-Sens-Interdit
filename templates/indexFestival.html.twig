@@ -78,7 +78,7 @@
 		    	<div class="card-spectacle">
 		    		<div>
 		    			<a href="/show/{{content.id}}"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
-
+              <p class="textDate">{{ content.countryFr }}</p>
 
             </div>
 				  	<div class="card-body pt-0">
@@ -87,6 +87,7 @@
               {% else %}
 					  	<h3 class="mb-0 text-muted">{{	content.titleFr }}</h3>
               {% endif %}
+              <p class="mb-0 fontHome"><b>{{ content.director }}</b></p
             </div>
 				</div>
 			</div>
