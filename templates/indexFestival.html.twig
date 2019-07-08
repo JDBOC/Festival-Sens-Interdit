@@ -57,9 +57,9 @@
         <div class="row">
           {%for date in period %}
             <div class="col-4 col-md-1 px-1 pb-1">
-              <div class="planning">
-              <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> {{date|date('j/n')}}</a>
-              </div>
+              <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> 
+              <button class="planning text-dark">{{date|date('j/n')}}
+              </button></a>
             </div>
           {% endfor %}
         </div>
