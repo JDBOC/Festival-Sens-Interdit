@@ -140,7 +140,13 @@ color: red;
 
 }
 
+.textareaScroll
+{
+  max-height: 100px;
+    overflow-y: scroll;
 
+
+}
 
 .boutonHorsScene
 {
@@ -171,14 +177,28 @@ color: red;
  width: auto;
 }
 
-
-
-
-
-
-
-
-
-
-
-
+/* Modal Footer, mini-map */
+.geoMap {
+	position: relative;
+	text-align: right;
+	height: 21rem;
+	width: 100%;
+}
+.gmap_canvas {
+	position: relative;
+	overflow: hidden;
+	background: none !important;
+	height: 100%;
+	width: 100%;
+}
+.gmap_canvas iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.mapAddress {
+	margin-top: 20px;
+}
+/* Modal Footer, mini-map */
