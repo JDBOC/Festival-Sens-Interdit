@@ -12,6 +12,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Edition
 {
+    const STATUS = [
+        "en ligne",
+        "archive",
+        "hors ligne"
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -30,7 +36,6 @@ class Edition
     private $contents;
 
     /**
-
      * @ORM\OneToOne(targetEntity="App\Entity\SiFile", inversedBy="edition", cascade={"persist", "remove"})
      */
     private $editionPicture;
@@ -48,7 +53,7 @@ class Edition
   /**
    * @ORM\Column(type="string", length=255)
    */
-    private $status = "en ligne";
+    private $status;
 
     public function __construct()
     {
