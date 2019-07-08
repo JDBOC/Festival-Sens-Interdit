@@ -11,9 +11,9 @@
     <body>
     <div class="container-fluid px-0">
         <nav class="navbar navbar-expand-lg ">
-            <a href="{{ path('admin_index') }}" class="navbar-brand mb-0" style="color: #FFFFFF;">Sens Interdits</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <a href="{{ path('admin_index') }}" class="navbar-brand mb-0 col-8 col-md-2 col-lg-1" style="color: #FFFFFF;">Sens Interdits</a>
+            <button class="navbar-toggler text-light" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
@@ -38,8 +38,12 @@
                     </li>
                 </ul>
             </div>
-            <a class="nav-link text-light" style="text-align: right;" href="{{ path('app_editPassword') }}">Modifier MDP</a>
-            <a class="nav-link text-light" style="text-align: right;" href="{{ path('app_logout') }}">Se déconnecter</a>
+            {# <a class="nav-link text-light col-6 col-lg-2" href="{{ path('app_editPassword') }}">Modifier MDP</a>
+            <a class="nav-link text-light col-6 col-lg-2" href="{{ path('app_logout') }}">Se déconnecter</a> #}
+            <div class="row col-lg-4">
+                <a class="nav-link mx-auto text-light" href="{{ path('app_editPassword') }}">Modifier MDP</a>
+            <a class="nav-link text-light mx-auto" href="{{ path('app_logout') }}">Se déconnecter</a>
+            </div>
         </nav>
         <div class="container-fluid">
             {% block body %}{% endblock %}
@@ -48,5 +52,7 @@
         {% block javascripts %}
                  {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <script src="https://kit.fontawesome.com/3f21093845.js"></script>
+
     </body>
 </html>
