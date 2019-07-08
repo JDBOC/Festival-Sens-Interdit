@@ -93,7 +93,7 @@ class AdminContentController extends AbstractController
     }
    
     /**
-     * @Route("/{id}/edit", name="show_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="show_edit", methods={"GET","POST","DELETE"})
      */
     public function edit(Request $request, Content $content): Response
     {
