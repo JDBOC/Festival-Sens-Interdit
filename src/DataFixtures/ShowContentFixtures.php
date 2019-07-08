@@ -17,6 +17,7 @@ class ShowContentFixtures extends Fixture implements DependentFixtureInterface
         $show   ->setTitleFr('Banos Rama')
                 ->setEdition($this->getReference('edition'))
                 ->setCountryFr('Mexique')
+                ->addTheme($this->getReference('themeMexique'))
                 ->setContentFr('
     <h2 style="text-align:right"><span style="color:#ff0000; font-size:14pt">1<sup>&Egrave;RE</sup> 
     EN FRANCE</span></h2>
@@ -194,7 +195,8 @@ Avec le soutien de<strong>&nbsp;l&rsquo;ONDA &ndash; Office National de&nbsp;Dif
         return [
 
             SiFileFixtures::class,
-            EditionFixtures::class
+            EditionFixtures::class,
+            ThemeFixtures::class
         ];
     }
 }

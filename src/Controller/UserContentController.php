@@ -18,7 +18,7 @@ class UserContentController extends AbstractController
      */
     public function showContent(Content $content, TarifRepository $tarifRepository): Response
     {
-        return $this->render('userContent/contentShow.html.twig', [
+        return $this->render('UserTemplate/userContent/contentShow.html.twig', [
             'content'   => $content,
             'tarifs' => $tarifRepository->findAll()
         ]);
