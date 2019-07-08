@@ -53,9 +53,10 @@
 	    {{ include('content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}
     <div class="row">
 
-        <div class="col-6"{{ include('admin/content/_delete_form.html.twig') }}</div>
         <div class="col-6"><button class="btn float-right btn-primary">{{ button_label|default('Mise à jour du contenu') }}</button></div>
-    </div>
 
 
 {{ form_end(form) }}
+        <div class="col-6">{{ include('admin/content/_delete_form.html.twig') }}</div>
+
+    </div>
