@@ -32,24 +32,17 @@ class EditionController extends AbstractController
     public function new(Request $request): Response
     {
         $edition = new Edition();
-        $siFile = new SiFile();
-
-        $siFile->setType(SiFile::FILE_TYPE['editionPicture']);
 
         $form = $this->createForm(EditionType::class, $edition);
         $form->handleRequest($request);
+
         $noBlankFile = null;
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 
-            $status = $request->request->get('status');
-            $edition->setStatus($status);
-
-            $edition->setEditionPicture($siFile);
-
+            $edition->getEditionPicture()->setType(3);
             $entityManager->persist($edition);
-            $entityManager->persist($siFile);
 
             $entityManager->flush();
 
