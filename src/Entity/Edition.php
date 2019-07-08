@@ -13,9 +13,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Edition
 {
     const STATUS = [
-        "en ligne",
-        "archive",
-        "hors ligne"
+        "en ligne" => "en ligne",
+        "archive" => "archive",
+        "hors ligne" => "hors ligne"
     ];
 
     /**
