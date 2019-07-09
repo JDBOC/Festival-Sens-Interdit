@@ -22,6 +22,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Knp\Component\Pager\PaginatorInterface;
+use App\Service\ContentService;
 
 /**
  * @Route("/admin/content")
@@ -56,7 +57,7 @@ class AdminContentController extends AbstractController
     /**
      * @Route("/new", name="show_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ContentService $contentService): Response
     {
         $show = new Content();
         $cover = new SiFile();
@@ -73,6 +74,7 @@ class AdminContentController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) {
             $show->setTitleFr('titre');
+            $show->setSlug($contentService->slugAndCheck($show->getTitleFr()));
             $show->setContentFr('contenu');
             $show->setComplete(false);
             $show->setTranslated(false);
@@ -95,7 +97,7 @@ class AdminContentController extends AbstractController
     /**
      * @Route("/{id}/edit", name="show_edit", methods={"GET","POST","DELETE"})
      */
-    public function edit(Request $request, Content $content): Response
+    public function edit(Request $request, Content $content, ContentService $contentService): Response
     {
         $form = $this->createForm(ShowType::class, $content);
         switch ($content->getContentType()) {
@@ -122,6 +124,7 @@ class AdminContentController extends AbstractController
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $content->setSlug($contentService->slugAndCheck($content->getTitleFr()));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('show_index', [

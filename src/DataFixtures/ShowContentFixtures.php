@@ -7,14 +7,24 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Content;
+use App\Service\ContentService;
 
 class ShowContentFixtures extends Fixture implements DependentFixtureInterface
 {
+
+    private $contentService;
+
+    public function __construct(ContentService $contentService)
+    {
+        $this->contentService = $contentService;
+    }
+
     public function load(ObjectManager $manager)
     {
         
         $show = new Content;
         $show   ->setTitleFr('Banos Rama')
+                ->setSlug($this->contentService->slugAndCheck($show->getTitleFr()))
                 ->setEdition($this->getReference('edition'))
                 ->setCountryFr('Mexique')
                 ->addTheme($this->getReference('themeMexique'))
@@ -57,6 +67,7 @@ C&rsquo;est autour de la figure populaire mexicaine qu&rsquo;est le champion du 
 
         $show2 = new Content;
         $show2   ->setTitleFr('Ma petite Antartique')
+                ->setSlug($this->contentService->slugAndCheck($show2->getTitleFr()))
                 ->setEdition($this->getReference('edition'))
                 ->setCountryFr('Mexique')
                 ->setContentType(Content::CONTENT_TYPE['festival'])
@@ -69,6 +80,7 @@ C&rsquo;est autour de la figure populaire mexicaine qu&rsquo;est le champion du 
 
         $show3 = new Content;
         $show3   ->setTitleFr('Constitution')
+                ->setSlug($this->contentService->slugAndCheck($show3->getTitleFr()))
                 ->setEdition($this->getReference('edition'))
                 ->setCountryFr('Mexique')
                 ->setContentType(Content::CONTENT_TYPE['festival'])
@@ -82,6 +94,7 @@ C&rsquo;est autour de la figure populaire mexicaine qu&rsquo;est le champion du 
 
         $show4 = new Content;
         $show4   ->setTitleFr('Girls boys love cash')
+                ->setSlug($this->contentService->slugAndCheck($show4->getTitleFr()))
                 ->setEdition($this->getReference('edition'))
                 ->setCountryFr('Mexique')
                 ->setContentType(Content::CONTENT_TYPE['festival'])
@@ -95,6 +108,7 @@ C&rsquo;est autour de la figure populaire mexicaine qu&rsquo;est le champion du 
 
         $show5 = new Content;
         $show5   ->setTitleFr('Tijuana')
+                ->setSlug($this->contentService->slugAndCheck($show5->getTitleFr()))
                 ->setEdition($this->getReference('edition'))
                 ->setCountryFr('Mexique')
                 ->setContentType(Content::CONTENT_TYPE['festival'])
@@ -107,6 +121,7 @@ C&rsquo;est autour de la figure populaire mexicaine qu&rsquo;est le champion du 
 
         $horScene1 = new Content;
         $horScene1  ->setTitleFr('Rencontre avec Milo Rau')
+                    ->setSlug($this->contentService->slugAndCheck($horScene1->getTitleFr()))
                     ->setEdition($this->getReference('edition'))
                     ->setContentType(Content::CONTENT_TYPE['hors scène'])
                     ->setContentFr("<h2 style='text-align:justify'><span style='color:#ff0000'>RENCONTRE
@@ -135,6 +150,7 @@ des artistes europ&eacute;ens et Irakiens&nbsp;dans la ville d&eacute;truite par
 
         $tournee = new Content;
         $tournee  ->setTitleFr('Nord-Est')
+                    ->setSlug($this->contentService->slugAndCheck($tournee->getTitleFr()))
                     ->setContentType(Content::CONTENT_TYPE['tournée'])
                     ->setContentFr("<h2><span style='color:#e74c3c'>Pr&eacute;sentation</span></h2>
 
