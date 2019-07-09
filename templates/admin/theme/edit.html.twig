@@ -1,0 +1,13 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Edit Theme{% endblock %}
+
+{% block body %}
+    <h1>edition du theme</h1>
+
+    {{ include('admin/theme/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('theme_index') }}">Retour à la liste des themes</a>
+
+    {{ include('admin/theme/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,5 +1,5 @@
 {% if content.duree is not null  or content.lieu is not null or content.note is not null %}
-	<div class="bg-dark p-2 text-light">
+	<div class="bg-secondary p-2 text-light">
 {% if content.duree is not null %}
 	<p>{% trans into language %}Durée{% endtrans %} : <strong>{{content.duree}}</strong></p>
 {% endif %}

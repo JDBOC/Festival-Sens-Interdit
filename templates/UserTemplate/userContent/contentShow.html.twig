@@ -11,22 +11,22 @@
 {% block body %}
 <div class="container-fluid p-0">
                 {# Image de couverture avec le titre #}
-    {% include '/userContent/_contentCover.html.twig' %}
+    {% include 'UserTemplate//userContent/_contentCover.html.twig' %}
 
-    <div class="container p-0 d-flex">
+    <div class="container p-0">
                 {# pays et logo des themes du spectacle #}
-        {% include '/userContent/_contentLogoCountry.html.twig' %}
+        {% include 'UserTemplate//userContent/_contentLogoCountry.html.twig' %}
     </div>
     
-    <div class="container px-0 py-2 d-flex justify-content-center m-auto">
-        <div class="mt-4 row">
+    <div class="container px-0 pb-2">
+        <div class=" row p-0 m-0">
             <div class=" {# Bloc du contenu enrichi #}
             {% if content.pictures|length > 0 %} col-md-6 
             {% else %} col-md-11 {% endif %} col-12"> 
-                <div class="px-2"> {# Bloc des infos pratiques #}
-                    {% include '/userContent/_contentInfospratiques.html.twig' %}
+                <div class="px-0 "> {# Bloc des infos pratiques #}
+                    {% include 'UserTemplate//userContent/_contentInfospratiques.html.twig' %}
                 </div>
-                <div class="px-3">
+                <div class="pre-scrollable px-2 pr-3 px-md-0 mt-2">
                 {% if language == "en_EN" and content.contentEn is not null %}
                     {{content.contentEn|raw}}
                 {% else %}
@@ -36,22 +36,23 @@
             </div>
             
             {% if content.pictures|length > 0 %}
-            <div class="col-md-5"> {# Bloc des illustrations du contenu #}             
-                {% include '/userContent/_contentPictures.html.twig' %}
+            <div class="col-md-5 pl-0 pr-1"> {# Bloc des illustrations du contenu #}             
+                {% include 'UserTemplate//userContent/_contentPictures.html.twig' %}
             </div>
         {% endif %}
             
-            <div class="col-md-1 "> {# Bloc des logos partenaires du spectacle #}             
-                {% include '/userContent/_contentPartnerLogos.html.twig' %}
+            <div class="col-md-1 px-1 px-md-0 "> {# Bloc des logos partenaires du spectacle #}             
+                {% include 'UserTemplate//userContent/_contentPartnerLogos.html.twig' %}
             </div>
 
-            <div class="col-12 mt-2">{# Bloc des représentations #}
-                {% include '/userContent/_contentRepesentations.html.twig' %}
+            <div class="col-12 mt-2 px-0">{# Bloc des représentations #}
+                {% include 'UserTemplate//userContent/_contentRepesentations.html.twig' %}
             </div>
 
         </div>
     </div>
 
     {# Bloc des contenus en écho #}
-    {% include '/userContent/_contentEcho.html.twig' %}
+    {% include 'UserTemplate//userContent/_contentEcho.html.twig' %}
+</div>
 {% endblock %}

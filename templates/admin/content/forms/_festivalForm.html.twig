@@ -2,9 +2,10 @@
 <nav class="row align-items-center">
 
   <span class="col-3">{{ form_row(form.edition) }}</span>
-  <a class="col-3" href="{{ path('session_by_content',{'id':content.id}) }}"> <button class="btn btn-primary m-2"> Gérer les représentations </button> </a>
-  <a class="col-3" href="{{ path('content_en_echo',{'id':content.id}) }}"> <button class="btn btn-primary m-2"> Sélectionner les "En Echo" </button> </a>
-  <a class="col-3" href="{{ path('show_index') }}"><button class="btn btn-primary m-2">	Retourner à l'index</button>	</a>
+  <a class="col-2 btn btn-primary m-2" href="{{ path('session_by_content',{'id':content.id}) }}"> Gérer les représentations</a>
+  <a class="col-2 btn btn-primary m-2" href="{{ path('content_en_echo',{'id':content.id}) }}">  Sélectionner les "En Echo" </a>
+    <a class="col-2 btn btn-primary m-2" href="{{ path('content_themes',{'id':content.id}) }}"> Sélectionner les themes </a>
+  <a class="col-2" href="{{ path('show_index') }}"><button class="btn btn-primary m-2">	Retourner à l'index</button>	</a>
 	  
   <div class="nav nav-tabs" id="nav-tab" role="tablist">
     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-fr" role="tab" aria-controls="nav-home" aria-selected="true">FR</a>
@@ -50,7 +51,12 @@
     </div>
     			<h2>Ajouter des images</h2>
 	    {{ include('content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}
+    <div class="row">
 
+        <div class="col-6"><button class="btn float-right btn-primary">{{ button_label|default('Mise à jour du contenu') }}</button></div>
 
 
 {{ form_end(form) }}
+        <div class="col-6">{{ include('admin/content/_delete_form.html.twig') }}</div>
+
+    </div>

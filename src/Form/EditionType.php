@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Edition;
-use App\Form\InSiFileType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,7 +16,8 @@ class EditionType extends AbstractType
             ->add('name')
             ->add('editionPicture', InSiFileType::class)
             ->add('dateDebut', Type\DateType::class)
-            ->add('dateFin', Type\DateType::class);
+            ->add('dateFin', Type\DateType::class)
+            ->add('status', Type\ChoiceType::class, ['choices' => Edition::STATUS, ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -14,15 +14,12 @@ use App\Form\ContactType;
 class UserContentController extends AbstractController
 {
     /**
-     * @Route("/show/{id}", name="show_content", methods={"GET"})
+     * @Route("/content/{slug}", name="show_content", methods={"GET"})
      */
     public function showContent(Content $content, TarifRepository $tarifRepository): Response
     {
-        $contactForm = $this->createForm(ContactType::class);
-
-        return $this->render('userContent/contentShow.html.twig', [
+        return $this->render('UserTemplate/userContent/contentShow.html.twig', [
             'content'   => $content,
-            'contactForm' => $contactForm->createView(),
             'tarifs' => $tarifRepository->findAll()
         ]);
     }

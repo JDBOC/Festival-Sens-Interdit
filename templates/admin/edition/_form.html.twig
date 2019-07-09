@@ -5,14 +5,14 @@
             {{ form_label(formEdition.name, "Nom de l'édition") }}
             {{ form_widget(formEdition.name) }}
         </div>
-    </div>
 
-    <div class="row">
         <div class="col-4">
-       {#{{ form_label(formEdition.PassJeune, 'Affiche') }}
-            {{ form_widget(formEdition.PassJeune) }}#}
+            {{ form_label(formEdition.status, 'Statut') }}
+            {{ form_widget(formEdition.status) }}
         </div>
     </div>
+
+    <br>
 
     <div class="row">
         <div class="col-4">
@@ -25,8 +25,18 @@
         </div>
     </div>
 
+    <br>
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formEdition.editionPicture, "Affiche de  l'édition") }}
+            {%if noBlankFile is defined %}<span class="badge badge-warning">{{ noBlankFile}}</span>{% endif %}
+            {{ form_widget(formEdition.editionPicture) }}
+        </div>
+    </div>
+
+
     <button class="btn btn-success btn-sm">{{ button_label|default('Enregistrer') }}</button>
+
+
 {{ form_end(formEdition) }}
-
-
-

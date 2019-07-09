@@ -5,12 +5,19 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\EditionRepository")
  */
 class Edition
 {
+    const STATUS = [
+        "en ligne" => "en ligne",
+        "archive" => "archive",
+        "hors ligne" => "hors ligne"
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -46,7 +53,7 @@ class Edition
   /**
    * @ORM\Column(type="string", length=255)
    */
-    private $status = "en ligne";
+    private $status;
 
     public function __construct()
     {
@@ -101,12 +108,13 @@ class Edition
         return $this;
     }
 
-    public function getEditionPicture(): ?SiFile
+
+    public function getEditionPicture(): ?Object
     {
         return $this->editionPicture;
     }
 
-    public function setEditionPicture(?SiFile $editionPicture): self
+    public function setEditionPicture(?Object $editionPicture): self
     {
         $this->editionPicture = $editionPicture;
 

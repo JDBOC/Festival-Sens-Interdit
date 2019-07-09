@@ -11,6 +11,14 @@ class SiFileFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        $cycleMexique = new SiFile;
+        $cycleMexique ->setName('cycleMexique')
+                    ->setType(Sifile::FILE_TYPE['logo'])
+                    ->setMediaFileName('cycle mexique.png')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($cycleMexique);
+         $this->addReference('logoMexique', $cycleMexique);
+
         $blackCover = new SiFile;
         $blackCover ->setName('blackCover')
                     ->setType(Sifile::FILE_TYPE['cover'])
@@ -137,6 +145,30 @@ class SiFileFixtures extends Fixture
                     ->setUpdatedAt(new \DateTime('now'));
         $manager->persist($nordEstThumbnail);
         $this->addReference('nordEstThumbnail', $nordEstThumbnail);
+
+        $edition2019Thumbnail = new SiFile;
+        $edition2019Thumbnail ->setName('edition2019Thumbnail')
+                    ->setType(Sifile::FILE_TYPE['thumbnail'])
+                    ->setMediaFileName('edition2019.png')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($edition2019Thumbnail);
+        $this->addReference('edition2019Thumbnail', $edition2019Thumbnail);
+
+        $edition2017Thumbnail = new SiFile;
+        $edition2017Thumbnail ->setName('edition2017Thumbnail')
+                    ->setType(Sifile::FILE_TYPE['thumbnail'])
+                    ->setMediaFileName('edition2017.jpg')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($edition2017Thumbnail);
+        $this->addReference('edition2017Thumbnail', $edition2017Thumbnail);
+
+        $edition2015Thumbnail = new SiFile;
+        $edition2015Thumbnail ->setName('edition2015Thumbnail')
+            ->setType(Sifile::FILE_TYPE['thumbnail'])
+            ->setMediaFileName('edition2015.jpg')
+            ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($edition2015Thumbnail);
+        $this->addReference('edition2015Thumbnail', $edition2015Thumbnail);
 
         $logo1 = new SiFile;
         $logo1 ->setName('croixRousse')

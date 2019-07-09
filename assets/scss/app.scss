@@ -51,8 +51,8 @@ body{
     color: white;
     background: red;
     border-bottom-right-radius: 10px 10px;
-    font-size: 1.2rem;
-    width: 6em;
+    font-size: 1.7rem;
+    width: 8em;
     text-align: center;
 }
 /* END OF stylesheet.css of templates/user_show/index.html.twig // by Catherine */
@@ -114,12 +114,11 @@ body{
 
 .planning:active
 {
-color: red;
+  color: red;
 }
 .txtplanning
 {
   color: black;
-
 }
 
 .txtplanning:hover
@@ -140,7 +139,10 @@ color: red;
 
 }
 
-
+.textareaScroll
+{
+  max-height: 100px;
+}
 
 .boutonHorsScene
 {
@@ -161,6 +163,7 @@ color: red;
 .horsSceneLien
 {
   color: black;
+  text-decoration: none !important;
 }
 /*carousel*/
 
@@ -171,14 +174,28 @@ color: red;
  width: auto;
 }
 
-
-
-
-
-
-
-
-
-
-
-
+/* Modal Footer, mini-map */
+.geoMap {
+	position: relative;
+	text-align: right;
+	height: 21rem;
+	width: 100%;
+}
+.gmap_canvas {
+	position: relative;
+	overflow: hidden;
+	background: none !important;
+	height: 100%;
+	width: 100%;
+}
+.gmap_canvas iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.mapAddress {
+	margin-top: 20px;
+}
+/* Modal Footer, mini-map */

@@ -18,16 +18,14 @@
           <div class="row">
             {%for date in period %}
               <div class="col-4 col-md-1 px-1 pb-1">
-                <div class="planning {% if date|date('d-m-Y') == sessionDate|date('d-m-Y') %} activeDate
+              	<a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> 
+                <button class="text-dark planning {% if date|date('d-m-Y') == sessionDate|date('d-m-Y') %} activeDate
                     {% endif %}">
 
-                  <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> {{date|date('D d')}}</a>
-                </div>
+                  {{date|date('j/n')}}
+                </button></a>
               </div>
             {% endfor %}
-          </div>
-          <div class="boutonHorsScene">
-            <button type="button" class="btn btn-outline-danger btn-block"><a class="horsSceneLien" href="{{path('index_hors_scene')}}">Hors Scène</a></button>
           </div>
         </div>
 
@@ -38,17 +36,15 @@
 	    	<div class=" col-12 col-md-3">
 		    	<div class="card-spectacle">
 		    		<div>
-		    			<a href="/show/{{session.content.id}}"><img src="/upload/file/{{session.content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
-						<p class="textDate">{{ session.sessionDate|date("d/m/Y") }}</p>
-						<p class="textLieu">{{ session.content.countryFr }}</p>
+		    			<a href="/content/{{session.content.slug}}"><img src="/upload/file/{{session.content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
+						<p class="textDate">{{ session.content.countryFr }}</p>
+						{# <p class="textLieu">{{ session.content.countryFr }}</p> #}
 					</div>
 				  	<div class="card-body pt-0">
 					  	<h3 class="mb-0 text-muted">{{ session.content.titleFr }}</h3>
-					  	<p class="mb-0 fontHome"><b>Cie Lagartijas ---</b></p>
+					  	<p class="mb-0 fontHome"><b>{{ session.content.director }}</b></p>
 					  	<p class="mb-0 fontHome"><b>{{ session.location }}</b></p>
-					    <p class="mb-0 fontHome">{{ session.sessionDate|date("d/m/Y h") }}H</p>
-					    <p class="mb-0 fontHome">DURÉE / 2H ---</p>
-					    <p class="mb-0 fontHome">TARIF 1 ---</p>
+					    <p class="mb-0 fontHome">Début {{ session.sessionDate|date("H:i") }} Durée {{ session.content.duree}}</p>
 				    </div>
 				</div>
 			</div>
