@@ -1,6 +1,5 @@
 {% extends 'adminBase.html.twig' %}
 
-{% block title %}SiFile index{% endblock %}
 
 {% block body %}
     <h1>Liste des fichiers</h1>
@@ -18,7 +17,6 @@
         {% for si_file in si_files %}
             <tr>
                 <td>{{ si_file.name }}</td>
-
                 <td>{{ si_file.fileTypeName }}</td>
                 <td>
                     <img alt="img_fichier" src="/upload/file/{{ si_file.mediaFileName }}" style="width: 200px; height: auto" />
@@ -37,4 +35,5 @@
     </table>
 
     <a href="{{ path('sifile_new') }}">Nouveau</a>
+
 {% endblock %}

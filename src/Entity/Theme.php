@@ -56,12 +56,12 @@ class Theme
         return $this;
     }
 
-    public function getPicture(): ?SiFile
+    public function getPicture(): ?Object
     {
         return $this->picture;
     }
 
-    public function setPicture(SiFile $picture): self
+    public function setPicture(Object $picture): self
     {
         $this->picture = $picture;
 

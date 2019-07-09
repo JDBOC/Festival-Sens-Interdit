@@ -3,13 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Edition;
+use App\Entity\SiFile;
 use App\Form\EditionType;
 use App\Repository\EditionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\SiFile;
 
 /**
  * @Route("admin/edition")
@@ -32,22 +32,23 @@ class EditionController extends AbstractController
     public function new(Request $request): Response
     {
         $edition = new Edition();
-        $sifile = new SiFile();
-        $sifile->setType(SiFile::FILE_TYPE['editionPicture']);
-        $edition->setEditionPicture($sifile);
+
         $form = $this->createForm(EditionType::class, $edition);
         $form->handleRequest($request);
+
         $noBlankFile = null;
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($form->getData()->getEditionPicture()->getMediaFile()!= null) {
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($edition);
-                $entityManager->flush();
-                return $this->redirectToRoute('edition_index');
-            } else {
-                $noBlankFile = "image de l'édition nécessaire";
-            }
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $edition->getEditionPicture()->setType(3);
+            $entityManager->persist($edition);
+
+            $entityManager->flush();
+
+            return $this->redirectToRoute('edition_index');
+        } else {
+            $noBlankFile = "Image de l'édition nécessaire";
         }
 
         return $this->render('admin/edition/new.html.twig', [
@@ -57,15 +58,6 @@ class EditionController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/{id}", name="edition_show", methods={"GET"})
-     */
-    public function show(Edition $edition): Response
-    {
-        return $this->render('admin/edition/show.html.twig', [
-            'edition' => $edition,
-        ]);
-    }
 
     /**
      * @Route("/{id}/edit", name="edition_edit", methods={"GET","POST"})
@@ -73,6 +65,7 @@ class EditionController extends AbstractController
     public function edit(Request $request, Edition $edition): Response
     {
         $form = $this->createForm(EditionType::class, $edition);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -19,6 +19,19 @@ class EditionRepository extends ServiceEntityRepository
         parent::__construct($registry, Edition::class);
     }
 
+    /**
+     * Return Edition by Status = 'archive'
+     */
+    public function editionByStatus($status)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.status = :status')
+            ->setParameter('status', $status)
+            ->getQuery()
+            ->getResult();
+    }
+
+
     // /**
     //  * @return Edition[] Returns an array of Edition objects
     //  */

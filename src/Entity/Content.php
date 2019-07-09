@@ -154,6 +154,11 @@ class Content
      */
     private $themes;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
@@ -565,7 +570,7 @@ class Content
         return $this->themes;
     }
 
-    public function addTheme(Theme $theme): self
+    public function addTheme(Object $theme): self
     {
         if (!$this->themes->contains($theme)) {
             $this->themes[] = $theme;
@@ -575,12 +580,24 @@ class Content
         return $this;
     }
 
-    public function removeTheme(Theme $theme): self
+    public function removeTheme(Object $theme): self
     {
         if ($this->themes->contains($theme)) {
             $this->themes->removeElement($theme);
             $theme->removeContent($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
