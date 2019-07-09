@@ -1,24 +1,24 @@
 {% if content.sessions|length > 0  %}
-	<table class="table">
+	<table class="table representations">
 		<thead>
 			<tr>
-				<th>Date de représentation</th>
-				<th>Lieu</th>
-				<th>Tarifs</th>
-				<th>Réservation</th>
+				<th class="px-1">Date de représentation</th>
+				<th class="px-1">Lieu</th>
+				<th class="px-1">Tarifs</th>
+				<th class="px-1">Réservation</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for session in content.sessions %}
 				<tr>
-					<td>{{ session.sessionDate ? session.sessionDate|date('d-m-Y à H:i') : '' }}</td>
-					<td>{{ session.location }}</td>
-					<td>
+					<td class="px-1">{{ session.sessionDate ? session.sessionDate|date('d-m-Y à H:i') : '' }}</td>
+					<td class="px-1">{{ session.location }}</td>
+					<td class="px-1">
 					{% for tarif in session.tarifs %}
 						<a href="#" data-toggle="modal" data-target="#TarifModal">{{tarif.grille}}</a>
 					{% endfor %}
 					</td>
-					<td> <a href="{{session.mapadoLink}}">Billetterie</a>
+					<td class="px-1"> <a href="{{session.mapadoLink}}">Billetterie</a>
 
 					</td>
 				</tr>
