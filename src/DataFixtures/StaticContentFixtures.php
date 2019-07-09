@@ -71,6 +71,81 @@ assist&eacute;e de Adrianne Breznay et Andr&eacute;a Chamblas</p>
         ;
 
         $manager->persist($content);
+
+        //fixture page festival
+        $festival = new Content();
+        $festival ->setTitleFr("Le festival")
+                  ->setSlug($this->contentService->slugAndCheck($festival->getTitleFr()))
+                  ->setContentFr("données du festival")
+                  ->setContentType(Content::CONTENT_TYPE['static_page'])
+                  ->setComplete(true)
+                  ->setTranslated(false);
+        $manager  ->persist($festival);
+
+        //fixture page l'association
+        $association = new Content();
+        $association->setTitleFr("L'association")
+        ->setSlug($this->contentService->slugAndCheck($association->getTitleFr()))
+        ->setContentFr("données de l'association")
+        ->setContentType(Content::CONTENT_TYPE['static_page'])
+        ->setComplete(true)
+        ->setTranslated(false);
+        $manager->persist($association);
+
+        //fixture page Ecole éphémère
+        $ecoleEphemere = new Content();
+        $ecoleEphemere->setTitleFr("Ecole Ephémère")
+        ->setSlug($this->contentService->slugAndCheck($ecoleEphemere->getTitleFr()))
+        ->setContentType(Content::CONTENT_TYPE['static_page'])
+        ->setComplete(true)
+        ->setTranslated(false);
+        $manager->persist($ecoleEphemere);
+
+        //fixture page action médiation
+        $mediation = new Content();
+        $mediation->setTitleFr("Actions de médiation")
+        ->setSlug($this->contentService->slugAndCheck($mediation->getTitleFr()))
+        ->setContentType(Content::CONTENT_TYPE['static_page'])
+        ->setComplete(true)
+        ->setTranslated(false);
+        $manager->persist($mediation);
+
+        //fixture page chapiteau
+        $chapiteau = new Content();
+        $chapiteau->setTitleFr("Le Chapiteau")
+        ->setSlug($this->contentService->slugAndCheck($chapiteau->getTitleFr()))
+        ->setContentType(Content::CONTENT_TYPE['static_page'])
+        ->setComplete(true)
+        ->setTranslated(false);
+        $manager->persist($chapiteau);
+
+        //fixture page lieux et accès
+        $lieuxEtAcces = new Content();
+        $lieuxEtAcces->setTitleFr("Lieux et Accès")
+        ->setSlug($this->contentService->slugAndCheck($lieuxEtAcces->getTitleFr()))
+        ->setContentType(Content::CONTENT_TYPE['static_page'])
+        ->setComplete(true)
+        ->setTranslated(false);
+        $manager->persist($lieuxEtAcces);
+
+        //fixture page Webradio
+        $webRadio = new Content();
+        $webRadio->setTitleFr("Web radio")
+        ->setSlug($this->contentService->slugAndCheck($webRadio->getTitleFr()))
+        ->setContentType(Content::CONTENT_TYPE['static_page'])
+        ->setComplete(true)
+        ->setTranslated(false);
+        $manager->persist($webRadio);
+
+        //fixture page Nous soutenir
+        $nousSoutenir = new Content();
+        $nousSoutenir->setTitleFr("Nous soutenir")
+        ->setSlug($this->contentService->slugAndCheck($nousSoutenir->getTitleFr()))
+        ->setContentType(Content::CONTENT_TYPE['static_page'])
+        ->setComplete(true)
+        ->setTranslated(false);
+        $manager->persist($nousSoutenir);
+
         $manager->flush();
     }
 }
