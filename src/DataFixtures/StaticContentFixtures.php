@@ -6,18 +6,25 @@ namespace App\DataFixtures;
 use App\Entity\Content;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
+use App\Service\ContentService;
 
 class StaticContentFixtures extends Fixture
 {
+    private $contentService;
+
+    public function __construct(ContentService $contentService)
+    {
+        $this->contentService = $contentService;
+    }
+
     /**
      * @param ObjectManager $manager
      */
     public function load(ObjectManager $manager)
     {
-        // $product = new Product();
-        // $manager->persist($product);
         $content = new Content();
         $content->setTitleFr("L'Equipe");
+        $content->setSlug($this->contentService->slugAndCheck($content->getTitleFr()));
         $content->setContentFr("
 <p>Patrick Penot &ndash; dir.asso.sensinterdits@gmail.com<br />
 <strong>Directeur </strong></p>

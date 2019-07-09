@@ -14,7 +14,7 @@ use App\Form\ContactType;
 class UserContentController extends AbstractController
 {
     /**
-     * @Route("/show/{id}", name="show_content", methods={"GET"})
+     * @Route("/content/{slug}", name="show_content", methods={"GET"})
      */
     public function showContent(Content $content, TarifRepository $tarifRepository): Response
     {
