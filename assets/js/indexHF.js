@@ -6,7 +6,7 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-require('../scss/newsIndex.scss');
+require('../scss/indexHF.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
 const $ = require('jquery');
@@ -15,9 +15,40 @@ const $ = require('jquery');
 require('bootstrap');
 
 
-
-$(document).ready(function() {
+$(document).ready(function () {
     $('[data-toggle="popover"]').popover();
 });
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+
+
+function scrollAppear1()
+{
+    let block1 = document.querySelector(".blocktext-1");
+    let block2 = document.querySelector(".blocktext-2");
+    let block3 = document.querySelector(".blocktext-3");
+    let block4 = document.querySelector(".blocktext-4");
+
+    let PositionBlock1 = block1.getBoundingClientRect().top;
+    let PositionBlock2 = block2.getBoundingClientRect().top;
+    let PositionBlock3 = block3.getBoundingClientRect().top;
+    let PositionBlock4 = block4.getBoundingClientRect().top;
+
+    let screenPosition = window.innerHeight / 1.55;
+
+    if (PositionBlock1 < screenPosition) {
+        block1.classList.add("appear");
+    }
+    if (PositionBlock2 < screenPosition) {
+        block2.classList.add("appear");
+    }
+    if (PositionBlock3 < screenPosition) {
+        block3.classList.add("appear");
+    }
+    if (PositionBlock4 < screenPosition) {
+        block4.classList.add("appear");
+    }
+}
+
+window.addEventListener("scroll", scrollAppear1);
+
