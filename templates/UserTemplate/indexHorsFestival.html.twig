@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('indexHF') }}
+{% endblock %}
+
+{% block body %}
+
+    {% include 'carousel.html.twig' %}
+    <div class="container" onload="scrollAppear1()">
+
+        <div class="row blockBandeau2">
+            <div class="col-xl-6 col-sm-12 ">
+                <div class="blocktext-1 d-flex flex-column justify-content-center text-center">
+                    <h3 class="text-center">Actualités</h3>
+                    <p class="text-center">Toutes les actualités du festival et de l'association !</p>
+                </div>
+            </div>
+            <div class="col-xl-6 col-sm-12">
+                <div class="blockImage">
+                    <div class="relative">
+                        <a>
+                            <img src="https://via.placeholder.com/500x300">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row blockBandeau1">
+            <div class="col-xl-6 col-sm-12">
+                <div class="blockImage">
+                    <div class="relative">
+                        <a>
+                            <img src="https://via.placeholder.com/500x300">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-sm-12">
+                <div class="blocktext-2 d-flex flex-column justify-content-center text-center">
+                    <h3 class="text-center">Le Festival</h3>
+                    <p class="text-center">Pour tout savoir sur le festival.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row blockBandeau2">
+            <div class="col-xl-6 col-sm-12">
+                <div class="blocktext-3 d-flex flex-column justify-content-center text-center">
+                    <h3 class="text-center">Spectacles en tournée</h3>
+                    <p class="text-center">Tous les spectacles en tournée.</p>
+                </div>
+            </div>
+            <div class="col-xl-6 col-sm-12">
+                <div class="blockImage">
+                    <div class="relative">
+                        <a href="{{ path('index_tournee') }}">
+                            <img src="https://via.placeholder.com/500x300">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row blockBandeau1">
+            <div class="col-xl-6 col-sm-12">
+                <div class="blockImage">
+                    <div class="relative">
+                        <a href="#">
+                            <img src="https://via.placeholder.com/500x300">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-sm-12">
+                <div class="blocktext-4 d-flex flex-column justify-content-center text-center">
+                    <h3 class="text-center">Hors-Scène</h3>
+                    <p class="text-center">Tous les événements hors-scène</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('indexHF') }}
+{% endblock %}
