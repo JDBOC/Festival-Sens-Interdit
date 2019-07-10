@@ -624,12 +624,12 @@ class Content
         return $this;
     }
 
-    public function getCarouselPicture(): ?SiFile
+    public function getCarouselPicture(): ?Object
     {
         return $this->carouselPicture;
     }
 
-    public function setCarouselPicture(?SiFile $carouselPicture): self
+    public function setCarouselPicture(?Object $carouselPicture): self
     {
         $this->carouselPicture = $carouselPicture;
 
