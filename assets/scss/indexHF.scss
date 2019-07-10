@@ -19,12 +19,10 @@
 .blocktext-3,
 .blocktext-4,
 .blocktext-5 {
+  height: 300px;
   opacity: 0;
   transform: translateY(20px);
   transition: 0.7s all ease-in-out;
-  padding: 25px 0;
-  width: 100%;
-  text-align: center;
 }
 
 .appear {

@@ -9,10 +9,10 @@
     <div class="container" onload="scrollAppear1()">
 
         <div class="row blockBandeau2">
-            <div class="col-xl-6 col-sm-12">
-                <div class="blocktext-1">
-                    <h3>Actualités</h3>
-                    <p>Toutes les actualités du festival et de l'association !</p>
+            <div class="col-xl-6 col-sm-12 ">
+                <div class="blocktext-1 d-flex flex-column justify-content-center text-center">
+                    <h3 class="text-center">Actualités</h3>
+                    <p class="text-center">Toutes les actualités du festival et de l'association !</p>
                 </div>
             </div>
             <div class="col-xl-6 col-sm-12">
@@ -37,18 +37,18 @@
                 </div>
             </div>
             <div class="col-xl-6 col-sm-12">
-                <div class="blocktext-2">
-                    <h3>Le Festival</h3>
-                    <p>Pour tout savoir sur le festival.</p>
+                <div class="blocktext-2 d-flex flex-column justify-content-center text-center">
+                    <h3 class="text-center">Le Festival</h3>
+                    <p class="text-center">Pour tout savoir sur le festival.</p>
                 </div>
             </div>
         </div>
 
         <div class="row blockBandeau2">
             <div class="col-xl-6 col-sm-12">
-                <div class="blocktext-3">
-                    <h3>Spectacles en tournée</h3>
-                    <p>Tous les spectacles en tournée.</p>
+                <div class="blocktext-3 d-flex flex-column justify-content-center text-center">
+                    <h3 class="text-center">Spectacles en tournée</h3>
+                    <p class="text-center">Tous les spectacles en tournée.</p>
                 </div>
             </div>
             <div class="col-xl-6 col-sm-12">
@@ -73,9 +73,9 @@
                 </div>
             </div>
             <div class="col-xl-6 col-sm-12">
-                <div class="blocktext-4">
-                    <h3>Hors-Scène</h3>
-                    <p>Tous les événements autres que les spectacles.</p>
+                <div class="blocktext-4 d-flex flex-column justify-content-center text-center">
+                    <h3 class="text-center">Hors-Scène</h3>
+                    <p class="text-center">Tous les événements hors-scène</p>
                 </div>
             </div>
         </div>
@@ -84,6 +84,5 @@
 {% endblock %}
 
 {% block javascripts %}
-    <!-- <script type="text/javascript" src="/assets/js/indexHF.js"></script> -->
     {{ encore_entry_script_tags('indexHF') }}
 {% endblock %}
