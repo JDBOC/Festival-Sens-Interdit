@@ -39,7 +39,9 @@ class HomeController extends AbstractController
                 ]
             );
         } else {
-            return $this->render('UserTemplate/indexHorsFestival.html.twig');
+            return $this->render('UserTemplate/indexHorsFestival.html.twig', [
+                    'topActus' => $topActus
+                ]);
         }
     }
     
