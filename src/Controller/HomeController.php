@@ -20,7 +20,7 @@ class HomeController extends AbstractController
     {
         
         
-
+        $topActus = $contentRepo->findBy(['topArticle' => true]);
         $currentEdition = $EditionRepo->findOneBy(['status'=>'en ligne']);
         $interval = new \DateInterval('P1D');
         $dateRangeTmp = new \DatePeriod($currentEdition->getDateDebut(), $interval, $currentEdition->getDateFin());
@@ -33,7 +33,8 @@ class HomeController extends AbstractController
             'indexFestival.html.twig',
             [
                         'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['festival']]),
-                        'period'=>$dateRange
+                        'period'=>$dateRange,
+                        'topActus' => $topActus
             ]
         );
     }

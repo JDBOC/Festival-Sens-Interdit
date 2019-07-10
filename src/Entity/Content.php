@@ -159,6 +159,16 @@ class Content
      */
     private $slug;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $topArticle;
+
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\SiFile", cascade={"persist", "remove"})
+     */
+    private $carouselPicture;
+
     public function __construct()
     {
         $this->sessions = new ArrayCollection();
@@ -598,6 +608,30 @@ class Content
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getTopArticle(): ?bool
+    {
+        return $this->topArticle;
+    }
+
+    public function setTopArticle(?bool $topArticle): self
+    {
+        $this->topArticle = $topArticle;
+
+        return $this;
+    }
+
+    public function getCarouselPicture(): ?Object
+    {
+        return $this->carouselPicture;
+    }
+
+    public function setCarouselPicture(?Object $carouselPicture): self
+    {
+        $this->carouselPicture = $carouselPicture;
 
         return $this;
     }

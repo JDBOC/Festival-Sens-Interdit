@@ -16,12 +16,18 @@
   <div class="container">
         <div class="row">
           {%for date in period %}
-            <div class="col-4 col-md-1 px-1 pb-1">
-              <a class="txtplanning" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}"> 
-              <button class="planning text-dark">{{date|date('j/n')}}
-              </button></a>
+            <div class="col-4 col-md-1 px-1 pb-1 text-center">
+              <a class=" decorationNone" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}">
+                <div class="planning pt-1">
+                  <p class="m-0">{{date|date('d')}}</p>
+                  <p class="m-0">{{date|date('M')}}</p>
+                </div>
+              </a>
             </div>
           {% endfor %}
+        </div>
+        <div class="boutonHorsScene">
+          <a class="horsSceneLien" href="{{path('index_hors_scene')}}"><button type="button" class="btn btn-outline-danger btn-block">{% trans into language %}Hors Scène{% endtrans %}</button></a>
         </div>
   </div>
 
