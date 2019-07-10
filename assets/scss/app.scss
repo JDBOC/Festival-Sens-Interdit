@@ -112,24 +112,16 @@ body{
   width: auto;
 }
 
-.planning:active
-{
-  color: red;
-}
-.txtplanning
-{
-  color: black;
-}
-
-.txtplanning:hover
-{
-  color: white;
-}
-.planning:hover
+.planning:hover , .activeDate
 {
   background-color: #ed1c24;
   padding-bottom: 10px;
-  color: red;
+  color: black;
+  font-weight: bold;
+}
+
+.decorationNone:hover{
+	text-decoration:none;
 }
 
 .card-spectacle
@@ -152,12 +144,6 @@ body{
   width: auto;
   alignment: center;
   color: black;
-}
-
-.activeDate{
-  background-color: #ed1c24;
-  padding-bottom: 10px;
-  color: red;
 }
 
 .horsSceneLien
