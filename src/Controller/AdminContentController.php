@@ -62,11 +62,11 @@ class AdminContentController extends AbstractController
         $show = new Content();
         $cover = new SiFile();
         $cover->setType(SiFile::FILE_TYPE['cover']);
-        $cover->setMediaFileName("something");
+        $cover->setMediaFileName("blackCover.jpg");
         $cover->setUpdatedAt(new \DateTime("now"));
         $thumbnail = new SiFile();
         $thumbnail->setType(SiFile::FILE_TYPE['thumbnail']);
-        $thumbnail->setMediaFileName("something");
+        $thumbnail->setMediaFileName("blackThumbnail.jpg");
         $thumbnail->setUpdatedAt(new \DateTime("now"));
 
         $form = $this->createForm(PreFormType::class, $show);

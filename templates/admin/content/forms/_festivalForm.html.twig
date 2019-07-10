@@ -30,13 +30,13 @@
   </div>
 </div>
   	<div class="row justify-content-center">
-{% if content.thumbnail.mediaFileName == "something" %}
+{% if content.thumbnail.mediaFileName == "placeholderTempName" %}
 <div class="col-6"><img src="https://via.placeholder.com/570x530" class="w-50 pb-3"></div>
 {% else %}
 <div class="col-6"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="w-50 pb-3"></div>
 {% endif %}
       	<div class="col-6">{{ form_row(form.thumbnail) }}</div>
-{% if content.cover.mediaFileName == "something" %}
+{% if content.cover.mediaFileName == "placeholderTempName" %}
 <div class="col-6"><img src="https://via.placeholder.com/1920x570" class="w-50 pb-3"></div>
 {% else %}
     <div class="col-6"><img src="/upload/file/{{content.cover.mediaFileName}}" class="w-100"></div>
