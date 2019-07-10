@@ -66,7 +66,7 @@ class AdminContentController extends AbstractController
         $cover->setUpdatedAt(new \DateTime("now"));
         $carouselPicture = new SiFile();
         $carouselPicture->setType(SiFile::FILE_TYPE['carouselPicture']);
-        $carouselPicture->setMediaFileName("placeholderTempName");
+        $carouselPicture->setMediaFileName("blackCarouselPicture.jpg");
         $carouselPicture->setUpdatedAt(new \DateTime("now"));
         $thumbnail = new SiFile();
         $thumbnail->setType(SiFile::FILE_TYPE['thumbnail']);
