@@ -79,7 +79,8 @@ assist&eacute;e de Adrianne Breznay et Andr&eacute;a Chamblas</p>
                   ->setContentFr("données du festival")
                   ->setContentType(Content::CONTENT_TYPE['static_page'])
                   ->setComplete(true)
-                  ->setTranslated(false);
+                  ->setTranslated(false)
+                  ->setCover($this->getReference('blackCover'));
         $manager  ->persist($festival);
 
         //fixture page l'association
@@ -89,7 +90,8 @@ assist&eacute;e de Adrianne Breznay et Andr&eacute;a Chamblas</p>
         ->setContentFr("données de l'association")
         ->setContentType(Content::CONTENT_TYPE['static_page'])
         ->setComplete(true)
-        ->setTranslated(false);
+        ->setTranslated(false)
+        ->setCover($this->getReference('blackCover'));
         $manager->persist($association);
 
         //fixture page Ecole éphémère
@@ -98,7 +100,8 @@ assist&eacute;e de Adrianne Breznay et Andr&eacute;a Chamblas</p>
         ->setSlug($this->contentService->slugAndCheck($ecoleEphemere->getTitleFr()))
         ->setContentType(Content::CONTENT_TYPE['static_page'])
         ->setComplete(true)
-        ->setTranslated(false);
+        ->setTranslated(false)
+        ->setCover($this->getReference('blackCover'));
         $manager->persist($ecoleEphemere);
 
         //fixture page action médiation
@@ -107,7 +110,8 @@ assist&eacute;e de Adrianne Breznay et Andr&eacute;a Chamblas</p>
         ->setSlug($this->contentService->slugAndCheck($mediation->getTitleFr()))
         ->setContentType(Content::CONTENT_TYPE['static_page'])
         ->setComplete(true)
-        ->setTranslated(false);
+        ->setTranslated(false)
+        ->setCover($this->getReference('blackCover'));
         $manager->persist($mediation);
 
         //fixture page chapiteau
@@ -116,7 +120,8 @@ assist&eacute;e de Adrianne Breznay et Andr&eacute;a Chamblas</p>
         ->setSlug($this->contentService->slugAndCheck($chapiteau->getTitleFr()))
         ->setContentType(Content::CONTENT_TYPE['static_page'])
         ->setComplete(true)
-        ->setTranslated(false);
+        ->setTranslated(false)
+        ->setCover($this->getReference('blackCover'));
         $manager->persist($chapiteau);
 
         //fixture page lieux et accès
@@ -125,7 +130,8 @@ assist&eacute;e de Adrianne Breznay et Andr&eacute;a Chamblas</p>
         ->setSlug($this->contentService->slugAndCheck($lieuxEtAcces->getTitleFr()))
         ->setContentType(Content::CONTENT_TYPE['static_page'])
         ->setComplete(true)
-        ->setTranslated(false);
+        ->setTranslated(false)
+        ->setCover($this->getReference('blackCover'));
         $manager->persist($lieuxEtAcces);
 
         //fixture page Webradio
@@ -134,7 +140,8 @@ assist&eacute;e de Adrianne Breznay et Andr&eacute;a Chamblas</p>
         ->setSlug($this->contentService->slugAndCheck($webRadio->getTitleFr()))
         ->setContentType(Content::CONTENT_TYPE['static_page'])
         ->setComplete(true)
-        ->setTranslated(false);
+        ->setTranslated(false)
+        ->setCover($this->getReference('blackCover'));
         $manager->persist($webRadio);
 
         //fixture page Nous soutenir
@@ -143,7 +150,8 @@ assist&eacute;e de Adrianne Breznay et Andr&eacute;a Chamblas</p>
         ->setSlug($this->contentService->slugAndCheck($nousSoutenir->getTitleFr()))
         ->setContentType(Content::CONTENT_TYPE['static_page'])
         ->setComplete(true)
-        ->setTranslated(false);
+        ->setTranslated(false)
+        ->setCover($this->getReference('blackCover'));
         $manager->persist($nousSoutenir);
 
         $manager->flush();
