@@ -22,7 +22,8 @@ class SiFile
         'logo' => 2,   // logo shared by multiple shows
         'editionPicture' => 3,  // picture illustrating the edition
         'contentPicture' => 4,  // picture displayed inside the content, can be multiple
-        'thumbnail' => 5  // ude to illustrate show with a small squared picture"
+        'thumbnail' => 5,
+        'carouselPicture' => 6  // ude to illustrate show with a small squared picture"
     ];
 
 
