@@ -18,6 +18,8 @@ class HomeController extends AbstractController
      */
     public function indexFestival(ContentRepository $contentRepo, EditionRepository $EditionRepo): Response
     {
+
+        $topActus = $contentRepo->findBy(['topArticle' => true]);
         $currentEdition = $EditionRepo->findOneBy(['status'=>'en ligne']);
 
         if ($currentEdition) {
@@ -32,7 +34,8 @@ class HomeController extends AbstractController
                 'indexFestival.html.twig',
                 [
                     'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['festival']]),
-                    'period'=>$dateRange
+                    'period'=>$dateRange,
+                    'topActus' => $topActus
                 ]
             );
         } else {
