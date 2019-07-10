@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class NewsType extends AbstractType
 {
@@ -25,9 +26,14 @@ class NewsType extends AbstractType
             ->add('title_en', TextType::class, ["label"=>"Titre anglais", 'required' => false])
             ->add('content_en', CKEditorType::class, ["label"=>"Contenu anglais", 'required' => false])
             ->add('country_en', TextType::class, ["label"=>"Pays", 'required' => false])
-            ->add('cover', InSiFileType::class)
+            ->add('topArticle', CheckboxType::class, [
+                'label'    => 'article dans le carousel',
+                'required' => false,
+            ])
+            ->add('carouselPicture', InSiFileType::class)
             ->add('thumbnail', InSiFileType::class)
             ->add('edition', EntityType::Class, ['class' => Edition::Class,    'choice_label' => 'name',])
+
         ;
     }
 
