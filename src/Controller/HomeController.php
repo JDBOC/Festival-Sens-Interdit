@@ -18,24 +18,26 @@ class HomeController extends AbstractController
      */
     public function indexFestival(ContentRepository $contentRepo, EditionRepository $EditionRepo): Response
     {
-        
-        
-
         $currentEdition = $EditionRepo->findOneBy(['status'=>'en ligne']);
-        $interval = new \DateInterval('P1D');
-        $dateRangeTmp = new \DatePeriod($currentEdition->getDateDebut(), $interval, $currentEdition->getDateFin());
-        foreach ($dateRangeTmp as $date) {
-            $dateRange[] = $date;
-        }
-        $dateRange[] = $currentEdition->getDateFin();
 
-        return $this->render(
-            'indexFestival.html.twig',
-            [
-                        'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['festival']]),
-                        'period'=>$dateRange
-            ]
-        );
+        if ($currentEdition) {
+            $interval = new \DateInterval('P1D');
+            $dateRangeTmp = new \DatePeriod($currentEdition->getDateDebut(), $interval, $currentEdition->getDateFin());
+            foreach ($dateRangeTmp as $date) {
+                $dateRange[] = $date;
+            }
+            $dateRange[] = $currentEdition->getDateFin();
+
+            return $this->render(
+                'indexFestival.html.twig',
+                [
+                    'contents' => $contentRepo->findby(['contentType' => Content::CONTENT_TYPE['festival']]),
+                    'period'=>$dateRange
+                ]
+            );
+        } else {
+            return $this->render('UserTemplate/indexHorsFestival.html.twig');
+        }
     }
     
     /**
