@@ -29,7 +29,7 @@ class EditionController extends AbstractController
     /**
      * @Route("/new", name="edition_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, EditionRepository $editionRepository): Response
     {
         $edition = new Edition();
 
@@ -39,6 +39,7 @@ class EditionController extends AbstractController
         $noBlankFile = null;
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $edition->getStatus() != 'en ligne'? :$editionRepository->setActiveEditionsToArchive();
             $entityManager = $this->getDoctrine()->getManager();
 
             $edition->getEditionPicture()->setType(3);
@@ -62,13 +63,14 @@ class EditionController extends AbstractController
     /**
      * @Route("/{id}/edit", name="edition_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Edition $edition): Response
+    public function edit(Request $request, Edition $edition, EditionRepository $editionRepository): Response
     {
         $form = $this->createForm(EditionType::class, $edition);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $edition->getStatus() != 'en ligne'? :$editionRepository->setActiveEditionsToArchive();
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('edition_index', [
