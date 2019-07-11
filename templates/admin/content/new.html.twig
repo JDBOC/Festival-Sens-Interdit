@@ -1,0 +1,14 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}New Content{% endblock %}
+
+{% block body %}
+    <div class="title px-4 pb-4 pt-2"><h1>Créer un nouveau contenu</h1></div>
+
+<div class="container-fluid">
+    <a href="{{ path('show_index') }}"><button class="btn btn-primary m-2">	Retourner à l'index</button>	</a>
+    {{ form_start(form) }}
+      <button class="btn">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

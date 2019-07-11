@@ -1,0 +1,40 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Edition{% endblock %}
+
+{% block body %}
+    <div class="title px-4 pb-4 pt-2">
+    <h1>Liste des éditions</h1>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Statut</th>
+                <th>Date de début</th>
+                <th>Date de fin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for edition in editions %}
+            <tr>
+                <td>{{ edition.name }}</td>
+                <td>{{ edition.status }}</td>
+                <td>{{ edition.dateDebut|date("d/m/Y") }}</td>
+                <td>{{ edition.dateFin|date("d/m/Y") }}</td>
+                <td>
+                    <a href="{{ path('edition_edit', {'id': edition.id}) }}" class="btn btn-info btn-sm">Editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('edition_new') }}" class="btn btn-info btn-sm">Nouvelle</a>
+{% endblock %}

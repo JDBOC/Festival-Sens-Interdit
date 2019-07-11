@@ -1,0 +1,21 @@
+<div class="row m-0">
+            <div class="col-md-3 p-0">               
+                <div class=" mr-4 d-flex align-items-center redPill">
+                        {# country #}
+                    {% if language == "en_EN" and content.CountryEn is not null %}
+                        <p class="m-auto px-1 d-block">{{content.countryEn}}</p> 
+                    {% else %}
+                    <p class="m-auto px-1 d-block">{{content.countryFr}}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-9 row">
+            {% if content.themes|length > 0 %}
+                {% for theme in content.themes %}
+                    <div class=" col-4 col-md-3">
+                        <img src="/upload/file/{{ theme.picture.mediaFileName }}" class="img-fluid"   alt="">
+                    </div>
+                {% endfor %}
+            {% endif %}                
+            </div>
+        </div>

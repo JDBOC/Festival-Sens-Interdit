@@ -1,0 +1,45 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Tarif index{% endblock %}
+
+{% block body %}
+    <div class="title px-4 pb-4 pt-2">
+    <h1>Liste des tarifs</h1>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tarif</th>
+                <th>Pass Festival</th>
+                <th>Pass -28 ans</th>
+                <th>Plein tarif</th>
+                <th>Tarif réduit</th>
+                <th>Jeune -28 ans</th>
+                <th>Tarif RSA</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tarif in tarifs %}
+            <tr>
+                <td>{{ tarif.grille }}</td>
+                <td>{{ tarif.PassFestival }}</td>
+                <td>{{ tarif.PassJeune }}</td>
+                <td>{{ tarif.pleinTarif }}</td>
+                <td>{{ tarif.reduce }}</td>
+                <td>{{ tarif.jeune }}</td>
+                <td>{{ tarif.RSA }}</td>
+                <td>
+                    <a href="{{ path('tarif_edit', {'id': tarif.id}) }}" class="btn btn-info btn-sm">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucun tarif enregistré.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('tarif_new') }}" class="btn btn-info btn-sm">Nouveau</a>
+{% endblock %}

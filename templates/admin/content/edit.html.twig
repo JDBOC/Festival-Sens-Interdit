@@ -1,0 +1,30 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Edit Show{% endblock %}
+
+{% block body %}
+    <div class="title px-4 pb-4 pt-2"><h1>Editer le contenu: {{content.titleFr}}</h1></div>
+    <div class="container">
+	    
+	    {% if content.contentType == 1 %}
+			{{ include('admin/content/forms/_festivalForm.html.twig', {'button_label': 'mettre a jour le contenu'}) }}
+
+	    {% elseif content.contentType == 2 %}
+			{{ include('admin/content/forms/_actualiteForm.html.twig', {'button_label': 'mettre a jour le contenu'}) }}
+
+	    {% elseif content.contentType == 3 %}
+			{{ include('admin/content/forms/_staticForm.html.twig', {'button_label': 'mettre a jour le contenu'}) }}
+
+	    {% elseif content.contentType == 4 %}
+			{{ include('admin/content/forms/_horsSceneForm.html.twig', {'button_label': 'mettre a jour le contenu'}) }}
+
+	    {% elseif content.contentType == 5 %}
+			{{ include('admin/content/forms/_tourneeForm.html.twig', {'button_label': 'mettre a jour le contenu'}) }}
+
+			{% endif %}
+
+
+
+
+    </div>
+{% endblock %}

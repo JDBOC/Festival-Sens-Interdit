@@ -1,0 +1,11 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Edition{% endblock %}
+
+{% block body %}
+    <h1>Nouvelle édition</h1>
+
+    {{ include('admin/edition/_form.html.twig') }}
+
+    <a href="{{ path('edition_index') }}" class="btn btn-info btn-sm">Retour</a>
+{% endblock %}

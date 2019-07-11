@@ -1,0 +1,108 @@
+{% if content.sessions|length > 0  %}
+	<table class="table representations">
+		<thead>
+			<tr>
+				<th class="px-1">Date de représentation</th>
+				<th class="px-1">Lieu</th>
+				<th class="px-1">Tarifs</th>
+				<th class="px-1">Réservation</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for session in content.sessions %}
+				<tr>
+					<td class="px-1">{{ session.sessionDate ? session.sessionDate|date('d-m-Y à H:i') : '' }}</td>
+					<td class="px-1">{{ session.location }}</td>
+					<td class="px-1">
+					{% for tarif in session.tarifs %}
+						<a href="#" data-toggle="modal" data-target="#TarifModal">{{tarif.grille}}</a>
+					{% endfor %}
+					</td>
+					<td class="px-1"> <a href="{{session.mapadoLink}}">Billetterie</a>
+
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+
+<!-- Modal Tarifs -->
+<div class="modal fade bd-example-modal-lg" id="TarifModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Grille tarifaire</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+
+			<div class="container modalTarif">
+				<div>
+					<table class="tarifTable">
+						<tr>
+							<th class="noBorder"></th>
+							{% for tarif in tarifs %}
+							<th class="tarifName">Tarif {{ tarif.grille }}</th>
+							{% endfor %}
+						</tr>
+						<tr>
+							<th class="TarifTitle">Pass Festival</th>
+							{% for tarif in tarifs %}
+								<td>{{ tarif.PassFestival }} €</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<th class="TarifTitle">Pass Festivals -28 ans**</th>
+							{% for tarif in tarifs %}
+								<td>{{ tarif.PassJeune }} €</td>
+							{% endfor %}
+						</tr>
+					</table>
+
+					<br>
+
+					<table class="tarifTable">
+						<tr>
+							<th class="noBorder"></th>
+							{% for tarif in tarifs %}
+								<th class="tarifName">Tarif {{ tarif.grille }}</th>
+							{% endfor %}
+						</tr>
+						<tr>
+							<th class="TarifTitle">Plein tarif</th>
+							{% for tarif in tarifs %}
+								<td>{{ tarif.pleinTarif }} €</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<th class="TarifTitle">Tarif réduit*</th>
+							{% for tarif in tarifs %}
+								<td>{{ tarif.reduce }} €</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<th class="TarifTitle">Jeunes -28 ans**</th>
+							{% for tarif in tarifs %}
+								<td>{{ tarif.jeune }} €</td>
+							{% endfor %}
+						</tr>
+						<tr>
+							<th class="TarifTitle">Bénéficiaires du RSA**</th>
+							{% for tarif in tarifs %}
+								<td>{{ tarif.RSA }} €</td>
+							{% endfor %}
+						</tr>
+					</table>
+					<p>* Abonnés ou adhérents des théâtres partenaires, +65 ans, familles nombreuses, demandeurs d'emploi,
+						personnes handicapés, groupes (+10 personnes), sur présentation d'un justificatif.</p>
+					<p>** Sur présentation d'un justificatif.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Modal Tarifs -->
+
+{% endif %}

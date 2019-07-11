@@ -1,0 +1,16 @@
+{% if content.duree is not null  or content.lieu is not null or content.note is not null %}
+	<div class="bg-secondary p-2 text-light">
+{% if content.duree is not null %}
+	<p>{% trans into language %}Durée{% endtrans %} : <strong>{{content.duree}}</strong></p>
+{% endif %}
+
+{% if content.lieu is not null %}
+	<p>{% trans into language %}Lieu{% endtrans %} : <strong>{{content.lieu}}</strong></p>
+{% endif %}
+
+{% if content.note is not null %}
+		<p>{% trans into language %}A noter{% endtrans %}	 : <strong>{{content.note|raw}}</strong></p>
+{% endif %}
+		</div>
+{% endif %}
+		

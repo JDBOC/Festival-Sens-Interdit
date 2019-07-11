@@ -1,0 +1,62 @@
+{% extends 'adminBase.html.twig' %}
+{% block title %}themes index{% endblock %}
+{% block body %}
+     <div class="title px-4 pb-4 pt-2"><h1>Themes du spectacle : {{content.titleFr}}</h1>
+        </div>
+     <div class="container">
+<a href="{{ path('show_index') }}"><button class="btn btn-primary m-2"> Retourner à la liste des spectacles</button>   </a>
+<a href="{{ path('show_edit',{id: content.id }) }}"><button class="btn btn-primary m-2"> Retourner au spectacle courant</button>   </a>
+    <div class="jumbotron py-2 my-1">
+        <h2> Themes  liés au contenu</h2>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Theme</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for theme in content.themes %}
+                <tr>
+                    <td> {{ theme.name }} </td>
+                    <td>
+                        <a href="{{ path('remove_theme', {content_id: content.id , theme_id: theme.id}) }}"> <button class="btn btn-secondary">Retirer </button>  </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="11">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="jumbotron py-2 mb-1">
+        <h2>Liste des contenus  disponibles</h2>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Theme</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for theme in themes %}
+                {% if theme  not in content.themes %}
+                    <tr>
+                    <td> {{ theme.name }} </td>
+                        <td>
+                            <a href="{{ path('add_theme', {content_id: content.id , theme_id: theme.id}) }}"><button class="btn btn-secondary">ajouter</button></a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="11">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

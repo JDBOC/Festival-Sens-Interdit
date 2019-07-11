@@ -1,0 +1,32 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}SiFile{% endblock %}
+
+{% block body %}
+    <h1>Fichier</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ si_file.name }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ si_file.type }}</td>
+            </tr>
+            <tr>
+                <th>Fichier</th>
+                <td>
+                    <img alt="img_fichier" src="/upload/file/{{ si_file.mediaFileName }}" style="width: 400px; height: auto" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('sifile_index') }}">Retour</a>
+
+    <a href="{{ path('sifile_edit', {'id': si_file.id}) }}">Modifier</a>
+
+    {{ include('si_file/_delete_form.html.twig') }}
+{% endblock %}

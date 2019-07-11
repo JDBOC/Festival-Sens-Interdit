@@ -1,9 +1,187 @@
 @import "vars";
 
-body {
-    background-color: $secondary-color;
+/*css ludo home page*/
+.img-border{
+	border-bottom-right-radius: 40px 40px;
+	border-bottom-left-radius: 40px 40px;
+	border: solid;
+	border-width: thin;
+	border-color: black;
 }
 
-a {
-    color: $warm-color;
+.fontHome{
+	font-size: 0.8em;
 }
+
+.textDate{
+	color: white;
+	position: absolute;
+	top: 0em; left: 1.1em;
+	border: solid;
+	border-color: grey;
+	border-width: thin;
+	background: #ed1c24;
+	border-bottom-right-radius: 10px 10px;
+	padding-left: 1em;
+	padding-right: 1em;
+	font-size: 0.8em;
+}
+
+.textLieu{
+	position: absolute;
+	top: 1.5em; left: 1.1em;
+	border: solid;
+	border-color: grey;
+	border-width: thin;
+	background: white;
+	border-bottom-right-radius: 10px 10px;
+	padding-left: 1em;
+	padding-right: 1em;
+	font-size: 0.8em;
+}
+/*fin ludo*/
+
+
+ /* START OF stylesheet.css of templates/user_show/index.html.twig // by Catherine */
+body{
+    background-color: $primary_color;
+}
+
+.redPill {
+    color: white;
+    background: red;
+    border-bottom-right-radius: 10px 10px;
+    font-size: 1.7rem;
+    width: 8em;
+    text-align: center;
+}
+/* END OF stylesheet.css of templates/user_show/index.html.twig // by Catherine */
+
+/* Tableau des tarifs */
+
+.tarifTable {
+	.modalTarif {
+		margin: 10px;
+	}
+
+	table {
+		border-collapse: collapse;
+		border-spacing : 0;
+	}
+
+	th, td {
+		width: 200px;
+		height: 30px;
+		border: 1px black solid;
+		text-align: center;
+		vertical-align: middle;
+	}
+	.noBorder {
+		border: none;
+	}
+
+	.TarifTitle {
+		color: white;
+		background-color: #9b0000;
+	}
+
+	.tarifName {
+		background-color: #b4b4b4;
+	}
+}
+
+
+/* End Tableau des tarifs */
+
+/* planning homepage */
+.planning
+{
+  color: black;
+  column-width: 15rem;
+  background-color: darkgray;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  transition: background-color 1.5s ease, width 2.5s;
+  align-content: space-between;
+  text-align: center;
+  width: auto;
+}
+
+.planning:hover , .activeDate
+{
+  background-color: #ed1c24;
+  padding-bottom: 10px;
+  color: black;
+  font-weight: bold;
+}
+
+.decorationNone:hover{
+	text-decoration:none;
+}
+
+.card-spectacle
+{
+  width: 85%;
+  height: 85%;
+
+}
+
+.textareaScroll
+{
+  max-height: 100px;
+}
+
+.boutonHorsScene
+{
+  margin-top: 1em;
+  text-align: center;
+
+  width: auto;
+  alignment: center;
+  color: black;
+}
+
+.horsSceneLien
+{
+  color: black;
+  text-decoration: none !important;
+}
+/*carousel*/
+
+.carousel
+{
+  background-color: black;
+  max-height: 80rem;
+ width: auto;
+}
+
+/* Modal Footer, mini-map */
+.geoMap {
+	position: relative;
+	text-align: right;
+	height: 21rem;
+	width: 100%;
+}
+.gmap_canvas {
+	position: relative;
+	overflow: hidden;
+	background: none !important;
+	height: 100%;
+	width: 100%;
+}
+.gmap_canvas iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.mapAddress {
+	margin-top: 20px;
+}
+/* Modal Footer, mini-map */

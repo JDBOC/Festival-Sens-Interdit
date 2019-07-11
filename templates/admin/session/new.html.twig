@@ -1,0 +1,11 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Représentations{% endblock %}
+
+{% block body %}
+    <h1>Représentations pour le spectacle:{{content.titleFr}}</h1>
+    <a href="{{ path('show_edit',{'id':content.id}) }}">Retourner vers le spectacle</a>
+    {{ include('admin/session/_form.html.twig') }}
+    {{ include('admin/session/_indexByContent.html.twig') }}
+
+{% endblock %}

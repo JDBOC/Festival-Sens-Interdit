@@ -1,0 +1,13 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Edit SiFile{% endblock %}
+
+{% block body %}
+    <h1>Editer un fichier</h1>
+
+    {{ include('si_file/_form.html.twig', {'button_label': 'Enregistrer'}) }}
+
+    <a href="{{ path('sifile_index') }}">Retour</a>
+
+    {{ include('si_file/_delete_form.html.twig') }}
+{% endblock %}

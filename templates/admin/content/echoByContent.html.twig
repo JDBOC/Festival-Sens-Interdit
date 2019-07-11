@@ -1,0 +1,94 @@
+{% extends 'adminBase.html.twig' %}
+{% block title %}Echo index{% endblock %}
+{% block body %}
+     <div class="title px-4 pb-4 pt-2"><h1>Contenus en echo du spectacle : {{echoContent.titleFr}}</h1>
+        </div>
+     <div class="container">
+<a href="{{ path('show_index') }}"><button class="btn btn-primary m-2"> Retourner à la liste des spectacles</button>   </a>
+<a href="{{ path('show_edit',{id: echoContent.id }) }}"><button class="btn btn-primary m-2"> Retourner au spectacle courant</button>   </a>
+    <div class="jumbotron py-2 my-1">
+        <h2> Articles en echo</h2>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Type de contenu</th>
+                <th>Type de spectacle</th>
+                <th>titre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for content in echoContent.enEcho %}
+                <tr>
+                    <td> {{ content.contentTypeName }} </td>
+                    <td>
+                        {#                 {% if content.edition.name is defined%}
+                            {{content.edition.name}}
+                        {% endif %} #}
+                    </td>
+                    <td>{{content.titleFr}}</td>
+                    <td>
+                        <a href="{{ path('remove_en_echo', {echo_id: echoContent.id , removed_id: content.id}) }}"> <button class="btn btn-secondary">Retirer </button>  </a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="11">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="jumbotron py-2 mb-1">
+        <h2>Liste des contenus  disponibles</h2>
+        <div>
+            {{ form_start(form) }}
+            <div class="form-row">
+                <div class="col">
+                    {{ form_row(form.contentType) }}
+                </div>
+                <div class="col">
+                    <button class="btn btn-primary"> Rechercher</button>
+                </div>
+            </div>
+            {{ form_end(form)}}
+        </div>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Type de contenu</th>
+                <th>Type de spectacle</th>
+                <th>titre</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for content in contents %}
+                {% if content  not in echoContent.enEcho %}
+                    <tr>
+                        <td> {{ content.contentTypeName }} </td>
+                        <td>
+                            
+                            {#                 {% if content.edition.name is defined%}
+                                {{content.edition.name}}
+                            {% endif %} #}
+                        </td>
+                        <td>{{content.titleFr}}</td>
+                        <td>
+                            <a href="{{ path('add_en_echo', {echo_id: echoContent.id , added_id: content.id}) }}"><button class="btn btn-secondary">ajouter</button></a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="11">no records found</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation">
+        {{ knp_pagination_render(contents) }}
+    </div>
+</div>
+{% endblock %}

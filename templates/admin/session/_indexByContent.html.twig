@@ -1,0 +1,34 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Date</th>
+            <th>Lieu</th>
+            <th>Tarifs</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for session in sessions %}
+        <tr>
+            <td>{{ session.id }}</td>
+            <td>{{ session.sessionDate ? session.sessionDate|date('d-m-Y à H:i') : '' }}</td>
+            <td>{{ session.location }}</td>
+            <td>
+                {% for tarif in session.tarifs %}
+                    {{ tarif.grille }}
+                {% endfor %}
+            </td>
+            <td>
+                <a href="{{ path('session_delete', {'id': session.id}) }}">Supprimer</a>
+                <a href="{{ path('session_edit', {id: session.id, content_id : content.id}) }}">Modifier</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="4">Aucune représentation enregistrée.</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

@@ -1,0 +1,14 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Edit static{% endblock %}
+
+{% block body %}
+    <div class="title px-4 pb-4 pt-2"><h1>Editer la page statique: {{content.titleFr}}</h1></div>
+    <div class="container">
+
+	    {{ include('content/_form.html.twig', {'button_label': 'Update'}) }}
+	    <h2>Upload des pictures</h2>
+	    {{ include('content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}
+	  </div>
+
+{% endblock %}

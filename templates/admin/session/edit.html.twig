@@ -1,0 +1,11 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}edition représentation{% endblock %}
+
+{% block body %}
+    <h1>Représentations pour le spectacle:{{content.titleFr}}</h1>
+    {{ include('admin/session/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('admin/session/_indexByContent.html.twig') }}
+    
+
+{% endblock %}

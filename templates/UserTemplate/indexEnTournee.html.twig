@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+  {{ encore_entry_link_tags('app') }}
+{% endblock %}
+{% block body %}
+  {% for category, messages in app.flashes %}
+    {% for message in messages %}
+      <div class="alert alert-{{ category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endfor %}
+  <div class="container">
+  <h1>Tournées</h1>
+    <div class="row pt-3">
+      {% for content in contents %}
+	    	<div class=" col-12 col-md-3">
+		    	<div class="card-spectacle">
+		    		<div>
+		    			<a href="/content/{{content.slug}}"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
+						<p class="textDate">{{ content.countryFr }}</p>
+					</div>
+				  	<div class="card-body pt-0">
+					  	<h3 class="mb-0 text-muted">{{ content.titleFr }}</h3>
+					  	<p class="mb-0 fontHome"><b>De : {{ content.director }}</b></p>
+				    </div>
+				</div>
+			</div>      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

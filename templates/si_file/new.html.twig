@@ -1,0 +1,12 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}New SiFile{% endblock %}
+
+{% block body %}
+    <h1>Nouveau fichier</h1>
+
+    {{ include('si_file/_form.html.twig') }}
+
+    <a href="{{ path('sifile_index') }}">Retour</a>
+
+{% endblock %}

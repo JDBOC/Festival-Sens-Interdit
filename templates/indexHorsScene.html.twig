@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+{% endblock %}
+{% block body %}
+
+	{% for category, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ category }}">
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endfor %}
+  
+  <div class="container">
+        <div class="row">
+          {%for date in period %}
+            <div class="col-4 col-md-1 px-1 pb-1 text-center">
+              <a class=" decorationNone" href="{{path('index_by_date',{'sessionDate': date|date('d-m-Y')})}}">
+                <div class="planning pt-1">
+                  <p class="m-0">{{date|date('d')}}</p>
+                  <p class="m-0">{{date|date('M')}}</p>
+                </div>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="boutonHorsScene">
+          <a class="horsSceneLien" href="{{path('index_hors_scene')}}"><button type="button" class="btn btn-outline-danger btn-block">{% trans into language %}Hors Scène{% endtrans %}</button></a>
+        </div>
+  </div>
+
+
+  <br>
+  <br>
+    <div class="container">
+	    	<div class="row">
+	    {% for content in contents %}
+	    	<div class=" col-12 col-md-3">
+		    	<div class="card-spectacle">
+		    		<div>
+		    			<a href="/content/{{content.slug}}"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="card-img-top img-border" alt="..."></a>
+
+
+            </div>
+				  	<div class="card-body pt-0">
+					  	<h3 class="mb-0 text-muted text-center">{{	content.titleFr }}</h3>
+				    </div>
+				</div>
+			</div>
+		{% endfor %}
+			</div>
+		</div>
+
+{% endblock %}

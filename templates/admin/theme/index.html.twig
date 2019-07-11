@@ -1,0 +1,37 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Theme index{% endblock %}
+
+{% block body %}
+    <div class="title px-4 pb-4 pt-2">
+    <h1>Liste des themes</h1>
+    </div>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for theme in themes %}
+            <tr>
+                <td>{{ theme.name }}</td>
+                <td> {{theme.picture.mediaFileName}} </td>
+                <td>
+                    <a href="{{ path('theme_show', {'id': theme.id}) }}">voir</a>
+                    <a href="{{ path('theme_edit', {'id': theme.id}) }}">editer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">pas d'enregistrements</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('theme_new') }}">Créer un nouveau theme</a>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}News{% endblock %}
+
+{% block body %}
+    <h1>Editer News</h1>
+    {{ include('content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}
+    {{ include('admin/news/_delete_form.html.twig') }}
+
+    {{ include('admin/news/_form.html.twig', {'button_label': 'modifier'}) }}
+    <a href="{{ path('news_admin') }}">retour liste</a>
+
+{% endblock %}

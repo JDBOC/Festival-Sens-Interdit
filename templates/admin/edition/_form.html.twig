@@ -1,0 +1,47 @@
+{{ form_start(formEdition) }}
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formEdition.name, "Nom de l'édition") }}
+            {{ form_widget(formEdition.name) }}
+        </div>
+
+        <div class="col-4">
+            {{ form_label(formEdition.status, 'Statut') }}
+            {{ form_widget(formEdition.status) }}
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formEdition.dateDebut, 'Date de début') }}
+                 {{ form_widget(formEdition.dateDebut) }}
+        </div>
+        <div class="col-4">
+            {{ form_label(formEdition.dateFin, 'Date de fin') }}
+                 {{ form_widget(formEdition.dateFin) }}
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-12">
+            {{ form_label(formEdition.editionPicture, "Affiche de  l'édition") }}
+            {% if noBlankFile is defined %}<span class="badge badge-warning">{{ noBlankFile}}</span>{% endif %}
+        </div>
+            <div class="col-6">{{ form_widget(formEdition.editionPicture) }}</div>
+            {% if edition.editionPicture.mediaFileName is not defined %}
+                <div class="col-6"><img src="https://via.placeholder.com/570x530" class="w-50 pb-3"></div>
+            {% else %}
+                <div class="col-6"><img src="/upload/file/{{edition.editionPicture.mediaFileName}}" class="w-50 pb-3"></div>
+            {% endif %}
+    </div>
+
+
+    <button class="btn btn-success btn-sm">{{ button_label|default('Enregistrer') }}</button>
+
+
+{{ form_end(formEdition) }}

@@ -1,0 +1,26 @@
+{{ form_start(formFile) }}
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formFile.name, "Nom du fichier") }}
+            {{ form_widget(formFile.name) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formFile.type) }}
+            {{ form_widget(formFile.type) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(formFile.mediaFile) }}
+            {{ form_widget(formFile.mediaFile) }}
+        </div>
+    </div>
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+
+{{ form_end(formFile) }}

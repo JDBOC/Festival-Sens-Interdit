@@ -1,0 +1,26 @@
+        {% if content.enEcho|length > 0 %}
+<div class=" container pb-3 ">
+    <hr class="m-0">
+    <!-- "mais aussi" pill -->
+    <div class="p-0 m-auto redPill">
+        <p class="redPill">mais aussi...</p>
+    </div>
+    
+    <div class="row">
+            {% for relativeContent in content.enEcho %}
+                <div class="col-4">
+                    <div class="card">
+                        <img src="/upload/file/{{relativeContent.thumbnail.mediaFileName}}" class="card-img-top" alt="{{relativeContent.titleFr}}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{relativeContent.titleFr}}</h5>
+                            <p class="card-text">{{relativeContent.contentTypeName}}</p>
+                            <p class="card-text">{{relativeContent.titleFr}}</p>
+                            <a href="{{ path('show_content', {'slug': relativeContent.slug}) }}" class="btn btn-primary">En savoir plus</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            {% endfor%}
+    </div>
+</div>
+        {% endif %}

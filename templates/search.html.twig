@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+           {{ encore_entry_link_tags('app') }}
+{% endblock %}
+{% block body %}
+            {% for infoSearch in infoSearchs %}
+    <div class="container">
+        <div class="card">
+          <h3 class="card-header" style="text-decoration:underline;">{{ infoSearch['titleFr']|title }}</h3>
+          <div class="card-body">
+               <p class="card-text mb-0"><strong>Pays :</strong> {{ infoSearch['countryFr'] }}</p>
+            <p class="card-text mb-0"><strong>Contenu :</strong> {{ infoSearch['contentFr']|striptags|slice(0, 400)|raw}}</p>
+            <p class="card-text mb-0"><strong>Lieu :</strong> {{ infoSearch['lieu'] }}</p>
+           <div class="card-footer text-muted"><p class="card-text"><strong>De :</strong> {{ infoSearch['author'] }}.
+             <strong>Mise en scène :</strong> {{ infoSearch['director'] }}.<a class="float-right" href="{{ path('show_content', {slug: infoSearch.slug}) }}">Voir l'article</a></p></div>
+            </div>
+        </div>
+    </div>
+            {% endfor %}
+{% endblock %}
