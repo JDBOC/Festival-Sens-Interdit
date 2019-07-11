@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% set session = app.session.get('session') %}
+{% if session['language'] is not defined %}
+	{% set language = "fr" %}
+{% else %}
+	{% set language = session['language'] %}
+{% endif %}
+
 {% block stylesheets %}
         {{ encore_entry_link_tags('newsIndex') }}
 {% endblock %}
@@ -18,13 +25,13 @@
 						<div class="card-body pt-0 col-9">
 							<h3 class="mb-0">{{content.titleFr}}</h3>
 							<p>{{content.contentFr|striptags|raw|length > 100 ? content.contentFr|slice(0,400) ~ '...' : content.contentFr}}</p>
-							<a href="{{ path('show_content', {'id': content.id}) }}" class="float-right"><button class="btn btn-outline-primary">en savoir plus</button></a>
+							<a href="{{ path('show_content', {'slug': content.slug}) }}" class="float-right"><button class="btn btn-outline-primary">{% trans into language %}en savoir plus{% endtrans %}</button></a>
 						</div>
 						{% else %}
 						<div class="card-body pt-0 col-9">
 							<h3 class="mb-0">{{content.titleFr}}</h3>
 							<p>{{content.contentFr|striptags|raw|length > 100 ? content.contentFr|slice(0,400) ~ '...' : content.contentFr}}</p>
-							<a href="{{ path('show_content', {'id': content.id}) }}" class="float-left"><button class="btn btn-outline-primary">en savoir plus</button></a>
+							<a href="{{ path('show_content', {'slug': content.slug}) }}" class="float-left"><button class="btn btn-outline-primary">{% trans into language %}en savoir plus{% endtrans %}</button></a>
 						</div>
 						<div class="col-3">
 						<img src="upload/file/{{content.thumbnail.mediaFileName}}" class="card-img" alt="...">
