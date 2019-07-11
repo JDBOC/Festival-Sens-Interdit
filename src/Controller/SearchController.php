@@ -22,6 +22,7 @@ class SearchController extends AbstractController
                                                        ->addSelect(['c.titleFr',
                                                            'c.contentFr',
                                                            'c.id',
+                                                           'c.slug',
                                                            'c.countryFr',
                                                            'c.lieu',
                                                            'c.author',
