@@ -23,8 +23,8 @@ Encore
     .addEntry('newsDetails', './assets/js/newsDetails.js')
     .addEntry('nav', './assets/js/nav.js')
     .addEntry('partner', './assets/js/partner.js')
+    .addEntry('indexHF', './assets/js/indexHF.js')
 
-    
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
 

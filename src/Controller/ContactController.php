@@ -23,10 +23,8 @@ class ContactController extends AbstractController
             $contactMessage = $request->request->get('message');
 
             $message = (new \Swift_Message($title))
-                ->setFrom('cmandonnet@gmail.com')
-               // ->setFrom('com.sensinterdits@gmail.com')
-                ->setTo('cmandonnet@gmail.com')
-               // ->setTo('com.sensinterdits@gmail.com')
+               ->setFrom('com.sensinterdits@gmail.com')
+               ->setTo('com.sensinterdits@gmail.com')
                 ->setReplyTo($from)
                 ->setBody("Mail de $nom  $prenom ($from)
                 Message : 

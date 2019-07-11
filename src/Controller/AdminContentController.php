@@ -62,11 +62,15 @@ class AdminContentController extends AbstractController
         $show = new Content();
         $cover = new SiFile();
         $cover->setType(SiFile::FILE_TYPE['cover']);
-        $cover->setMediaFileName("something");
+        $cover->setMediaFileName("blackCover.jpg");
         $cover->setUpdatedAt(new \DateTime("now"));
+        $carouselPicture = new SiFile();
+        $carouselPicture->setType(SiFile::FILE_TYPE['carouselPicture']);
+        $carouselPicture->setMediaFileName("blackCarouselPicture.jpg");
+        $carouselPicture->setUpdatedAt(new \DateTime("now"));
         $thumbnail = new SiFile();
         $thumbnail->setType(SiFile::FILE_TYPE['thumbnail']);
-        $thumbnail->setMediaFileName("something");
+        $thumbnail->setMediaFileName("blackThumbnail.jpg");
         $thumbnail->setUpdatedAt(new \DateTime("now"));
 
         $form = $this->createForm(PreFormType::class, $show);
@@ -80,6 +84,7 @@ class AdminContentController extends AbstractController
             $show->setTranslated(false);
             $show->setArchive(false);
             $show->setCover($cover);
+            $show->setCarouselPicture($carouselPicture);
             $show->setThumbnail($thumbnail);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($show);

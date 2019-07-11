@@ -11,6 +11,22 @@ class SiFileFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        $blackCarouselPicture = new SiFile;
+        $blackCarouselPicture ->setName('blackCarouselPicture')
+                    ->setType(Sifile::FILE_TYPE['carouselPicture'])
+                    ->setMediaFileName('blackCarouselPicture.jpg')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($blackCarouselPicture);
+         $this->addReference('blackCarouselPicture', $blackCarouselPicture);
+
+        $redCarouselPicture = new SiFile;
+        $redCarouselPicture ->setName('redCarouselPicture')
+                    ->setType(Sifile::FILE_TYPE['carouselPicture'])
+                    ->setMediaFileName('redCarousel.jpg')
+                    ->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($redCarouselPicture);
+         $this->addReference('redCarouselPicture', $redCarouselPicture);
+
         $cycleMexique = new SiFile;
         $cycleMexique ->setName('cycleMexique')
                     ->setType(Sifile::FILE_TYPE['logo'])

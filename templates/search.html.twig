@@ -13,7 +13,7 @@
             <p class="card-text mb-0"><strong>Contenu :</strong> {{ infoSearch['contentFr']|striptags|slice(0, 400)|raw}}</p>
             <p class="card-text mb-0"><strong>Lieu :</strong> {{ infoSearch['lieu'] }}</p>
            <div class="card-footer text-muted"><p class="card-text"><strong>De :</strong> {{ infoSearch['author'] }}.
-             <strong>Mise en scène :</strong> {{ infoSearch['director'] }}.<a class="float-right" href="{{ path('show_content', {id: infoSearch.id}) }}">Voir l'article</a></p></div>
+             <strong>Mise en scène :</strong> {{ infoSearch['director'] }}.<a class="float-right" href="{{ path('show_content', {slug: infoSearch.slug}) }}">Voir l'article</a></p></div>
             </div>
         </div>
     </div>

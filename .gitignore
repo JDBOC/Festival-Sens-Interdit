@@ -26,6 +26,7 @@
 /.idea/
 *.sublime-project
 *.sublime-workspace
+*.code-workspace
 ###< jetbrain/phpstorm  sublime###
 
 ###> symfony/webpack-encore-bundle ###

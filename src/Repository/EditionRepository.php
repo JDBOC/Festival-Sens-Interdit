@@ -32,22 +32,23 @@ class EditionRepository extends ServiceEntityRepository
     }
 
 
-    // /**
-    //  * @return Edition[] Returns an array of Edition objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * change all online edition to archive
+      */
+    
+    public function setActiveEditionsToArchive()
     {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
+        $this->createQueryBuilder('e')
+            ->update(Edition::class, 'e')
+            ->set('e.status', ':archive')
+            ->setParameter('enLigne', 'en ligne')
+            ->where('e.status = :enLigne')
+            ->setParameter('archive', 'archive')
             ->getQuery()
-            ->getResult()
+            ->execute()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Edition

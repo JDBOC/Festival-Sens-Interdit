@@ -67,11 +67,11 @@
 								<div class="dropdown">
 									<button class="btn bg01 dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sens Interdits</button>
 									<div class="dropdown-menu bg01" aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="#">{% trans into language %}Le Festival{% endtrans %}</a>
+										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'le-festival'}) }}">{% trans into language %}Le Festival{% endtrans %}</a>
 										<a class="dropdown-item" href="{{ path('index_tournee') }}">{% trans into language %}Les spectacles en tournée{% endtrans %}</a>
 										<a class="dropdown-item" href="#">{% trans into language %}Les partenaires{% endtrans %}</a>
-										<a class="dropdown-item" href="#">{% trans into language %}L'équipe{% endtrans %}</a>
-										<a class="dropdown-item" href="#">{% trans into language %}L'association{% endtrans %}</a>
+										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'lequipe'}) }}">{% trans into language %}L'équipe{% endtrans %}</a>
+										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'lassociation'}) }}">{% trans into language %}L'association{% endtrans %}</a>
 									</div>
 								</div>
 							</li>
@@ -80,9 +80,9 @@
 								<div class="dropdown">
 									<button class="btn bg01 dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans into language %}Avec les publics{% endtrans %}</button>
 									<div class="dropdown-menu bg01" aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="#">Ecole éphémère </a>
+										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'ecole-ephemere'}) }}">Ecole éphémère </a>
 										<a class="dropdown-item" href="#">{% trans into language %}Hors-Scène{% endtrans %}</a>
-										<a class="dropdown-item" href="#">{% trans into language %}Actions de médiation{% endtrans %}</a>
+										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'actions-de-mediation'}) }}">{% trans into language %}Actions de médiation{% endtrans %}</a>
 									</div>
 								</div>
 							</li>
@@ -91,8 +91,8 @@
 								<div class="dropdown">
 									<button class="btn bg01 dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans into language %}Informations pratiques{% endtrans %}	</button>
 									<div class="dropdown-menu bg01" aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item" href="#">Le chapiteau</a>
-										<a class="dropdown-item" href="#">{% trans into language %}Lieux et accès{% endtrans %}</a>
+										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'le-chapiteau'}) }}">Le chapiteau</a>
+										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'lieux-et-acces'}) }}">{% trans into language %}Lieux et accès{% endtrans %}</a>
 										<a class="dropdown-item" href="#">{% trans into language %}Tarifs et réservation{% endtrans %}</a>
 										<a class="dropdown-item" href="#" data-toggle="modal" data-target="#ContactModal">Contact</a>
 									</div>
@@ -104,7 +104,7 @@
 									<button class="btn bg01 dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans into language %}Médias{% endtrans %}</button>
 									<div class="dropdown-menu bg01" aria-labelledby="dropdownMenuButton">
 										<a class="dropdown-item" href="#">{% trans into language %}Galerie{% endtrans %}</a>
-										<a class="dropdown-item" href="#">Web radio</a>
+										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'web-radio'}) }}">Web radio</a>
 										<a class="dropdown-item" href="#">{% trans into language %}Presse{% endtrans %}</a>
 									</div>
 								</div>
@@ -115,7 +115,7 @@
 							</div>
 
 							<div class="mt-2 md-5">
-								<a class="text-light ml-2" href="#">{% trans into language %}Nous soutenir{% endtrans %}</a>
+								<a class="text-light ml-2" href="{{ path('show_content', {'slug': 'nous-soutenir'}) }}">{% trans into language %}Nous soutenir{% endtrans %}</a>
 							</div>
 						</ul>
 					</div>
