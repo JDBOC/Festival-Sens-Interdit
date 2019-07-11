@@ -14,8 +14,7 @@ class Partner
         2   => 'Grand Partenaire',
         3   => 'Mécènes et Partenaires',
         4   => 'Partenaires et Médias',
-        5   => 'Les Lieux Partenaires',
-        6   => 'Autres Partenaires'
+        5   => 'Les Lieux Partenaires'
     ];
 
     /**

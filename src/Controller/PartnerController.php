@@ -47,6 +47,7 @@ class PartnerController extends AbstractController
 
         if ($partnerForm->isSubmitted() && $partnerForm->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            
             $logo = $partner->getLogo();
             $logo->setType(SiFile::FILE_TYPE['logo']);
 
