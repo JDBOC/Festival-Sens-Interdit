@@ -153,7 +153,7 @@ class HomeController extends AbstractController
         $route = preg_replace("/(?<=\\w)(?=[A-Z])/", "_$1", $route);
         $route = strtolower($route);
         if (isset($_GET['parameters'])) {
-            return $this->redirectToRoute($route, array('id'=> $_GET['parameters']['id']));
+            return $this->redirectToRoute($route, array('slug'=> $_GET['parameters']['slug']));
         }
         return $this->redirectToRoute($route);
     }

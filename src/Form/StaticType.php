@@ -20,7 +20,6 @@ class StaticType extends AbstractType
     {
         $builder
             ->add('contentFr', CKEditorType::class, ["label"=>"Contenu", 'required' => false])
-            ->add('titleEn', TextType::class, ["label"=>"Titre anglais", 'required' => false])
             ->add('contentEn', CKEditorType::class, ["label"=>"Contenu anglais", 'required' => false])
             ->add('cover', InSiFileType::class)
         ;

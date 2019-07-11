@@ -6,6 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use App\Entity\Content;
+use App\Entity\SiFile;
 use App\Service\ContentService;
 
 class NewsFixtures extends Fixture implements DependentFixtureInterface
@@ -20,6 +21,18 @@ class NewsFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager)
     {
+        $carousel = new SiFile();
+        $carousel->setType(SiFile::FILE_TYPE['carouselPicture']);
+        $carousel->setMediaFileName("redCarousel.jpg");
+        $carousel->setUpdatedAt(new \DateTime("now"));
+        $cover = new SiFile();
+        $cover->setType(SiFile::FILE_TYPE['cover']);
+        $cover->setMediaFileName("blackcover.jpg");
+        $cover->setUpdatedAt(new \DateTime("now"));
+        $thumbnail = new SiFile();
+        $thumbnail->setType(SiFile::FILE_TYPE['thumbnail']);
+        $thumbnail->setMediaFileName("blackThumbnail.jpg");
+        $thumbnail->setUpdatedAt(new \DateTime("now"));
         $redNews = new Content;
         $redNews   ->setTitleFr('Ma news sur fond rouge')
                 ->setSlug($this->contentService->slugAndCheck($redNews->getTitleFr()))
@@ -31,10 +44,25 @@ class NewsFixtures extends Fixture implements DependentFixtureInterface
                 ->setComplete(false)
                 ->setTranslated(false)
                 ->setTopArticle(true)
-                ->setCarouselPicture($this->getReference('redCarouselPicture'))
+                ->setCarouselPicture($carousel)
+                ->setCover($cover)
+                ->setThumbnail($thumbnail)
                 ;
         $manager->persist($redNews);
 
+
+        $carousel = new SiFile();
+        $carousel->setType(SiFile::FILE_TYPE['carouselPicture']);
+        $carousel->setMediaFileName("blackCarousel.jpg");
+        $carousel->setUpdatedAt(new \DateTime("now"));
+        $cover = new SiFile();
+        $cover->setType(SiFile::FILE_TYPE['cover']);
+        $cover->setMediaFileName("blackcover.jpg");
+        $cover->setUpdatedAt(new \DateTime("now"));
+        $thumbnail = new SiFile();
+        $thumbnail->setType(SiFile::FILE_TYPE['thumbnail']);
+        $thumbnail->setMediaFileName("blackThumbnail.jpg");
+        $thumbnail->setUpdatedAt(new \DateTime("now"));
         $blackNews = new Content;
         $blackNews   ->setTitleFr('Ma news sur fond noir')
                 ->setSlug($this->contentService->slugAndCheck($redNews->getTitleFr()))
@@ -47,7 +75,10 @@ class NewsFixtures extends Fixture implements DependentFixtureInterface
                 ->setComplete(false)
                 ->setTranslated(false)
                 ->setTopArticle(true)
-                ->setCarouselPicture($this->getReference('blackCarouselPicture'))
+                ->setCarouselPicture($carousel)
+                ->setCarouselPicture($carousel)
+                ->setCover($cover)
+                ->setThumbnail($thumbnail)
                 ;
         $manager->persist($blackNews);
 
