@@ -1,0 +1,56 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Partner index{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('partner') }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h1 class="text-center">Liste des Partenaires</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>TYPE</th>
+                    <th>NOM</th>
+                    <th>LOGO</th>
+                    <th>LIEN</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                    {% for partner in partners %}
+                        <tr>
+                    
+                            <td>{{ partner.type }}</td>
+
+                            <td>{{ partner.name }}</td>
+                            <td>
+                                {% if partner.logo.mediaFileName is defined %}
+                                    <img class="img-fluid imgLogo" src="/upload/file/{{ partner.logo.mediaFileName }}
+                                " alt="logo"/> 
+                                {% endif %}
+
+                            </td>
+                            <td>
+                                {% if partner.link is defined %}
+                                    <a href="{{ partner.link }}">{{ partner.link }}</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{{ path('partner_edit', {'id': partner.id}) }}" class="btn btn-warning btn-sm">modifier</a>
+                            </td>
+                        </tr>
+                    
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('partner_new') }}" class="btn btn-info btn-sm m-1">nouveau Partenaire</a>
+    </div>
+{% endblock %}

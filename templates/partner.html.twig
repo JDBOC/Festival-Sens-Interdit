@@ -1,0 +1,185 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Partenaires{% endblock %}
+
+{% block stylesheets %}
+    {{ encore_entry_link_tags('partner') }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <h1 class="font-weight-bold my-4">Nos Partenaires</h1>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <p class="partnerText font-weight-bold font-italic text-center m-1"><u>Sens Interdits remercie pour leur soutien</u></p>
+        </div>
+        <div class="row">
+            <hr align="center" width="70%">
+        </div>
+
+
+        {# Partner 1 #}
+        <div class="row d-flex m-1 justify-content-center">
+            <h3 class="partnerType font-weight-bold">Partenaires Institutionnels</h3>
+        </div>
+        <div class="row m-1 p-0 d-flex justify-content-around">
+            {% for partner in partners %}
+                {% if partner.type == 1 %}
+                    <div class="col-12 col-sm-4 col-md-3 col-lg-3 m-1">
+                        <div class="row d-flex justify-content-center">
+                            {% if partner.logo.mediaFileName is defined %}
+                                <img class="img-fluid imgLogo" src="/upload/file/{{ partner.logo.mediaFileName }}" alt="logo"/>
+                            {% endif %}
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            {% if partner.link %}
+                                <a href="{{ partner.link }}">
+                                    {{ partner.name }}
+                                </a>
+                            {% else %}
+                                <p>{{ partner.name }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        
+        <div class="row">
+            <hr align="center" width="70%">
+        </div>
+
+
+        {# Partner 2 #}
+        <div class="row d-flex m-1 justify-content-center">
+            <h3 class="partnerType font-weight-bold">Grand Partenaire</h3>
+        </div>
+        <div class="row m-1 p-0 d-flex justify-content-around">
+            {% for partner in partners %}
+                {% if partner.type == 2 %}
+                    <div class="col-12 col-sm-4 col-md-3 col-lg-3 m-1">
+                        <div class="row d-flex justify-content-center">
+                            {% if partner.logo.mediaFileName is defined %}
+                                <img class="img-fluid imgLogo" src="/upload/file/{{ partner.logo.mediaFileName }}" alt="logo"/>
+                            {% endif %}
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            {% if partner.link %}
+                                <a href="{{ partner.link }}">{{ partner.name }}</a>
+                            {% else %}
+                                <p>{{ partner.name }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+
+        <div class="row">
+            <hr align="center" width="70%">
+        </div>
+
+
+        {# Partner 3 #}
+        <div class="row d-flex m-1 justify-content-center">
+            <h3 class="partnerType font-weight-bold">Mécènes et Partenaires</h3>
+        </div>
+        <div class="row m-1 p-0 d-flex justify-content-around">
+            {% for partner in partners %}
+                {% if partner.type == 3 %}
+                    <div class="col-12 col-sm-4 col-md-3 col-lg-3 m-1">
+                        <div class="row d-flex justify-content-center">
+                            {% if partner.logo.mediaFileName is defined %}
+                                <img class="img-fluid imgLogo" src="/upload/file/{{ partner.logo.mediaFileName }}" alt="logo"/>
+                            {% endif %}
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            {% if partner.link %}
+                                <a href="{{ partner.link }}">{{ partner.name }}</a>
+                            {% else %}
+                                <p>{{ partner.name }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>        
+
+
+        <div class="row">
+            <hr align="center" width="70%">
+        </div>
+
+
+        {# Partner 4 #}
+        <div class="row d-flex m-1 justify-content-center">
+            <h3 class="partnerType font-weight-bold">Partenaires et Médias</h3>
+        </div>
+        <div class="row m-1 p-0 d-flex justify-content-around">
+            {% for partner in partners %}
+                {% if partner.type == 4 %}
+                    <div class="col-12 col-sm-4 col-md-3 col-lg-3 m-1">
+                        <div class="row d-flex justify-content-center">
+                            {% if partner.logo.mediaFileName is defined %}
+                                <img class="img-fluid imgLogo" src="/upload/file/{{ partner.logo.mediaFileName }}" alt="logo"/>
+                            {% endif %}
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            {% if partner.link %}
+                                <a href="{{ partner.link }}">{{ partner.name }}</a>
+                            {% else %}
+                                <p>{{ partner.name }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+
+        <div class="row">
+            <hr align="center" width="70%">
+        </div>
+
+
+        {# Partner 5 #}
+        <div class="row d-flex m-1 justify-content-center">
+            <h3 class="partnerType font-weight-bold">Les Lieux Partenaires</h3>
+        </div>
+        <div class="row m-1 p-0 d-flex justify-content-around">
+            {% for partner in partners %}
+                {% if partner.type == 5 %}
+                    <div class="col-12 col-sm-4 col-md-3 col-lg-3 m-1">
+                        <div class="row d-flex justify-content-center">
+                            {% if partner.logo.mediaFileName is defined %}
+                                <img class="img-fluid imgLogo" src="/upload/file/{{ partner.logo.mediaFileName }}" alt="logo"/>
+                            {% endif %}
+                        </div>
+                        <div class="row d-flex justify-content-center">
+                            {% if partner.link %}
+                                <a href="{{ partner.link }}">{{ partner.name }}</a>
+                            {% else %}
+                                <p>{{ partner.name }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+
+        <div class="row">
+            <hr align="center" width="70%">
+        </div>
+
+        <div>
+            <p class="text-center col-md-8 offset-md-2">Remerciements à tous les théâtres et lieux partenaires du Festaival, aux mécènes, aux donateurs individuels, aux adhérents et aux bénévoles qui oeuvrent à cette édition.</p>
+        </div>
+
+    </div>
+
+{% endblock %}

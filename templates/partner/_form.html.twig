@@ -1,0 +1,36 @@
+{{ form_start(partnerForm) }}
+
+    <div class="">
+
+        <div>
+            
+            <select name="type">
+                <option disabled="disabled" selected>Type de Partenaire</option>
+                {% for type in constant('App\\Entity\\Partner::TYPE')%}
+                    <option value="{{loop.index}}"> {{type}} </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                {{ form_label(partnerForm.name) }}
+                {{ form_widget(partnerForm.name) }}
+            </div>
+            <div class="col-3">
+                {{ form_label(partnerForm.link) }}
+                {{ form_widget(partnerForm.link) }}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                {{ form_label(partnerForm.logo) }}
+                {{ form_widget(partnerForm.logo) }}
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-sm m-1">{{ button_label|default('enregistrer') }}</button>
+    </div>
+
+{{ form_end(partnerForm) }}

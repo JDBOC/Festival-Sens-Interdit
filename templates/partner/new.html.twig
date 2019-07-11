@@ -1,0 +1,14 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}New Partner{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="text-center">Nouveau Partenaire</h1>
+
+        {{ include('partner/_form.html.twig') }}
+
+        <a href="{{ path('partner_index') }}" class="btn btn-success btn-sm m-1">retour liste</a>
+    </div>
+{% endblock %}
