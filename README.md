@@ -1,94 +1,56 @@
-# Project 3 - Starter Kit - Symfony 4.2.8
+Projet Sens Interdits
 
-![Wild Code School](https://wildcodeschool.fr/wp-content/uploads/2019/01/logo_pink_176x60.png)
+Objectif :
+Créer un nouveau site pour le festival Sens Interdits, avec une interface administrateur “user friendly”.
 
-This starter kit is here to easily start a repository for your students.
-
-It's symfony website-skeleton project with some additional tools to validate code standards.
-
-* GrumPHP, as pre-commit hook, will run 2 tools when `git commit` is run :
-  
-    * PHP_CodeSniffer to check PSR2 
-    * PHPStan will check PHP recommendation
-     
-  If tests fail, the commit is canceled and a warning message is displayed todevelopper.
-
-* Travis CI, as Continuous Integration will be run when a branch with active pull request is updated on github. It will run :
-
-    * Tasks to check if vendor, .idea, env.local are not versionned,
-    * PHP_CodeSniffer to check PSR2,
-    * PHPStan will check PHP recommendation.
- 
-
-## Getting Started for Projects
-
-### Prerequisites
-
-1. Check composer is installed
-2. Check yarn & node are installed
-
-### Install
-
-1. Clone this project
-2. Run `composer install`
-3. Run `yarn install`
-
-### Working
-
-1. Run `php bin/console server:run` to launch your local php web server
-2. Run `yarn run dev --watch` to launch your local server for assets
-
-### Testing
-
-1. Run `./bin/phpcs` to launch PHP code sniffer
-2. Run `./bin/phpstan analyse src --level 5` to launch PHPStan
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Symfony](https://github.com/symfony/symfony)
-* [GrumPHP](https://github.com/phpro/grumphp)
-* [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
-* [PHPStan](https://github.com/phpstan/phpstan)
-* [Travis CI](https://github.com/marketplace/travis-ci)
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
+Outils utilisés :
+    • PHP7
+    • Framework Symfony 4
+    • Composer
+    • Yarn
 
 
-## Authors
+Bundles utilisés :
+    • mailchimp
+    • Swiftmailer
+	https://github.com/swiftmailer/swiftmailer
+    • Vich 
+	https://github.com/dustin10/VichUploaderBundle
+    • CKEditor
+	https://github.com/ckeditor/ckeditor5
+    • Fuse 
+	https://github.com/loilo/Fuse
+    • KNP Paginator
+	https://packagist.org/packages/knplabs/knp-paginator-bundle
 
-Wild Code School trainers team
+Liste des fonctions opérationnelles :
 
-## License
+Côté Administration :
+    • création d’un formulaire général pour spectacles / actualités / Pages statiques / Hors scène / tournée 
+    • Accès à la partie administrateur (sans que cela apparaisse côté utilisateur)
+        ◦ via -> /admin 
+        ◦ (actuellement identifiant = demo et MDP = demo)
+    • formulaire de grilles de tarifs (apparition sous forme de modal)
+    • formulaire des éditions 
+    • formulaire de gestion des archives 
+    • formulaire de création et modification des partenaires
+    • formulaire de création et modification de thème 
+    • gestion des fichiers uploadés 
+    • lien vers billeterie Mapado 
+    • mise en avant d’un spectacle / actualité / news
+    • partie internationalisation (A finaliser)
 
-MIT License
+Côté utilisateur :
+    • possibilité de visualiser un spectacle ou une date avec les spectacles correspondants.
+    • visualisation des thèmes en lien avec le spectacle visualisé 
+    • achat des places via lien Mapado 
+    • module de recherche
+    • inscription à la newsletter
+    • formulaire de contact
 
-Copyright (c) 2019 aurelien@wildcodeschool.fr
+Nous avons généré sur l’ensemble des pages dites statiques des fixtures destinées à être remplacées par de vraies informations.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-## Acknowledgments
-
+Points d’amélioration :
+finaliser la page accueil hors festival 
+terminer l’internationalisation
+filtres d’administration des contenus non fonctionnel 
