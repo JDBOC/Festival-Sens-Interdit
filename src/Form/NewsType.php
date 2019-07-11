@@ -20,12 +20,13 @@ class NewsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title_fr', TextType::class, ["label"=>"Titre"])
-            ->add('content_fr', CKEditorType::class, ["label"=>"Contenu", 'required' => false])
+            ->add('title_fr', TextType::class, ["label"=>"Titre", 'required' => true])
+            ->add('content_fr', CKEditorType::class, ["label"=>"Contenu", 'required' => true])
             ->add('country_fr', TextType::class, ["label"=>"Pays", 'required' => false])
             ->add('title_en', TextType::class, ["label"=>"Titre anglais", 'required' => false])
             ->add('content_en', CKEditorType::class, ["label"=>"Contenu anglais", 'required' => false])
             ->add('country_en', TextType::class, ["label"=>"Pays", 'required' => false])
+            ->add('thumbnail', InSiFileType::class, [ 'required' => false])
             ->add('topArticle', CheckboxType::class, [
                 'label'    => 'article dans le carousel',
                 'required' => false,

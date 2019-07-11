@@ -34,7 +34,9 @@ class Session
      */
     private $content;
 
-
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $mapadoLink;
 
     /**
