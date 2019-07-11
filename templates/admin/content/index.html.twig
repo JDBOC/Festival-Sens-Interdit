@@ -30,7 +30,9 @@
     <table class="table table-striped">
         <thead>
             <tr>
+            {% if contents[0] is defined and contents[0].Edition is not null %}
                 <th>Edition</th>
+            {% endif %}
                 <th>Titre</th>
                 <th>Représentations</th>
                 <th>Logos</th>
@@ -42,7 +44,9 @@
         <tbody>
         {% for content in contents %}
             <tr>
-
+                {% if content.Edition is not null %}
+                <td>{{ content.Edition.name }}</td>
+                {% endif %}
                 <td>{{ content.titleFr }}</td>
                 <td>{{ content.sessions | length }}</td>
                 <td>{{ content.logos | length }}</td>

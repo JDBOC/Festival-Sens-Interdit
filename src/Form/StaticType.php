@@ -19,7 +19,6 @@ class StaticType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('titleFr', TextType::class, ["label"=>"Titre"])
             ->add('contentFr', CKEditorType::class, ["label"=>"Contenu", 'required' => false])
             ->add('titleEn', TextType::class, ["label"=>"Titre anglais", 'required' => false])
             ->add('contentEn', CKEditorType::class, ["label"=>"Contenu anglais", 'required' => false])
