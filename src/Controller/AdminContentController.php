@@ -25,6 +25,7 @@ use Knp\Component\Pager\PaginatorInterface;
 use App\Service\ContentService;
 
 /**
+ * Manage routes to admin all kind of contents
  * @Route("/admin/content")
  */
 class AdminContentController extends AbstractController
@@ -264,5 +265,55 @@ class AdminContentController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
         return $this->redirectToRoute('content_themes', [
                 'id' => $content->getId() ]);
+    }
+
+    /**
+     * Upload a picture and create the related SiFile object with the type in parameter
+     *
+     * @Route("/{id}/upload/{type}", name="content_upload", methods={"POST"})
+     * @param Request $request request object
+     * @param Content $content related content
+     * @param string $type upload type, could be contentPicture or logo
+     * @param ContentService $contentService content service
+     * @return Response response object
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
+     */
+    public function upload(Request $request, Content $content, string $type, ContentService $contentService): Response
+    {
+        $response = new Response();
+        $result = [];
+        $file = $request->files->get('file');
+        try {
+            $siFile = $contentService->uploadPicture($content, $file, $type);
+            $result = [
+            'id' => $siFile->getId(),
+            'mediaFileName' => $siFile->getMediaFileName(),
+            'type' => $siFile->getType()
+            ];
+        } catch (\Exception $e) {
+            $result['error'] = true;
+        }
+          $response->setContent(json_encode($result));
+          $response->headers->set('Content-Type', 'application/json');
+         return $response;
+    }
+    /**
+     * Delete the picture in parameter from the content in parameter.
+     * @Route("/{id}/picture/{siFile}")
+     * @param Content $content
+     * @param SiFile $siFile
+     * @param ContentService $contentService
+     * @return Response
+     */
+    public function deletePicture(Content $content, SiFile $siFile, ContentService $contentService): Response
+    {
+        $contentService->deletePicture($content, $siFile);
+
+        $response = new Response();
+        $response->setContent(json_encode(['result' => true]));
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 }

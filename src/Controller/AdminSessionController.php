@@ -16,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 /**
  * @Route("/admin/session")
  */
-class SessionController extends AbstractController
+class AdminSessionController extends AbstractController
 {
 
     /**

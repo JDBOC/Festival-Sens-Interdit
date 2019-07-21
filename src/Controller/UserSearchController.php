@@ -9,7 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Content;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
-class SearchController extends AbstractController
+class UserSearchController extends AbstractController
 {
 
    /**
