@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/tarif")
  */
-class TarifController extends AbstractController
+class AdminTarifController extends AbstractController
 {
     /**
      * @Route("/", name="tarif_index", methods={"GET"})

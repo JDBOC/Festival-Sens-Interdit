@@ -20,21 +20,33 @@
 					<div class="row">
 						{% if loop.index %2 == 0 %}
 						<div class="col-3">
-							<img src="upload/file/{{content.thumbnail.mediaFileName}}" class="card-img" alt="...">
+							<img src={% if content.thumbnail.mediaFileName is defined %}
+										"upload/file/{{content.thumbnail.mediaFileName}}"
+									{% else %}
+										"upload/file/blackThumbnail.jpg"
+									{% endif %}
+							 class="card-img" alt="...">
 						</div>
 						<div class="card-body pt-0 col-9">
 							<h3 class="mb-0">{{content.titleFr}}</h3>
-							<p>{{content.contentFr|striptags|raw|length > 100 ? content.contentFr|slice(0,400) ~ '...' : content.contentFr}}</p>
+							<p>{{ content.contentFr|striptags|slice(0,200)|raw}}
+               {% if content.contentFr|striptags|raw|length > 200 %} ... {% endif %}</p>
 							<a href="{{ path('show_content', {'slug': content.slug}) }}" class="float-right"><button class="btn btn-outline-primary">{% trans into language %}en savoir plus{% endtrans %}</button></a>
 						</div>
 						{% else %}
 						<div class="card-body pt-0 col-9">
 							<h3 class="mb-0">{{content.titleFr}}</h3>
-							<p>{{content.contentFr|striptags|raw|length > 100 ? content.contentFr|slice(0,400) ~ '...' : content.contentFr}}</p>
+							<p>{{ content.contentFr|striptags|slice(0,200)|raw}}
+               {% if content.contentFr|striptags|raw|length > 200 %} ... {% endif %}</p>
 							<a href="{{ path('show_content', {'slug': content.slug}) }}" class="float-left"><button class="btn btn-outline-primary">{% trans into language %}en savoir plus{% endtrans %}</button></a>
 						</div>
 						<div class="col-3">
-						<img src="upload/file/{{content.thumbnail.mediaFileName}}" class="card-img" alt="...">
+							<img src={% if content.thumbnail.mediaFileName is defined %}
+										"upload/file/{{content.thumbnail.mediaFileName}}"
+									{% else %}
+										"upload/file/blackThumbnail.jpg"
+									{% endif %}
+							 class="card-img" alt="...">
 						</div>
 						{% endif %}
 					</div>

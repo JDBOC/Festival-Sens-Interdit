@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
  * @Route("/archives")
  */
-class ArchivesController extends AbstractController
+class UserArchivesController extends AbstractController
 {
     /**
      * @Route("/", name="archives")

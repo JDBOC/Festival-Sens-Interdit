@@ -26,12 +26,12 @@
                 {% else %}
                 <h5>{{topActu.titleFr}}</h5>
                 {% endif %}
-                <h5>{{topActu.titleFr}}</h5>
-              <div>topActu.carouselPicture.mediaFileName
-                {{ topActu.contentFr|striptags|slice(0,200)|raw}}
+              <div>{{ topActu.contentFr|striptags|slice(0,200)|raw}}
                {% if topActu.contentFr|striptags|raw|length > 200 %} ... {% endif %}
-                <a href="{{ path('show_content',{slug: topActu.slug }) }}" class="btn btn-success">En savoir plus </a>
               </div>
+               <div>
+                <a href="{{ path('show_content',{slug: topActu.slug }) }}" class="btn btn-success">En savoir plus </a>
+               </div>
 
         </div>
 

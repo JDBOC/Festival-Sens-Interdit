@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("admin/theme")
  */
-class ThemeController extends AbstractController
+class AdminThemeController extends AbstractController
 {
     /**
      * @Route("/", name="theme_index", methods={"GET"})
