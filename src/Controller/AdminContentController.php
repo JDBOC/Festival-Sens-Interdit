@@ -80,13 +80,11 @@ class AdminContentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $show->setTitleFr('titre');
             $show->setSlug($contentService->slugAndCheck($show->getTitleFr()));
-            $show->setContentFr('contenu');
-            $show->setComplete(false);
-            $show->setTranslated(false);
-            $show->setArchive(false);
             $show->setCover($cover);
             $show->setCarouselPicture($carouselPicture);
             $show->setThumbnail($thumbnail);
+            $show-> setTranslated($contentService->checkTanslated($show))
+                ->setComplete($contentService->checkComplete($show));
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($show);
             $entityManager->flush();
@@ -131,8 +129,9 @@ class AdminContentController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $content->setSlug($contentService->slugAndCheck($content->getTitleFr()));
+            $content->setTranslated($contentService->checkTanslated($content))
+                ->setComplete($contentService->checkComplete($content));
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('show_index', [
                 'id' => $content->getId(),
             ]);

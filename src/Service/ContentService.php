@@ -124,4 +124,66 @@ class ContentService
         }
         return $slug;
     }
+
+    /**
+     * verify if content is fully translated or not
+     * @param  Content $content
+     * @return bool
+     */
+    public function checkTanslated(Content $content) :bool
+    {
+        if ($content->getTitleEn() == null
+            ||$content->getCountryEn() == null
+            ||$content->getContentEn() == null) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * verify if content is fully filled
+     * @param  Content $content
+     * @return bool
+     */
+    public function checkComplete(Content $content) :bool
+    {
+        $type=$content->getContentType();
+        switch ($type) {
+            case 1: //festival
+                return !(
+                    $content->getContentFr() == null
+                    ||  $content->getCountryFr() == null
+                    ||  $content->getEdition() == null
+                    ||  $content->getDirector() == null
+                    || count($content->getPictures()) == 0
+                    || count($content->getSessions()) == 0
+                );
+            case 2: //actualités
+                return !(
+                    $content->getContentFr() == null
+                    ||  (   $content->getTopArticle() == true
+                        &&  $content->getcarouselPicture() == null)
+                );
+            case 3: //static
+                return !(
+                    $content->getContentFr() == null
+                    || count($content->getPictures()) == 0
+                );
+            case 4: //hors-scene
+                return !(
+                    $content->getContentFr() == null
+                    ||  $content->getCountryFr() == null
+                    ||  $content->getEdition() == null
+                    ||  $content->getDirector() == null
+                    || count($content->getPictures()) == 0
+                );
+            case 5: //tournée
+                return !(
+                    $content->getContentFr() == null
+                    ||  $content->getEdition() == null
+                    ||  $content->getDirector() == null
+                    || count($content->getPictures()) == 0
+                );
+        }
+    }
 }
