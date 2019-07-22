@@ -27,6 +27,7 @@ class NewsType extends AbstractType
             ->add('content_en', CKEditorType::class, ["label"=>"Contenu anglais", 'required' => false])
             ->add('country_en', TextType::class, ["label"=>"Pays", 'required' => false])
             ->add('thumbnail', InSiFileType::class, [ 'required' => false])
+            ->add('cover', InSiFileType::class, [ 'required' => false])
             ->add('topArticle', CheckboxType::class, [
                 'label'    => 'article dans le carousel',
                 'required' => false,

@@ -1,21 +1,28 @@
+{% set session = app.session.get('session') %}
+{% if session['language'] is not defined %}
+{% set language = "fr" %}
+{% else %}
+{% set language = session['language'] %}
+{% endif %}
+
 <div class="container-fluid bg-footer">
     <footer>
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-md-6 col-sm-12">
-                    <h5>NOUS CONTACTER</h5>
+                    <h5>{% trans into language %}NOUS CONTACTER{% endtrans %}</h5>
                     <!-- Button Modal Contact -->
                     <a href="#" data-toggle="modal" data-target="#ContactModal">
-                        Envoyer un mail
+                        {% trans into language %}Envoyer un mail{% endtrans %}
                     </a><br><br>
-                    <span class="adress">14 rue Basse Combalot | 69007 Lyon FRANCE</span>
+                    <span class="adress">{% trans into language %}14 rue Basse Combalot{% endtrans %} | 69007 Lyon FRANCE</span>
                 </div>
 
                 <div class="col-xl-4 col-md-6 col-sm-12">
-                    <h5>INFOS PRATIQUES</h5>
-                    <a href="{{ path('index_festival') }}">Accueil</a><br>
+                    <h5>{% trans into language %}INFOS PRATIQUES{% endtrans %}</h5>
+                    <a href="{{ path('index_festival') }}">{% trans into language %}Accueil{% endtrans %}</a><br>
                     <a href="#">Sens Interdits</a><br>
-                    <a href="#">Mentions légales</a>
+                    <a href="#">{% trans into language %}Mentions légales{% endtrans %}</a>
                 </div>
 
                 <div class="col-xl-4 col-md-6 col-sm-12">
@@ -76,7 +83,7 @@
                             </div>
 
                             <div class="mapAddress">
-                                <span>14 rue Basse Combalot</span><br>
+                                <span>{% trans into language %}14 rue Basse Combalot{% endtrans %}</span><br>
                                 <span>69007 Lyon FRANCE</span>
                                 <p>Mail : festivalsensinterdits@gmail.com</p>
                                 <p>Tel : 09 67 02 00 85</p>
@@ -104,7 +111,7 @@
 
                         <div class="col-xl-6">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel" style="color: #d50000;">Nous écrire par mail</h5>
+                                <h5 class="modal-title" id="exampleModalLabel" style="color: #d50000;">{% trans into language %}Nous écrire par mail{% endtrans %}</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -114,11 +121,11 @@
                                 <form method="post" action="{{ path('contact') }}">
                                     <div class="row">
                                         <div class="col-6">
-                                            <label for="nom">Nom</label>
+                                            <label for="nom">{% trans into language %}Nom{% endtrans %}</label>
                                             <input type="text" class="form-control" id="nom" name="nom" required>
                                         </div>
                                         <div class="col-6">
-                                            <label for="prenom">Prénom</label>
+                                            <label for="prenom">{% trans into language %}Prénom{% endtrans %}</label>
                                             <input type="text" class="form-control" id="prenom" name="prenom" required>
                                         </div>
                                     </div>
@@ -132,14 +139,14 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-12">
-                                            <label for="title">Titre du mail</label><br>
+                                            <label for="title">{% trans into language %}Titre du mail{% endtrans %}</label><br>
                                             <input type="text" class="form-control" id="title" name="title" required>
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-12">
-                                            <label for="message">Votre message</label><br>
+                                            <label for="message">{% trans into language %}Votre message{% endtrans %}</label><br>
                                             <textarea class="form-control" id="message" name="message" rows="10" required></textarea>
                                             <input type="hidden" name="url" value="{{ path(app.request.attributes.get('_route'),
                                                 app.request.attributes.get('_route_params')) }}">
@@ -147,8 +154,8 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans into language %}Fermer{% endtrans %}</button>
+                                        <button type="submit" class="btn btn-primary">{% trans into language %}Envoyer{% endtrans %}</button>
                                     </div>
                                 </form>
 

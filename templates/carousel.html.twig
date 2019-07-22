@@ -1,3 +1,10 @@
+{% set session = app.session.get('session') %}
+{% if session['language'] is not defined %}
+	{% set language = "fr" %}
+{% else %}
+	{% set language = session['language'] %}
+{% endif %}
+
 <div class="container-fluid carousel">
   <div class="container">
         <div class="carousel">
@@ -14,6 +21,11 @@
                                     {% endif %}"
                                 class="d-block w-100" alt="...">
               <div class="carousel-caption d-none d-md-block">
+                {% if language == "en_EN" and topActu.contentEn is not null %}
+                <h5>{{topActu.titleEn}}</h5>
+                {% else %}
+                <h5>{{topActu.titleFr}}</h5>
+                {% endif %}
                 <h5>{{topActu.titleFr}}</h5>
               <div>{{ topActu.contentFr|striptags|slice(0,200)|raw}}
                {% if topActu.contentFr|striptags|raw|length > 200 %} ... {% endif %}
