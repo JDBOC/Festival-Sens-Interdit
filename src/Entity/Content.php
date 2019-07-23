@@ -11,7 +11,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Content
 {
-
     const CONTENT_TYPE = [
         'festival' => 1,
         'actualités' => 2,
@@ -64,9 +63,9 @@ class Content
      */
     private $countryEn;
 
-     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Edition", inversedBy="contents")
-     */
+    /**
+    * @ORM\ManyToOne(targetEntity="App\Entity\Edition", inversedBy="contents")
+    */
     private $edition;
 
     /**
@@ -184,10 +183,10 @@ class Content
         return array_search($this->getContentType(), self::CONTENT_TYPE)."-".$this->getTitleFr();
     }
 
-     /**
-     * returns the key linked to the value of the contentType const
-     * @return string
-     */
+    /**
+    * returns the key linked to the value of the contentType const
+    * @return string
+    */
     public function getContentTypeName():string
     {
         return array_search($this->contentType, self::CONTENT_TYPE);
@@ -196,6 +195,12 @@ class Content
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+        return $this;
     }
 
     public function getTitleFr(): ?string

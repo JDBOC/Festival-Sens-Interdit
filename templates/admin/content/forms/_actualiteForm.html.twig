@@ -40,7 +40,7 @@
       {% endif %}
       <div class="col-6">{{ form_row(form.cover) }}</div>
 
-      {% if content.carouselPicture.mediaFileName is not defined %}
+      {% if content.carouselPicture.mediaFileName is defined %}
         <div class="col-6"><img src="/upload/file/{{content.carouselPicture.mediaFileName}}" class="w-100"></div>
       {% else %}
         <div class="col-6"><img src="/upload/file/blackCarousel.jpg" class="w-100"></div>

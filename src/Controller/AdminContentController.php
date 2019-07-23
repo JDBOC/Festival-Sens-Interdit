@@ -73,7 +73,7 @@ class AdminContentController extends AbstractController
             $entityManager->persist($content);
             $entityManager->flush();
 
-            $form = $this->createForm(showType::class, $content);
+            // $form = $this->createForm(showType::class, $content);
             return $this->redirectToRoute('show_edit', ['content'=>$content , 'id'=>$content->getId()]);
         }
 
@@ -82,6 +82,25 @@ class AdminContentController extends AbstractController
             ]);
     }
    
+    /**
+     * @Route("/{id}/duplicate", name="show_duplicate", methods={"GET","POST"})
+     */
+    public function duplicate(Request $request, Content $content): Response
+    {
+        if ($content->getContentType() != 3) {
+            $newContent = clone $content;
+            $newContent->setId(null)
+                        ->setCover(null)
+                        ->setThumbnail(null)
+                        ->setCarouselPicture(null);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($newContent);
+            $entityManager->flush();
+            return $this->redirectToRoute('show_edit', ['content'=>$newContent , 'id'=>$newContent->getId()]);
+        }
+        return $this->redirectToRoute('show_index');
+    }
+
     /**
      * @Route("/{id}/edit", name="show_edit", methods={"GET","POST","DELETE"})
      */
@@ -112,6 +131,7 @@ class AdminContentController extends AbstractController
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            // dd($content);
             if ($content->getThumbnail() != null) {
                 $content->getThumbnail()->setType(5);
             }
