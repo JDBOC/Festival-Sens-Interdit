@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="title px-4 pb-4 pt-2">
-        <h1>Liste des contenu</h1>
+        <h1>Liste des contenus</h1>
     </div>
     <a href="{{ path('show_new') }}"> <button class="btn btn-primary m-2"> Nouveau contenu</button></a>
     <div class="jumbotron py-3 m-2">
@@ -30,9 +30,9 @@
     <table class="table table-striped text-center">
         <thead>
             <tr>
-            {% if contents[0] is defined and contents[0].Edition is not null %}
-                <th>Edition</th>
-            {% endif %}
+                <th>
+                    Edition
+                </th>
                 <th>Titre</th>
                 <th>Représentations</th>
                 <th>Logos</th>
@@ -44,9 +44,11 @@
         <tbody>
         {% for content in contents %}
             <tr>
+                <td>
                 {% if content.Edition is not null %}
-                <td>{{ content.Edition.name }}</td>
+                    {{ content.Edition.name }}
                 {% endif %}
+                </td>
                 <td>{{ content.titleFr }}</td>
                 <td>{{ content.sessions | length }}</td>
                 <td>{{ content.logos | length }}</td>
@@ -58,6 +60,9 @@
                 {% endif %}</td>
                 <td>
                     <a href="{{ path('show_edit', {'id': content.id}) }}"><button class="btn btn-secondary">Modifier</button> </a>
+                    {% if content.contentType != 3 %}
+                        <a href="{{ path('show_duplicate', {'id': content.id}) }}"><button class="btn btn-secondary">Dupliquer</button> </a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

@@ -32,10 +32,8 @@ class NewsType extends AbstractType
                 'label'    => 'article dans le carousel',
                 'required' => false,
             ])
-            ->add('carouselPicture', InSiFileType::class)
-            ->add('thumbnail', InSiFileType::class)
-            ->add('edition', EntityType::Class, ['class' => Edition::Class,    'choice_label' => 'name',])
-
+            ->add('carouselPicture', InSiFileType::class, [ 'required' => false])
+            ->add('thumbnail', InSiFileType::class, [ 'required' => false])
         ;
     }
 

@@ -60,44 +60,47 @@ class AdminContentController extends AbstractController
      */
     public function new(Request $request, ContentService $contentService): Response
     {
-        $show = new Content();
-        $cover = new SiFile();
-        $cover->setType(SiFile::FILE_TYPE['cover']);
-        $cover->setMediaFileName("blackCover.jpg");
-        $cover->setUpdatedAt(new \DateTime("now"));
-        $carouselPicture = new SiFile();
-        $carouselPicture->setType(SiFile::FILE_TYPE['carouselPicture']);
-        $carouselPicture->setMediaFileName("blackCarousel.jpg");
-        $carouselPicture->setUpdatedAt(new \DateTime("now"));
-        $thumbnail = new SiFile();
-        $thumbnail->setType(SiFile::FILE_TYPE['thumbnail']);
-        $thumbnail->setMediaFileName("blackThumbnail.jpg");
-        $thumbnail->setUpdatedAt(new \DateTime("now"));
-
-        $form = $this->createForm(PreFormType::class, $show);
+        $content = new Content();
+        $form = $this->createForm(PreFormType::class, $content);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $show->setTitleFr('titre');
-            $show->setSlug($contentService->slugAndCheck($show->getTitleFr()));
-            $show->setCover($cover);
-            $show->setCarouselPicture($carouselPicture);
-            $show->setThumbnail($thumbnail);
-            $show-> setTranslated($contentService->checkTanslated($show))
-                ->setComplete($contentService->checkComplete($show));
+            $content->setTitleFr('titre')
+                    ->setSlug($contentService->slugAndCheck($content->getTitleFr()))
+                    ->setTranslated($contentService->checkTanslated($content))
+                    ->setComplete($contentService->checkComplete($content));
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($show);
+            $entityManager->persist($content);
             $entityManager->flush();
 
-            $form = $this->createForm(ShowType::class, $show);
-            return $this->redirectToRoute('show_edit', ['content'=>$show , 'id'=>$show->getId()]);
+            // $form = $this->createForm(showType::class, $content);
+            return $this->redirectToRoute('show_edit', ['content'=>$content , 'id'=>$content->getId()]);
         }
 
-            return $this->render('admin/content/new.html.twig', [
+        return $this->render('admin/content/new.html.twig', [
                 'form' =>  $form->createView()
             ]);
     }
    
+    /**
+     * @Route("/{id}/duplicate", name="show_duplicate", methods={"GET","POST"})
+     */
+    public function duplicate(Request $request, Content $content): Response
+    {
+        if ($content->getContentType() != 3) {
+            $newContent = clone $content;
+            $newContent->setId(null)
+                        ->setCover(null)
+                        ->setThumbnail(null)
+                        ->setCarouselPicture(null);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($newContent);
+            $entityManager->flush();
+            return $this->redirectToRoute('show_edit', ['content'=>$newContent , 'id'=>$newContent->getId()]);
+        }
+        return $this->redirectToRoute('show_index');
+    }
+
     /**
      * @Route("/{id}/edit", name="show_edit", methods={"GET","POST","DELETE"})
      */
@@ -128,9 +131,24 @@ class AdminContentController extends AbstractController
         
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $content->setSlug($contentService->slugAndCheck($content->getTitleFr()));
-            $content->setTranslated($contentService->checkTanslated($content))
-                ->setComplete($contentService->checkComplete($content));
+            // dd($content);
+            if ($content->getThumbnail() != null) {
+                $content->getThumbnail()->setType(5);
+            }
+                ;
+            if ($content->getCover() != null) {
+                $content->getCover()->setType(1);
+            }
+                ;
+
+            if ($content->getCarouselPicture() != null) {
+                $content->getCarouselPicture()->setType(6);
+            }
+                ;
+           
+            $content->setSlug($contentService->slugAndCheck($content->getTitleFr()))
+                    ->setTranslated($contentService->checkTanslated($content))
+                    ->setComplete($contentService->checkComplete($content));
             $this->getDoctrine()->getManager()->flush();
             return $this->redirectToRoute('show_index', [
                 'id' => $content->getId(),
@@ -219,10 +237,10 @@ class AdminContentController extends AbstractController
                 'id' => $echoContent->getId() ]);
     }
 
-     /**
-     * returns all themes linked to an other content"
-     * @Route("/themes/{id}", name="content_themes", methods={"GET","POST"})
-     */
+    /**
+    * returns all themes linked to an other content"
+    * @Route("/themes/{id}", name="content_themes", methods={"GET","POST"})
+    */
     public function indexThemesByContent(ThemeRepository $themeRepo, Content $content): Response
     {
         return $this->render('admin/content/themesByContent.html.twig', [
@@ -230,7 +248,7 @@ class AdminContentController extends AbstractController
                 'content' => $content
         ]);
     }
-       /**
+    /**
      * add a content linked to an other content"
      * @Route("/theme_add/{theme_id}/{content_id}", name="add_theme", methods={"GET","POST"})
      * @Entity("content", expr="repository.find(content_id)")
@@ -293,9 +311,9 @@ class AdminContentController extends AbstractController
         } catch (\Exception $e) {
             $result['error'] = true;
         }
-          $response->setContent(json_encode($result));
-          $response->headers->set('Content-Type', 'application/json');
-         return $response;
+        $response->setContent(json_encode($result));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
     /**
      * Delete the picture in parameter from the content in parameter.
