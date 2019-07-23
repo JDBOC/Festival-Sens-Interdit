@@ -30,9 +30,9 @@
     <table class="table table-striped text-center">
         <thead>
             <tr>
-            {% if contents[0] is defined and contents[0].Edition is not null %}
-                <th>Edition</th>
-            {% endif %}
+                <th>
+                    Edition
+                </th>
                 <th>Titre</th>
                 <th>Représentations</th>
                 <th>Logos</th>
@@ -44,9 +44,11 @@
         <tbody>
         {% for content in contents %}
             <tr>
+                <td>
                 {% if content.Edition is not null %}
-                <td>{{ content.Edition.name }}</td>
+                    {{ content.Edition.name }}
                 {% endif %}
+                </td>
                 <td>{{ content.titleFr }}</td>
                 <td>{{ content.sessions | length }}</td>
                 <td>{{ content.logos | length }}</td>

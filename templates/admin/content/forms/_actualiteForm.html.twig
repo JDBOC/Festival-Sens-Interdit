@@ -26,29 +26,27 @@
 </div>
 
   	<div class="row justify-content-center">
-      {% if content.thumbnail is not null %}
-      <div class="col-6"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="w-50 pb-3"></div>
-      <div class="col-6">{{ form_row(form.thumbnail) }}</div>
+      {% if content.thumbnail.mediaFileName is defined %}
+        <div class="col-6"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="w-50 pb-3"></div>
       {% else %}
-            <div class="col-6"><img src="/upload/file/blackThumbnail.jpg" class="w-50 pb-3"></div>
+        <div class="col-6"><img src="/upload/file/blackThumbnail.jpg" class="w-50 pb-3"></div>
+      {% endif %}
       <div class="col-6">{{ form_row(form.thumbnail) }}</div>
-      {% endif %}
 
-      {% if content.cover is not null %}
-      <div class="col-6"><img src="/upload/file/{{content.cover.mediaFileName}}" class="w-50 pb-3"></div>
-      <div class="col-6">{{ form_row(form.cover) }}</div>
+      {% if content.cover.mediaFileName is defined %}
+        <div class="col-6"><img src="/upload/file/{{content.cover.mediaFileName}}" class="w-50 pb-3"></div>
       {% else %}
-            <div class="col-6"><img src="/upload/file/blackCover.jpg" class="w-50 pb-3"></div>
-      <div class="col-6">{{ form_row(form.cover) }}</div>
+        <div class="col-6"><img src="/upload/file/blackCover.jpg" class="w-50 pb-3"></div>
       {% endif %}
+      <div class="col-6">{{ form_row(form.cover) }}</div>
 
-      {% if content.carouselPicture is not null %}
+      {% if content.carouselPicture.mediaFileName is not defined %}
         <div class="col-6"><img src="/upload/file/{{content.carouselPicture.mediaFileName}}" class="w-100"></div>
-        <div class="col-6">{{ form_row(form.carouselPicture) }}</div>
       {% else %}
         <div class="col-6"><img src="/upload/file/blackCarousel.jpg" class="w-100"></div>
-        <div class="col-6">{{ form_row(form.carouselPicture) }}</div>
       {% endif %}
+        <div class="col-6">{{ form_row(form.carouselPicture) }}</div>
+    </div>
     <div class="row">
 			<h2 class="col-12">Ajouter des images</h2>
 	    <span class="col-12">{{ include('admin/content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}</span>
