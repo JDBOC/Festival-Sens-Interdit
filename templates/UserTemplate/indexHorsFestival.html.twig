@@ -19,8 +19,8 @@
             <div class="col-xl-6 col-sm-12">
                 <div class="blockImage">
                     <div class="relative">
-                        <a>
-                            <img src="https://via.placeholder.com/500x300">
+                        <a href="{{ path('news_index')}}">
+                            <img class="blockImage" src="/upload/file/News.jpg">
                         </a>
                     </div>
                 </div>
@@ -31,8 +31,8 @@
             <div class="col-xl-6 col-sm-12">
                 <div class="blockImage">
                     <div class="relative">
-                        <a>
-                            <img src="https://via.placeholder.com/500x300">
+                        <a href="{{ path('show_content', {'slug': 'le-festival'})}}">
+                            <img class="blockImage" src="/logoNavbar.png">
                         </a>
                     </div>
                 </div>
@@ -56,29 +56,14 @@
                 <div class="blockImage">
                     <div class="relative">
                         <a href="{{ path('index_tournee') }}">
-                            <img src="https://via.placeholder.com/500x300">
+                            <img class="blockImage" src="/upload/file/banosThumbnail.jpg">
                         </a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="row blockBandeau1">
-            <div class="col-xl-6 col-sm-12">
-                <div class="blockImage">
-                    <div class="relative">
-                        <a href="#">
-                            <img src="https://via.placeholder.com/500x300">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6 col-sm-12">
-                <div class="blocktext-4 d-flex flex-column justify-content-center text-center">
-                    <h3 class="text-center">Hors-Scène</h3>
-                    <p class="text-center">Tous les événements hors-scène</p>
-                </div>
-            </div>
+
         </div>
 
     </div>

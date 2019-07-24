@@ -28,7 +28,7 @@ class ShowType extends AbstractType
             ->add('titleEn', TextType::class, ["label"=>"Titre anglais", 'required' => false])
             ->add('contentEn', CKEditorType::class, ["label"=>"Contenu anglais", 'required' => false])
             ->add('countryEn', TextType::class, ["label"=>"Pays anglais", 'required' => false])
-            ->add('cover', InSiFileType::class, ['required' => true])
+            ->add('cover', InSiFileType::class, ['required' => false])
             ->add('thumbnail', InSiFileType::class, [ 'required' => false])
             ->add('duree', TextType::class, ["label"=>"Durée", 'required' => false])
             ->add('lieu', TextType::class, ["label"=>"Lieu", 'required' => false])

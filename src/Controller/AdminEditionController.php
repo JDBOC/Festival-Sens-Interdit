@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("admin/edition")
  */
-class EditionController extends AbstractController
+class AdminEditionController extends AbstractController
 {
     /**
      * @Route("/", name="edition_index", methods={"GET"})

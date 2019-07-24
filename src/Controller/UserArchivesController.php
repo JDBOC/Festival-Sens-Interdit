@@ -10,7 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 /**
  * @Route("/archives")
  */
-class ArchivesController extends AbstractController
+class UserArchivesController extends AbstractController
 {
     /**
      * @Route("/", name="archives")
@@ -37,7 +37,8 @@ class ArchivesController extends AbstractController
         $content = $contentRepository->findby(['edition' => $edition]);
         return $this->render(
             'UserTemplate/editionArchives.html.twig',
-            ['contents' => $content]
+            ['contents' => $content,
+            'edition' => $edition]
         );
     }
 }

@@ -30,10 +30,19 @@
   </div>
 </div>
   	<div class="row justify-content-center">
-      <div class="col-6"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="w-50 pb-3"></div>
+
+      {% if content.thumbnail.mediaFileName is defined %}
+        <div class="col-6"><img src="/upload/file/{{content.thumbnail.mediaFileName}}" class="w-50 pb-3"></div>
+      {% else %}
+        <div class="col-6"><img src="/upload/file/blackThumbnail.jpg" class="w-50 pb-3"></div>
+      {% endif %}
       <div class="col-6">{{ form_row(form.thumbnail) }}</div>
 
-      <div class="col-6"><img src="/upload/file/{{content.cover.mediaFileName}}" class="w-100"></div>
+      {% if content.cover.mediaFileName is defined %}
+        <div class="col-6"><img src="/upload/file/{{content.cover.mediaFileName}}" class="w-50 pb-3"></div>
+      {% else %}
+        <div class="col-6"><img src="/upload/file/blackCover.jpg" class="w-50 pb-3"></div>
+      {% endif %}
       <div class="col-6">{{ form_row(form.cover) }}</div>
 
       <div class="col-6">{{ form_row(form.duree) }}</div>
@@ -44,7 +53,7 @@
       <div class="col-6">{{ form_row(form.note) }}</div>
     </div>
     			<h2>Ajouter des images</h2>
-	    {{ include('content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}
+	    {{ include('admin/content/_upload.html.twig', {'files': content.pictures, 'contentId': content.id, 'type': 'contentPicture'}) }}
     <div class="row">
 
         <div class="col-6"><button class="btn float-right btn-primary">{{ button_label|default('Mise à jour du contenu') }}</button></div>

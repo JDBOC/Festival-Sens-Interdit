@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("admin/sifile")
  */
-class SiFileController extends AbstractController
+class AdminSiFileController extends AbstractController
 {
     /**
 

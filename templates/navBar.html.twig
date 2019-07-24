@@ -4,49 +4,44 @@
 {% else %}
 	{% set language = session['language'] %}
 {% endif %}
-
 <div class="navBg">
 	<div class="container-fluid">
-
 		<div class="row pb-0">
-
-				<a href="{{ path('translate', {value: 'fr', route: app.request.attributes.get('_controller'), parameters: app.request.attributes.get('_route_params')}) }}">
-					<button name="language" class="btn btn-default">
-						<img class="m-0" src="/drapFr.jpg" width="30" style="border:solid; border-width: thin;"/>
-					</button>
-				</a>
-				<a href="{{ path('translate', {value: 'en_EN', route: app.request.attributes.get('_controller'), parameters: app.request.attributes.get('_route_params')})}}">
-					<button name="language" value="en_EN" class="btn btn-default">
-						<img src="/drapEn.jpg" width="30" style="border:solid; border-width: thin;" />
-					</button>
-				</a>
+			<a href="{{ path('translate', {value: 'fr', route: app.request.attributes.get('_controller'), parameters: app.request.attributes.get('_route_params')}) }}">
+				<button name="language" class="btn btn-default">
+				<img class="m-0" src="/drapFr.jpg" width="30" style="border:solid; border-width: thin;"/>
+				</button>
+			</a>
+			<a href="{{ path('translate', {value: 'en_EN', route: app.request.attributes.get('_controller'), parameters: app.request.attributes.get('_route_params')})}}">
+				<button name="language" value="en_EN" class="btn btn-default">
+				<img src="/drapEn.jpg" width="30" style="border:solid; border-width: thin;" />
+				</button>
+			</a>
 			<div class="btn-group dropleft offset-1 offset-md-4 offset-xl-8">
- 				<button type="button" class="btn btn-transparent pr-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<button type="button" class="btn btn-transparent pr-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<i class="fas fa-search " style="color: white; font-size: 25px;" ></i>
-  				</button>
-					<div class="dropdown-menu search pt-0"  aria-labelledby="dropdownMenuButton">
-						<form action="{{ path('search')}}" method="GET">
-							<input type="TEXT" name="search" placeholder="Search">
-						</form>
-					</div>
-					<div class="col-1 offset-1">
-						<a href="#" data-toggle="modal" data-target="#ContactModal"><i class="far fa-envelope fa-2x" style="color: white"></i></a>
-					</div>
-					<div class="col-1 pl-0 offset-2">
-						<a href="https://www.facebook.com/sens.interdits/"><i class="fab fa-facebook fa-2x" style="color: white;"></i></a>
-					</div>
-					<div class="col-1 offset-1">
-						<a href="https://twitter.com/sens_interdits"><i class="fab fa-twitter fa-2x" style="color: white"></i></a>
-					</div>
-					<div class="col-1 offset-1">
-						<a href="https://www.youtube.com/channel/UCIoz5kqDlIfEuRR4gxXDfFw"><i class="fab fa-youtube fa-2x" style="color: white"></i></a>
-					</div>
+				</button>
+				<div class="dropdown-menu search pt-0"  aria-labelledby="dropdownMenuButton">
+					<form action="{{ path('search')}}" method="GET">
+						<input type="TEXT" name="search" placeholder="Search">
+					</form>
+				</div>
+				<div class="col-1 offset-1">
+					<a href="#" data-toggle="modal" data-target="#ContactModal"><i class="far fa-envelope fa-2x" style="color: white"></i></a>
+				</div>
+				<div class="col-1 pl-0 offset-2">
+					<a href="https://www.facebook.com/sens.interdits/"><i class="fab fa-facebook fa-2x" style="color: white;"></i></a>
+				</div>
+				<div class="col-1 offset-1">
+					<a href="https://twitter.com/sens_interdits"><i class="fab fa-twitter fa-2x" style="color: white"></i></a>
+				</div>
+				<div class="col-1 offset-1">
+					<a href="https://www.youtube.com/channel/UCIoz5kqDlIfEuRR4gxXDfFw"><i class="fab fa-youtube fa-2x" style="color: white"></i></a>
 				</div>
 			</div>
 		</div>
-
+	</div>
 	{# ------------------------------------- #}
-
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sd-4 col-xl-2 logo">
@@ -54,28 +49,27 @@
 					<img class="" src="/logoNavbar.png" alt="logo">
 				</a>
 			</div>
-
 			<div class="col-md-12 col-xl-8 p-0 mb-0">
 				<nav class="navbar navbar-expand-lg mt-0 mb-1">
-
 					<button class="navbar-toggler text-light" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-bars"></i>
 					</button>
-
 					<div class="collapse navbar-collapse justify-content-around" id="navbarSupportedContent">
 						<ul class="navbar-nav w-100 justify-content-around">
-							<li class="liNav liNav1">
+							<div class="mt-2 archivesMenu">
+								<a class="text-light ml-2" href="{{ path('news_index') }}">{% trans into language %}Actualités{% endtrans %}</a>
+							</div>
+							<li class="liNav">
 								<div class="dropdown">
 									<button class="btn bg01 dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sens Interdits</button>
 									<div class="dropdown-menu bg01" aria-labelledby="dropdownMenuButton">
 										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'le-festival'}) }}">{% trans into language %}Le Festival{% endtrans %}</a>
 										<a class="dropdown-item" href="{{ path('index_tournee') }}">{% trans into language %}Les spectacles en tournée{% endtrans %}</a>
-										<a class="dropdown-item" href="#">{% trans into language %}Les partenaires{% endtrans %}</a>
+										<a class="dropdown-item" href="{{ path('user_partner') }}">{% trans into language %}Les partenaires{% endtrans %}</a>
 										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'lequipe'}) }}">{% trans into language %}L'équipe{% endtrans %}</a>
 										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'lassociation'}) }}">{% trans into language %}L'association{% endtrans %}</a>
 									</div>
 								</div>
 							</li>
-
 							<li class="liNav">
 								<div class="dropdown">
 									<button class="btn bg01 dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans into language %}Avec les publics{% endtrans %}</button>
@@ -86,7 +80,6 @@
 									</div>
 								</div>
 							</li>
-
 							<li class="liNav">
 								<div class="dropdown">
 									<button class="btn bg01 dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans into language %}Informations pratiques{% endtrans %}	</button>
@@ -98,7 +91,6 @@
 									</div>
 								</div>
 							</li>
-
 							<li class="liNav">
 								<div class="dropdown">
 									<button class="btn bg01 dropdown-toggle menuItem" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% trans into language %}Médias{% endtrans %}</button>
@@ -109,35 +101,33 @@
 									</div>
 								</div>
 							</li>
-
 							<div class="mt-2 archivesMenu">
 								<a class="text-light ml-2" href="{{ path('archives') }}">Archives</a>
 							</div>
-
 							<div class="mt-2 md-5">
 								<a class="text-light ml-2" href="{{ path('show_content', {'slug': 'nous-soutenir'}) }}">{% trans into language %}Nous soutenir{% endtrans %}</a>
 							</div>
 						</ul>
 					</div>
 				</nav>
-				<div class="offset-md-2 offset-lg-3  bb mt-4">
-			<button class="mb-2 col-12 col-sm-3 " style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
-				<a href="https://sensinterdits.mapado.com/">
-					<h5 class="text-light mt-1 mx-auto">
-						<i class="fas fa-theater-masks"></i>
+				<div class="offset-md-2 offset-lg-3 mt-4">
+					<button class="mb-2 col-12 col-sm-3 mb-2" style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
+						<a href="https://sensinterdits.mapado.com/">
+							<h5 class="text-light mt-1 mx-auto">
+							<i class="fas fa-theater-masks"></i>
 						{% trans into language %}Billetterie{% endtrans %}
-					</h5>
-				</a>
-			</button>
-			<button class="offset-md-2 col-12 col-sm-3 bb" style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
-				<a href="{{ path('index_festival') }}">
-					<h5 class="text-light mt-1 mx-auto">
-						<i class="fas fa-book-open"></i>
+						</h5>
+						</a>
+					</button>
+					<button class="offset-md-2 col-12 col-sm-3 mb-2" style="background-color: #ed1c24; border-radius: 20px; border-width: thick;">
+						<a href="{{ path('index_festival') }}">
+							<h5 class="text-light mt-1 mx-auto">
+							<i class="fas fa-book-open"></i>
 						{% trans into language %}Programme{% endtrans %}
-					</h5>
-				</a>
-			</button>
-		</div>
+							</h5>
+						</a>
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
