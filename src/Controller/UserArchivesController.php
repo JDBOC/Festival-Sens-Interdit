@@ -37,7 +37,8 @@ class UserArchivesController extends AbstractController
         $content = $contentRepository->findby(['edition' => $edition]);
         return $this->render(
             'UserTemplate/editionArchives.html.twig',
-            ['contents' => $content]
+            ['contents' => $content,
+            'edition' => $edition]
         );
     }
 }

@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-            {{ encore_entry_link_tags('admin') }}
         {% endblock %}
+            {{ encore_entry_link_tags('admin') }}
         <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
@@ -28,7 +28,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#{#{{ path('partner_index') }}#}">Partenaires</a>
+                        <a class="nav-link" href="{{ path('partner_index') }}">Partenaires</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('theme_index') }}">Themes</a>

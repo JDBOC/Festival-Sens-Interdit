@@ -27,12 +27,10 @@ function scrollAppear1()
     let block1 = document.querySelector(".blocktext-1");
     let block2 = document.querySelector(".blocktext-2");
     let block3 = document.querySelector(".blocktext-3");
-    let block4 = document.querySelector(".blocktext-4");
 
     let PositionBlock1 = block1.getBoundingClientRect().top;
     let PositionBlock2 = block2.getBoundingClientRect().top;
     let PositionBlock3 = block3.getBoundingClientRect().top;
-    let PositionBlock4 = block4.getBoundingClientRect().top;
 
     let screenPosition = window.innerHeight / 1.55;
 
@@ -44,9 +42,6 @@ function scrollAppear1()
     }
     if (PositionBlock3 < screenPosition) {
         block3.classList.add("appear");
-    }
-    if (PositionBlock4 < screenPosition) {
-        block4.classList.add("appear");
     }
 }
 
