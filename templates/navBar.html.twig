@@ -64,7 +64,7 @@
 									<div class="dropdown-menu bg01" aria-labelledby="dropdownMenuButton">
 										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'le-festival'}) }}">{% trans into language %}Le Festival{% endtrans %}</a>
 										<a class="dropdown-item" href="{{ path('index_tournee') }}">{% trans into language %}Les spectacles en tournée{% endtrans %}</a>
-										<a class="dropdown-item" href="#">{% trans into language %}Les partenaires{% endtrans %}</a>
+										<a class="dropdown-item" href="{{ path('user_partner') }}">{% trans into language %}Les partenaires{% endtrans %}</a>
 										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'lequipe'}) }}">{% trans into language %}L'équipe{% endtrans %}</a>
 										<a class="dropdown-item" href="{{ path('show_content', {'slug': 'lassociation'}) }}">{% trans into language %}L'association{% endtrans %}</a>
 									</div>
