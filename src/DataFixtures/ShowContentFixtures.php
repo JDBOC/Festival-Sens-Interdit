@@ -90,9 +90,6 @@ ensemble jusque dans le pr&eacute;sent.</p>
                 ->setContentType(Content::CONTENT_TYPE['festival'])
                 ->setComplete(false)
                 ->setTranslated(false)
-                ->addPicture($this->getReference('banosPicture1'))
-                ->addPicture($this->getReference('banosPicture2'))
-                ->addPicture($this->getReference('banosPicture3'))
                 ->setThumbnail($this->getReference('antartiqueThumbnail'))
                 ->setContentFr('
 <h2 style="text-align:right"><span style="color:#ff0000; font-size:14pt">1<sup>&Egrave;RE</sup> 
