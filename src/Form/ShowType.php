@@ -32,7 +32,6 @@ class ShowType extends AbstractType
             ->add('thumbnail', InSiFileType::class, [ 'required' => false])
             ->add('duree', TextType::class, ["label"=>"Durée", 'required' => false])
             ->add('lieu', TextType::class, ["label"=>"Lieu", 'required' => false])
-            ->add('date', TextType::class, ["label"=>"Date", 'required' => false])
             ->add('author', TextType::class, ["label"=>"Auteur", 'required' => false])
             ->add('director', TextType::class, ["label"=>"Directeur", 'required' => false])
             ->add('note', TextType::class, ["label"=>"A Noté", 'required' => false])
