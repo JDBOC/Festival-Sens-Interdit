@@ -28,18 +28,36 @@
 							 class="card-img" alt="...">
 						</div>
 						<div class="card-body pt-0 col-9">
+		                {% if language == "en_EN" and content.titleEn is not null %}
+							<h3 class="mb-0">{{content.titleEn}}</h3>
+							<p>{{ content.contentEn|striptags|slice(0,200)|raw}}
+               {% if content.contentEn|striptags|raw|length > 200 %} ... {% endif %}</p>
+							<a href="{{ path('show_content', {'slug': content.slug}) }}" class="float-right"><button class="btn btn-outline-primary">{% trans into language %}en savoir plus{% endtrans %}</button></a>
+						</div>
+							{% else %}
 							<h3 class="mb-0">{{content.titleFr}}</h3>
 							<p>{{ content.contentFr|striptags|slice(0,200)|raw}}
                {% if content.contentFr|striptags|raw|length > 200 %} ... {% endif %}</p>
 							<a href="{{ path('show_content', {'slug': content.slug}) }}" class="float-right"><button class="btn btn-outline-primary">{% trans into language %}en savoir plus{% endtrans %}</button></a>
+							{% endif %}
 						</div>
 						{% else %}
+
+
 						<div class="card-body pt-0 col-9">
+						{% if language == "en_EN" and content.titleEn is not null %}
+							<h3 class="mb-0">{{content.titleEn}}</h3>
+							<p>{{ content.contentEn|striptags|slice(0,200)|raw}}
+               {% if content.contentEn|striptags|raw|length > 200 %} ... {% endif %}</p>
+							<a href="{{ path('show_content', {'slug': content.slug}) }}" class="float-left"><button class="btn btn-outline-primary">{% trans into language %}en savoir plus{% endtrans %}</button></a>
+						</div>
+						{% else %}
 							<h3 class="mb-0">{{content.titleFr}}</h3>
 							<p>{{ content.contentFr|striptags|slice(0,200)|raw}}
                {% if content.contentFr|striptags|raw|length > 200 %} ... {% endif %}</p>
 							<a href="{{ path('show_content', {'slug': content.slug}) }}" class="float-left"><button class="btn btn-outline-primary">{% trans into language %}en savoir plus{% endtrans %}</button></a>
 						</div>
+						{% endif %}
 						<div class="col-3">
 							<img src={% if content.thumbnail.mediaFileName is defined %}
 										"upload/file/{{content.thumbnail.mediaFileName}}"
