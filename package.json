@@ -18,7 +18,7 @@
     },
     "dependencies": {
         "ckeditor": "^4.0.0",
-        "node-sass": "^4.12.0",
+        "node-sass": "^7.0.0",
         "owl.carousel": "^2.3.4",
         "sass-loader": "^7.1.0"
     }
